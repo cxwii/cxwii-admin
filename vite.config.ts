@@ -1,9 +1,13 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
+import VueJsx from '@vitejs/plugin-vue-jsx'
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    VueJsx()
+  ],
   resolve: {
     // 路径别名
     alias: {

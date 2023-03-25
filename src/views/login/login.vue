@@ -3,8 +3,11 @@ import { reactive } from 'vue'
 import { loginApi } from '@/api/login'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store/modules/user'
+import { useCache } from '@/hook/web/useCache'
+import ElForm from '@/components/form/src/form.vue'
 
 const { push } = useRouter()
+const { wsCache } = useCache()
 const _useUserStore = useUserStore()
 
 type fromType = {
@@ -21,8 +24,9 @@ let from: fromType = reactive(new fromData)
 const login = async () => {
   const res = await loginApi(from)
   
-  if (res.data.status == 200) {
+  if (res.data.status == 200) {    
     _useUserStore.setUserInfo('admin')
+    wsCache.set('user', 'admin')
     push({ path: "/home" })
   } else{
     push({ path: "/index" })
@@ -36,20 +40,25 @@ const empty = () => {
 </script>
 
 <template>
- <el-form :model="from" label-width="120px">
-    <el-form-item label="userName">
-      <el-input v-model="from.userName" />
-    </el-form-item>
-    <el-form-item label="password">
-      <el-input v-model="from.password" />
-    </el-form-item>
-    <el-form-item>
-      <el-button type="primary" @click="login">login</el-button>
-      <el-button @click="empty">empty</el-button>
-    </el-form-item>
-  </el-form>
+  <div class="formContainer">
+    <ElForm
+      if-button="true"
+      @on-login="login"
+      @on-empty="empty"
+      :model="from"
+      label-position="top">
+    </ElForm>
+  </div>
 </template>
 
 <style scoped lang="scss">
-
+.formContainer {
+  width: 500px;
+  background-color: rgba(93, 181, 233, .3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  border-radius: 10px;
+}
 </style>
