@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { inject, watch } from 'vue'
-import logo from '@/components/logosSvg/logo.vue'
+import logoSvg from '@/components/logosSvg/logoSvg.vue'
 
 const isCollapse = inject('isCollapse')
 
@@ -9,7 +9,7 @@ const isCollapse = inject('isCollapse')
 <template>
   <div class="aside">
     <div class="log">
-      <logo></logo>
+      <logoSvg name="vuex-store" class="logoSvg"></logoSvg>
       <div class="logText">cxw-admin</div>
     </div>
 
@@ -114,6 +114,11 @@ elUi样式
     display: flex;
     align-items: center;
     color: #ffffff;
+
+    .logoSvg {
+      width: 56px;
+      height: 100%;
+    }
 
     .logText {
       position: absolute;
