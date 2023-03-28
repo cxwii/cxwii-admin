@@ -22,15 +22,19 @@ class fromData {
 let from: fromType = reactive(new fromData)
 
 const login = async () => {
-  const res = await loginApi(from)
+  // const res = await loginApi(from)
+  // if (res.data.status == 200) {    
+  //   _useUserStore.setUserInfo('admin')
+  //   wsCache.set('user', 'admin')
+  //   push({ path: "/home" })
+  // } else{
+  //   push({ path: "/index" })
+  // }
   
-  if (res.data.status == 200) {    
-    _useUserStore.setUserInfo('admin')
-    wsCache.set('user', 'admin')
-    push({ path: "/home" })
-  } else{
-    push({ path: "/index" })
-  }
+  // 直接给他过
+  wsCache.set('user', 'admin')
+  push({ path: "/home" })
+
 }
 
 const empty = () => {

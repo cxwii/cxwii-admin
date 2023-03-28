@@ -1,0 +1,50 @@
+@font-face {
+  font-family: "element-icons"; /* Project id 3979524 */
+  src: url('iconfont.woff2?t=1679907935423') format('woff2'),
+       url('iconfont.woff?t=1679907935423') format('woff'),
+       url('iconfont.ttf?t=1679907935423') format('truetype');
+}
+
+.element-icons {
+  font-family: "element-icons" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 菜单 */
+.el-icon-caidan:before {
+  content: "\e608";
+}
+
+/* 收起菜单 */
+.el-icon-shouqicaidan:before {
+  content: "\e622";
+}
+
+/* 展开菜单 */
+.el-icon-zhankaicaidan:before {
+  content: "\e624";
+}
+
+/* 富文本 */
+.el-icon-fuwenben:before {
+  content: "\e693";
+}
+
+/* 表单 */
+.el-icon-biaodan:before {
+  content: "\e715";
+}
+
+/* 图表 */
+.el-icon-tubiao-zhexiantu:before {
+  content: "\eb96";
+}
+
+/* 首页 */
+.el-icon-shouye1:before {
+  content: "\e818";
+}
+

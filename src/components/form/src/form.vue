@@ -11,6 +11,7 @@ interface FormProps {
 }
 
 export default defineComponent({
+  name: 'ElForm',
   props: {
     model: {
       type: Object as PropType<FormProps['formModel']>,

@@ -9,6 +9,10 @@ import { useElementPlus } from '@/plugins/elementPlus/index'
 import { useStore } from '@/store/index'
 // 路由守卫
 import './permission'
+// icon
+import '@/assets/icon/iconfont.css'
+// svg支持
+import 'virtual:svg-icons-register'
 
 const app = createApp(App)
 useRouter(app)

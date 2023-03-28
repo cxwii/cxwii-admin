@@ -17,7 +17,8 @@
       "@/*": ["src/*"]
     },
     "types": [
-      "vite/client"
+      "vite/client",
+      "vite-plugin-svg-icons/client"
     ]
   },
   "include": ["src/**/*", "types/**/*.d.ts"],
