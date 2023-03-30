@@ -1,8 +1,17 @@
 <script lang="ts" setup>
-import { inject, watch } from 'vue'
+import { inject, ref, toRaw } from 'vue'
 import logoSvg from '@/components/logosSvg/logoSvg.vue'
 
 const isCollapse = inject('isCollapse')
+
+const cxw = ref()
+
+const tset = (index: string) => {
+  console.log('index :>> ', index);
+  let sss = document.getElementById('2')
+  sss!.style.backgroundColor = 'red'
+  console.log('cxw :>> ', sss!.childNodes);
+}
 
 </script>
 
@@ -14,22 +23,23 @@ const isCollapse = inject('isCollapse')
     </div>
 
     <el-menu
-      default-active="1"
+      default-active="2"
       class="elMenu"
       :collapse="isCollapse"
       background-color="#001529"
       text-color="#d3d6db"
       active-text-color="#ffffff"
+      @select="tset"
     >
 
       <el-menu-item index="1">
         <el-icon class="element-icons el-icon-shouye1"></el-icon>
         <template #title>
-          <div class="elMenuTitle">首页</div>
+          首页
         </template>
       </el-menu-item>
 
-      <el-sub-menu index="2">
+      <el-sub-menu index="2" id="2" ref="cxw" style="background-color: red !important;">
         <template #title>
           <el-icon class="element-icons el-icon-tubiao-zhexiantu"></el-icon>
           <span>图表</span>
@@ -87,14 +97,23 @@ const isCollapse = inject('isCollapse')
 /*
 elUi样式
 */
-:deep(.el-menu .el-menu-item:hover) {
-  // 菜单鼠标移至样式
+// 菜单鼠标移至样式
+.el-menu .el-menu-item:hover {
   background-color: rgb(14 39 64);
   color: #ffffff;
 }
-:deep(.el-menu .el-menu-item.is-active) {
-  // 菜单激活样式
+// 菜单激活样式
+.el-menu .el-menu-item.is-active {
   background-color: #409eff;
+}
+// 设置菜单子栏宽度,排除展开时的,不然会有bug
+.el-menu:not(.el-menu--collapse) {
+  width: 180px;
+}
+// 选中子菜单时折叠菜单,父菜单高亮
+:deep(.el-menu--collapse > .is-active > .el-sub-menu__title) {
+  position: relative;
+  background-color: #409eff !important;
 }
 
 /*
@@ -114,12 +133,10 @@ elUi样式
     display: flex;
     align-items: center;
     color: #ffffff;
-
     .logoSvg {
       width: 56px;
       height: 100%;
     }
-
     .logText {
       position: absolute;
       top: 0;
@@ -132,13 +149,9 @@ elUi样式
       align-items: center;
     }
   }
+  // 解决菜单折叠时出现1px缝隙问题
   .elMenu {
-    // 解决菜单折叠时出现1px缝隙问题
     border: none;
-    .elMenuTitle {
-      // 撑开展开栏
-      margin-right: 80px;
-    }
   }
 }
 </style>

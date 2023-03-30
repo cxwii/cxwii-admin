@@ -32,7 +32,6 @@ provide('isCollapse', isCollapse)
 .container {
   width: 100%;
   height: 100%;
-
   .elAside{
     width: auto;
     user-select: none;
