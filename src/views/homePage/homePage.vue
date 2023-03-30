@@ -3,11 +3,9 @@
 </script>
 
 <template>
-  <div class="main">main</div>
+homePage
 </template>
 
 <style scoped lang="scss">
-.main {
 
-}
 </style>

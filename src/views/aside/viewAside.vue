@@ -1,16 +1,14 @@
 <script lang="ts" setup>
 import { inject, ref, toRaw } from 'vue'
 import logoSvg from '@/components/logosSvg/logoSvg.vue'
+import { useRouter } from 'vue-router'
+
+const { push } = useRouter()
 
 const isCollapse = inject('isCollapse')
 
-const cxw = ref()
-
-const tset = (index: string) => {
-  console.log('index :>> ', index);
-  let sss = document.getElementById('2')
-  sss!.style.backgroundColor = 'red'
-  console.log('cxw :>> ', sss!.childNodes);
+const toHome = () => {
+  push({ path: "/home" })
 }
 
 </script>
@@ -18,21 +16,21 @@ const tset = (index: string) => {
 <template>
   <div class="aside">
     <div class="log">
-      <logoSvg name="vuex-store" class="logoSvg"></logoSvg>
+      <logoSvg name="vuex-store" class="logoSvg" @click="toHome"></logoSvg>
       <div class="logText">cxw-admin</div>
     </div>
 
     <el-menu
-      default-active="2"
+      default-active="/home/homePage"
       class="elMenu"
       :collapse="isCollapse"
       background-color="#001529"
       text-color="#d3d6db"
       active-text-color="#ffffff"
-      @select="tset"
+      :router="true"
     >
 
-      <el-menu-item index="1">
+      <el-menu-item index="/home/homePage">
         <el-icon class="element-icons el-icon-shouye1"></el-icon>
         <template #title>
           首页
@@ -46,13 +44,13 @@ const tset = (index: string) => {
         </template>
 
         <el-menu-item-group>
-          <el-menu-item index="2-1">柱图</el-menu-item>
-          <el-menu-item index="2-2">饼图</el-menu-item>
+          <el-menu-item index="/chart/barChart">柱图</el-menu-item>
+          <el-menu-item index="/chart/lineChart">饼图</el-menu-item>
         </el-menu-item-group>
 
       </el-sub-menu>
 
-      <el-menu-item index="3">
+      <el-menu-item index="/table/table">
         <el-icon class="element-icons el-icon-biaodan"></el-icon>
         <template #title>表格</template>
       </el-menu-item>
@@ -65,7 +63,7 @@ const tset = (index: string) => {
 
         <el-menu-item-group>
           <template #title><span>菜单组名</span></template>
-          <el-menu-item index="4-1">普通菜单</el-menu-item>
+          <el-menu-item index="/menu/menu">普通菜单</el-menu-item>
           <el-menu-item index="4-2" disabled>禁用菜单</el-menu-item>
         </el-menu-item-group>
 
@@ -83,7 +81,7 @@ const tset = (index: string) => {
         </el-sub-menu>
       </el-sub-menu>
 
-      <el-menu-item index="5">
+      <el-menu-item index="/richText/text">
         <el-icon class="element-icons el-icon-fuwenben"></el-icon>
         <template #title>文本</template>
       </el-menu-item>
@@ -136,6 +134,7 @@ elUi样式
     .logoSvg {
       width: 56px;
       height: 100%;
+      cursor:pointer;
     }
     .logText {
       position: absolute;

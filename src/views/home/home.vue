@@ -2,10 +2,10 @@
 import { ref, provide } from 'vue'
 import viewHeader from '@/views/header/viewHeader.vue'
 import viewAside from '@/views/aside/viewAside.vue'
-import viewMain from '@/views/main/viewMain.vue'
 
 const isCollapse = ref(false)
 provide('isCollapse', isCollapse)
+
 </script>
 
 <template>
@@ -18,7 +18,7 @@ provide('isCollapse', isCollapse)
         <viewHeader></viewHeader>
       </el-header>
       <el-main>
-        <viewMain></viewMain>
+        <router-view></router-view>
       </el-main>
     </el-container>
   </el-container>
@@ -34,6 +34,7 @@ provide('isCollapse', isCollapse)
   height: 100%;
   .elAside{
     width: auto;
+    // 隐藏menu的滚动条
     user-select: none;
   }
 }
