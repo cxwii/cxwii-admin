@@ -4,7 +4,7 @@ import { loginApi } from '@/api/login'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store/modules/user'
 import { useCache } from '@/hook/web/useCache'
-import ElForm from '@/components/form/src/form.vue'
+import { Form } from '@/components/elementPlus/form'
 
 const { push } = useRouter()
 const { wsCache } = useCache()
@@ -31,7 +31,7 @@ const login = async () => {
   //   push({ path: "/index" })
   // }
   
-  // 直接给他过
+  // 直接给他过,开api太麻烦了
   wsCache.set('user', 'admin')
   push({ path: "/home" })
 
@@ -45,13 +45,13 @@ const empty = () => {
 
 <template>
   <div class="formContainer">
-    <ElForm
+    <Form
       if-button="true"
       @on-login="login"
       @on-empty="empty"
       :model="from"
       label-position="top">
-    </ElForm>
+    </Form>
   </div>
 </template>
 

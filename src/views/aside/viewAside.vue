@@ -1,9 +1,10 @@
 <script lang="ts" setup>
-import { inject, ref, toRaw } from 'vue'
-import logoSvg from '@/components/logosSvg/logoSvg.vue'
-import { useRouter } from 'vue-router'
+import { inject } from 'vue'
+import { logoSvg } from '@/components/svg/logosSvg'
+import { useRouter, useRoute } from 'vue-router'
 
 const { push } = useRouter()
+const route = useRoute()
 
 const isCollapse = inject('isCollapse')
 
@@ -21,7 +22,7 @@ const toHome = () => {
     </div>
 
     <el-menu
-      default-active="/home/homePage"
+      :default-active="route.path"
       class="elMenu"
       :collapse="isCollapse"
       background-color="#001529"
