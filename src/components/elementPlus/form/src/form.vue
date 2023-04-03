@@ -34,10 +34,6 @@ const onEmpty = () => {
   emit('onEmpty')
 }
 
-const tese = () => {
-  console.log('props :>> ', attrs);
-}
-
 // 在不提供自定义内容时渲染(提供时只渲染一个正常ElForm标签)
 const formTemplate = () => {
   return (
@@ -52,7 +48,7 @@ const formTemplate = () => {
         props.ifButton == "true"
           ? <ElFormItem>
             <ElButton
-              onClick={() => tese()}
+              onClick={() => onLogin()}
               type="primary"
               class="loginButtob"
             >

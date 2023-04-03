@@ -1,2 +1,2 @@
-import table from './src/table.vue'
-export { table }
+import Etable from './src/table.vue'
+export { Etable }

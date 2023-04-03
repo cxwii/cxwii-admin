@@ -4,7 +4,7 @@ import { loginApi } from '@/api/login'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store/modules/user'
 import { useCache } from '@/hook/web/useCache'
-import { Form } from '@/components/elementPlus/form'
+import { Eform } from '@/components/elementPlus/form'
 
 const { push } = useRouter()
 const { wsCache } = useCache()
@@ -45,14 +45,14 @@ const empty = () => {
 
 <template>
   <div class="formContainer">
-    <Form
+    <Eform
       if-button="true"
       @on-login="login"
       @on-empty="empty"
       :model="from"
       label-position="top"
     >
-    </Form>
+    </Eform>
   </div>
 </template>
 

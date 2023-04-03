@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-
+import { Etable } from '@/components/elementPlus/table'
 </script>
 
 <template>
-table
+  <Etable></Etable>
 </template>
 
 <style scoped lang="scss">
