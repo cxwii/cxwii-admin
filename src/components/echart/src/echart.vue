@@ -56,24 +56,27 @@ const initChart = () => {
   }
 }
 
-// 响应式的调整大小
+// 调整大小
 const resizeHandler = debounce(() => {
   if (echartRef) {
     echartRef.resize()
   }
 }, 100)
 
-// 页面加载初始化方法和大小调整方法
+// 页面加载初始化方法和resizeHandler
 onMounted(() => {
   initChart()
   window.addEventListener('resize', resizeHandler)
 })
 
-// 页面销毁时注销大小调整方法
+// 页面销毁时注销resizeHandler
 onBeforeUnmount(() => {
   window.removeEventListener('resize', resizeHandler)
 })
 
+defineExpose({
+  resizeHandler
+})
 </script>
 
 <template>
