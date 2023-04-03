@@ -30,7 +30,7 @@ const toHome = () => {
       active-text-color="#ffffff"
       :router="true"
     >
-
+      <!-- 首页 -->
       <el-menu-item index="/home/homePage">
         <el-icon class="element-icons el-icon-shouye1"></el-icon>
         <template #title>
@@ -38,7 +38,9 @@ const toHome = () => {
         </template>
       </el-menu-item>
 
-      <el-sub-menu index="2" id="2" ref="cxw" style="background-color: red !important;">
+       <!-- 图表 -->
+       <!-- 多级菜单没有自己独立index会有问题 -->
+      <el-sub-menu index="1">
         <template #title>
           <el-icon class="element-icons el-icon-tubiao-zhexiantu"></el-icon>
           <span>图表</span>
@@ -51,12 +53,21 @@ const toHome = () => {
 
       </el-sub-menu>
 
-      <el-menu-item index="/table/table">
-        <el-icon class="element-icons el-icon-biaodan"></el-icon>
-        <template #title>表格</template>
-      </el-menu-item>
+      <!-- 组件 -->
+      <el-sub-menu index="2">
+        <template #title>
+          <el-icon class="element-icons el-icon-tubiao-zhexiantu"></el-icon>
+          <span>elui组件</span>
+        </template>
 
-      <el-sub-menu index="4">
+        <el-menu-item-group>
+          <el-menu-item index="/elComponents/table">表格</el-menu-item>
+        </el-menu-item-group>
+
+      </el-sub-menu>
+
+      <!-- 菜单 -->
+      <el-sub-menu index="3">
         <template #title>
           <el-icon class="element-icons el-icon-caidan"></el-icon>
           <span>菜单</span>
@@ -82,6 +93,7 @@ const toHome = () => {
         </el-sub-menu>
       </el-sub-menu>
 
+      <!-- 富文本 -->
       <el-menu-item index="/richText/text">
         <el-icon class="element-icons el-icon-fuwenben"></el-icon>
         <template #title>文本</template>

@@ -1,6 +1,6 @@
-<script lang="tsx">
+<script setup lang="tsx">
 import { ElForm, ElFormItem, ElInput, ElButton } from 'element-plus'
-import { defineComponent, PropType } from 'vue'
+import { PropType, useSlots, useAttrs } from 'vue'
 
 interface FormProps {
   formModel: {
@@ -10,73 +10,98 @@ interface FormProps {
   ifButton: string
 }
 
-export default defineComponent({
-  name: 'Form',
-  props: {
-    model: {
-      type: Object as PropType<FormProps['formModel']>,
-      required: true
-    },
-    // 是否渲染两个button,渲染的话还要传递两个button对应的方法
-    ifButton: {
-      type: String as PropType<FormProps['ifButton']>,
-      default: 'false'
-    }
+const props = defineProps({
+  model: {
+    type: Object as PropType<FormProps['formModel']>,
+    required: true
   },
-  emits: ['onLogin', 'onEmpty'],
-  setup(props, { slots, emit }) {
-    const onLogin = () => {
-      emit('onLogin')
-    }
-    const onEmpty = () => {
-      emit('onEmpty')
-    }
-
-    // 在不提供自定义内容时渲染(提供时只渲染一个正常ElForm标签)
-    const formTemplate = () => {
-      return (
-        <>
-          <ElFormItem label="userName">
-            <ElInput v-model={props.model.userName} />
-          </ElFormItem>
-          <ElFormItem label="password">
-            <ElInput v-model={props.model.password} />
-          </ElFormItem>
-          {
-            props.ifButton == "true"
-              ? <ElFormItem>
-                  <ElButton onClick={() => onLogin()} type="primary" class="loginButtob">login</ElButton>
-                  <ElButton onClick={() => onEmpty()} class="emptyButtob">empty</ElButton>
-                </ElFormItem>
-              : null
-          }
-        </>
-      )
-    }
-
-    return () => (
-      <ElForm
-        class="form"
-        model={props.model}
-      >
-        {
-          // 自定义内容了就只返一个elForm标签,否则才根据数据渲染内容
-          slots.default ? slots.default() : formTemplate()
-        }
-      </ElForm>
-    )
+  // 是否渲染两个button,渲染的话还要传递两个button对应的方法
+  ifButton: {
+    type: String as PropType<FormProps['ifButton']>,
+    default: 'false'
   }
 })
+
+const emit = defineEmits(['onLogin', 'onEmpty'])
+
+const slots = useSlots()
+const attrs = useAttrs()
+
+const onLogin = () => {
+  emit('onLogin')
+}
+const onEmpty = () => {
+  emit('onEmpty')
+}
+
+const tese = () => {
+  console.log('props :>> ', attrs);
+}
+
+// 在不提供自定义内容时渲染(提供时只渲染一个正常ElForm标签)
+const formTemplate = () => {
+  return (
+    <>
+      <ElFormItem class="cc" label="userName">
+        <ElInput v-model={props.model.userName} />
+      </ElFormItem>
+      <ElFormItem label="password">
+        <ElInput v-model={props.model.password} />
+      </ElFormItem>
+      {
+        props.ifButton == "true"
+          ? <ElFormItem>
+            <ElButton
+              onClick={() => tese()}
+              type="primary"
+              class="loginButtob"
+            >
+              login
+            </ElButton>
+            <ElButton
+              onClick={() => onEmpty()}
+              class="emptyButtob"
+            >
+              empty
+            </ElButton>
+          </ElFormItem>
+          : null
+      }
+    </>
+  )
+}
+
+const app = () => {
+  return (
+    <ElForm
+      class="form"
+      model={props.model}
+      {...attrs}
+    >
+      {
+        // 自定义内容了就只返一个elForm标签,否则才根据数据渲染内容
+        slots.default ? slots.default() : formTemplate()
+      }
+    </ElForm>
+  )
+}
 </script>
+
+<template>
+  <app>
+  </app>
+</template>
 
 <style scoped lang="scss">
 .form {
   width: 300px;
-  .loginButtob {
+
+  // 这里要用穿透是因为formTemplate是作为app的子组件存在如果不穿透的话因为有scoped在就会失效
+  :deep(.loginButtob) {
     width: 300px;
   }
 
-  .emptyButtob {
+  :deep(.emptyButtob) {
     width: 300px;
     margin-left: 0px;
     margin-top: 12px;

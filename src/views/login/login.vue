@@ -50,12 +50,14 @@ const empty = () => {
       @on-login="login"
       @on-empty="empty"
       :model="from"
-      label-position="top">
+      label-position="top"
+    >
     </Form>
   </div>
 </template>
 
 <style scoped lang="scss">
+
 .formContainer {
   width: 500px;
   background-color: rgba(93, 181, 233, .3);

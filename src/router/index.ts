@@ -33,9 +33,9 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/chart/barChart/barChart.vue')
       },
       {
-        path:'/table/table',
+        path:'/elComponents/table',
         name:'table',
-        component: () => import('@/views/table/table.vue')
+        component: () => import('@/views/elComponents/table/table.vue')
       },
       {
         path:'/menu/menu',
