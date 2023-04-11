@@ -21,6 +21,6 @@
       "vite-plugin-svg-icons/client"
     ]
   },
-  "include": ["src/**/*", "types/**/*.d.ts"],
+  "include": ["src/**/*", "types/**/*.d.ts", "mock/**/*.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

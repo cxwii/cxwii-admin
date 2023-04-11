@@ -14,7 +14,7 @@ provide('isCollapse', isCollapse)
       <viewAside></viewAside>
     </el-aside>
     <el-container>
-      <el-header>
+      <el-header class="elHeader">
         <viewHeader></viewHeader>
       </el-header>
       <el-main>
@@ -36,6 +36,9 @@ provide('isCollapse', isCollapse)
     width: auto;
     // 隐藏menu的滚动条
     user-select: none;
+  }
+  .elHeader {
+    height: 80px;
   }
 }
 </style>

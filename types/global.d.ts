@@ -9,3 +9,5 @@ declare type AxiosHeaders =
 declare type ElRef<T extends HTMLElement = HTMLDivElement> = Nullable<T>
 // echart实例化
 declare type Nullable<T> = T | null
+// 用于组件ref实例的类型InstanceType:获取类的实例类型
+declare type ComponentRef<T> = InstanceType<T>
