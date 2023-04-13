@@ -38,6 +38,16 @@ const initTags = () => {
   }
 }
 
+// 新增tag
+const addTags = () => {
+  const { name } = unref(currentRoute)
+  if (name) {
+    // selectedTag.value = unref(currentRoute)
+    useTagsViewStore.addVisitedView(unref(currentRoute))
+  }
+  return false
+}
+
 // 只打开一个标签下拉框
 const visibleChange = (visible: boolean, tagItem: RouteLocationNormalizedLoaded) => {
   if (visible) {
@@ -60,6 +70,7 @@ watch(
   () => currentRoute.value,
   () => {
     console.log('监听到 :>> ', currentRoute.value)
+    addTags()
   }
 )
 

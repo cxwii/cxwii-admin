@@ -22,9 +22,9 @@ let option = {
 const barOptions = reactive<EChartsOption>(option) as EChartsOption
 
 /* 
-使用echart组件传出来resizeHandler方法调整大小,
-给会出现变化dom上绑定,变化就触发
-原本是放在echart组件中做这件事的,但我觉得应该给用户来决定
+  使用echart组件传出来resizeHandler方法调整大小,
+  给会出现变化dom上绑定,变化就触发
+  原本是放在echart组件中做这件事的,但我觉得应该给用户来决定
  */
 const barEchart = ref()
 const contentEl = ref<Element>()

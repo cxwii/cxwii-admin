@@ -8,7 +8,7 @@ import { Eform } from '@/components/elementPlus/form'
 
 const { push } = useRouter()
 const { wsCache } = useCache()
-const _useUserStore = useUserStore()
+const userStore = useUserStore()
 
 type fromType = {
   userName: string,
@@ -24,7 +24,7 @@ let from: fromType = reactive(new fromData)
 const login = async () => {
   // const res = await loginApi(from)
   // if (res.data.status == 200) {    
-  //   _useUserStore.setUserInfo('admin')
+  //   userStore.setUserInfo('admin')
   //   wsCache.set('user', 'admin')
   //   push({ path: "/home" })
   // } else{

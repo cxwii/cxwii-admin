@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { store } from '../index'
+import { routes } from '@/router'
 
 export interface PermissionState {
   routers: AppRouteRecordRaw[]
@@ -16,19 +17,21 @@ export const permissionStore = defineStore('permission', {
   },
   actions: {
     // 动态使用各形式路由的,但没搞好后端的api展示不用
-    generateRoutes() {
-      this.routers = [
-        {
-          "path": "/test",
-          "name": "test",
-          "meta": {"title":"标签一","noCache":true,"affix":true},
-        },
-        {
-          "path": "/test2",
-          "name": "test2",
-          "meta": {"title":"标签二","noCache":true,"affix":true},
-        },
-      ]
+    generateRoutes(
+      type: 'admin' | "none",
+      routers?: string[]
+    ): Promise<unknown> {
+      return new Promise<void>((resolve) => {
+        let routersMap: AppRouteRecordRaw[] = []
+        if (type === 'admin') {
+          // 动态使用路由
+        } else {
+          routersMap = routes
+          console.log('routersMap :>> ', routersMap);
+        }
+        this.routers = routersMap
+        resolve()
+      })
     }
   }
 })
