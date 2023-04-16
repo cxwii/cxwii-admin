@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { inject, ref } from 'vue'
 import type { Ref } from 'vue'
-import { Etabs } from '@/components/elementPlus/tabs';
+import { Etags } from '@/components/elementPlus/tags';
 
 const isCollapse = inject('isCollapse') as Ref<boolean>
 
@@ -73,8 +73,8 @@ const removeTab = (targetName: string) => {
       >
       </el-icon>
     </div>
-    <div class="Etabs">
-      <Etabs></Etabs>
+    <div class="Etags">
+      <Etags></Etags>
     </div>
   </div>
 </template>
@@ -88,7 +88,7 @@ const removeTab = (targetName: string) => {
     display: flex;
     align-items: center;
   }
-  .Etabs {
+  .Etags {
     width: 100%;
     height: 40%;
     background-color: pink;

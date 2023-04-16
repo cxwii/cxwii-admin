@@ -48,12 +48,16 @@ const addTags = () => {
   return false
 }
 
+// 关闭选中的tag
+const closeSelectedTag = (view: RouteLocationNormalizedLoaded) => {
+  if (view?.meta?.affix) return
+  useTagsViewStore.delVisitedView(view)
+}
+
 // 只打开一个标签下拉框
 const visibleChange = (visible: boolean, tagItem: RouteLocationNormalizedLoaded) => {
   if (visible) {
     for (const v of unref(itemRefs)) {
-      console.log('tagItem.fullPath :>> ', tagItem.fullPath)
-      console.log('v.tagItem.fullPath :>> ', v.tagItem.fullPath)
       const elDropdownMenuRef = v.dropdownMenuRef
       if (tagItem.fullPath !== v.tagItem.fullPath) {
         elDropdownMenuRef?.handleClose()
@@ -62,20 +66,22 @@ const visibleChange = (visible: boolean, tagItem: RouteLocationNormalizedLoaded)
   }
 }
 
-const test = (a: any) => {
-  console.log('test :>> ', a)
+const closeAllTags = () => {
+  useTagsViewStore.delAllVisitedViews()
 }
 
 watch(
   () => currentRoute.value,
   () => {
-    console.log('监听到 :>> ', currentRoute.value)
+    // 后续监听路由变化就增加标签
     addTags()
   }
 )
 
 onMounted(() => {
   initTags()
+  // 页面初始化的时候就新增一次当前路由
+  addTags()
 })
 </script>
 
@@ -84,9 +90,9 @@ onMounted(() => {
     :ref="itemRefs.set"
     :schema="[
       {
-        label: 'common.reload',
+        label: '关闭全部',
         command: () => {
-          test(1)
+          closeAllTags()
         }
       }
     ]"
@@ -95,7 +101,22 @@ onMounted(() => {
     :key="item.fullPath"
     :tag-item="item"
   >
-    {{ item?.meta?.title as string }}
+  <div>
+    <router-link :to="{ ...item }" custom v-slot="{ navigate }">
+      <div
+        @click="navigate"
+      >
+        {{ item?.meta?.title as string }}
+        <el-icon
+          v-if="!item.meta.affix"
+          :size="12"
+          class="element-icons el-icon-chahao"
+          @click.prevent.stop="closeSelectedTag(item)"
+        >
+        </el-icon>
+      </div>
+    </router-link>
+  </div>
   </EdropdownMenu>
 
 </template>

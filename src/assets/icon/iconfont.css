@@ -13,6 +13,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* 叉号 */
+.el-icon-chahao:before {
+  content: "\e604";
+}
+
 /* 菜单 */
 .el-icon-caidan:before {
   content: "\e608";
