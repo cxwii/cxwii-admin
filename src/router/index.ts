@@ -1,6 +1,12 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import type { App } from 'vue'
 
+/* 
+  meta:
+  affix初始化的时候就渲染标签
+  noCache: 不需要缓存
+*/
+
 export const routes: AppRouteRecordRaw[] = [
   {
     name: 'root',
@@ -26,7 +32,7 @@ export const routes: AppRouteRecordRaw[] = [
             path:'homePage',
             meta: {
               "title":"首页",
-              "affix":true
+              "affix": true
             },
             component: () => import('@/views/homePage/homePage.vue')
           },
@@ -39,7 +45,8 @@ export const routes: AppRouteRecordRaw[] = [
                 name: 'barChart',
                 path: 'barChart',
                 meta: {
-                  "title": "柱图"
+                  "title": "柱图",
+                  "noCache": true
                 },
                 component: () => import('@/views/chart/barChart/barChart.vue')
               },

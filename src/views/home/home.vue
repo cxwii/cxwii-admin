@@ -1,10 +1,17 @@
 <script lang="ts" setup>
-import { ref, provide } from 'vue'
+import { ref, provide, computed } from 'vue'
 import viewHeader from '@/views/header/viewHeader.vue'
 import viewAside from '@/views/aside/viewAside.vue'
+import { useTagsViewStore } from '@/store/modules/tagsView'
 
 const isCollapse = ref(false)
 provide('isCollapse', isCollapse)
+
+
+const tagsViewStore = useTagsViewStore()
+const getCaches = computed((): string[] => {
+  return tagsViewStore.getCachedViews
+})
 
 </script>
 
@@ -18,7 +25,13 @@ provide('isCollapse', isCollapse)
         <viewHeader></viewHeader>
       </el-header>
       <el-main>
-        <router-view></router-view>
+        <router-view>
+          <template #default="{ Component, route }">
+            <keep-alive :include="getCaches">
+              <component :is="Component" :key="route.fullPath" />
+            </keep-alive>
+          </template>
+        </router-view>
       </el-main>
     </el-container>
   </el-container>
