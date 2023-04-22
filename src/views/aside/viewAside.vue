@@ -47,8 +47,8 @@ const toHome = () => {
         </template>
 
         <el-menu-item-group>
-          <el-menu-item index="/home/chart/barChart">柱图</el-menu-item>
-          <el-menu-item index="/home/chart/lineChart">饼图</el-menu-item>
+          <el-menu-item index="/chart/barChart">柱图</el-menu-item>
+          <el-menu-item index="/chart/lineChart">饼图</el-menu-item>
         </el-menu-item-group>
 
       </el-sub-menu>
@@ -61,7 +61,7 @@ const toHome = () => {
         </template>
 
         <el-menu-item-group>
-          <el-menu-item index="/home/elComponents/table">表格</el-menu-item>
+          <el-menu-item index="/elComponents/table">表格</el-menu-item>
         </el-menu-item-group>
 
       </el-sub-menu>
@@ -75,7 +75,7 @@ const toHome = () => {
 
         <el-menu-item-group>
           <template #title><span>菜单组名</span></template>
-          <el-menu-item index="/home/menu/menu1">普通菜单</el-menu-item>
+          <el-menu-item index="/menu/menu1">普通菜单</el-menu-item>
           <el-menu-item index="4-2" disabled>禁用菜单</el-menu-item>
         </el-menu-item-group>
 
@@ -94,7 +94,7 @@ const toHome = () => {
       </el-sub-menu>
 
       <!-- 富文本 -->
-      <el-menu-item index="/home/richText">
+      <el-menu-item index="/text/richText">
         <el-icon class="element-icons el-icon-fuwenben"></el-icon>
         <template #title>文本</template>
       </el-menu-item>

@@ -10,7 +10,6 @@ export const pathResolve = (parentPath: string, path: string) => {
 // 筛选用于缓存组件的数据
 export const getRawRoute = (route: RouteLocationNormalized): RouteLocationNormalized => {
   if (!route) return route
-  console.log('route :>> ', route)
   const { matched, ...opt } = route
   return {
     ...opt,
