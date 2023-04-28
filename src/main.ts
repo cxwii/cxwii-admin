@@ -13,6 +13,8 @@ import './permission'
 import '@/assets/icon/iconfont.css'
 // svg支持
 import 'virtual:svg-icons-register'
+// Tailwind
+import './index.css'
 
 const app = createApp(App)
 useRouter(app)

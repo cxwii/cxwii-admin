@@ -24,7 +24,9 @@ router.beforeEach(async (to, from, next) => {
       
       // 是否动态使用路由(当然是no啦,都没后端api动个屁)
       if (userStore.getDynamicRouter) {
-
+        // 动态使用路由(这个roleRouters是登陆的时候存储,在getRole()里面)
+        const roleRouters = wsCache.get('roleRouters') || []
+        await permissionStore.generateRoutes('admin', roleRouters)
       } else {
         await permissionStore.generateRoutes('none')
       }
@@ -39,6 +41,7 @@ router.beforeEach(async (to, from, next) => {
       const nextData = to.path === redirect ? { ...to, replace: true } : { path: redirect }
       permissionStore.setIsAddRouters(true)
       next(nextData)
+
     } else {
       // 没登录信息会登录页
       next('/index')

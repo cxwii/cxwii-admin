@@ -24,20 +24,31 @@ class fromData {
 
 let from: fromType = reactive(new fromData)
 
+// 登录
 const login = async () => {
   const res = await loginApi(from)
   if (res.data.status == 200) {    
-    // 存储用户数据
+    // 存储用户数据(现在就简单存个字段)
     userStore.setUserInfo('admin')
     wsCache.set('user', 'admin')
 
-    // 使用一次generateRoutes解决同异步问题导致AddRouters无值问题
-    await permissionStore.generateRoutes('none').catch(() => {})
-
-    permissionStore.getAddRouters.forEach((route) => {
-      // 动态添加可访问路由表
-      addRoute(route as RouteRecordRaw)
-    })
+    /* 
+      这里应该是根据用户信息有没有额外的权限路由
+      有就使用(并存于本地然后在刷新页面的时候使用)
+      没有就使用前端渲染静态默然的
+      现在没接口就默认不用了
+     */
+    if (false) {
+      userStore.setDynamicRouter(true)
+      getRole()
+    } else {
+      // 使用一次generateRoutes解决同异步问题导致AddRouters无值问题
+      await permissionStore.generateRoutes('none').catch(() => {})
+      // 动态添加可访问路由表(这里添加的是前端静态的表)
+      permissionStore.getAddRouters.forEach((route) => {
+        addRoute(route as RouteRecordRaw)
+      })
+    }
 
     push({ path: "/home" })
   } else{
@@ -47,6 +58,11 @@ const login = async () => {
   // 直接给他过,开api太麻烦了
   // wsCache.set('user', 'admin')
   // push({ path: "/home" })
+
+}
+
+// 在后端渲染时获取角色信息
+const getRole = () => {
 
 }
 

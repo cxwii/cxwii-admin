@@ -29,17 +29,18 @@ export const permissionStore = defineStore('permission', {
     }
   },
   actions: {
-    // 动态使用各形式路由的,但没搞好后端的api展示不用
+    // 提供addRouters和routers来渲染路由
     generateRoutes(
       type: 'admin' | "none",
-      routers?: string[]
+      routers?: string[] | AppRouteRecordRaw[]
     ): Promise<unknown> {
       return new Promise<void>((resolve) => {
 
         let routersMap: AppRouteRecordRaw[] = []
         
         if (type === 'admin') {
-          // 动态使用路由....
+          // 这里应该用一个函数过滤一下后端的路由表以防格式问题,暂时没有api先不理了
+          routersMap = cloneDeep(routers as AppRouteRecordRaw[])
         } else {
           routersMap = cloneDeep(asyncRouter)
         }

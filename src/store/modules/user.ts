@@ -14,7 +14,7 @@ export const userStore = defineStore('user', {
     return{
       // 登录信息字段,现在就单纯当token用
       userInfo: null,
-      // 是否使用动态路由
+      // 是否使用动态路由(其实可以直接用wsCache里面的user来判断)
       dynamicRouter: wsCache.get('dynamicRouter') || false
     }
   },

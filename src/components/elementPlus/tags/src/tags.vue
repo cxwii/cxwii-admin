@@ -120,6 +120,7 @@ onMounted(() => {
     <router-link :to="{ ...item }" custom v-slot="{ navigate }">
       <div
         @click="navigate"
+        class=""
       >
         {{ item?.meta?.title as string }}
         <el-icon
