@@ -1,6 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
+// Tailwind
+import './index.css'
 // 路由
 import { useRouter } from '@/router/index'
 // ElementUI
@@ -13,8 +15,6 @@ import './permission'
 import '@/assets/icon/iconfont.css'
 // svg支持
 import 'virtual:svg-icons-register'
-// Tailwind
-import './index.css'
 
 const app = createApp(App)
 useRouter(app)

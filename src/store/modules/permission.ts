@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { store } from '../index'
 import { constantRoutes, asyncRouter } from '@/router'
 import { cloneDeep } from 'lodash-es'
-// import { flatMultiLevelRoutes } from '@/utils/routerHelper'
+import { flatMultiLevelRoutes } from '@/utils/routerHelper'
 
 export interface PermissionState {
   routers: AppRouteRecordRaw[],
@@ -20,9 +20,10 @@ export const permissionStore = defineStore('permission', {
     getRouters(): AppRouteRecordRaw[] {
       return this.routers
     },
-    getAddRouters(): AppRouteRecordRaw[] {
-      return this.addRouters
-      // return flatMultiLevelRoutes(cloneDeep(this.addRouters))
+    getAddRouters(): AppRouteRecordRaw[] {  
+      // return this.addRouters
+      // 路由展平的方法
+      return flatMultiLevelRoutes(cloneDeep(this.addRouters))
     },
     getIsAddRouters(): boolean {
       return this.isAddRouters

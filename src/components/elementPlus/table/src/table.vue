@@ -17,7 +17,6 @@ const slots = useSlots()
 const attrs = useAttrs()
 
 const fixedHead = computed(() => {
-  console.log('object :>> ', slots.default);
   return slots.default ? undefined : "250"
 })
 

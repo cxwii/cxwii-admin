@@ -46,7 +46,6 @@ const change = () => {
   .Etags {
     width: 100%;
     height: 40%;
-    background-color: pink;
   }
 }
 </style>

@@ -13,7 +13,9 @@ export interface tagsViewStateType {
 export const tagsViewStore = defineStore('tagsView', {
   state: (): tagsViewStateType => {
     return{
+      // 使用的视图
       visitedViews: [],
+      // 用于缓存的视图
       cachedViews: new Set()
     }
   },
@@ -49,6 +51,32 @@ export const tagsViewStore = defineStore('tagsView', {
     delOthersViews(view: RouteLocationNormalizedLoaded) {
       this.delOthersVisitedViews(view)
       this.addCachedView()
+    },
+    // 删除左侧
+    delLeftViews(view: RouteLocationNormalizedLoaded) {
+      const index = findIndex<RouteLocationNormalizedLoaded>(
+        this.visitedViews,
+        (v) => v.path === view.path
+      )
+      if (index > -1) {
+        this.visitedViews = this.visitedViews.filter((v, i) => {
+          return v?.meta?.affix || v.path === view.path || i > index
+        })
+        this.addCachedView()
+      }
+    },
+    // 删除右侧
+    delRightViews(view: RouteLocationNormalizedLoaded) {
+      const index = findIndex<RouteLocationNormalizedLoaded>(
+        this.visitedViews,
+        (v) => v.path === view.path
+      )
+      if (index > -1) {
+        this.visitedViews = this.visitedViews.filter((v, i) => {
+          return v?.meta?.affix || v.path === view.path || i < index
+        })
+        this.addCachedView()
+      }
     },
 
     /* 各种操作方法 */
@@ -96,8 +124,8 @@ export const tagsViewStore = defineStore('tagsView', {
     },
     // 关闭全部
     delAllVisitedViews() {
-      const affixTags = this.visitedViews.filter((tag) => tag.meta.affix)
-      this.visitedViews = affixTags
+      // const affixTags = this.visitedViews.filter((tag) => tag.meta.affix)
+      this.visitedViews = []
     },
     // 删除其他
     delOthersVisitedViews(view: RouteLocationNormalizedLoaded) {

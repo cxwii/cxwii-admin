@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { configGlobal } from '@/components/configGlobal'
 </script>
 
 <template>
-  <router-view></router-view>
+  <configGlobal>
+    <router-view></router-view>
+  </configGlobal>
 </template>
 
 <style lang="scss">
