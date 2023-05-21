@@ -9,6 +9,7 @@ provide('isCollapse', isCollapse)
 
 
 const tagsViewStore = useTagsViewStore()
+
 const getCaches = computed((): string[] => {
   return tagsViewStore.getCachedViews
 })
@@ -16,7 +17,7 @@ const getCaches = computed((): string[] => {
 </script>
 
 <template>
-  <el-container class="container">
+  <el-container class="elContainer">
     <el-aside class="elAside">
       <viewAside></viewAside>
     </el-aside>
@@ -42,7 +43,7 @@ const getCaches = computed((): string[] => {
 ::-webkit-scrollbar {
   width: 0 !important
 }
-.container {
+.elContainer {
   width: 100%;
   height: 100%;
   .elAside{

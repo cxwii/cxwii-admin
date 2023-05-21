@@ -73,27 +73,38 @@ const empty = () => {
 </script>
 
 <template>
-  <div class="formContainer">
-    <Eform
-      if-button="true"
-      @on-login="login"
-      @on-empty="empty"
-      :model="from"
-      label-position="top"
-    >
-    </Eform>
+  <div class="index">
+    <div class="formContainer">
+      <Eform
+        if-button="true"
+        @on-login="login"
+        @on-empty="empty"
+        :model="from"
+        label-position="top"
+      >
+      </Eform>
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-
-.formContainer {
-  width: 500px;
-  background-color: rgba(93, 181, 233, .3);
+.index {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 30px;
-  border-radius: 10px;
+  align-items: center;
+  .formContainer {
+    width: 500px;
+    background-color: rgba(93, 181, 233, .3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    border-radius: 10px;
+  }
 }
 </style>

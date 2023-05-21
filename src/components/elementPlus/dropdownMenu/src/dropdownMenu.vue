@@ -19,9 +19,6 @@ const props = defineProps({
   }
 })
 
-// 节流函数
-
-
 const emit = defineEmits(['visibleChange'])
 
 const dropdownMenuRef = ref<ComponentRef<typeof ElDropdown>>()

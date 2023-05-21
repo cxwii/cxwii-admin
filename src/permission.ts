@@ -10,7 +10,7 @@ const userStore = useUserStore()
 const { wsCache } = useCache()
 
 router.beforeEach(async (to, from, next) => {
-  if (to.path == '/index') {
+  if (to.path == '/login') {
     // 访问登录直接放行
     next()
   } else {
@@ -22,6 +22,7 @@ router.beforeEach(async (to, from, next) => {
         return
       }
       
+      // 下面是第一次进来和刷新的时候(上面是之后的路由操作)
       // 是否动态使用路由(当然是no啦,都没后端api动个屁)
       if (userStore.getDynamicRouter) {
         // 动态使用路由(这个roleRouters是登陆的时候存储,在getRole()里面)
@@ -44,7 +45,7 @@ router.beforeEach(async (to, from, next) => {
 
     } else {
       // 没登录信息会登录页
-      next('/index')
+      next('/login')
     }
   }
 })

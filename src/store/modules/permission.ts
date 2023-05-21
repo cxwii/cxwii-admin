@@ -42,7 +42,7 @@ export const permissionStore = defineStore('permission', {
         if (type === 'admin') {
           // 这里应该用一个函数过滤一下后端的路由表以防格式问题,暂时没有api先不理了
           routersMap = cloneDeep(routers as AppRouteRecordRaw[])
-        } else {
+        } else {          
           routersMap = cloneDeep(asyncRouter)
         }
 

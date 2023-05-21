@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import type { App } from 'vue'
+import { index } from '@/utils/routerHelper'
 
 /* 
   meta:
@@ -13,13 +14,28 @@ export const constantRoutes: AppRouteRecordRaw[] = [
     name: 'root',
     path:'/',
     meta: {},
-    redirect:'/index',
+    redirect:'/home/homePage',
+    component: index
+  },
+  // 用于实现重新加载的功能
+  {
+    path: '/redirect',
+    name: 'redirect',
+    children: [
+      {
+        path: '/redirect/:path(.*)',
+        name: 'redirect',
+        component: () => import('@/views/redirect/redirectView.vue'),
+        meta: {}
+      }
+    ],
+    meta: {}
   },
   {
-    name: 'index',
-    path:'/index',
+    name: 'login',
+    path:'/login',
     meta: {},
-    component: () => import('@/views/index/index.vue')
+    component: () => import('@/views/login/login.vue')
   }
 ]
 
@@ -30,7 +46,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     path:'/home',
     meta: {},
     redirect:'/home/homePage',
-    component: () => import('@/views/home/home.vue'),
+    component: index,
     children: [
       {
         name:'homePage',
@@ -48,7 +64,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     path:'/chart',
     meta: {},
     redirect:'/chart/barChart',
-    component: () => import('@/views/home/home.vue'),
+    component: index,
     children: [
       {
         name: 'barChart',
@@ -74,7 +90,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     path:'/elComponents',
     meta: {},
     redirect:'/elComponents/table',
-    component: () => import('@/views/home/home.vue'),
+    component: index,
     children: [
       {
         name: 'table',
@@ -91,7 +107,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     path:'/menu',
     meta: {},
     redirect:'/menu/menu1',
-    component: () => import('@/views/home/home.vue'),
+    component: index,
     children: [
       {
         name: 'menu1',
@@ -108,7 +124,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     path:'/text',
     meta: {},
     redirect:'/text/richText',
-    component: () => import('@/views/home/home.vue'),
+    component: index,
     children: [
       {
         name: 'richText',
@@ -116,16 +132,30 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         meta: {
           "title":"富文本"
         },
-        component: () => import('@/views/menu/menu.vue')
+        component: () => import('@/views/richText/text.vue')
       }
     ]
   }
 ]
 
+// 路由的注册
 const router = createRouter({
   history: createWebHashHistory(),
   routes: constantRoutes as RouteRecordRaw[]
 })
+
+// 路由的清除
+// 后面加个错误页面到默认路由表才行
+export const resetRouter = (): void => {
+  const resetWhiteNameList = ['redirect', 'login', 'root']
+  router.getRoutes().forEach((route) => {
+    const { name } = route
+    if (name && !resetWhiteNameList.includes(name as string)) {
+      // resetWhiteNameList里面的默认表就不删
+      router.hasRoute(name) && router.removeRoute(name)
+    }
+  })
+}
 
 export const useRouter = (app: App<Element>) => {
   app.use(router)

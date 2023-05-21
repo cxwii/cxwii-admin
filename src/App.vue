@@ -4,7 +4,7 @@ import { configGlobal } from '@/components/configGlobal'
 
 <template>
   <configGlobal>
-    <router-view></router-view>
+    <RouterView />
   </configGlobal>
 </template>
 

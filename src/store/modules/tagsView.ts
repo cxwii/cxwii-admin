@@ -15,7 +15,7 @@ export const tagsViewStore = defineStore('tagsView', {
     return{
       // 使用的视图
       visitedViews: [],
-      // 用于缓存的视图
+      // 用于缓存的视图(这样在keep-alive中实现动态缓存,节约性能)
       cachedViews: new Set()
     }
   },
@@ -107,6 +107,7 @@ export const tagsViewStore = defineStore('tagsView', {
     // 新增标签
     addVisitedView(view: RouteLocationNormalizedLoaded) {
       if (this.visitedViews.some((v) => v.path === view.path)) return
+      if (view.meta?.noTagsView) return
       this.visitedViews.push(
         Object.assign({}, view, {
           title: view.meta?.title || 'no-name'
@@ -133,6 +134,15 @@ export const tagsViewStore = defineStore('tagsView', {
         return v?.meta?.affix || v.path === view.path
       })
     },
+    // 滚动到选中的tag里面用于刷新视图
+    updateVisitedView(view: RouteLocationNormalizedLoaded) {
+      for (let v of this.visitedViews) {
+        if (v.path === view.path) {
+          v = Object.assign(v, view)
+          break
+        }
+      }
+    }
   }
 })
 

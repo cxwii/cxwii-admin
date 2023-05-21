@@ -1,11 +1,10 @@
 <script lang="ts" setup>
 import login from '@/views/login/login.vue'
+import home from '@/views/home/home.vue';
 </script>
 
 <template>
-  <div class="index">
-    <login></login>
-  </div>
+  <home></home>
 </template>
 
 <style scoped lang="scss">

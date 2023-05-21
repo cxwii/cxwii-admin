@@ -42,7 +42,7 @@ const toHome = () => {
        <!-- 多级菜单没有自己独立index会有问题 -->
       <el-sub-menu index="1">
         <template #title>
-          <el-icon class="element-icons el-icon-tubiao-zhexiantu"></el-icon>
+          <el-icon class="element-icons el-icon-yuanshuju-zujianku"></el-icon>
           <span>图表</span>
         </template>
 

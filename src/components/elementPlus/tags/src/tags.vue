@@ -1,18 +1,20 @@
 <script setup lang="ts">
-import { watch, unref, computed, onMounted, ref } from 'vue'
-import { RouteLocationNormalizedLoaded, useRouter } from 'vue-router'
+import { watch, unref, computed, onMounted, ref, nextTick } from 'vue'
+import { useRouter } from 'vue-router'
+import type { RouteLocationNormalizedLoaded, RouterLinkProps } from 'vue-router'
 import { EdropdownMenu, EdropdownMenuExpose } from '@/components/elementPlus/dropdownMenu'
 import { useTemplateRefsList } from '@vueuse/core'
 import { useTagsViewStore } from '@/store/modules/tagsView'
 import { filterAffixTags } from './helper'
-
+import { ElScrollbar } from 'element-plus'
 import { usePermissionStore } from '@/store/modules/permission'
+import { useScrollTo } from '@/hook/event/useScrollTo'
 
 // tags的数据
 const tagsViewStore = useTagsViewStore()
 
 // 当前路由里的数据,用于监听变化触发添加进store
-const { currentRoute, push } = useRouter()
+const { currentRoute, push, replace } = useRouter()
 
 // tags初始化的时候的数据
 const visitedViews = computed(() => tagsViewStore.getVisitedViews)
@@ -35,7 +37,7 @@ const initTags = () => {
   affixTagArr.value = filterAffixTags(unref(routers))
   for (const tag of unref(affixTagArr)) {
     if (tag.name) {
-      tagsViewStore.addView(tag)
+      tagsViewStore.addVisitedView(tag)
     }
   }
 }
@@ -48,6 +50,19 @@ const addTags = () => {
     tagsViewStore.addView(unref(currentRoute))
   }
   return false
+}
+
+// 重新加载
+const refreshSelectedTag = async (view?: RouteLocationNormalizedLoaded) => {
+  if (!view) return
+  tagsViewStore.delCachedView()
+  const { path, query } = view
+  await nextTick()
+  // replace替换history里面的原有内容  
+  replace({
+    path: '/redirect' + path,
+    query: query
+  })
 }
 
 // 关闭选中的标签
@@ -116,112 +131,269 @@ const toLastView = () => {
   }
 }
 
-watch(
-  () => currentRoute.value,
-  () => {
-    // 后续监听路由变化就增加标签
-    addTags()
+// 滚动到选中的tag
+const moveToCurrentTag = async () => {
+  await nextTick()
+  for (const v of unref(visitedViews)) {
+    if (v.fullPath === unref(currentRoute).path) {
+      moveToTarget(v)
+      if (v.fullPath !== unref(currentRoute).fullPath) {
+        tagsViewStore.updateVisitedView(unref(currentRoute))
+      }
+
+      break
+    }
   }
-)
+}
+
+// ElScrollbar的实例
+const scrollbarRef = ref<ComponentRef<typeof ElScrollbar>>()
+
+// 使用vueUse的useTemplateRefsList会有大坑
+const tagLinksRefs = ref()
+// const tagLinksRefs = useTemplateRefsList<RouterLinkProps>()
+
+// 滚动的实现方法
+const moveToTarget = (currentTag: RouteLocationNormalizedLoaded) => {
+  const wrap$ = unref(scrollbarRef)?.wrapRef
+
+  let firstTag: Nullable<RouterLinkProps> = null
+  let lastTag: Nullable<RouterLinkProps> = null
+
+  const tagList = unref(tagLinksRefs)
+  
+  //查找第一个标记和最后一个标记
+  if (tagList.length > 0) {
+    firstTag = tagList[0]
+    lastTag = tagList[tagList.length - 1]
+  }
+  
+  if ((firstTag?.to as RouteLocationNormalizedLoaded).fullPath === currentTag.fullPath) {
+    // 直接滚动到0的位置
+    const { start } = useScrollTo({
+      el: wrap$!,
+      position: 'scrollLeft',
+      to: 0,
+      duration: 500
+    })
+    start()
+  } else if ((lastTag?.to as RouteLocationNormalizedLoaded).fullPath === currentTag.fullPath) {
+    // 滚动到最后的位置
+    const { start } = useScrollTo({
+      el: wrap$!,
+      position: 'scrollLeft',
+      to: wrap$!.scrollWidth - wrap$!.offsetWidth,
+      duration: 500
+    })
+    start()
+  } else {
+    //查找前标签和下一标签
+    const currentIndex: number = tagList.findIndex(
+      (item: any) => (item?.to as RouteLocationNormalizedLoaded).fullPath === currentTag.fullPath
+    )
+    const tgsRefs = document.getElementsByClassName('tagItem')
+
+    const prevTag = tgsRefs[currentIndex - 1] as HTMLElement
+    const nextTag = tgsRefs[currentIndex + 1] as HTMLElement
+
+    //标签的偏移下一个标签的左后
+    const afterNextTagOffsetLeft = nextTag.offsetLeft + nextTag.offsetWidth + 4
+
+    //标记的偏移前一个标记的左前
+    const beforePrevTagOffsetLeft = prevTag.offsetLeft - 4
+
+    if (afterNextTagOffsetLeft > unref(scrollLeftNumber) + wrap$!.offsetWidth) {
+      const { start } = useScrollTo({
+        el: wrap$!,
+        position: 'scrollLeft',
+        to: afterNextTagOffsetLeft - wrap$!.offsetWidth,
+        duration: 500
+      })
+      start()
+    } else if (beforePrevTagOffsetLeft < unref(scrollLeftNumber)) {
+      const { start } = useScrollTo({
+        el: wrap$!,
+        position: 'scrollLeft',
+        to: beforePrevTagOffsetLeft,
+        duration: 500
+      })
+      start()
+    }
+  }
+}
+
+// 保存滚动位置
+const scrollLeftNumber = ref(0)
+
+// 滚动事件
+const scroll = ({ scrollLeft }: { scrollLeft: number }) => {
+  scrollLeftNumber.value = scrollLeft as number
+}
+
+// 移动到某个位置
+const move = (to: number) => {
+  const wrap$ = unref(scrollbarRef)?.wrapRef
+  const { start } = useScrollTo({
+    el: wrap$!,
+    position: 'scrollLeft',
+    to: unref(scrollLeftNumber) + to,
+    duration: 500
+  })
+  start()
+}
 
 onMounted(() => {
   initTags()
   // 页面初始化的时候就新增一次当前路由
   addTags()
 })
+
+watch(
+  () => currentRoute.value,
+  () => {
+    // 后续监听路由变化就增加标签
+    addTags()
+    moveToCurrentTag()
+  }
+)
 </script>
 
 <template>
-  <div class="flex h-full">
-    <EdropdownMenu
-      :ref="itemRefs.set"
-      :schema="[
-        {
-          label: '关闭左侧',
-          disabled:
-            !!visitedViews?.length &&
-            (item.fullPath === visitedViews[0].fullPath ||
-              selectedTag?.fullPath !== item.fullPath),
-          command: () => {
-            closeLeftTags()
-          }
-        },
-        {
-          divided: true,
-          label: '关闭右侧',
-          disabled:
-            !!visitedViews?.length &&
-            (item.fullPath === visitedViews[visitedViews.length - 1].fullPath ||
-              selectedTag?.fullPath !== item.fullPath),
-          command: () => {
-            closeRightTags()
-          }
-        },
-        {
-          divided: true,
-          label: '关闭全部',
-          command: () => {
-            closeAllTags()
-          }
-        },
-        {
-          divided: true,
-          label: '关闭其他',
-          command: () => {
-            closeOthersTags()
-          }
-        },
-      ]"
-      @visible-change="visibleChange"
-      v-for="item in visitedViews"
-      :key="item.fullPath"
-      :tag-item="item"
-      :class="[
-        'item',
-        { 'is-active': isActive(item) }
-      ]"
-    >
-      <div>
-        <router-link :to="{ ...item }" custom v-slot="{ navigate }">
-          <div
-            @click="navigate"
-            class="
-            h-full
-            flex
-            justify-center
-            items-center
-            whitespace-nowrap
-            pl-5"
+  <div class="tags flex">
+    <span class="leftArrow cursor-pointer" @click="move(-200)">
+      <el-icon class="element-icons el-icon-shuangzuojiantou-"></el-icon>
+    </span>
+    <div class="tagView h-full flex-1 w-full">
+      <ElScrollbar ref="scrollbarRef" @scroll="scroll">
+        <div class="flex h-full">
+          <EdropdownMenu
+            :ref="itemRefs.set"
+            :schema="[
+              {
+                label: '重新加载',
+                disabled: selectedTag?.fullPath !== item.fullPath,
+                command: () => {
+                  refreshSelectedTag(item)
+                }
+              },
+              {
+                label: '关闭标签',
+                divided: true,
+                command: () => {
+                  closeSelectedTags(item)
+                }
+              },
+              {
+                label: '关闭左侧',
+                divided: true,
+                disabled:
+                  !!visitedViews?.length &&
+                  (item.fullPath === visitedViews[0].fullPath ||
+                    selectedTag?.fullPath !== item.fullPath),
+                command: () => {
+                  closeLeftTags()
+                }
+              },
+              {
+                label: '关闭右侧',
+                disabled:
+                  !!visitedViews?.length &&
+                  (item.fullPath === visitedViews[visitedViews.length - 1].fullPath ||
+                    selectedTag?.fullPath !== item.fullPath),
+                command: () => {
+                  closeRightTags()
+                }
+              },
+              {
+                label: '关闭其他',
+                command: () => {
+                  closeOthersTags()
+                }
+              },
+              {
+                divided: true,
+                label: '关闭全部',
+                command: () => {
+                  closeAllTags()
+                }
+              }
+            ]"
+            @visible-change="visibleChange"
+            v-for="item in visitedViews"
+            :key="item.fullPath"
+            :tag-item="item"
+            :class="[
+              'tagItem',
+              { 'is-active': isActive(item) }
+            ]"
           >
-            {{ item?.meta?.title as string }}
-            <el-icon
-              v-if="!item.meta.affix"
-              :size="12"
-              class="element-icons el-icon-chahao ml-1"
-              @click.prevent.stop="closeSelectedTags(item)"
-            >
-            </el-icon>
-          </div>
-        </router-link>
-      </div>
-    </EdropdownMenu>
+            <div>
+              <router-link ref="tagLinksRefs" :to="{ ...item }" custom v-slot="{ navigate }">
+                <div
+                  @click="navigate"
+                  class="h-full flex justify-center items-center whitespace-nowrap pl-5">
+                    {{ item?.meta?.title as string }}
+                    <el-icon
+                      v-if="!item.meta.affix"
+                      :size="12"
+                      class="element-icons el-icon-chahao ml-1"
+                      @click.prevent.stop="closeSelectedTags(item)"
+                    >
+                    </el-icon>
+                  </div>
+              </router-link>
+            </div>
+          </EdropdownMenu>
+        </div>
+      </ElScrollbar>
+    </div>
+    <span class="rightArrow cursor-pointer" @click="move(200)">
+      <el-icon class="element-icons el-icon-shuangzuojiantou-"></el-icon>
+    </span>
   </div>
 </template>
 
 <style scoped lang="scss">
-.is-active {
-  color: #ffffff;
-  background-color: #409eff;
-  border: 1px solid #409eff;
+.tags {
+  width: 100%;
+  height: 100%;
+  .leftArrow {
+    width: 33px;
+    line-height: 31px;
+    text-align: center;
+    border-right: 1px solid #eee;
+    margin-right: 1px;
+  }
+  .rightArrow {
+    width: 33px;
+    line-height: 30px;
+    text-align: center;
+    border-right: 1px solid #eee;
+    margin-left: 1px;
+    transform: rotate(180deg)
+  }
+  .tagView {
+    overflow: hidden;
+    :deep(.el-scrollbar__view) {
+      height: 100% !important;
+    }
+    .is-active {
+      color: #ffffff;
+      background-color: #409eff;
+      border: 1px solid #409eff;
+    }
+    .tagItem{
+      position: relative;
+      top: 2px;
+      height: calc(100% - 4px);
+      padding-right: 25px;
+      margin-left: 4px;
+      font-size: 13px;
+      cursor: pointer;
+      border: 1px solid #d9d9d9;
+      user-select: none;
+    }
+  }
 }
-.item{
-  position: relative;
-  top: 2px;
-  height: calc(100% - 4px);
-  padding-right: 25px;
-  margin-left: 4px;
-  font-size: 13px;
-  cursor: pointer;
-  border: 1px solid #d9d9d9;
-}
+
 </style>
