@@ -18,7 +18,7 @@ const toHome = () => {
   <div class="aside">
     <div class="log">
       <logoSvg name="vuex-store" class="logoSvg" @click="toHome"></logoSvg>
-      <div class="logText">cxw-admin</div>
+      <div class="logText">cxwii-Admin</div>
     </div>
 
     <el-menu

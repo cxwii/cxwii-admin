@@ -363,6 +363,7 @@ watch(
     text-align: center;
     border-right: 1px solid #eee;
     margin-right: 1px;
+    box-shadow: 0.2px 0px #d2cbcb;
   }
   .rightArrow {
     width: 33px;
@@ -370,7 +371,8 @@ watch(
     text-align: center;
     border-right: 1px solid #eee;
     margin-left: 1px;
-    transform: rotate(180deg)
+    transform: rotate(180deg);
+    box-shadow: 0.2px 0px #d2cbcb;
   }
   .tagView {
     overflow: hidden;

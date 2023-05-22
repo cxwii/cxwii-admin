@@ -17,22 +17,24 @@ const getCaches = computed((): string[] => {
 </script>
 
 <template>
-  <el-container class="elContainer">
-    <el-aside class="elAside">
+  <el-container class="myElContainer">
+    <el-aside class="myElAside">
       <viewAside></viewAside>
     </el-aside>
     <el-container>
-      <el-header class="elHeader">
+      <el-header class="myElHeader">
         <viewHeader></viewHeader>
       </el-header>
-      <el-main>
-        <router-view>
-          <template #default="{ Component, route }">
-            <keep-alive :include="getCaches">
-              <component :is="Component" :key="route.fullPath" />
-            </keep-alive>
-          </template>
-        </router-view>
+      <el-main class="myElMain">
+        <div class="myElMainBottomFrame shadow-md rounded-lg">
+          <router-view>
+            <template #default="{ Component, route }">
+              <keep-alive :include="getCaches">
+                <component :is="Component" :key="route.fullPath" />
+              </keep-alive>
+            </template>
+          </router-view>
+        </div>
       </el-main>
     </el-container>
   </el-container>
@@ -43,16 +45,27 @@ const getCaches = computed((): string[] => {
 ::-webkit-scrollbar {
   width: 0 !important
 }
-.elContainer {
+.myElContainer {
   width: 100%;
   height: 100%;
-  .elAside{
+  .myElAside{
     width: auto;
     // 隐藏menu的滚动条
     user-select: none;
   }
-  .elHeader {
+  .myElHeader {
     height: 80px;
+    margin-bottom: 5px;
+  }
+  .myElMain {
+    background-color: #f5f7f9;
+    .myElMainBottomFrame{
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      background-color: #fff;
+    }
   }
 }
 </style>

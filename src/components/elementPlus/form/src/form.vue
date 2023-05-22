@@ -38,10 +38,10 @@ const onEmpty = () => {
 const formTemplate = () => {
   return (
     <>
-      <ElFormItem class="cc" label="userName">
+      <ElFormItem class="cc" label="用户名">
         <ElInput v-model={props.model.userName} />
       </ElFormItem>
-      <ElFormItem label="password">
+      <ElFormItem label="密码">
         <ElInput v-model={props.model.password} />
       </ElFormItem>
       {
@@ -52,13 +52,13 @@ const formTemplate = () => {
               type="primary"
               class="loginButtob"
             >
-              login
+              登录
             </ElButton>
             <ElButton
               onClick={() => onEmpty()}
               class="emptyButtob"
             >
-              empty
+              重置
             </ElButton>
           </ElFormItem>
           : null

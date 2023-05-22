@@ -7,6 +7,7 @@ import { useCache } from '@/hook/web/useCache'
 import { Eform } from '@/components/elementPlus/form'
 import { usePermissionStore } from '@/store/modules/permission'
 import type { RouteRecordRaw } from 'vue-router'
+import { logoSvg } from '@/components/svg/logosSvg'
 
 const { push, addRoute } = useRouter()
 const { wsCache } = useCache()
@@ -27,13 +28,14 @@ let from: fromType = reactive(new fromData)
 // 登录
 const login = async () => {
   const res = await loginApi(from)
-  if (res.data.status == 200) {    
+  if (res.data.status == 200) {
     // 存储用户数据(现在就简单存个字段)
     userStore.setUserInfo('admin')
     wsCache.set('user', 'admin')
 
     /* 
       这里应该是根据用户信息有没有额外的权限路由
+      用getDynamicRouter
       有就使用(并存于本地然后在刷新页面的时候使用)
       没有就使用前端渲染静态默然的
       现在没接口就默认不用了
@@ -43,7 +45,7 @@ const login = async () => {
       getRole()
     } else {
       // 使用一次generateRoutes解决同异步问题导致AddRouters无值问题
-      await permissionStore.generateRoutes('none').catch(() => {})
+      await permissionStore.generateRoutes('none').catch(() => { })
       // 动态添加可访问路由表(这里添加的是前端静态的表)
       permissionStore.getAddRouters.forEach((route) => {
         addRoute(route as RouteRecordRaw)
@@ -51,14 +53,13 @@ const login = async () => {
     }
 
     push({ path: "/home" })
-  } else{
+  } else {
     push({ path: "/index" })
   }
-  
-  // 直接给他过,开api太麻烦了
-  // wsCache.set('user', 'admin')
-  // push({ path: "/home" })
+}
 
+const toDocument = () => {
+  window.open('https://github.com/cxwii/cxwii-admin')
 }
 
 // 在后端渲染时获取角色信息
@@ -74,15 +75,24 @@ const empty = () => {
 
 <template>
   <div class="index">
-    <div class="formContainer">
-      <Eform
-        if-button="true"
-        @on-login="login"
-        @on-empty="empty"
-        :model="from"
-        label-position="top"
-      >
-      </Eform>
+    <img src="@/assets/imgs/loginBg.jpg" class="loginBg" alt="">
+    <div class="loginLogo cursor-pointer flex flex-row" @click="toDocument">
+      <logoSvg name="vuex-store" class="h-full w-full"></logoSvg>
+    </div>
+    <div @click="toDocument" class="loginText cursor-pointer flex items-center text-white text-xl font-bold">
+      cxwii-Admin
+    </div>
+    <div class="loginPage flex">
+      <div class="introduce max-[1100px]:hidden flex flex-col justify-center items-center text-3xl font-medium text-white">
+        <div class="mb-5">欢迎使用本系统</div>
+        <div class="text-2xl font-normal">一个开箱即用,</div>
+        <div class="text-2xl font-normal">符合直觉的系统</div>
+      </div>
+      <div class="formContainer">
+        <div class="font-bold mb-10">登录</div>
+        <Eform if-button="true" @on-login="login" @on-empty="empty" :model="from" label-position="top">
+        </Eform>
+      </div>
     </div>
   </div>
 </template>
@@ -97,14 +107,43 @@ const empty = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  .formContainer {
-    width: 500px;
-    background-color: rgba(93, 181, 233, .3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-    border-radius: 10px;
+  .loginLogo {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 70px;
+    height: 70px;
+  }
+  .loginText {
+    position: absolute;
+    left: 90px;
+    top: 20px;
+    height: 70px;
+  }
+  .loginBg {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    z-index: -1;
+  }
+  .loginPage {
+    .introduce {
+      width: 500px;
+    }
+    .formContainer {
+      width: 500px;
+      height: 500px;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 40px;
+      border-radius: 10px;
+      margin-left: 50px;
+    }
   }
 }
 </style>

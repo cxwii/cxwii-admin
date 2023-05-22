@@ -7,8 +7,6 @@ import { useRouter } from 'vue-router'
 
 const { currentRoute, replace } = useRouter()
 
-console.log('currentRoute :>> ', unref(currentRoute));
-
 const { params, query } = unref(currentRoute)
 const { path, _redirect_type = 'path' } = params
 
