@@ -59,6 +59,7 @@ const getCaches = computed((): string[] => {
   }
   .myElMain {
     background-color: #f5f7f9;
+    border-top: .8px solid #d9d9d9;
     .myElMainBottomFrame{
       z-index: -1;
       width: 100%;
