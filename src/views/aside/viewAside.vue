@@ -94,7 +94,7 @@ const toHome = () => {
       </el-sub-menu>
 
       <!-- 富文本 -->
-      <el-menu-item index="/text/richText">
+      <el-menu-item index="/richText/text">
         <el-icon class="element-icons el-icon-fuwenben"></el-icon>
         <template #title>文本</template>
       </el-menu-item>

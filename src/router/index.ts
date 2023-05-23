@@ -120,15 +120,15 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     ]
   },
   {
-    name:'text',
-    path:'/text',
+    name:'richText',
+    path:'/richText',
     meta: {},
     redirect:'/text/richText',
     component: index,
     children: [
       {
-        name: 'richText',
-        path: 'richText',
+        name: 'text',
+        path: 'text',
         meta: {
           "title":"富文本"
         },
