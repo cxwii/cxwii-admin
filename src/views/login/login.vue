@@ -85,8 +85,8 @@ const empty = () => {
     <div class="loginPage flex">
       <div class="introduce max-[1100px]:hidden flex flex-col justify-center items-center text-3xl font-medium text-white">
         <div class="mb-5">欢迎使用本系统</div>
-        <div class="text-2xl font-normal">一个开箱即用,</div>
-        <div class="text-2xl font-normal">符合直觉的系统</div>
+        <div class="text-2xl font-normal">一款开箱即用,</div>
+        <div class="text-2xl font-normal">符合直觉的cms解决方案</div>
       </div>
       <div class="formContainer">
         <div class="font-bold mb-10">登录</div>
