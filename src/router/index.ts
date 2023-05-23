@@ -25,7 +25,7 @@ export const constantRoutes: AppRouteRecordRaw[] = [
       {
         path: '/redirect/:path(.*)',
         name: 'redirect',
-        component: () => import('@/views/redirect/redirectView.vue'),
+        component: () => import('@/views/Redirect/redirect.vue'),
         meta: {}
       }
     ],
@@ -35,7 +35,7 @@ export const constantRoutes: AppRouteRecordRaw[] = [
     name: 'login',
     path:'/login',
     meta: {},
-    component: () => import('@/views/login/login.vue')
+    component: () => import('@/views/Login/login.vue')
   }
 ]
 
@@ -55,7 +55,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           "title":"首页",
           "affix": true
         },
-        component: () => import('@/views/homePage/homePage.vue')
+        component: () => import('@/views/HomePage/homePage.vue')
       }
     ]
   },
@@ -73,7 +73,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           "title": "柱图",
           "noCache": true
         },
-        component: () => import('@/views/chart/barChart/barChart.vue')
+        component: () => import('@/views/Chart/barChart/barChart.vue')
       },
       {
         name: 'lineChart',
@@ -81,7 +81,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         meta: {
           "title": "饼图"
         },
-        component: () => import('@/views/chart/lineChart/lineChart.vue')
+        component: () => import('@/views/Chart/lineChart/lineChart.vue')
       }
     ]
   },
@@ -98,7 +98,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         meta: {
           "title": "表格"
         },
-        component: () => import('@/views/elComponents/table/table.vue')
+        component: () => import('@/views/ElComponents/table/table.vue')
       }
     ]
   },
@@ -115,7 +115,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         meta: {
           "title": "菜单"
         },
-        component: () => import('@/views/menu/menu.vue')
+        component: () => import('@/views/Menu/menu.vue')
       }
     ]
   },
@@ -132,7 +132,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         meta: {
           "title":"富文本"
         },
-        component: () => import('@/views/richText/text.vue')
+        component: () => import('@/views/RichText/text.vue')
       }
     ]
   }

@@ -1,3 +1,3 @@
-import echart from "./src/echart.vue"
+import Echart from "./src/Echart.vue"
 
-export { echart }
+export { Echart }

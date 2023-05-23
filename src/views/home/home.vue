@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref, provide, computed } from 'vue'
-import viewHeader from '@/views/header/viewHeader.vue'
-import viewAside from '@/views/aside/viewAside.vue'
+import viewHeader from '@/views/Header/viewHeader.vue'
+import viewAside from '@/views/Aside/viewAside.vue'
 import { useTagsViewStore } from '@/store/modules/tagsView'
 
 const isCollapse = ref(false)

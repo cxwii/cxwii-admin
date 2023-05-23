@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Etable } from '@/components/elementPlus/table'
+import { Etable } from '@/components/ElementPlus/Table'
 import { reactive } from 'vue'
 
 const tableData = reactive<Array<object>>([

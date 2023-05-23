@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { inject, ref } from 'vue'
 import type { Ref } from 'vue'
-import { Etags } from '@/components/elementPlus/tags';
-import { userInfo } from '@/components/userInfo';
+import { Etags } from '@/components/ElementPlus/Tags';
+import { UserInfo } from '@/components/UserInfo';
 
 const isCollapse = inject('isCollapse') as Ref<boolean>
 
@@ -31,7 +31,7 @@ const change = () => {
         </el-icon>
       </div>
       <div class="userInfo rounded-full">
-        <userInfo></userInfo>
+        <UserInfo></UserInfo>
       </div>
     </div>
     <div class="Etags">

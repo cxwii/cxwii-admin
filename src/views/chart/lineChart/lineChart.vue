@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { echart } from '@/components/echart'
+import { Echart } from '@/components/Echart'
 import { EChartsOption } from 'echarts'
 import { reactive, onMounted, onBeforeUnmount, ref, unref } from 'vue'
 
@@ -87,7 +87,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <echart ref="lineEchart" :options="lineOptions" :height="300"></echart>
+  <Echart ref="lineEchart" :options="lineOptions" :height="300"></Echart>
 </template>
 
 <style scoped lang="scss">

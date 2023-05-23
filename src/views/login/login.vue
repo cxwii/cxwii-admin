@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { reactive } from 'vue'
-import { loginApi } from '@/api/login'
+import { loginApi } from '@/api/Login'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store/modules/user'
 import { useCache } from '@/hook/web/useCache'
-import { Eform } from '@/components/elementPlus/form'
+import { Eform } from '@/components/ElementPlus/Form'
 import { usePermissionStore } from '@/store/modules/permission'
 import type { RouteRecordRaw } from 'vue-router'
-import { logoSvg } from '@/components/svg/logosSvg'
+import { LogoSvg } from '@/components/UseSvg'
 
 const { push, addRoute } = useRouter()
 const { wsCache } = useCache()
@@ -77,7 +77,7 @@ const empty = () => {
   <div class="index">
     <img src="@/assets/imgs/loginBg.jpg" class="loginBg" alt="">
     <div class="loginLogo cursor-pointer flex flex-row" @click="toDocument">
-      <logoSvg name="vuex-store" class="h-full w-full"></logoSvg>
+      <LogoSvg name="vuex-store" class="h-full w-full"></LogoSvg>
     </div>
     <div @click="toDocument" class="loginText cursor-pointer flex items-center text-white text-xl font-bold">
       cxwii-Admin

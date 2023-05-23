@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { inject } from 'vue'
-import { logoSvg } from '@/components/svg/logosSvg'
+import { LogoSvg } from '@/components/UseSvg'
 import { useRouter, useRoute } from 'vue-router'
 
 const { push } = useRouter()
@@ -17,7 +17,7 @@ const toHome = () => {
 <template>
   <div class="aside">
     <div class="log">
-      <logoSvg name="vuex-store" class="logoSvg" @click="toHome"></logoSvg>
+      <LogoSvg name="vuex-store" class="logoSvg" @click="toHome"></LogoSvg>
       <div class="logText">cxwii-Admin</div>
     </div>
 

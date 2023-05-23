@@ -8,7 +8,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteLocationNormalized, RouteRecordNormalized } from 'vue-router'
 
 /* index */
-export const index = () => import('@/views/index/index.vue')
+export const index = () => import('@/views/Index/index.vue')
 
 // 正则修改解析路径
 export const pathResolve = (parentPath: string, path: string) => {

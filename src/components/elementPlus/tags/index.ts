@@ -1,2 +1,2 @@
-import Etags from './src/tags.vue'
+import Etags from '../Tags/src/Tags.vue'
 export { Etags }

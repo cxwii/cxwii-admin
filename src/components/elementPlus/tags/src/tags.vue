@@ -2,7 +2,7 @@
 import { watch, unref, computed, onMounted, ref, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import type { RouteLocationNormalizedLoaded, RouterLinkProps } from 'vue-router'
-import { EdropdownMenu, EdropdownMenuExpose } from '@/components/elementPlus/dropdownMenu'
+import { EdropdownMenu, EdropdownMenuExpose } from '@/components/ElementPlus/DropdownMenu'
 import { useTemplateRefsList } from '@vueuse/core'
 import { useTagsViewStore } from '@/store/modules/tagsView'
 import { filterAffixTags } from './helper'

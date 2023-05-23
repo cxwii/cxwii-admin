@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { configGlobal } from '@/components/configGlobal'
+import { ConfigGlobal } from '@/components/ConfigGlobal'
 </script>
 
 <template>
-  <configGlobal>
+  <ConfigGlobal>
     <RouterView />
-  </configGlobal>
+  </ConfigGlobal>
 </template>
 
 <style lang="scss">

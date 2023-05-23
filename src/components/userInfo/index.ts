@@ -1,3 +1,3 @@
-import userInfo from './src/userInfo.vue'
+import UserInfo from './src/UserInfo.vue'
 
-export { userInfo }
+export { UserInfo }
