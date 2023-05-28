@@ -1,5 +1,5 @@
 import { isUrl } from '@/utils/is'
-import { omit, cloneDeep } from 'lodash-es'
+import { omit, cloneDeep, map } from 'lodash-es'
 import type {
   Router,
   RouteRecordRaw
@@ -7,8 +7,11 @@ import type {
 import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteLocationNormalized, RouteRecordNormalized } from 'vue-router'
 
-/* index */
+/* index默认的根路径 */
 export const index = () => import('@/views/Index/index.vue')
+
+// 导入views页面下的所有.vue文件
+const modules = import.meta.glob('../views/**/*.vue')
 
 // 正则修改解析路径
 export const pathResolve = (parentPath: string, path: string) => {
@@ -33,6 +36,33 @@ export const getRawRoute = (route: RouteLocationNormalized): RouteLocationNormal
   }
 }
 
+export const generateRoutesFn1 = (routes: AppCustomRouteRecordRaw[]): AppRouteRecordRaw[] => {
+  const res: AppRouteRecordRaw[] = []
+  for (const route of routes) {
+    const data: AppRouteRecordRaw = {
+      path: route.path,
+      name: route.name,
+      redirect: route.redirect,
+      meta: route.meta
+    }
+
+    // 处理component
+    if (route.component) {
+      const component = route.component as string
+      const comModule = modules[`../${route.component}.vue`]
+      data.component = component === '#' ? index : comModule
+    }
+
+    // 有嵌套就再次递归
+    if (route.children) {
+      data.children = generateRoutesFn1(route.children)
+    }
+
+    res.push(data as AppRouteRecordRaw)
+  }
+  return res
+}
+
 // 路由降级(展平)(最多只能有一个children嵌套,多了就生成平级的路由)
 export const flatMultiLevelRoutes = (routes: AppRouteRecordRaw[]) => {
   const modules: AppRouteRecordRaw[] = cloneDeep(routes)
@@ -44,7 +74,7 @@ export const flatMultiLevelRoutes = (routes: AppRouteRecordRaw[]) => {
     }
     promoteRouteLevel(route)
   }
-  
+
   return modules
 }
 

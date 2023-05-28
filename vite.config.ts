@@ -31,8 +31,7 @@ export default defineConfig({
       '/api': {
         target: 'http://127.0.0.1:9528',
         changeOrigin: true,
-        // 我的api带有/api所以不换
-        // rewrite: path => path.replace(/^\/api/, '')
+        rewrite: path => path.replace(/^\/api/, '')
       }
     }
   }

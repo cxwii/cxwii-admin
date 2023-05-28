@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { store } from '../index'
 import { constantRoutes, asyncRouter } from '@/router'
 import { cloneDeep } from 'lodash-es'
-import { flatMultiLevelRoutes } from '@/utils/routerHelper'
+import { flatMultiLevelRoutes, generateRoutesFn1 } from '@/utils/routerHelper'
 
 export interface PermissionState {
   routers: AppRouteRecordRaw[],
@@ -21,7 +21,6 @@ export const permissionStore = defineStore('permission', {
       return this.routers
     },
     getAddRouters(): AppRouteRecordRaw[] {  
-      // return this.addRouters
       // 路由展平的方法
       return flatMultiLevelRoutes(cloneDeep(this.addRouters))
     },
@@ -36,12 +35,11 @@ export const permissionStore = defineStore('permission', {
       routers?: string[] | AppRouteRecordRaw[]
     ): Promise<unknown> {
       return new Promise<void>((resolve) => {
-
         let routersMap: AppRouteRecordRaw[] = []
         
         if (type === 'admin') {
-          // 这里应该用一个函数过滤一下后端的路由表以防格式问题,暂时没有api先不理了
-          routersMap = cloneDeep(routers as AppRouteRecordRaw[])
+          // 处理渲染生成后端的传递的路由并生成表
+          routersMap = generateRoutesFn1(routers as AppCustomRouteRecordRaw[])
         } else {          
           routersMap = cloneDeep(asyncRouter)
         }

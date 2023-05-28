@@ -5,7 +5,8 @@ import { useCache } from '@/hook/web/useCache'
 const { wsCache } = useCache()
 
 interface  userStateType {
-  userInfo: string | null,
+  username: string | null,
+  token: string | null,
   dynamicRouter: boolean
 }
 
@@ -13,22 +14,30 @@ export const userStore = defineStore('user', {
   state: (): userStateType => {
     return{
       // 登录信息字段,现在就单纯当token用
-      userInfo: null,
+      username: null,
+      // 登录的token
+      token: null,
       // 是否使用动态路由(其实可以直接用wsCache里面的user来判断)
       dynamicRouter: wsCache.get('dynamicRouter') || false
     }
   },
   getters: {
-    getUserInfo(): string | null {
-      return this.userInfo
+    getUsername(): string | null {
+      return this.username
+    },
+    getToken(): string | null {
+      return this.token
     },
     getDynamicRouter(): boolean {
       return this.dynamicRouter
     }
   },
   actions: {
-    setUserInfo(userInfo: string | null) {
-      this.userInfo = userInfo
+    setUsername(username: string | null) {
+      this.username = username
+    },
+    setToken(token: string | null) {
+      this.token = token
     },
     setDynamicRouter(dynamicRouter: boolean) {
       wsCache.set('dynamicRouter', dynamicRouter)

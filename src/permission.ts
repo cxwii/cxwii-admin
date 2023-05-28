@@ -15,7 +15,7 @@ router.beforeEach(async (to, from, next) => {
     next()
   } else {
     // 有登录信息正常放行
-    if (wsCache.get('user')) {
+    if (wsCache.get('token')) {
 
       if (permissionStore.getIsAddRouters) {
         next()
@@ -23,7 +23,6 @@ router.beforeEach(async (to, from, next) => {
       }
       
       // 下面是第一次进来和刷新的时候(上面是之后的路由操作)
-      // 是否动态使用路由(当然是no啦,都没后端api动个屁)
       if (userStore.getDynamicRouter) {
         // 动态使用路由(这个roleRouters是登陆的时候存储,在getRole()里面)
         const roleRouters = wsCache.get('roleRouters') || []

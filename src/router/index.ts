@@ -123,7 +123,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     name:'richText',
     path:'/richText',
     meta: {},
-    redirect:'/text/richText',
+    redirect:'/richText/text',
     component: index,
     children: [
       {

@@ -4,8 +4,8 @@ import { PropType, useSlots, useAttrs } from 'vue'
 
 interface FormProps {
   formModel: {
-    userName: string,
-    password: number
+    username: string,
+    password: string
   },
   ifButton: string
 }
@@ -39,7 +39,7 @@ const formTemplate = () => {
   return (
     <>
       <ElFormItem class="cc" label="用户名">
-        <ElInput v-model={props.model.userName} />
+        <ElInput v-model={props.model.username} />
       </ElFormItem>
       <ElFormItem label="密码">
         <ElInput v-model={props.model.password} />

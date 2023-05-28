@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { reactive } from 'vue'
-import { loginApi } from '@/api/Login'
+import { loginApi, getRouterApi } from '@/api/User'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store/modules/user'
 import { useCache } from '@/hook/web/useCache'
@@ -9,18 +9,20 @@ import { usePermissionStore } from '@/store/modules/permission'
 import type { RouteRecordRaw } from 'vue-router'
 import { LogoSvg } from '@/components/UseSvg'
 
+import { constantRoutes, asyncRouter } from '@/router'
+
 const { push, addRoute } = useRouter()
 const { wsCache } = useCache()
 const userStore = useUserStore()
 const permissionStore = usePermissionStore()
 
 type fromType = {
-  userName: string,
-  password: number
+  username: string,
+  password: string
 }
 class fromData {
-  userName = 'admin'
-  password = 123456
+  username = 'admin'
+  password = '123456'
 }
 
 let from: fromType = reactive(new fromData)
@@ -28,43 +30,50 @@ let from: fromType = reactive(new fromData)
 // 登录
 const login = async () => {
   const res = await loginApi(from)
-  if (res.data.status == 200) {
-    // 存储用户数据(现在就简单存个字段)
-    userStore.setUserInfo('admin')
-    wsCache.set('user', 'admin')
+  if (res.status == 200) {
+    // 存储用户数据
+    userStore.setUsername(res.data.username)
+    userStore.setToken(res.token)
+    wsCache.set('token', userStore.getToken)
 
-    /* 
-      这里应该是根据用户信息有没有额外的权限路由
-      用getDynamicRouter
-      有就使用(并存于本地然后在刷新页面的时候使用)
-      没有就使用前端渲染静态默然的
-      现在没接口就默认不用了
-     */
-    if (false) {
+    // 根据用户信息有没有额外的权限路由,1是管理有,其他没有(表里面默认2)
+    if (res.data.roleId === '1') {
       userStore.setDynamicRouter(true)
+    }
+
+    if (userStore.getDynamicRouter) {
       getRole()
     } else {
       // 使用一次generateRoutes解决同异步问题导致AddRouters无值问题
-      await permissionStore.generateRoutes('none').catch(() => { })
+      await permissionStore.generateRoutes('none').catch(() => {})
       // 动态添加可访问路由表(这里添加的是前端静态的表)
-      permissionStore.getAddRouters.forEach((route) => {
+      permissionStore.getAddRouters.forEach((route: any) => {
         addRoute(route as RouteRecordRaw)
       })
+      permissionStore.setIsAddRouters(true)
+      push({ path: "/home" })
     }
-
-    push({ path: "/home" })
   } else {
-    push({ path: "/index" })
+    push({ path: "/login" })
+  }
+}
+
+// 在后端渲染时获取角色信息
+const getRole = async () => {
+  const res = await getRouterApi()
+  if (res.status == 200) {
+    wsCache.set('roleRouters', res.data)
+    await permissionStore.generateRoutes('admin', res.data).catch(() => {})
+    permissionStore.getAddRouters.forEach((route: any) => {
+      addRoute(route as RouteRecordRaw)
+    })
+    permissionStore.setIsAddRouters(true)
+    push({ path: "/home" })
   }
 }
 
 const toDocument = () => {
   window.open('https://github.com/cxwii/cxwii-admin')
-}
-
-// 在后端渲染时获取角色信息
-const getRole = () => {
-
 }
 
 const empty = () => {
@@ -86,7 +95,7 @@ const empty = () => {
       <div class="introduce max-[1100px]:hidden flex flex-col justify-center items-center text-3xl font-medium text-white">
         <div class="mb-5">欢迎使用本系统</div>
         <div class="text-2xl font-normal">一款开箱即用,</div>
-        <div class="text-2xl font-normal">符合直觉的cms解决方案</div>
+        <div class="text-2xl font-normal">符合直觉的cms但不限于cms的解决方案</div>
       </div>
       <div class="formContainer">
         <div class="font-bold mb-10">登录</div>
