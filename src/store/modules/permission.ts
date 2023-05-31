@@ -21,8 +21,9 @@ export const permissionStore = defineStore('permission', {
       return this.routers
     },
     getAddRouters(): AppRouteRecordRaw[] {  
-      // 路由展平的方法
-      return flatMultiLevelRoutes(cloneDeep(this.addRouters))
+      // 路由展平的方法(先别用否则无法动态生成二层以上的动态菜单,需要优化渲染动态菜单的方法)
+      // return flatMultiLevelRoutes(cloneDeep(this.addRouters))
+      return cloneDeep(this.addRouters)
     },
     getIsAddRouters(): boolean {
       return this.isAddRouters

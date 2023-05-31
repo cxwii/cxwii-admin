@@ -9,7 +9,7 @@ import ProjectTypes from '@/utils/propTypes'
 const props = defineProps({
   // 编辑器id,用于支持多个编辑器
   editorId: ProjectTypes.string.def('wangeEditor-1'),
-  height: ProjectTypes.oneOfType([Number, String]).def('500px'),
+  height: ProjectTypes.oneOfType([Number, String]).def('400px'),
   editorConfig: {
     type: Object as PropType<IEditorConfig>,
     default: () => undefined

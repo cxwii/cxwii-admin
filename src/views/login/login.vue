@@ -9,8 +9,6 @@ import { usePermissionStore } from '@/store/modules/permission'
 import type { RouteRecordRaw } from 'vue-router'
 import { LogoSvg } from '@/components/UseSvg'
 
-import { constantRoutes, asyncRouter } from '@/router'
-
 const { push, addRoute } = useRouter()
 const { wsCache } = useCache()
 const userStore = useUserStore()

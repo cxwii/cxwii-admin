@@ -1,5 +1,5 @@
 import type { App } from 'vue'
-import { createPinia, PiniaPluginContext } from 'pinia'
+import { createPinia } from 'pinia'
 
 const store = createPinia()
 

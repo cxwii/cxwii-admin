@@ -6,6 +6,9 @@ import { index } from '@/utils/routerHelper'
   meta:
   affix初始化的时候就渲染标签
   noCache: 不需要缓存
+  icon: 使用什么icon
+  isSubMenu: 是否还有子菜单(用于生成动态菜单)
+  menuPath: 动态菜单使用的路径
 */
 
 // 固定路由表
@@ -44,7 +47,12 @@ export const asyncRouter: AppRouteRecordRaw[] = [
   {
     name: 'home',
     path:'/home',
-    meta: {},
+    meta: {
+      "title":"首页",
+      "icon": "el-icon-shouye1",
+      "isSubMenu": false,
+      "menuPath": "/home/homePage"
+    },
     redirect:'/home/homePage',
     component: index,
     children: [
@@ -53,7 +61,8 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         path:'homePage',
         meta: {
           "title":"首页",
-          "affix": true
+          "affix": true,
+          "isSubMenu": false
         },
         component: () => import('@/views/HomePage/homePage.vue')
       }
@@ -62,7 +71,11 @@ export const asyncRouter: AppRouteRecordRaw[] = [
   {
     name: 'chart',
     path:'/chart',
-    meta: {},
+    meta: {
+      "title":"图表",
+      "icon": "el-icon-yuanshuju-zujianku",
+      "isSubMenu": true
+    },
     redirect:'/chart/barChart',
     component: index,
     children: [
@@ -71,7 +84,9 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         path: 'barChart',
         meta: {
           "title": "柱图",
-          "noCache": true
+          "noCache": true,
+          "isSubMenu": false,
+          "menuPath": "/chart/barChart"
         },
         component: () => import('@/views/Chart/barChart/barChart.vue')
       },
@@ -79,7 +94,9 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         name: 'lineChart',
         path: 'lineChart',
         meta: {
-          "title": "饼图"
+          "title": "饼图",
+          "isSubMenu": false,
+          "menuPath": "/chart/lineChart"
         },
         component: () => import('@/views/Chart/lineChart/lineChart.vue')
       }
@@ -88,7 +105,11 @@ export const asyncRouter: AppRouteRecordRaw[] = [
   {
     name:'elComponents',
     path:'/elComponents',
-    meta: {},
+    meta: {
+      "title":"elui组件",
+      "icon": "el-icon-tubiao-zhexiantu",
+      "isSubMenu": true
+    },
     redirect:'/elComponents/table',
     component: index,
     children: [
@@ -96,33 +117,23 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         name: 'table',
         path: 'table',
         meta: {
-          "title": "表格"
+          "title": "表格",
+          "isSubMenu": false,
+          "menuPath": "/elComponents/table"
         },
         component: () => import('@/views/ElComponents/table/table.vue')
       }
     ]
   },
   {
-    name:'menu',
-    path:'/menu',
-    meta: {},
-    redirect:'/menu/menu1',
-    component: index,
-    children: [
-      {
-        name: 'menu1',
-        path: 'menu1',
-        meta: {
-          "title": "菜单"
-        },
-        component: () => import('@/views/Menu/menu.vue')
-      }
-    ]
-  },
-  {
     name:'richText',
     path:'/richText',
-    meta: {},
+    meta: {
+      "title":"文本",
+      "icon": "el-icon-fuwenben",
+      "isSubMenu": false,
+      "menuPath": "/richText/text"
+    },
     redirect:'/richText/text',
     component: index,
     children: [
@@ -130,7 +141,8 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         name: 'text',
         path: 'text',
         meta: {
-          "title":"富文本"
+          "title":"富文本",
+          "isSubMenu": false
         },
         component: () => import('@/views/RichText/text.vue')
       }
