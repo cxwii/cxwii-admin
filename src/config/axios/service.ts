@@ -7,7 +7,7 @@ import axios, {
 import { config } from './config'
 import { ElMessage } from 'element-plus'
 import useRouter from '@/router/index'
-import { useCache } from '@/hook/web/useCache'
+import { useCache } from '@/hooks/web/useCache'
 import { useTagsViewStore } from '@/store/modules/tagsView'
 import { resetRouter } from '@/router'
 

@@ -1,13 +1,14 @@
 import { defineStore } from 'pinia'
 import { store } from '../index'
-import { useCache } from '@/hook/web/useCache'
+import { useCache } from '@/hooks/web/useCache'
 
 const { wsCache } = useCache()
 
 interface  userStateType {
   username: string | null,
   token: string | null,
-  dynamicRouter: boolean
+  dynamicRouter: boolean,
+  pageLoading: boolean
 }
 
 export const userStore = defineStore('user', {
@@ -17,8 +18,10 @@ export const userStore = defineStore('user', {
       username: null,
       // 登录的token
       token: null,
-      // 是否使用动态路由(其实可以直接用wsCache里面的user来判断)
-      dynamicRouter: wsCache.get('dynamicRouter') || false
+      // 是否使用动态路由
+      dynamicRouter: wsCache.get('dynamicRouter') || false,
+      // 加载页面
+      pageLoading: false
     }
   },
   getters: {
@@ -30,6 +33,9 @@ export const userStore = defineStore('user', {
     },
     getDynamicRouter(): boolean {
       return this.dynamicRouter
+    },
+    getPageLoading(): boolean {
+      return this.pageLoading
     }
   },
   actions: {
@@ -42,6 +48,9 @@ export const userStore = defineStore('user', {
     setDynamicRouter(dynamicRouter: boolean) {
       wsCache.set('dynamicRouter', dynamicRouter)
       this.dynamicRouter = dynamicRouter
+    },
+    setPageLoading(pageLoading: boolean) {
+      this.pageLoading = pageLoading
     },
   }
 })

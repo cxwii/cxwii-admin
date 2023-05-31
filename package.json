@@ -19,6 +19,7 @@
     "echarts": "^5.4.2",
     "element-plus": "^2.2.33",
     "lodash-es": "^4.17.21",
+    "nprogress": "^0.2.0",
     "pinia": "^2.0.32",
     "vue": "^3.2.45",
     "vue-router": "4",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.7",
+    "@types/nprogress": "^0.2.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
     "autoprefixer": "^10.4.14",

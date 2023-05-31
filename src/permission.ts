@@ -1,15 +1,20 @@
 import router from '@/router/index'
-import { useCache } from '@/hook/web/useCache'
+import { useCache } from '@/hooks/web/useCache'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useUserStore } from '@/store/modules/user'
 import type { RouteRecordRaw } from 'vue-router'
+import { useNProgress } from '@/hooks/web/useNProgress'
+import { usePageLoading } from '@/hooks/web/usePageLoading'
 
 const permissionStore = usePermissionStore()
 const userStore = useUserStore()
-
 const { wsCache } = useCache()
+const { start, done } = useNProgress()
+const { loadStart, loadDone } = usePageLoading()
 
 router.beforeEach(async (to, from, next) => {
+  start()
+  loadStart()
   if (to.path == '/login') {
     // 访问登录直接放行
     next()
@@ -47,4 +52,9 @@ router.beforeEach(async (to, from, next) => {
       next('/login')
     }
   }
+})
+
+router.afterEach((to) => {
+  done()
+  loadDone()
 })

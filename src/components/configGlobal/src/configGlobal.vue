@@ -2,7 +2,6 @@
   用于配置全局页面
  -->
 <script lang="ts" setup>
-
 </script>
 
 <template>

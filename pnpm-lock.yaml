@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@types/lodash-es': ^4.17.7
   '@types/node': ^18.14.6
+  '@types/nprogress': ^0.2.0
   '@vitejs/plugin-vue': ^4.0.0
   '@vitejs/plugin-vue-jsx': ^3.0.1
   '@vueuse/core': ^9.13.0
@@ -14,6 +15,7 @@ specifiers:
   element-plus: ^2.2.33
   fast-glob: ^3.2.12
   lodash-es: ^4.17.21
+  nprogress: ^0.2.0
   pinia: ^2.0.32
   postcss: ^8.4.23
   sass: ^1.58.3
@@ -36,6 +38,7 @@ dependencies:
   echarts: registry.npmmirror.com/echarts/5.4.2
   element-plus: registry.npmmirror.com/element-plus/2.2.33_vue@3.2.47
   lodash-es: registry.npmmirror.com/lodash-es/4.17.21
+  nprogress: registry.npmmirror.com/nprogress/0.2.0
   pinia: registry.npmmirror.com/pinia/2.0.32_hmuptsblhheur2tugfgucj7gc4
   vue: registry.npmmirror.com/vue/3.2.47
   vue-router: registry.npmmirror.com/vue-router/4.1.6_vue@3.2.47
@@ -43,6 +46,7 @@ dependencies:
 
 devDependencies:
   '@types/lodash-es': registry.npmmirror.com/@types/lodash-es/4.17.7
+  '@types/nprogress': registry.npmmirror.com/@types/nprogress/0.2.0
   '@vitejs/plugin-vue': registry.npmmirror.com/@vitejs/plugin-vue/4.0.0_vite@4.1.4+vue@3.2.47
   '@vitejs/plugin-vue-jsx': registry.npmmirror.com/@vitejs/plugin-vue-jsx/3.0.1_vite@4.1.4+vue@3.2.47
   autoprefixer: registry.npmmirror.com/autoprefixer/10.4.14_postcss@8.4.23
@@ -846,6 +850,12 @@ packages:
     resolution: {integrity: sha512-93+VvleD3mXwlLI/xASjw0FzKcwzl3OdTCzm1LaRfqgS21gfFtK3zDXM5Op9TeeMsJVOaJ2VRDpT9q4Y3d0AvA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/node/-/node-18.14.6.tgz}
     name: '@types/node'
     version: 18.14.6
+
+  registry.npmmirror.com/@types/nprogress/0.2.0:
+    resolution: {integrity: sha512-1cYJrqq9GezNFPsWTZpFut/d4CjpZqA0vhqDUPFWYKF1oIyBz5qnoYMzR+0C/T96t3ebLAC1SSnwrVOm5/j74A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/nprogress/-/nprogress-0.2.0.tgz}
+    name: '@types/nprogress'
+    version: 0.2.0
+    dev: true
 
   registry.npmmirror.com/@types/svgo/2.6.4:
     resolution: {integrity: sha512-l4cmyPEckf8moNYHdJ+4wkHvFxjyW6ulm9l4YGaOxeyBWPhBOT0gvni1InpFPdzx1dKf/2s62qGITwxNWnPQng==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/svgo/-/svgo-2.6.4.tgz}
@@ -3181,6 +3191,12 @@ packages:
     resolution: {integrity: sha512-Wj7+EJQ8mSuXr2iWfnujrimU35R2W4FAErEyTmJoJ7ucwTn2hOUSsRehMb5RSYkxXGTM7Y9QpvPmp++w5ftoJw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/normalize-wheel-es/-/normalize-wheel-es-1.2.0.tgz}
     name: normalize-wheel-es
     version: 1.2.0
+    dev: false
+
+  registry.npmmirror.com/nprogress/0.2.0:
+    resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/nprogress/-/nprogress-0.2.0.tgz}
+    name: nprogress
+    version: 0.2.0
     dev: false
 
   registry.npmmirror.com/nth-check/2.1.1:

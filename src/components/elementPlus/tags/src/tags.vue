@@ -8,7 +8,7 @@ import { useTagsViewStore } from '@/store/modules/tagsView'
 import { filterAffixTags } from './helper'
 import { ElScrollbar } from 'element-plus'
 import { usePermissionStore } from '@/store/modules/permission'
-import { useScrollTo } from '@/hook/event/useScrollTo'
+import { useScrollTo } from '@/hooks/event/useScrollTo'
 
 // tags的数据
 const tagsViewStore = useTagsViewStore()

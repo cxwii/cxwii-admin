@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ElDropdown, ElDropdownMenu, ElDropdownItem, ElMessageBox } from 'element-plus'
-import { useCache } from '@/hook/web/useCache'
+import { useCache } from '@/hooks/web/useCache'
 import { useTagsViewStore } from '@/store/modules/tagsView'
 import { resetRouter } from '@/router'
 import { useRouter } from 'vue-router'

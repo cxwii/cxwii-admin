@@ -3,7 +3,10 @@ import { ref, provide, computed } from 'vue'
 import viewHeader from '@/views/Header/viewHeader.vue'
 import viewAside from '@/views/Aside/viewAside.vue'
 import { useTagsViewStore } from '@/store/modules/tagsView'
+import { useUserStore } from '@/store/modules/user'
 
+const userStore = useUserStore()
+const pageLoading = computed(() => userStore.getPageLoading)
 const isCollapse = ref(false)
 provide('isCollapse', isCollapse)
 
@@ -25,7 +28,7 @@ const getCaches = computed((): string[] => {
       <el-header class="myElHeader">
         <viewHeader></viewHeader>
       </el-header>
-      <el-main class="myElMain">
+      <el-main class="myElMain" v-loading="pageLoading">
         <div class="myElMainBottomFrame shadow-md rounded-lg">
           <router-view>
             <template #default="{ Component, route }">
