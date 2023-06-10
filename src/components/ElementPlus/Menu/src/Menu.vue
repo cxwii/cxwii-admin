@@ -30,14 +30,6 @@ const useRenderMenuItem = (
           <span>{item.meta.title}</span>
         </ElMenuItem>
       )
-      // elui的一个问题,icon同在title插槽里的时候收缩导致icon丢失
-      // return (
-      //   <ElMenuItem index={item.path}>
-      //     {{
-      //       title: () => renderMenuTitleORIcon(item.meta),
-      //     }}
-      //   </ElMenuItem>
-      // )
     }
   })
   return renderMenuItem
@@ -105,7 +97,7 @@ const app = () => {
 
 <style lang="scss">
 /*
-elUi样式(加scoped会导致无法穿透:deep都无法穿透的问题)
+elUi样式(不要加scoped会导致无法穿透:deep也无法穿透)
 */
 //菜单鼠标移至样式
 .el-menu .el-menu-item:hover {

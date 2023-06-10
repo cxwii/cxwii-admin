@@ -1,33 +1,49 @@
 <script lang="ts" setup>
-import { reactive } from 'vue'
-import { loginApi, getRouterApi } from '@/api/User'
+import { reactive, ref } from 'vue'
+import { loginApi, getRouterApi, registerApi } from '@/api/User'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store/modules/user'
 import { useCache } from '@/hooks/web/useCache'
-import { Eform } from '@/components/ElementPlus/Form'
+import { Form } from '@/components/ElementPlus/Form'
 import { usePermissionStore } from '@/store/modules/permission'
 import type { RouteRecordRaw } from 'vue-router'
 import { LogoSvg } from '@/components/UseSvg'
+import { ElMessage } from 'element-plus'
 
 const { push, addRoute } = useRouter()
 const { wsCache } = useCache()
 const userStore = useUserStore()
 const permissionStore = usePermissionStore()
 
-type fromType = {
+type loginFromType = {
   username: string,
   password: string
 }
-class fromData {
+class loginFromData {
   username = 'admin'
   password = '123456'
 }
+let loginFrom: loginFromType = reactive(new loginFromData)
 
-let from: fromType = reactive(new fromData)
+type registerFromType = {
+  username: string,
+  password: string,
+  confirmPassword: string
+}
+class registerFromData {
+  username = ''
+  password = ''
+  confirmPassword = ''
+}
+let registerFrom: registerFromType = reactive(new registerFromData)
+
+const toDocument = () => {
+  window.open('https://github.com/cxwii/cxwii-admin')
+}
 
 // 登录
 const login = async () => {
-  const res = await loginApi(from)
+  const res = await loginApi(loginFrom)
   if (res.status == 200) {
     // 存储用户数据
     userStore.setUsername(res.data.username)
@@ -70,13 +86,43 @@ const getRole = async () => {
   }
 }
 
-const toDocument = () => {
-  window.open('https://github.com/cxwii/cxwii-admin')
+let isRegister = ref<boolean>(false)
+const register = () => {
+  isRegister.value = !isRegister.value
 }
 
-const empty = () => {
-  Object.assign(from, new fromData())
+
+// 注册的方法
+const toRegister = async () => {
+  if (registerFrom.password === registerFrom.confirmPassword) {
+    const res = await registerApi({
+      username: registerFrom.username,
+      password: registerFrom.password
+    })
+
+    if (res.status == 200) {
+      ElMessage({
+        message: '注册成功',
+        type: 'success'
+      })
+      returnLogin()
+    }
+  } else {
+    ElMessage({
+      message: '密码不一致',
+      type: 'warning'
+    })
+  }
 }
+
+const returnLogin = () => {
+  isRegister.value = !isRegister.value
+}
+
+// 重置登录的初始值,现在用不到
+// const empty = () => {
+//   Object.assign(from, new fromData())
+// }
 
 </script>
 
@@ -96,9 +142,26 @@ const empty = () => {
         <div class="text-2xl font-normal">符合直觉的cms但不限于cms的解决方案</div>
       </div>
       <div class="formContainer">
-        <div class="font-bold mb-10">登录</div>
-        <Eform if-button="true" @on-login="login" @on-empty="empty" :model="from" label-position="top">
-        </Eform>
+        <Form
+          v-if="!isRegister"
+          :is-button=true
+          :is-Register=isRegister
+          @onLogin="login"
+          @onRegister="register"
+          :model="loginFrom"
+          label-position="top"
+        >
+        </Form>
+        <Form
+          v-else
+          :is-button=true
+          :is-Register=isRegister
+          @onToRegister="toRegister"
+          @onReturnLogin="returnLogin"
+          :model="registerFrom"
+          label-position="top"
+        >
+        </Form>
       </div>
     </div>
   </div>
