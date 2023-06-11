@@ -1,9 +1,9 @@
-import EdropdownMenu from './src/DropdownMenu.vue'
+import EldropdownMenu from './src/DropdownMenu.vue'
 import { ElDropdown } from 'element-plus'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
 
-export interface EdropdownMenuExpose {
+export interface EldropdownMenuExpose {
   elDropdownMenuRef: ComponentRef<typeof ElDropdown>
   tagItem: RouteLocationNormalizedLoaded
 }
-export { EdropdownMenu }
+export { EldropdownMenu }

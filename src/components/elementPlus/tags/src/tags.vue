@@ -2,7 +2,7 @@
 import { watch, unref, computed, onMounted, ref, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import type { RouteLocationNormalizedLoaded, RouterLinkProps } from 'vue-router'
-import { EdropdownMenu, EdropdownMenuExpose } from '@/components/ElementPlus/DropdownMenu'
+import { EldropdownMenu, EldropdownMenuExpose } from '@/components/ElementPlus/DropdownMenu'
 import { useTemplateRefsList } from '@vueuse/core'
 import { useTagsViewStore } from '@/store/modules/tagsView'
 import { filterAffixTags } from './helper'
@@ -20,7 +20,7 @@ const { currentRoute, push, replace } = useRouter()
 const visitedViews = computed(() => tagsViewStore.getVisitedViews)
 
 // <EdropdownMenu>的ref遍历出dom
-const itemRefs = useTemplateRefsList<ComponentRef<typeof EdropdownMenu & EdropdownMenuExpose>>()
+const itemRefs = useTemplateRefsList<ComponentRef<typeof EldropdownMenu & EldropdownMenuExpose>>()
 
 // 初始化时过滤完的router的列表
 const affixTagArr = ref<RouteLocationNormalizedLoaded[]>([])
@@ -266,7 +266,7 @@ watch(
     <div class="tagView h-full flex-1 w-full">
       <ElScrollbar ref="scrollbarRef" @scroll="scroll">
         <div class="flex h-full">
-          <EdropdownMenu
+          <EldropdownMenu
             :ref="itemRefs.set"
             :schema="[
               {
@@ -343,7 +343,7 @@ watch(
                   </div>
               </router-link>
             </div>
-          </EdropdownMenu>
+          </EldropdownMenu>
         </div>
       </ElScrollbar>
     </div>

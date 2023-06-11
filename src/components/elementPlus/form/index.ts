@@ -1,2 +1,2 @@
-import Form from './src/Form.vue'
-export { Form }
+import Elform from './src/form.vue'
+export { Elform }

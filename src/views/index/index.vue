@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import login from '@/views/Login/login.vue'
 import home from '@/views/Home/home.vue';
 </script>
 

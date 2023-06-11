@@ -1,3 +1,3 @@
-import Breadcrumb from './src/Breadcrumb.vue'
+import Elbreadcrumb from './src/Breadcrumb.vue'
 
-export { Breadcrumb }
+export { Elbreadcrumb }

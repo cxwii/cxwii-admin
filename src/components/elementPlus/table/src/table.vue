@@ -1,36 +1,60 @@
 <script setup lang="tsx">
-import { ElTable, ElTableColumn } from 'element-plus'
-import { PropType, useSlots, useAttrs, computed, unref } from 'vue'
+import { ElTable, ElTableColumn, ElButton } from 'element-plus'
+import { PropType, useSlots, useAttrs } from 'vue'
 
 interface TableProps {
   tableData: Array<object>
+  columnWidth: Array<string>
+  isColumnButton: boolean
 }
 
 const props = defineProps({
   data: {
     type: Object as PropType<TableProps['tableData']>,
     required: true
+  },
+  columnWidth: {
+    type: Object as PropType<TableProps['columnWidth']>
+  },
+  isColumnButton: {
+    type: Boolean as PropType<TableProps['isColumnButton']>,
+    default: false
   }
 })
 
 const slots = useSlots()
 const attrs = useAttrs()
 
-const fixedHead = computed(() => {
-  return slots.default ? undefined : "250"
-})
-
-const tableTemplate = () => {
+const useRendertable = () => {
   return (
     <>
-      <ElTableColumn fixed prop="date" label="Date" width="150" />
-      <ElTableColumn prop="name" label="Name" width="120" />
-      <ElTableColumn prop="state" label="State" width="120" />
-      <ElTableColumn prop="city" label="City" width="320" />
-      <ElTableColumn prop="address" label="Address" width="600" />
-      <ElTableColumn prop="zip" label="Zip" width="120" />
+      {
+        useRenderColumn()
+      }
     </>
   )
+}
+
+const useRenderColumn = () => {
+  let ColumnTemplate: Array<JSX.Element> = []
+
+  Object.keys(props.data[0]).forEach((item, index) => {
+    // props.columnWidth永远都存在但可能没值
+    // 默认宽度150
+    ColumnTemplate.push(
+      <ElTableColumn
+        prop={item}
+        label={item}
+        width={props.columnWidth![index] ? props.columnWidth![index] : '150'} />
+    )
+  })
+
+  if (props.isColumnButton){
+    let columnButton: unknown = slots.default!()
+    ColumnTemplate.push(columnButton as JSX.Element)
+  }
+
+  return(ColumnTemplate)
 }
 
 const app = () => {
@@ -38,10 +62,9 @@ const app = () => {
     <ElTable
       data={props.data}
       {...attrs}
-      height={unref(fixedHead)}
     >
       {
-        slots.default ? slots.default() : tableTemplate()
+        slots.default && !props.isColumnButton ? slots.default() : useRendertable()
       }
     </ElTable>
   )
@@ -49,9 +72,7 @@ const app = () => {
 </script>
 
 <template>
- <app></app>
+  <app></app>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

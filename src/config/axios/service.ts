@@ -6,7 +6,7 @@ import axios, {
 } from 'axios'
 import { config } from './config'
 import { ElMessage } from 'element-plus'
-import useRouter from '@/router/index'
+import router from '@/router/index'
 import { useCache } from '@/hooks/web/useCache'
 import { useTagsViewStore } from '@/store/modules/tagsView'
 import { resetRouter } from '@/router'
@@ -46,7 +46,7 @@ service.interceptors.response.use(
       wsCache.clear() // 清除本地所有缓存
       tagsViewStore.delAllViews() // 清除标签的所有缓存
       resetRouter() // 重置静态路由表
-      useRouter.replace('/login') // 去登录页
+      router.replace('/login') // 去登录页
     } else {
       ElMessage.error(response.data.message)
     }

@@ -1,3 +1,3 @@
-import Menu from './src/Menu.vue'
+import Elmenu from './src/Menu.vue'
 
-export { Menu }
+export { Elmenu }

@@ -28,7 +28,7 @@ const getCaches = computed((): string[] => {
       <el-header class="myElHeader">
         <viewHeader></viewHeader>
       </el-header>
-      <el-main class="myElMain" v-loading="pageLoading">
+      <el-main class="myElMain" :v-loading="pageLoading">
         <div class="myElMainBottomFrame shadow-md rounded-lg">
           <router-view>
             <template #default="{ Component, route }">

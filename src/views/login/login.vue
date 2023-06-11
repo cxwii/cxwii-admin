@@ -4,7 +4,7 @@ import { loginApi, getRouterApi, registerApi } from '@/api/User'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store/modules/user'
 import { useCache } from '@/hooks/web/useCache'
-import { Form } from '@/components/ElementPlus/Form'
+import { Elform } from '@/components/ElementPlus/Form'
 import { usePermissionStore } from '@/store/modules/permission'
 import type { RouteRecordRaw } from 'vue-router'
 import { LogoSvg } from '@/components/UseSvg'
@@ -142,7 +142,7 @@ const returnLogin = () => {
         <div class="text-2xl font-normal">符合直觉的cms但不限于cms的解决方案</div>
       </div>
       <div class="formContainer">
-        <Form
+        <Elform
           v-if="!isRegister"
           :is-button=true
           :is-Register=isRegister
@@ -151,8 +151,8 @@ const returnLogin = () => {
           :model="loginFrom"
           label-position="top"
         >
-        </Form>
-        <Form
+        </Elform>
+        <Elform
           v-else
           :is-button=true
           :is-Register=isRegister
@@ -161,7 +161,7 @@ const returnLogin = () => {
           :model="registerFrom"
           label-position="top"
         >
-        </Form>
+        </Elform>
       </div>
     </div>
   </div>
