@@ -6,6 +6,7 @@ const { wsCache } = useCache()
 
 interface  userStateType {
   username: string | null,
+  userPic: string | null,
   token: string | null,
   dynamicRouter: boolean,
   pageLoading: boolean
@@ -18,6 +19,8 @@ export const userStore = defineStore('user', {
       username: null,
       // 登录的token
       token: null,
+      // 头像
+      userPic: null,
       // 是否使用动态路由
       dynamicRouter: wsCache.get('dynamicRouter') || false,
       // 加载页面
@@ -27,6 +30,9 @@ export const userStore = defineStore('user', {
   getters: {
     getUsername(): string | null {
       return this.username
+    },
+    getUserPic(): string | null {
+      return this.userPic
     },
     getToken(): string | null {
       return this.token
@@ -41,6 +47,9 @@ export const userStore = defineStore('user', {
   actions: {
     setUsername(username: string | null) {
       this.username = username
+    },
+    setUserPic(userPic: string | null) {
+      this.userPic = userPic
     },
     setToken(token: string | null) {
       this.token = token

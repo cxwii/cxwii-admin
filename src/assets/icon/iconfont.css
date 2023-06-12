@@ -1,8 +1,8 @@
 @font-face {
   font-family: "element-icons"; /* Project id 3979524 */
-  src: url('iconfont.woff2?t=1684639814860') format('woff2'),
-       url('iconfont.woff?t=1684639814860') format('woff'),
-       url('iconfont.ttf?t=1684639814860') format('truetype');
+  src: url('iconfont.woff2?t=1686558280680') format('woff2'),
+       url('iconfont.woff?t=1686558280680') format('woff'),
+       url('iconfont.ttf?t=1686558280680') format('truetype');
 }
 
 .element-icons {
@@ -11,6 +11,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.el-icon-list:before {
+  content: "\e6a8";
 }
 
 .el-icon-shuangzuojiantou-:before {

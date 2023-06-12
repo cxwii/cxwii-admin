@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import { Eltable } from '@/components/ElementPlus/Table'
-import { reactive } from 'vue'
 
-const tableData = reactive<Array<object>>([
+let tableData= [
   {
     date: '2016-05-03',
     name: 'Tom',
@@ -59,7 +58,7 @@ const tableData = reactive<Array<object>>([
     address: 'No. 189, Grove St, Los Angeles',
     zip: 'CA 90036',
   },
-])
+  ]
 
 // 表格列的宽度应该和列数一致,不满的默认就是150
 const columnWidth:Array<string> = ['100', '150', '200']

@@ -4,10 +4,14 @@ import { useCache } from '@/hooks/web/useCache'
 import { useTagsViewStore } from '@/store/modules/tagsView'
 import { resetRouter } from '@/router'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/store/modules/user'
 
 const { wsCache } = useCache()
 const tagsViewStore = useTagsViewStore()
 const { replace } = useRouter()
+const userStore = useUserStore()
+
+const userPic = userStore.getUserPic ? userStore.getUserPic : null
 
 const toDocument = () => {
   window.open('https://github.com/cxwii/cxwii-admin')
@@ -35,6 +39,12 @@ const loginOut = () => {
   <ElDropdown trigger="click">
     <div class="flex items-center">
       <img
+        v-if="userPic"
+        :src="userPic"
+        alt=""
+      />
+      <img
+        v-else
         src="@/assets/imgs/user.png"
         alt=""
       />
