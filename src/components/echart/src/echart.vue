@@ -27,7 +27,7 @@ const options = props.options
 
 // 动态修改数据
 watch(
-  () => options,
+  () => props.options,
   (options) => {
     if (echartRef) {
       echartRef?.setOption(unref(options))

@@ -76,29 +76,29 @@ export const asyncRouter: AppRouteRecordRaw[] = [
       "icon": "el-icon-yuanshuju-zujianku",
       "isSubMenu": true
     },
-    redirect:'/chart/barChart',
+    redirect:'/chart/dynamicChart',
     component: index,
     children: [
       {
-        name: 'barChart',
-        path: 'barChart',
+        name: 'dynamicChart',
+        path: 'dynamicChart',
         meta: {
-          "title": "柱图",
+          "title": "动态图表",
           "noCache": true,
           "isSubMenu": false,
-          "menuPath": "/chart/barChart"
+          "menuPath": "/chart/dynamicChart"
         },
-        component: () => import('@/views/Chart/barChart/barChart.vue')
+        component: () => import('@/views/Chart/dynamicChart/dynamicChart.vue')
       },
       {
-        name: 'lineChart',
-        path: 'lineChart',
+        name: 'staticChart',
+        path: 'staticChart',
         meta: {
-          "title": "饼图",
+          "title": "静态图表",
           "isSubMenu": false,
-          "menuPath": "/chart/lineChart"
+          "menuPath": "/chart/staticChart"
         },
-        component: () => import('@/views/Chart/lineChart/lineChart.vue')
+        component: () => import('@/views/Chart/staticChart/staticChart.vue')
       }
     ]
   },

@@ -2,24 +2,19 @@
 import { Echart } from '@/components/Echart'
 import { EChartsOption } from 'echarts'
 import { reactive, onMounted, onBeforeUnmount, ref, unref } from 'vue'
+import { getStaticChartOption } from '@/api/Chart'
 
 let option = {
-  xAxis: {
-    type: 'category',
-    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      data: [120, 200, 150, 80, 70, 110, 130],
-      type: 'bar'
-    }
-  ]
+  data: {
+  }
 } as EChartsOption
 
-const barOptions = reactive<EChartsOption>(option) as EChartsOption
+let dynamicChartOptions = reactive<EChartsOption>(option) as EChartsOption
+
+const getChartOptionFun = async () => {
+  let { data } = await getStaticChartOption({chartName: 'bar'})
+  dynamicChartOptions.data = data[0].chartOption
+}
 
 /* 
   使用echart组件传出来resizeHandler方法调整大小,
@@ -29,6 +24,8 @@ const barOptions = reactive<EChartsOption>(option) as EChartsOption
 const barEchart = ref()
 const contentEl = ref<Element>()
 onMounted(() => {
+  getChartOptionFun()
+
   contentEl.value = document.getElementsByClassName(`aside`)[0]
   unref(contentEl) &&
     (unref(contentEl) as Element).addEventListener('transitionend', barEchart.value.resizeHandler)
@@ -40,7 +37,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <Echart ref="barEchart" :options="barOptions" :height="300"></Echart>
+  <Echart ref="barEchart" :options="dynamicChartOptions.data as EChartsOption" :height="300"></Echart>
 </template>
 
 <style scoped lang="scss">
