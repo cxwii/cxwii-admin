@@ -2,25 +2,33 @@
 import { Editor, EditorExpose } from '@/components/Editor';
 import { ref, onMounted, unref } from 'vue'
 import { IDomEditor } from '@wangeditor/editor'
+import { getRichText, updateRichText } from "@/api/RichText";
+import { debounce } from 'lodash-es'
 
 const editorRef = ref<typeof Editor & EditorExpose>()
 const defaultHtml = ref('')
 
 // 内容变化的回调
-const change = (editor: IDomEditor) => {
-  console.log(editor.getHtml())
+const change = debounce((editor: IDomEditor) => {
+  updateRichText({
+    EditorText: editor.getHtml()
+  })
+}, 1000)
+
+// 后端传文本
+const getRichTextFun = async () => {
+  const {data, status} = await getRichText()
+  
+  status == '200' 
+    ? defaultHtml.value = data.EditorText
+    : defaultHtml.value = ''
 }
 
-// 初始化时拿富文本实例
 onMounted(async () => {
-  const editor = await unref(editorRef)?.getEditorRef()
-  console.log(editor)
+  getRichTextFun()
+  // 富文本实例
+  // const editor = await unref(editorRef)?.getEditorRef()
 })
-
-// 模拟后端传文本
-setTimeout(() => {
-  defaultHtml.value = '<p>hello <strong>world</strong></p>'
-}, 3000)
 </script>
 
 <template>

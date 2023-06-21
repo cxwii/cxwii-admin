@@ -37,7 +37,6 @@ const useRendertable = () => {
 
 const useRenderColumn = () => {
   let ColumnTemplate: Array<JSX.Element> = []
-  console.log('props.data[0] :>> ', props.data);
   Object.keys(props.data[0]).forEach((item, index) => {
     // props.columnWidth永远都存在但可能没值
     // 默认宽度150
