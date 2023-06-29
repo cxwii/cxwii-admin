@@ -13,6 +13,11 @@ export const index = () => import('@/views/Index/index.vue')
 // 导入views页面下的所有.vue文件
 const modules = import.meta.glob('../views/**/*.vue')
 
+// 为路径加入/开头
+export const addSlashToStart = (path: string): string => {
+  return path.startsWith('/') || path == '' ? path : `/${path}`
+}
+
 // 正则修改解析路径
 export const pathResolve = (parentPath: string, path: string) => {
   if (isUrl(path)) return path

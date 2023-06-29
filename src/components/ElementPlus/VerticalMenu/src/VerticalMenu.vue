@@ -3,6 +3,7 @@ import { ElMenu, ElSubMenu, ElMenuItem, ElIcon } from 'element-plus'
 import { useAttrs, useSlots } from 'vue'
 import { usePermissionStore } from '@/store/modules/permission'
 import type { RouteMeta } from 'vue-router'
+import { addSlashToStart } from '@/utils/routerHelper'
 
 const attrs = useAttrs()
 const slots = useSlots()
@@ -14,21 +15,38 @@ const useRenderMenuItem = (
   menuRouter: AppRouteRecordRaw[]
 ) => {
   const renderMenuItem = menuRouter.map((item) => {
-    if (item.meta.isSubMenu) {
+    if (item.hasOwnProperty('children') && 
+      (item.children ? item.children.length : 0) == 0) {
+        return (
+          <ElMenuItem index={item.path}>
+            <ElIcon class={`element-icons ${item.meta.icon}`}></ElIcon>
+            <span>{item.meta.title}</span>
+          </ElMenuItem>
+        )
+    } else if (item.hasOwnProperty('children') && 
+      (item.children ? item.children.length : 0) == 1) {
+        let path = `${addSlashToStart(item.path)}${addSlashToStart(item.children![0].path)}`
+        let icon = item.children![0].meta.icon ? item.children![0].meta.icon : (item.meta.icon ? item.meta.icon : 'el-icon-hollow-question')
+        let title = item.children![0].meta.title ? item.children![0].meta.title : (item.meta.title ? item.meta.title : '未知标题')
+        return (
+          <ElMenuItem index={path}>
+            <ElIcon class={`element-icons ${icon}`}></ElIcon>
+            <span>{title}</span>
+          </ElMenuItem>
+        )
+    } else {
+      let meta = item.meta ? item.meta :
+        {
+          "title":"未知标题",
+          "icon": "el-icon-hollow-question",
+        }
       return (
         <ElSubMenu index={item.name}>
           {{
-            title: () => renderMenuTitleORIcon(item.meta),
-            default: () => useRenderSubMenu(item.children as AppRouteRecordRaw[])
+            title: () => renderMenuTitleORIcon(meta),
+            default: () => useRenderSubMenu(item.children as AppRouteRecordRaw[], item.path)
           }}
         </ElSubMenu>
-      )
-    } else {
-      return (
-        <ElMenuItem index={item.meta.menuPath}>
-          <ElIcon class={`element-icons ${item.meta.icon}`}></ElIcon>
-          <span>{item.meta.title}</span>
-        </ElMenuItem>
       )
     }
   })
@@ -37,24 +55,32 @@ const useRenderMenuItem = (
 
 // 渲染二级以及后续Menu的模板
 const useRenderSubMenu = (
-  menuRouter: AppRouteRecordRaw[]
+  menuRouter: AppRouteRecordRaw[],
+  parentPath: string
 ) => {
   const renderSubMenu = menuRouter.map((item) => {
-    if (item.meta.isSubMenu) {
+    if (item.hasOwnProperty('children')) {
+      let meta = item.meta ? item.meta : {
+          "title":"未知标题"
+        }
       return(
         <ElSubMenu index={item.name}>
           {{
-            title: () => renderMenuTitleORIcon(item.meta),
+            title: () => renderMenuTitleORIcon(meta),
             // 还有子菜单就接着递归到没有
-            default: () => useRenderSubMenu(item.children as AppRouteRecordRaw[])
+            default: () => useRenderSubMenu(item.children as AppRouteRecordRaw[],
+              `${addSlashToStart(parentPath)}${addSlashToStart(item.path)}`)
           }}
         </ElSubMenu>
       )
     } else {
+      let meta = item.meta ? item.meta : {
+          "title":"未知标题"
+        }
       return(
-        <ElMenuItem index={item.meta.menuPath}>
+        <ElMenuItem index={`${addSlashToStart(parentPath)}${addSlashToStart(item.path)}`}>
           {{
-            title: () => renderMenuTitleORIcon(item.meta),
+            title: () => renderMenuTitleORIcon(meta),
           }}
         </ElMenuItem>
       )
@@ -65,7 +91,7 @@ const useRenderSubMenu = (
 
 // 渲染Title和Icon的模板
 const renderMenuTitleORIcon = (meta: RouteMeta) => {
-  const { title = 'Please set title', icon } = meta
+  const { title = '未知标题', icon } = meta
 
   return icon ? (
     <>

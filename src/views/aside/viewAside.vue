@@ -2,7 +2,7 @@
 import { inject } from 'vue'
 import { LogoSvg } from '@/components/UseSvg'
 import { useRouter, useRoute } from 'vue-router'
-import { Elmenu } from '@/components/ElementPlus/Menu'
+import { ElVerticalmenu } from '@/components/ElementPlus/VerticalMenu'
 
 const { push } = useRouter()
 const route = useRoute()
@@ -22,7 +22,7 @@ const toHome = () => {
       <div class="logText">cxwii-Admin</div>
     </div>
 
-    <Elmenu
+    <ElVerticalmenu
       :default-active="route.path"
       class="elMenu"
       :collapse="isCollapse"
@@ -31,7 +31,7 @@ const toHome = () => {
       active-text-color="#ffffff"
       :router="true"
     >
-    </Elmenu>
+    </ElVerticalmenu>
 
   </div>
 </template>

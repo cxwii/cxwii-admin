@@ -52,11 +52,12 @@ const login = async () => {
     wsCache.set('token', userStore.getToken)
 
     // 根据用户信息有没有额外的权限路由,1是管理有,其他没有(表里面默认2)
-    if (res.data.roleId === '1') {
-      userStore.setDynamicRouter(true)
-    } else {
-      userStore.setDynamicRouter(false)
-    }
+    // if (res.data.roleId === '1') {
+    //   userStore.setDynamicRouter(true)
+    // } else {
+    //   userStore.setDynamicRouter(false)
+    // }
+    userStore.setDynamicRouter(false)
 
     if (userStore.getDynamicRouter) {
       getRole()

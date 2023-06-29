@@ -85,10 +85,34 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         meta: {
           "title": "动态图表",
           "noCache": true,
-          "isSubMenu": false,
+          "isSubMenu": true,
           "menuPath": "/chart/dynamicChart"
         },
-        component: () => import('@/views/Chart/dynamicChart/dynamicChart.vue')
+        // component: () => import('@/views/Chart/dynamicChart/dynamicChart.vue'),
+        children: [
+          {
+            name: 'test',
+            path: 'test',
+            meta: {
+              "title": "测试",
+              "isSubMenu": false,
+              "menuPath": "/chart/dynamicChart/test"
+            },
+            component: () => import('@/views/User/userManage.vue'),
+            children: [
+              {
+                name: 'test2',
+                path: 'test2',
+                meta: {
+                  "title": "测试2",
+                  "isSubMenu": false,
+                  "menuPath": "/chart/dynamicChart/test"
+                },
+                component: () => import('@/views/User/userManage.vue')
+              }
+            ]
+          }
+        ]
       },
       {
         name: 'staticChart',
