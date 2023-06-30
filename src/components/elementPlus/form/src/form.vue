@@ -12,8 +12,6 @@ interface FormProps {
   isRegister: boolean
 }
 
-console.log('表单函数 :>> ')
-
 const props = defineProps({
   model: {
     type: Object as PropType<FormProps['formModel']>,

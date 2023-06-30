@@ -49,9 +49,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     path:'/home',
     meta: {
       "title":"首页",
-      "icon": "el-icon-shouye1",
-      "isSubMenu": false,
-      "menuPath": "/home/homePage"
+      "icon": "el-icon-shouye1"
     },
     redirect:'/home/homePage',
     component: index,
@@ -61,8 +59,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         path:'homePage',
         meta: {
           "title":"首页",
-          "affix": true,
-          "isSubMenu": false
+          "affix": true
         },
         component: () => import('@/views/HomePage/homePage.vue')
       }
@@ -73,8 +70,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     path:'/chart',
     meta: {
       "title":"图表",
-      "icon": "el-icon-yuanshuju-zujianku",
-      "isSubMenu": true
+      "icon": "el-icon-yuanshuju-zujianku"
     },
     redirect:'/chart/dynamicChart',
     component: index,
@@ -84,43 +80,15 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         path: 'dynamicChart',
         meta: {
           "title": "动态图表",
-          "noCache": true,
-          "isSubMenu": true,
-          "menuPath": "/chart/dynamicChart"
+          "noCache": true
         },
-        // component: () => import('@/views/Chart/dynamicChart/dynamicChart.vue'),
-        children: [
-          {
-            name: 'test',
-            path: 'test',
-            meta: {
-              "title": "测试",
-              "isSubMenu": false,
-              "menuPath": "/chart/dynamicChart/test"
-            },
-            component: () => import('@/views/User/userManage.vue'),
-            children: [
-              {
-                name: 'test2',
-                path: 'test2',
-                meta: {
-                  "title": "测试2",
-                  "isSubMenu": false,
-                  "menuPath": "/chart/dynamicChart/test"
-                },
-                component: () => import('@/views/User/userManage.vue')
-              }
-            ]
-          }
-        ]
+        component: () => import('@/views/Chart/dynamicChart/dynamicChart.vue')
       },
       {
         name: 'staticChart',
         path: 'staticChart',
         meta: {
-          "title": "静态图表",
-          "isSubMenu": false,
-          "menuPath": "/chart/staticChart"
+          "title": "静态图表"
         },
         component: () => import('@/views/Chart/staticChart/staticChart.vue')
       }
@@ -131,8 +99,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     path:'/elComponents',
     meta: {
       "title":"elui组件",
-      "icon": "el-icon-tubiao-zhexiantu",
-      "isSubMenu": true
+      "icon": "el-icon-tubiao-zhexiantu"
     },
     redirect:'/elComponents/table',
     component: index,
@@ -141,9 +108,8 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         name: 'table',
         path: 'table',
         meta: {
-          "title": "表格",
-          "isSubMenu": false,
-          "menuPath": "/elComponents/table"
+          "title": "表格"
+
         },
         component: () => import('@/views/ElComponents/table/table.vue')
       }
@@ -154,9 +120,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     path:'/richText',
     meta: {
       "title":"文本",
-      "icon": "el-icon-fuwenben",
-      "isSubMenu": false,
-      "menuPath": "/richText/text"
+      "icon": "el-icon-fuwenben"
     },
     redirect:'/richText/text',
     component: index,
@@ -165,8 +129,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         name: 'text',
         path: 'text',
         meta: {
-          "title":"富文本",
-          "isSubMenu": false
+          "title":"富文本"
         },
         component: () => import('@/views/RichText/text.vue')
       }
