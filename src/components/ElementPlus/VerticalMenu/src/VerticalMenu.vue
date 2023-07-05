@@ -1,6 +1,6 @@
 <script lang="tsx" setup>
 import { ElMenu, ElSubMenu, ElMenuItem, ElIcon } from 'element-plus'
-import { useAttrs, useSlots } from 'vue'
+import { useAttrs, useSlots, computed } from 'vue'
 import { usePermissionStore } from '@/store/modules/permission'
 import type { RouteMeta } from 'vue-router'
 import { addSlashToStart } from '@/utils/routerHelper'
@@ -8,13 +8,15 @@ import { addSlashToStart } from '@/utils/routerHelper'
 const attrs = useAttrs()
 const slots = useSlots()
 const permissionStore = usePermissionStore()
-const menuRouter = permissionStore.getAddRouters
+const menuRouters = computed(() => {
+  return permissionStore.getAddRouters
+})
 
 // 渲染一级Menu的模板
 const useRenderMenuItem = (
-  menuRouter: AppRouteRecordRaw[]
+  menuRouters: AppRouteRecordRaw[]
 ) => {
-  const renderMenuItem = menuRouter.map((item) => {
+  const renderMenuItem = menuRouters.map((item) => {
     if (item.hasOwnProperty('children') && 
       (item.children ? item.children.length : 0) == 0) {
         return (
@@ -55,10 +57,10 @@ const useRenderMenuItem = (
 
 // 渲染二级以及后续Menu的模板
 const useRenderSubMenu = (
-  menuRouter: AppRouteRecordRaw[],
+  menuRouters: AppRouteRecordRaw[],
   parentPath: string
 ) => {
-  const renderSubMenu = menuRouter.map((item) => {
+  const renderSubMenu = menuRouters.map((item) => {
     if (item.hasOwnProperty('children')) {
       let meta = item.meta ? item.meta : {
           "title":"未知标题"
@@ -109,7 +111,7 @@ const app = () => {
       {...attrs}
     >
       {
-        slots.default ? slots.default() : useRenderMenuItem(menuRouter)
+        slots.default ? slots.default() : useRenderMenuItem(menuRouters.value)
       }
     </ElMenu>
   )

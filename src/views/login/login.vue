@@ -58,6 +58,9 @@ const login = async () => {
       userStore.setDynamicRouter(false)
     }
 
+    // 用前端路由
+    userStore.setDynamicRouter(false)
+
     if (userStore.getDynamicRouter) {
       getRole()
     } else {

@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import { inject, ref } from 'vue'
 import type { Ref } from 'vue'
-import { Eltags } from '@/components/ElementPlus/Tags';
-import { UserInfo } from '@/components/UserInfo';
+import { Eltags } from '@/components/ElementPlus/Tags'
+import { ElUserInfo } from '@/components/ElementPlus/UserInfo'
+import { Elbreadcrumb } from '@/components/ElementPlus/Breadcrumb'
 
 const isCollapse = inject('isCollapse') as Ref<boolean>
 
@@ -14,6 +15,7 @@ const change = () => {
 <template>
   <div class="header">
     <div class="collapseButton flex">
+      <!-- 折叠左侧菜单栏按钮 -->
       <div>
         <el-icon
           v-if="!isCollapse"
@@ -30,8 +32,13 @@ const change = () => {
         >
         </el-icon>
       </div>
+      <!-- 面包屑导航 -->
+      <div class="flex-1 m-5 select-none">
+        <Elbreadcrumb></Elbreadcrumb>
+      </div>
+      <!-- 个人用户信息 -->
       <div class="userInfo rounded-full">
-        <UserInfo></UserInfo>
+        <ElUserInfo></ElUserInfo>
       </div>
     </div>
     <div class="Etags">

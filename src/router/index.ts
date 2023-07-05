@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import type { App } from 'vue'
 import { index } from '@/utils/routerHelper'
+import component from 'virtual:svg-icons-register'
 
 /* 
   meta:
@@ -82,7 +83,17 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           "title": "动态图表",
           "noCache": true
         },
-        component: () => import('@/views/Chart/dynamicChart/dynamicChart.vue')
+        component: () => import('@/views/Chart/dynamicChart/dynamicChart.vue'),
+        // children: [
+        //   {
+        //     name: 'test',
+        //     path: 'test',
+        //     meta: {
+        //       "title": "测试"
+        //     },
+        //     component: () => import('@/views/User/userManage.vue')
+        //   }
+        // ]
       },
       {
         name: 'staticChart',
@@ -112,6 +123,15 @@ export const asyncRouter: AppRouteRecordRaw[] = [
 
         },
         component: () => import('@/views/ElComponents/table/table.vue')
+      },
+      {
+        name: 'form',
+        path: 'form',
+        meta: {
+          "title": "表单"
+
+        },
+        component: () => import('@/views/ElComponents/form/form.vue')
       }
     ]
   },
@@ -119,7 +139,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     name:'richText',
     path:'/richText',
     meta: {
-      "title":"文本",
+      "title":"富文本",
       "icon": "el-icon-fuwenben"
     },
     redirect:'/richText/text',

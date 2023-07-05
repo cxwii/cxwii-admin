@@ -15,6 +15,8 @@ import './permission'
 import '@/assets/icon/iconfont.css'
 // svg支持
 import 'virtual:svg-icons-register'
+// 引入动画
+import '@/plugins/animateCss'
 
 const app = createApp(App)
 useRouter(app)
