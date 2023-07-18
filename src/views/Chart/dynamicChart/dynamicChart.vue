@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { Echart } from '@/components/Echart'
 import { EChartsOption } from 'echarts'
-import { reactive, onMounted, onBeforeUnmount, ref, unref, withScopeId } from 'vue'
+import { reactive, onMounted, onBeforeUnmount, ref, unref } from 'vue'
+import { useSocket, Options, Socket } from '@/hooks/web/useWebSocket'
 
 let option = {
   data: {
@@ -22,17 +23,22 @@ let option = {
 } as EChartsOption
 
 let dynamicChartOptions = reactive<EChartsOption>(option) as EChartsOption
-let ws: any
+
+const socket = ref<Socket>()
 const getChartOptionFun = async () => {
-  ws = new WebSocket('ws://127.0.0.1:9528/')
-
-  ws.onopen = () => {
-    ws.send('bar')
+  // ws的配置
+  const options: Options = {
+    url: '127.0.0.1:9528'
   }
-
-  ws.onmessage = ({data}: any) => {
-    dynamicChartOptions.data = JSON.parse(data)[0].chartOption
-  }
+  // 实例ws
+  socket.value = useSocket(options)
+  // 订阅事件
+  socket.value.subscribe('open', () => {
+    socket.value?.sendMessage('bar')
+  })
+  socket.value.subscribe('message', (result: any) => {
+    dynamicChartOptions.data = result[0].chartOption
+  })
 }
 
 /* 
@@ -50,7 +56,8 @@ onMounted(() => {
     (unref(contentEl) as Element).addEventListener('transitionend', barEchart.value.resizeHandler)
 })
 onBeforeUnmount(() => {
-  ws.close()
+  // 关闭ws
+  socket.value?.closeSocket()
 
   unref(contentEl) &&
     (unref(contentEl) as Element).removeEventListener('transitionend', barEchart.value.resizeHandler)
