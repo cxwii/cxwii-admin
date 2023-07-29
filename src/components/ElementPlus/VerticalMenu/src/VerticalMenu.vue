@@ -4,13 +4,14 @@ import { useAttrs, useSlots, computed } from 'vue'
 import { usePermissionStore } from '@/store/modules/permission'
 import type { RouteMeta } from 'vue-router'
 import { addSlashToStart } from '@/utils/routerHelper'
+import { useI18n } from '@/hooks/web/useI18n'
 
+const { t } = useI18n()
 const attrs = useAttrs()
 const slots = useSlots()
 const permissionStore = usePermissionStore()
-const menuRouters = computed(() => {
-  return permissionStore.getAddRouters
-})
+
+const menuRouters = computed(() => permissionStore.getAddRouters)
 
 // 渲染一级Menu的模板
 const useRenderMenuItem = (
@@ -22,18 +23,18 @@ const useRenderMenuItem = (
         return (
           <ElMenuItem index={item.path}>
             <ElIcon class={`element-icons ${item.meta.icon}`}></ElIcon>
-            <span>{item.meta.title}</span>
+            <span>{t(item.meta.title)}</span>
           </ElMenuItem>
         )
     } else if (item.hasOwnProperty('children') && 
       (item.children ? item.children.length : 0) == 1) {
         let path = `${addSlashToStart(item.path)}${addSlashToStart(item.children![0].path)}`
         let icon = item.children![0].meta.icon ? item.children![0].meta.icon : (item.meta.icon ? item.meta.icon : 'el-icon-hollow-question')
-        let title = item.children![0].meta.title ? item.children![0].meta.title : (item.meta.title ? item.meta.title : '未知标题')
+        let title = item.children![0].meta.title ? item.children![0].meta.title : (item.meta.title ? () => item.meta.title : '未知标题')
         return (
           <ElMenuItem index={path}>
             <ElIcon class={`element-icons ${icon}`}></ElIcon>
-            <span>{title}</span>
+            <span>{t(title)}</span>
           </ElMenuItem>
         )
     } else {
@@ -98,10 +99,10 @@ const renderMenuTitleORIcon = (meta: RouteMeta) => {
   return icon ? (
     <>
       <ElIcon class={`element-icons ${meta.icon}`}></ElIcon>
-      <span>{title as string}</span>
+      <span>{t(title as string)}</span>
     </>
   ) : (
-    <span>{title as string}</span>
+    <span>{t(title as string)}</span>
   )
 }
 

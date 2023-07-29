@@ -1,6 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
+// 初始化多语言
+import { setupI18n } from '@/plugins/vueI18n'
 // Tailwind
 import './index.css'
 // 路由
@@ -18,8 +20,15 @@ import 'virtual:svg-icons-register'
 // 引入动画
 import '@/plugins/animateCss'
 
-const app = createApp(App)
-useRouter(app)
-useElementPlus(app)
-useStore(app)
-app.mount('#app')
+// 创建实例
+const setupAll = async () => {
+  const app = createApp(App)
+  await setupI18n(app)
+  useElementPlus(app)
+  useStore(app)
+  useRouter(app)
+  
+  app.mount('#app')
+}
+
+setupAll()

@@ -9,6 +9,7 @@ import { usePermissionStore } from '@/store/modules/permission'
 import type { RouteRecordRaw } from 'vue-router'
 import { LogoSvg } from '@/components/UseSvg'
 import { ElMessage } from 'element-plus'
+import { ElLocaleDropdown } from '@/components/ElementPlus/LocaleDropdown'
 
 const { push, addRoute } = useRouter()
 const { wsCache } = useCache()
@@ -138,6 +139,9 @@ const returnLogin = () => {
     <div class="loginLogo cursor-pointer flex flex-row" @click="toDocument">
       <LogoSvg name="vuex-store" class="h-full w-full"></LogoSvg>
     </div>
+    <div class="i18nIcon cursor-pointer flex flex-row">
+      <ElLocaleDropdown></ElLocaleDropdown>
+    </div>
     <div @click="toDocument" class="loginText cursor-pointer flex items-center text-white text-xl font-bold">
       cxwii-Admin
     </div>
@@ -189,6 +193,11 @@ const returnLogin = () => {
     top: 20px;
     width: 70px;
     height: 70px;
+  }
+  .i18nIcon{
+    position: absolute;
+    right: 40px;
+    top: 40px;
   }
   .loginText {
     position: absolute;

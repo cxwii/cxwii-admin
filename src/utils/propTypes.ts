@@ -1,7 +1,7 @@
 import VueTypes, { toType, toValidableType } from 'vue-types'
 
 export default class ProjectTypes extends VueTypes {
-  // 这两个是自定义类型,官网的案例,现在没用到,有些问题没解决
+  // 这两个是自定义类型,官网的案例,现在没用到
   // static maxLength(max) {
   //   return toType('maxLength', {
   //     type: String,

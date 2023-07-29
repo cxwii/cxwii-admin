@@ -1,7 +1,9 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
 import type { App } from 'vue'
 import { index } from '@/utils/routerHelper'
-import component from 'virtual:svg-icons-register'
+import { useI18n } from '@/hooks/web/useI18n'
+const { t } = useI18n()
 
 /* 
   meta:
@@ -49,7 +51,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     name: 'home',
     path:'/home',
     meta: {
-      "title":"首页",
+      "title": t('router.homePage'),
       "icon": "el-icon-shouye1"
     },
     redirect:'/home/homePage',
@@ -59,7 +61,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         name:'homePage',
         path:'homePage',
         meta: {
-          "title":"首页",
+          "title": t('router.homePage'),
           "affix": true
         },
         component: () => import('@/views/HomePage/homePage.vue')
@@ -70,7 +72,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     name: 'chart',
     path:'/chart',
     meta: {
-      "title":"图表",
+      "title": t('router.chart'),
       "icon": "el-icon-yuanshuju-zujianku"
     },
     redirect:'/chart/dynamicChart',
@@ -80,7 +82,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         name: 'dynamicChart',
         path: 'dynamicChart',
         meta: {
-          "title": "动态图表",
+          "title": t('router.dynamicChart'),
           "noCache": true
         },
         component: () => import('@/views/Chart/dynamicChart/dynamicChart.vue'),
@@ -99,7 +101,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         name: 'staticChart',
         path: 'staticChart',
         meta: {
-          "title": "静态图表"
+          "title": t('router.staticChart')
         },
         component: () => import('@/views/Chart/staticChart/staticChart.vue')
       }
@@ -109,7 +111,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     name:'elComponents',
     path:'/elComponents',
     meta: {
-      "title":"elui组件",
+      "title": t('router.elComponents'),
       "icon": "el-icon-tubiao-zhexiantu"
     },
     redirect:'/elComponents/table',
@@ -119,7 +121,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         name: 'table',
         path: 'table',
         meta: {
-          "title": "表格"
+          "title": t('router.table')
 
         },
         component: () => import('@/views/ElComponents/table/table.vue')
@@ -128,7 +130,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         name: 'form',
         path: 'form',
         meta: {
-          "title": "表单"
+          "title": t('router.form')
 
         },
         component: () => import('@/views/ElComponents/form/form.vue')
@@ -139,7 +141,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     name:'richText',
     path:'/richText',
     meta: {
-      "title":"富文本",
+      "title": t('router.richText'),
       "icon": "el-icon-fuwenben"
     },
     redirect:'/richText/text',
@@ -149,7 +151,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         name: 'text',
         path: 'text',
         meta: {
-          "title":"富文本"
+          "title": t('router.richText')
         },
         component: () => import('@/views/RichText/text.vue')
       }

@@ -9,6 +9,10 @@ import { filterAffixTags } from './helper'
 import { ElScrollbar } from 'element-plus'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useScrollTo } from '@/hooks/event/useScrollTo'
+import { useI18n } from '@/hooks/web/useI18n'
+
+// i18n
+const { t } = useI18n()
 
 // tags的数据
 const tagsViewStore = useTagsViewStore()
@@ -332,7 +336,7 @@ watch(
                 <div
                   @click="navigate"
                   class="h-full flex justify-center items-center whitespace-nowrap pl-5">
-                    {{ item?.meta?.title as string }}
+                    {{ t(item?.meta?.title as string) }}
                     <el-icon
                       v-if="!item.meta.affix"
                       :size="12"

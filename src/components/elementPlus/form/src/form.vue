@@ -1,6 +1,9 @@
 <script setup lang="tsx">
 import { ElForm, ElFormItem, ElInput, ElButton } from 'element-plus'
 import { PropType, useSlots, useAttrs } from 'vue'
+import { useI18n } from '@/hooks/web/useI18n'
+
+const { t } = useI18n()
 
 interface FormProps {
   formModel: {
@@ -61,11 +64,13 @@ const useRenderForm = () => {
 const useRenderLoginForm = () => {
   return (
     <>
-      <div class="font-bold mb-10 text-center">登录</div>
-      <ElFormItem label="用户名">
+      <div class="font-bold mb-10 text-center">
+        {t('login.loginText')}
+      </div>
+      <ElFormItem label={t('login.username')}>
         <ElInput clearable v-model={props.model.username} />
       </ElFormItem>
-      <ElFormItem label="密码">
+      <ElFormItem label={t('login.password')}>
         <ElInput show-password clearable v-model={props.model.password} />
       </ElFormItem>
       {
@@ -76,13 +81,13 @@ const useRenderLoginForm = () => {
               type="primary"
               class="topButtob"
             >
-              登录
+              {t('login.loginText')}
             </ElButton>
             <ElButton
               onClick={() => onRegister()}
               class="bottomButtob"
             >
-              注册
+              {t('login.register')}
             </ElButton>
           </ElFormItem>
           : null
@@ -94,14 +99,14 @@ const useRenderLoginForm = () => {
 const useRenderRegisterForm = () => {
   return (
     <>
-      <div class="font-bold mb-10 text-center">注册</div>
-      <ElFormItem label="用户名">
+      <div class="font-bold mb-10 text-center">{t('login.register')}</div>
+      <ElFormItem label={t('login.username')}>
         <ElInput clearable v-model={props.model.username} />
       </ElFormItem>
-      <ElFormItem label="密码">
+      <ElFormItem label={t('login.password')}>
         <ElInput show-password clearable v-model={props.model.password} />
       </ElFormItem>
-      <ElFormItem label="确认密码">
+      <ElFormItem label={t('login.checkPassword')}>
         <ElInput show-password clearable v-model={props.model.confirmPassword} />
       </ElFormItem>
       {
@@ -112,13 +117,13 @@ const useRenderRegisterForm = () => {
               type="primary"
               class="topButtob"
             >
-              注册
+              {t('login.register')}
             </ElButton>
             <ElButton
               onClick={() => onReturnLogin()}
               class="bottomButtob"
             >
-              已有账号?去登录
+              {t('login.hasUser')}
             </ElButton>
           </ElFormItem>
           : null

@@ -3,6 +3,11 @@ import { ElBreadcrumb, ElBreadcrumbItem } from 'element-plus'
 import { watch, ref, TransitionGroup } from 'vue'
 import { useRouter } from 'vue-router'
 import type { RouteLocationNormalizedLoaded, RouteLocationMatched } from 'vue-router'
+import { useI18n } from '@/hooks/web/useI18n'
+
+// i18n
+const { t } = useI18n()
+
 const { currentRoute } = useRouter()
 
 // 面包屑列表
@@ -38,7 +43,7 @@ const useRenderBreadcrumbItem = () => {
   return renderBreadcrumbItemData.map((item) => {
     return(
       <ElBreadcrumbItem key={item!.name}>
-        {item.title}
+        {t(item.title as string)}
       </ElBreadcrumbItem>
     )
   })

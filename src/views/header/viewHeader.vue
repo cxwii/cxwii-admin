@@ -4,6 +4,7 @@ import type { Ref } from 'vue'
 import { Eltags } from '@/components/ElementPlus/Tags'
 import { ElUserInfo } from '@/components/ElementPlus/UserInfo'
 import { Elbreadcrumb } from '@/components/ElementPlus/Breadcrumb'
+import { ElLocaleDropdown } from '@/components/ElementPlus/LocaleDropdown'
 
 const isCollapse = inject('isCollapse') as Ref<boolean>
 
@@ -36,6 +37,8 @@ const change = () => {
       <div class="flex-1 m-5 select-none">
         <Elbreadcrumb></Elbreadcrumb>
       </div>
+      <!-- i18n -->
+      <ElLocaleDropdown class="mr-3"></ElLocaleDropdown>
       <!-- 个人用户信息 -->
       <div class="userInfo rounded-full">
         <ElUserInfo></ElUserInfo>
