@@ -13,8 +13,13 @@ export default {
     dynamicChart: 'DynamicChart',
     staticChart: 'StaticChart',
     elComponents: 'ElComponents',
-    table: 'Table',
-    form: 'Form',
-    richText: 'RichText'
+    Etable: 'Table',
+    Eform: 'Form',
+    vxwUi: 'VxwUi',
+    Vbutton: 'Button',
+    Vicon: 'Icon',
+    components: 'Components',
+    CrichText: 'RichText',
+    Cqrcode: 'Qrcode'
   }
 }

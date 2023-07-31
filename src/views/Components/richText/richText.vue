@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { Editor, EditorExpose } from '@/components/Editor';
-import { ref, onMounted, unref } from 'vue'
+import { Editor, EditorExpose } from '@/components/Editor'
+import { ref, onMounted } from 'vue'
 import { IDomEditor } from '@wangeditor/editor'
-import { getRichText, updateRichText } from "@/api/RichText";
+import { getRichText, updateRichText } from "@/api/RichText"
 import { debounce } from 'lodash-es'
 
 const editorRef = ref<typeof Editor & EditorExpose>()

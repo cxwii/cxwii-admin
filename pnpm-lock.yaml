@@ -29,6 +29,7 @@ specifiers:
   vue-router: '4'
   vue-tsc: ^1.0.24
   vue-types: ^5.0.2
+  vxwui: ^1.0.4
   web-storage-cache: ^1.1.1
 
 dependencies:
@@ -47,6 +48,7 @@ dependencies:
   vue-i18n: registry.npmmirror.com/vue-i18n/9.2.2_vue@3.2.47
   vue-router: registry.npmmirror.com/vue-router/4.1.6_vue@3.2.47
   vue-types: registry.npmmirror.com/vue-types/5.0.2_vue@3.2.47
+  vxwui: registry.npmmirror.com/vxwui/1.0.4
 
 devDependencies:
   '@types/lodash-es': registry.npmmirror.com/@types/lodash-es/4.17.7
@@ -4382,6 +4384,12 @@ packages:
       '@vue/runtime-dom': registry.npmmirror.com/@vue/runtime-dom/3.2.47
       '@vue/server-renderer': registry.npmmirror.com/@vue/server-renderer/3.2.47_vue@3.2.47
       '@vue/shared': registry.npmmirror.com/@vue/shared/3.2.47
+
+  registry.npmmirror.com/vxwui/1.0.4:
+    resolution: {integrity: sha512-uvmvYE90PFAZ6P2TLlvyuzhkMkd8VH+0oaiCDa9sYXA6nmuQpPbPzQKoGnnFHTNqzEnpqHYn1eM2thChC2mE2A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vxwui/-/vxwui-1.0.4.tgz}
+    name: vxwui
+    version: 1.0.4
+    dev: false
 
   registry.npmmirror.com/web-storage-cache/1.1.1:
     resolution: {integrity: sha512-D0MieGooOs8RpsrK+vnejXnvh4OOv/+lTFB35JRkJJQt+uOjPE08XpaE0QBLMTRu47B1KGT/Nq3Gbag3Orinzw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/web-storage-cache/-/web-storage-cache-1.1.1.tgz}

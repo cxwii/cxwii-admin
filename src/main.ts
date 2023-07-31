@@ -9,6 +9,8 @@ import './index.css'
 import { useRouter } from '@/router/index'
 // ElementUI
 import { useElementPlus } from '@/plugins/elementPlus/index'
+// VxwUI
+import { useVxwUi } from '@/plugins/vxwUi/index'
 // pinia
 import { useStore } from '@/store/index'
 // 路由守卫
@@ -25,6 +27,7 @@ const setupAll = async () => {
   const app = createApp(App)
   await setupI18n(app)
   useElementPlus(app)
+  useVxwUi(app)
   useStore(app)
   useRouter(app)
   

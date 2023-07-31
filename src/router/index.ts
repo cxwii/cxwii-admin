@@ -73,7 +73,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     path:'/chart',
     meta: {
       "title": t('router.chart'),
-      "icon": "el-icon-yuanshuju-zujianku"
+      "icon": "el-icon-tubiao-zhexiantu"
     },
     redirect:'/chart/dynamicChart',
     component: index,
@@ -112,7 +112,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     path:'/elComponents',
     meta: {
       "title": t('router.elComponents'),
-      "icon": "el-icon-tubiao-zhexiantu"
+      "icon": "el-icon-yuanshuju-zujianku"
     },
     redirect:'/elComponents/table',
     component: index,
@@ -121,7 +121,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         name: 'table',
         path: 'table',
         meta: {
-          "title": t('router.table')
+          "title": t('router.Etable')
 
         },
         component: () => import('@/views/ElComponents/table/table.vue')
@@ -130,7 +130,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         name: 'form',
         path: 'form',
         meta: {
-          "title": t('router.form')
+          "title": t('router.Eform')
 
         },
         component: () => import('@/views/ElComponents/form/form.vue')
@@ -138,22 +138,60 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     ]
   },
   {
-    name:'richText',
-    path:'/richText',
+    name:'vxwUi',
+    path:'/vxwUi',
     meta: {
-      "title": t('router.richText'),
-      "icon": "el-icon-fuwenben"
+      "title": t('router.vxwUi'),
+      "icon": "el-icon-yuanshuju-zujianku"
     },
-    redirect:'/richText/text',
+    redirect:'/vxwUi/button',
     component: index,
     children: [
       {
-        name: 'text',
-        path: 'text',
+        name: 'button',
+        path: 'button',
         meta: {
-          "title": t('router.richText')
+          "title": t('router.Vbutton')
+
         },
-        component: () => import('@/views/RichText/text.vue')
+        component: () => import('@/views/VxwUi/button/button.vue')
+      },
+      {
+        name: 'icon',
+        path: 'icon',
+        meta: {
+          "title": t('router.Vicon')
+
+        },
+        component: () => import('@/views/VxwUi/icon/icon.vue')
+      }
+    ]
+  },
+  {
+    name:'components',
+    path:'/components',
+    meta: {
+      "title": t('router.components'),
+      "icon": "el-icon-yuanshuju-zujianku"
+    },
+    redirect:'/vxwUi/richText',
+    component: index,
+    children: [
+      {
+        name: 'richText',
+        path: 'richText',
+        meta: {
+          "title": t('router.CrichText')
+        },
+        component: () => import('@/views/Components/richText/richText.vue')
+      },
+      {
+        name: 'qrcode',
+        path: 'qrcode',
+        meta: {
+          "title": t('router.Cqrcode')
+        },
+        component: () => import('@/views/Components/qrcode/qrcode.vue')
       }
     ]
   }

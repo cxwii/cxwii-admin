@@ -36,27 +36,7 @@ const attrs = useAttrs()
 const slots = useSlots()
 const permissionStore = usePermissionStore()
 
-const menuRouters = computed(() => {
-  // const RenderTitleData = permissionStore.getAddRouters
-  // RenderTitle(RenderTitleData)
-  // return RenderTitleData
-
-  return permissionStore.getAddRouters
-})
-
-console.log('Tmuen :>> ', t('login.loginText'));
-
-// 解决i18n无法正常渲染问题(想不明白为什么会渲染不了)
-const RenderTitle = (menuRouters: any) => {
-  menuRouters.forEach((item: any) => {
-    if (item.hasOwnProperty('children')) {
-      item.meta.title = t(item.meta.title)
-      RenderTitle(item.children)
-    } else {
-      item.meta.title = t(item.meta.title)
-    }
-  })
-}
+const menuRouters = computed(() => permissionStore.getAddRouters)
 
 // 渲染一级Menu的模板
 const useRenderMenuItem = (
