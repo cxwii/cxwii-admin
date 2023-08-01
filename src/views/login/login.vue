@@ -10,7 +10,9 @@ import type { RouteRecordRaw } from 'vue-router'
 import { LogoSvg } from '@/components/UseSvg'
 import { ElMessage } from 'element-plus'
 import { ElLocaleDropdown } from '@/components/ElementPlus/LocaleDropdown'
+import { useI18n } from '@/hooks/web/useI18n'
 
+const { t } = useI18n()
 const { push, addRoute } = useRouter()
 const { wsCache } = useCache()
 const userStore = useUserStore()
@@ -109,14 +111,14 @@ const toRegister = async () => {
 
     if (res.status == 200) {
       ElMessage({
-        message: '注册成功',
+        message: t('login.messageSuccess'),
         type: 'success'
       })
       returnLogin()
     }
   } else {
     ElMessage({
-      message: '密码不一致',
+      message: t('login.messageWarning'),
       type: 'warning'
     })
   }
@@ -147,9 +149,9 @@ const returnLogin = () => {
     </div>
     <div class="loginPage flex">
       <div class="introduce max-[1100px]:hidden flex flex-col justify-center items-center text-3xl font-medium text-white">
-        <div class="mb-5">欢迎使用本系统</div>
-        <div class="text-2xl font-normal">一款开箱即用,</div>
-        <div class="text-2xl font-normal">符合直觉的cms但不限于cms的解决方案</div>
+        <div class="mb-5">{{ t('introduce.introduce1') }}</div>
+        <div class="text-2xl font-normal">{{ t('introduce.introduce2') }}</div>
+        <div class="text-2xl font-normal">{{ t('introduce.introduce3') }}</div>
       </div>
       <div class="formContainer">
         <Elform

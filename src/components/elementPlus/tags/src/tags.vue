@@ -274,21 +274,21 @@ watch(
             :ref="itemRefs.set"
             :schema="[
               {
-                label: '重新加载',
+                label: t('tags.Reload'),
                 disabled: selectedTag?.fullPath !== item.fullPath,
                 command: () => {
                   refreshSelectedTag(item)
                 }
               },
               {
-                label: '关闭标签',
+                label: t('tags.Closelabel'),
                 divided: true,
                 command: () => {
                   closeSelectedTags(item)
                 }
               },
               {
-                label: '关闭左侧',
+                label: t('tags.CloseLeftSide'),
                 divided: true,
                 disabled:
                   !!visitedViews?.length &&
@@ -299,7 +299,7 @@ watch(
                 }
               },
               {
-                label: '关闭右侧',
+                label: t('tags.CloseRightSide'),
                 disabled:
                   !!visitedViews?.length &&
                   (item.fullPath === visitedViews[visitedViews.length - 1].fullPath ||
@@ -309,14 +309,14 @@ watch(
                 }
               },
               {
-                label: '关闭其他',
+                label: t('tags.CloseOther'),
                 command: () => {
                   closeOthersTags()
                 }
               },
               {
                 divided: true,
-                label: '关闭全部',
+                label: t('tags.CloseAll'),
                 command: () => {
                   closeAllTags()
                 }

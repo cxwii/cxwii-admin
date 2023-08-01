@@ -5,7 +5,9 @@ import { useTagsViewStore } from '@/store/modules/tagsView'
 import { resetRouter } from '@/router'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store/modules/user'
+import { useI18n } from '@/hooks/web/useI18n'
 
+const { t } = useI18n()
 const { wsCache } = useCache()
 const tagsViewStore = useTagsViewStore()
 const { replace } = useRouter()
@@ -18,11 +20,11 @@ const toDocument = () => {
 }
 const loginOut = () => {
   ElMessageBox.confirm(
-    '您是否确认退出系统?退出后需重新登录!',
-    '温馨提示',
+    t('userInfo.ElMessageBox1'),
+    t('userInfo.ElMessageBox2'),
     {
-      confirmButtonText: '确认',
-      cancelButtonText: '取消',
+      confirmButtonText: t('userInfo.confirmButtonText'),
+      cancelButtonText: t('userInfo.cancelButtonText'),
       type: 'warning',
     }
   ).then(async () => {
@@ -52,10 +54,10 @@ const loginOut = () => {
     <template #dropdown>
       <ElDropdownMenu>
         <ElDropdownItem>
-          <div @click="toDocument">项目地址</div>
+          <div @click="toDocument">{{ t('userInfo.Document') }}</div>
         </ElDropdownItem>
         <ElDropdownItem divided>
-          <div @click="loginOut">退出登录</div>
+          <div @click="loginOut">{{ t('userInfo.loginOut') }}</div>
         </ElDropdownItem>
       </ElDropdownMenu>
     </template>
