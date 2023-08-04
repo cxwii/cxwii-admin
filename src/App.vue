@@ -9,7 +9,9 @@ import { ConfigGlobal } from '@/components/ConfigGlobal'
 </template>
 
 <style lang="scss">
-html, body, #app {
+html,
+body,
+#app {
   width: 100%;
   height: 100%;
   margin: 0;

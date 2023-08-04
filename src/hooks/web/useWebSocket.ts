@@ -10,12 +10,12 @@ const defaultOptions: Options = { url: '127.0.0.1:9528' } // 默认的配置项
 export type EventTypes = 'open' | 'close' | 'message' | 'error' | 'reconnect'
 export type Callback = Function
 export type Options = {
-  url?: string,
-  protocols?: string | Array<string>,
+  url?: string
+  protocols?: string | Array<string>
   query?: {
     [key: string]: string
-  },
-  greet?: string,
+  }
+  greet?: string
   customBase?: string
 }
 
@@ -42,15 +42,15 @@ export class Socket extends WebSocket {
   _currentOptions: Options
   _dep: EventMap
   _reconnectCount: number
-  
-  constructor(options: Options, dep: EventMap, reconnectCount:number = 0) {
+
+  constructor(options: Options, dep: EventMap, reconnectCount: number = 0) {
     let _baseURL = baseURL
     const { url, protocols, query = {}, greet = null, customBase = null } = options
 
     const _queryParams = Object.keys(query).reduce((str, key) => {
       // 防止注入对象和方法
       if (typeof query[key] !== 'object' && typeof query[key] !== 'function') {
-        return str += str.length > 0 ? `&${key}=${query[key]}` : `?${key}=${query[key]}`
+        return (str += str.length > 0 ? `&${key}=${query[key]}` : `?${key}=${query[key]}`)
       } else {
         return str
       }
@@ -67,9 +67,10 @@ export class Socket extends WebSocket {
     this._reconnectCount = reconnectCount
 
     // 有心跳检测信息就附加到实例上
-    greet && Object.assign(this, {
-      heartCheckData: greet
-    })
+    greet &&
+      Object.assign(this, {
+        heartCheckData: greet
+      })
 
     // 初始化监听事件
     this.initSocket()
@@ -141,7 +142,7 @@ export class Socket extends WebSocket {
   heartCheckStart() {
     this.heartCheckInterval = setInterval(() => {
       if (this.readyState === this.OPEN) {
-        let transformJSON = typeof this.heartCheckData === 'object'
+        const transformJSON = typeof this.heartCheckData === 'object'
         this.sendMessage(this.heartCheckData, transformJSON)
       } else {
         this.clearHeartCheck()

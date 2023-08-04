@@ -1,9 +1,4 @@
-import axios, {
-  AxiosInstance,
-  InternalAxiosRequestConfig,
-  AxiosError,
-  AxiosResponse
-} from 'axios'
+import axios, { AxiosInstance, InternalAxiosRequestConfig, AxiosError, AxiosResponse } from 'axios'
 import { config } from './config'
 import { ElMessage } from 'element-plus'
 import router from '@/router/index'
@@ -30,7 +25,7 @@ service.interceptors.request.use(
     return config
   },
   (error: AxiosError) => {
-    console.log('axios_request_error :>> ',error)
+    console.log('axios_request_error :>> ', error)
     Promise.reject(error)
   }
 )
@@ -52,7 +47,7 @@ service.interceptors.response.use(
     }
   },
   (error: AxiosError) => {
-    console.log('axios_response_error :>> ',error)
+    console.log('axios_response_error :>> ', error)
     Promise.reject(error)
   }
 )

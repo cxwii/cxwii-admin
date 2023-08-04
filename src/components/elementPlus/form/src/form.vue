@@ -7,11 +7,11 @@ const { t } = useI18n()
 
 interface FormProps {
   formModel: {
-    username: string,
-    password: string,
+    username: string
+    password: string
     confirmPassword?: string
-  },
-  isButton: boolean,
+  }
+  isButton: boolean
   isRegister: boolean
 }
 
@@ -54,44 +54,29 @@ const onReturnLogin = () => {
 
 // 在不提供自定义内容时渲染(提供时只渲染一个正常ElForm标签)
 const useRenderForm = () => {
-  return (
-    props.isRegister
-    ? useRenderRegisterForm()
-    : useRenderLoginForm()
-  )
+  return props.isRegister ? useRenderRegisterForm() : useRenderLoginForm()
 }
 
 const useRenderLoginForm = () => {
   return (
     <>
-      <div class="font-bold mb-10 text-center">
-        {t('login.loginText')}
-      </div>
+      <div class="font-bold mb-10 text-center">{t('login.loginText')}</div>
       <ElFormItem label={t('login.username')}>
         <ElInput clearable v-model={props.model.username} />
       </ElFormItem>
       <ElFormItem label={t('login.password')}>
         <ElInput show-password clearable v-model={props.model.password} />
       </ElFormItem>
-      {
-        props.isButton
-          ? <ElFormItem>
-            <ElButton
-              onClick={() => onLogin()}
-              type="primary"
-              class="topButtob"
-            >
-              {t('login.loginText')}
-            </ElButton>
-            <ElButton
-              onClick={() => onRegister()}
-              class="bottomButtob"
-            >
-              {t('login.register')}
-            </ElButton>
-          </ElFormItem>
-          : null
-      }
+      {props.isButton ? (
+        <ElFormItem>
+          <ElButton onClick={() => onLogin()} type="primary" class="topButtob">
+            {t('login.loginText')}
+          </ElButton>
+          <ElButton onClick={() => onRegister()} class="bottomButtob">
+            {t('login.register')}
+          </ElButton>
+        </ElFormItem>
+      ) : null}
     </>
   )
 }
@@ -109,36 +94,23 @@ const useRenderRegisterForm = () => {
       <ElFormItem label={t('login.checkPassword')}>
         <ElInput show-password clearable v-model={props.model.confirmPassword} />
       </ElFormItem>
-      {
-        props.isButton
-          ? <ElFormItem>
-            <ElButton
-              onClick={() => onToRegister()}
-              type="primary"
-              class="topButtob"
-            >
-              {t('login.register')}
-            </ElButton>
-            <ElButton
-              onClick={() => onReturnLogin()}
-              class="bottomButtob"
-            >
-              {t('login.hasUser')}
-            </ElButton>
-          </ElFormItem>
-          : null
-      }
+      {props.isButton ? (
+        <ElFormItem>
+          <ElButton onClick={() => onToRegister()} type="primary" class="topButtob">
+            {t('login.register')}
+          </ElButton>
+          <ElButton onClick={() => onReturnLogin()} class="bottomButtob">
+            {t('login.hasUser')}
+          </ElButton>
+        </ElFormItem>
+      ) : null}
     </>
   )
 }
 
 const app = () => {
   return (
-    <ElForm
-      class="form"
-      model={props.model}
-      {...attrs}
-    >
+    <ElForm class="form" model={props.model} {...attrs}>
       {
         // 自定义内容了就只返一个elForm标签,否则才根据数据渲染内容
         slots.default ? slots.default() : useRenderForm()
@@ -149,8 +121,7 @@ const app = () => {
 </script>
 
 <template>
-  <app>
-  </app>
+  <app />
 </template>
 
 <style scoped lang="scss">

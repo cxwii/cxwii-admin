@@ -2,7 +2,7 @@
 import { Editor, EditorExpose } from '@/components/Editor'
 import { ref, onMounted } from 'vue'
 import { IDomEditor } from '@wangeditor/editor'
-import { getRichText, updateRichText } from "@/api/RichText"
+import { getRichText, updateRichText } from '@/api/RichText'
 import { debounce } from 'lodash-es'
 
 const editorRef = ref<typeof Editor & EditorExpose>()
@@ -17,11 +17,9 @@ const change = debounce((editor: IDomEditor) => {
 
 // 后端传文本
 const getRichTextFun = async () => {
-  const {data, status} = await getRichText()
-  
-  status == '200' 
-    ? defaultHtml.value = data.EditorText
-    : defaultHtml.value = ''
+  const { data, status } = await getRichText()
+
+  status == '200' ? (defaultHtml.value = data.EditorText) : (defaultHtml.value = '')
 }
 
 onMounted(async () => {
@@ -32,9 +30,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <Editor v-model="defaultHtml" ref="editorRef" @change="change"></Editor>
+  <Editor v-model="defaultHtml" ref="editorRef" @change="change" />
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

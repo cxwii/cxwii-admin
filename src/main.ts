@@ -4,7 +4,7 @@ import App from './App.vue'
 // 初始化多语言
 import { setupI18n } from '@/plugins/vueI18n'
 // Tailwind
-import './index.css'
+import '@/plugins/tailwind/index.css'
 // 路由
 import { useRouter } from '@/router/index'
 // ElementUI

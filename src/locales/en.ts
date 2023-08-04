@@ -30,7 +30,8 @@ export default {
     Cqrcode: 'Qrcode'
   },
   userInfo: {
-    ElMessageBox1: 'Are you sure you want to exit the system? After exiting, you need to log in again!',
+    ElMessageBox1:
+      'Are you sure you want to exit the system? After exiting, you need to log in again!',
     ElMessageBox2: 'Tips',
     confirmButtonText: 'confirm',
     cancelButtonText: 'cancel',

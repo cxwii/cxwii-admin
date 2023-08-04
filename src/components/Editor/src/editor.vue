@@ -1,5 +1,15 @@
 <script lang="ts" setup>
-import { watch, onBeforeUnmount, ref, shallowRef, onMounted, computed, PropType, nextTick, unref } from 'vue'
+import {
+  watch,
+  onBeforeUnmount,
+  ref,
+  shallowRef,
+  onMounted,
+  computed,
+  PropType,
+  nextTick,
+  unref
+} from 'vue'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import { IDomEditor, IEditorConfig } from '@wangeditor/editor'
 import { ElMessage } from 'element-plus'
@@ -109,17 +119,12 @@ const getEditorRef = async (): Promise<IDomEditor> => {
 defineExpose({
   getEditorRef
 })
-
 </script>
 
 <template>
   <div style="border: 1px solid #ccc">
     <!-- 工具栏 -->
-    <Toolbar
-      :editor="editorRef"
-      :editorId="editorId"
-      style="border-bottom: 1px solid #ccc"
-    />
+    <Toolbar :editor="editorRef" :editorId="editorId" style="border-bottom: 1px solid #ccc" />
     <!-- 编辑器 -->
     <Editor
       v-model="valueHtml"

@@ -1,7 +1,7 @@
-<script lang="ts" setup>
-import { dropdownMenuSchema } from '@/types/dropdownMenu';
+<script setup lang="ts">
+import { dropdownMenuSchema } from '@/types/dropdownMenu'
 import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
-import { PropType, ref } from 'vue'
+import { PropType, ref, toRefs } from 'vue'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
 
 const props = defineProps({
@@ -19,22 +19,23 @@ const props = defineProps({
   }
 })
 
+const { schema, trigger, tagItem } = toRefs(props)
+
 const emit = defineEmits(['visibleChange'])
 
 const dropdownMenuRef = ref<ComponentRef<typeof ElDropdown>>()
 
 const command = (item: dropdownMenuSchema) => {
-  // 拿到item执行里面的command,有嵌套就再递归调用
   item.command && item.command(item)
 }
 
 const visibleChange = (visible: boolean) => {
-  emit('visibleChange', visible, props.tagItem)
+  emit('visibleChange', visible, tagItem.value)
 }
 
 defineExpose({
   dropdownMenuRef,
-  tagItem: props.tagItem
+  tagItem
 })
 </script>
 
@@ -63,5 +64,4 @@ defineExpose({
   </ElDropdown>
 </template>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

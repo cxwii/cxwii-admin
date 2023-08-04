@@ -8,7 +8,7 @@ const setI18nLanguage = (locale: LocaleType) => {
   if (i18n.mode === 'legacy') {
     i18n.global.locale = locale
   } else {
-    (i18n.global.locale as any).value = locale
+    ;(i18n.global.locale as any).value = locale
   }
   localeStore.setCurrentLocale({
     lang: locale

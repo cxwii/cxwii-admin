@@ -5,10 +5,7 @@ import * as echarts from 'echarts/core'
 */
 
 // 图表
-import { 
-  BarChart,
-  LineChart
-} from 'echarts/charts';
+import { BarChart, LineChart } from 'echarts/charts'
 
 // 内置的组件
 import {
@@ -19,9 +16,9 @@ import {
   TransformComponent,
   LegendComponent,
   ToolboxComponent
-} from 'echarts/components';
+} from 'echarts/components'
 
-import { CanvasRenderer } from 'echarts/renderers';
+import { CanvasRenderer } from 'echarts/renderers'
 
 echarts.use([
   TitleComponent,
@@ -33,7 +30,7 @@ echarts.use([
   LegendComponent,
   ToolboxComponent,
   BarChart,
-  LineChart,
+  LineChart
 ])
 
 export default echarts

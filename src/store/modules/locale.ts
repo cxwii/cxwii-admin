@@ -15,7 +15,7 @@ interface LocaleState {
   currentLocale: LocaleDropdownType
   localeMap: LocaleDropdownType[]
 }
-const key: keyof typeof elLocaleMap = "zh-CN"
+const key: keyof typeof elLocaleMap = 'zh-CN'
 
 export const useLocaleStore = defineStore('locales', {
   state: (): LocaleState => ({
@@ -33,8 +33,7 @@ export const useLocaleStore = defineStore('locales', {
         name: 'English'
       }
     ]
-  }
-  ),
+  }),
   getters: {
     getCurrentLocale(): LocaleDropdownType {
       return this.currentLocale

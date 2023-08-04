@@ -60,14 +60,15 @@ onBeforeUnmount(() => {
   socket.value?.closeSocket()
 
   unref(contentEl) &&
-    (unref(contentEl) as Element).removeEventListener('transitionend', barEchart.value.resizeHandler)
+    (unref(contentEl) as Element).removeEventListener(
+      'transitionend',
+      barEchart.value.resizeHandler
+    )
 })
 </script>
 
 <template>
-  <Echart ref="barEchart" :options="dynamicChartOptions.data as EChartsOption" :height="300"></Echart>
+  <Echart ref="barEchart" :options="dynamicChartOptions.data as EChartsOption" :height="300" />
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

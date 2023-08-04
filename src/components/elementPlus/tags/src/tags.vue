@@ -62,7 +62,7 @@ const refreshSelectedTag = async (view?: RouteLocationNormalizedLoaded) => {
   tagsViewStore.delCachedView()
   const { path, query } = view
   await nextTick()
-  // replace替换history里面的原有内容  
+  // replace替换history里面的原有内容
   replace({
     path: '/redirect' + path,
     query: query
@@ -165,13 +165,13 @@ const moveToTarget = (currentTag: RouteLocationNormalizedLoaded) => {
   let lastTag: Nullable<RouterLinkProps> = null
 
   const tagList = unref(tagLinksRefs)
-  
+
   //查找第一个标记和最后一个标记
   if (tagList.length > 0) {
     firstTag = tagList[0]
     lastTag = tagList[tagList.length - 1]
   }
-  
+
   if ((firstTag?.to as RouteLocationNormalizedLoaded).fullPath === currentTag.fullPath) {
     // 直接滚动到0的位置
     const { start } = useScrollTo({
@@ -265,7 +265,7 @@ watch(
 <template>
   <div class="tags flex">
     <span class="leftArrow cursor-pointer" @click="move(-200)">
-      <el-icon class="element-icons el-icon-shuangzuojiantou-"></el-icon>
+      <el-icon class="element-icons el-icon-shuangzuojiantou-" />
     </span>
     <div class="tagView h-full flex-1 w-full">
       <ElScrollbar ref="scrollbarRef" @scroll="scroll">
@@ -326,25 +326,22 @@ watch(
             v-for="item in visitedViews"
             :key="item.fullPath"
             :tag-item="item"
-            :class="[
-              'tagItem',
-              { 'is-active': isActive(item) }
-            ]"
+            :class="['tagItem', { 'is-active': isActive(item) }]"
           >
             <div>
               <router-link ref="tagLinksRefs" :to="{ ...item }" custom v-slot="{ navigate }">
                 <div
                   @click="navigate"
-                  class="h-full flex justify-center items-center whitespace-nowrap pl-5">
-                    {{ t(item?.meta?.title as string) }}
-                    <el-icon
-                      v-if="!item.meta.affix"
-                      :size="12"
-                      class="element-icons el-icon-chahao ml-1"
-                      @click.prevent.stop="closeSelectedTags(item)"
-                    >
-                    </el-icon>
-                  </div>
+                  class="h-full flex justify-center items-center whitespace-nowrap pl-5"
+                >
+                  {{ t(item?.meta?.title as string) }}
+                  <el-icon
+                    v-if="!item.meta.affix"
+                    :size="12"
+                    class="element-icons el-icon-chahao ml-1"
+                    @click.prevent.stop="closeSelectedTags(item)"
+                  />
+                </div>
               </router-link>
             </div>
           </EldropdownMenu>
@@ -352,7 +349,7 @@ watch(
       </ElScrollbar>
     </div>
     <span class="rightArrow cursor-pointer" @click="move(200)">
-      <el-icon class="element-icons el-icon-shuangzuojiantou-"></el-icon>
+      <el-icon class="element-icons el-icon-shuangzuojiantou-" />
     </span>
   </div>
 </template>
@@ -388,7 +385,7 @@ watch(
       background-color: #409eff;
       border: 1px solid #409eff;
     }
-    .tagItem{
+    .tagItem {
       position: relative;
       top: 2px;
       height: calc(100% - 4px);
@@ -401,5 +398,4 @@ watch(
     }
   }
 }
-
 </style>

@@ -5,14 +5,13 @@ import { reactive, onMounted, onBeforeUnmount, ref, unref } from 'vue'
 import { getStaticChartOption } from '@/api/Chart'
 
 let option = {
-  data: {
-  }
+  data: {}
 } as EChartsOption
 
 const staticChartOptions = reactive<EChartsOption>(option) as EChartsOption
 
 const getChartOptionFun = async () => {
-  let { data } = await getStaticChartOption({chartName: 'line'})
+  let { data } = await getStaticChartOption({ chartName: 'line' })
   staticChartOptions.data = data[0].chartOption
 }
 
@@ -32,14 +31,15 @@ onMounted(() => {
 })
 onBeforeUnmount(() => {
   unref(contentEl) &&
-    (unref(contentEl) as Element).removeEventListener('transitionend', lineEchart.value.resizeHandler)
+    (unref(contentEl) as Element).removeEventListener(
+      'transitionend',
+      lineEchart.value.resizeHandler
+    )
 })
 </script>
 
 <template>
-  <Echart ref="lineEchart" :options="staticChartOptions.data as EChartsOption" :height="300"></Echart>
+  <Echart ref="lineEchart" :options="staticChartOptions.data as EChartsOption" :height="300" />
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

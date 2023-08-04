@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import VueJsx from '@vitejs/plugin-vue-jsx'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import EslintPlugin from 'vite-plugin-eslint'
 
 export default defineConfig({
   plugins: [
@@ -14,6 +15,11 @@ export default defineConfig({
       iconDirs: [path.resolve(process.cwd(), 'src/assets/svgs')],
       symbolId: 'icon-[dir]-[name]'
     }),
+    // eslint
+    EslintPlugin({
+      cache: false,
+      include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx'] // 检查的文件
+    })
   ],
   resolve: {
     // 路径别名

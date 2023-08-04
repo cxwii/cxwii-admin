@@ -10,23 +10,21 @@ const pageLoading = computed(() => userStore.getPageLoading)
 const isCollapse = ref(false)
 provide('isCollapse', isCollapse)
 
-
 const tagsViewStore = useTagsViewStore()
 
 const getCaches = computed((): string[] => {
   return tagsViewStore.getCachedViews
 })
-
 </script>
 
 <template>
   <el-container class="myElContainer">
     <el-aside class="myElAside">
-      <viewAside></viewAside>
+      <viewAside />
     </el-aside>
     <el-container>
       <el-header class="myElHeader">
-        <viewHeader></viewHeader>
+        <viewHeader />
       </el-header>
       <el-main class="myElMain" :v-loading="pageLoading">
         <div class="myElMainBottomFrame shadow-md rounded-lg">
@@ -46,12 +44,12 @@ const getCaches = computed((): string[] => {
 <style scoped lang="scss">
 // 隐藏滚动条
 ::-webkit-scrollbar {
-  width: 0 !important
+  width: 0 !important;
 }
 .myElContainer {
   width: 100%;
   height: 100%;
-  .myElAside{
+  .myElAside {
     width: auto;
     // 隐藏menu的滚动条
     user-select: none;
@@ -62,8 +60,8 @@ const getCaches = computed((): string[] => {
   }
   .myElMain {
     background-color: #f5f7f9;
-    border-top: .8px solid #d9d9d9;
-    .myElMainBottomFrame{
+    border-top: 0.8px solid #d9d9d9;
+    .myElMainBottomFrame {
       z-index: -1;
       width: 100%;
       height: 100%;

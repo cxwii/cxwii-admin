@@ -4,21 +4,21 @@ export default defineComponent({
   props: {
     prefix: {
       type: String,
-      default: 'icon',
+      default: 'icon'
     },
     name: {
       type: String,
-      required: true,
+      required: true
     },
     color: {
       type: String,
-      default: '#333',
-    },
+      default: '#333'
+    }
   },
   setup(props) {
     const symbolId = computed(() => `#${props.prefix}-${props.name}`)
     return { symbolId }
-  },
+  }
 })
 </script>
 

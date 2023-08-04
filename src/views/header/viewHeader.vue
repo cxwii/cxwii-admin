@@ -20,32 +20,30 @@ const change = () => {
       <div>
         <el-icon
           v-if="!isCollapse"
-          style="font-size: 30px;cursor:pointer;"
+          style="font-size: 30px; cursor: pointer"
           class="element-icons el-icon-shouqicaidan"
           @click="change"
-        >
-        </el-icon>
+        />
         <el-icon
           v-else
-          style="font-size: 30px;cursor:pointer;"
+          style="font-size: 30px; cursor: pointer"
           class="element-icons el-icon-zhankaicaidan"
           @click="change"
-        >
-        </el-icon>
+        />
       </div>
       <!-- 面包屑导航 -->
       <div class="flex-1 m-5 select-none">
-        <Elbreadcrumb></Elbreadcrumb>
+        <Elbreadcrumb />
       </div>
       <!-- i18n -->
-      <ElLocaleDropdown class="mr-3"></ElLocaleDropdown>
+      <ElLocaleDropdown class="mr-3" />
       <!-- 个人用户信息 -->
       <div class="userInfo rounded-full">
-        <ElUserInfo></ElUserInfo>
+        <ElUserInfo />
       </div>
     </div>
     <div class="Etags">
-      <Eltags></Eltags>
+      <Eltags />
     </div>
   </div>
 </template>
@@ -67,7 +65,7 @@ const change = () => {
   .Etags {
     width: 100%;
     height: 40%;
-    border: .8px solid #eee;
+    border: 0.8px solid #eee;
     box-shadow: 0.1px 0.2px #d2cbcb;
   }
 }

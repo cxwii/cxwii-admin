@@ -3,24 +3,18 @@ import { reactive } from 'vue'
 import { Elform } from '@/components/ElementPlus/Form'
 
 type loginFromType = {
-  username: string,
+  username: string
   password: string
 }
 class loginFromData {
   username = 'admin'
   password = '123456'
 }
-let loginFrom: loginFromType = reactive(new loginFromData)
+let loginFrom: loginFromType = reactive(new loginFromData())
 </script>
 
 <template>
-  <Elform
-    :model="loginFrom"
-    label-position="top"
-  >
-  </Elform>
+  <Elform :model="loginFrom" label-position="top" />
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

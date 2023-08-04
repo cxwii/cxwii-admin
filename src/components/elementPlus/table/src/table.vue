@@ -26,13 +26,7 @@ const slots = useSlots()
 const attrs = useAttrs()
 
 const useRendertable = () => {
-  return (
-    <>
-      {
-        useRenderColumn()
-      }
-    </>
-  )
+  return <>{useRenderColumn()}</>
 }
 
 const useRenderColumn = () => {
@@ -44,34 +38,30 @@ const useRenderColumn = () => {
       <ElTableColumn
         prop={item}
         label={item}
-        width={props.columnWidth![index] ? props.columnWidth![index] : '150'} />
+        width={props.columnWidth![index] ? props.columnWidth![index] : '150'}
+      />
     )
   })
 
-  if (props.isColumnButton){
+  if (props.isColumnButton) {
     let columnButton: unknown = slots.default!()
     ColumnTemplate.push(columnButton as JSX.Element)
   }
 
-  return(ColumnTemplate)
+  return ColumnTemplate
 }
 
 const app = () => {
   return (
-    <ElTable
-      data={props.data}
-      {...attrs}
-    >
-      {
-        slots.default && !props.isColumnButton ? slots.default() : useRendertable()
-      }
+    <ElTable data={props.data} {...attrs}>
+      {slots.default && !props.isColumnButton ? slots.default() : useRendertable()}
     </ElTable>
   )
 }
 </script>
 
 <template>
-  <app></app>
+  <app />
 </template>
 
 <style scoped lang="scss"></style>

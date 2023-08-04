@@ -42,7 +42,7 @@ const useClearFiles = () => {
 
 const handleChange = (uploadFile: any) => {
   if (beforeAvatarUpload(uploadFile)) {
-    getBase64(uploadFile.raw).then(res => {
+    getBase64(uploadFile.raw).then((res) => {
       form.userPic = res as string
     })
   } else {
@@ -67,12 +67,12 @@ const getBase64 = (file: any) => {
   })
 }
 const beforeAvatarUpload = (file: any) => {
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  return isLt2M;
+  const isLt2M = file.size / 1024 / 1024 < 2
+  return isLt2M
 }
 
 const deleteUserInfo = async (scope: any) => {
-  const { status, message } = await deleteUserInfoApi({userId: scope.row.userId})
+  const { status, message } = await deleteUserInfoApi({ userId: scope.row.userId })
   if (status == '200') {
     getUserInfoList()
   } else {
@@ -94,7 +94,8 @@ onMounted(() => {
         <el-image
           lazy
           style="width: 100px; height: 100px"
-          :src="scope.row.userPic?scope.row.userPic:'null'"/>
+          :src="scope.row.userPic ? scope.row.userPic : 'null'"
+        />
       </template>
     </el-table-column>
     <el-table-column fixed="right" label="操作">
@@ -123,23 +124,20 @@ onMounted(() => {
           :on-change="handleChange"
         >
           <el-image
-          style="width: 100px; height: 100px"
-          @click="useClearFiles"
-          :src="form.userPic?form.userPic:'null'"/>
+            style="width: 100px; height: 100px"
+            @click="useClearFiles"
+            :src="form.userPic ? form.userPic : 'null'"
+          />
         </el-upload>
       </el-form-item>
     </el-form>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="dialogTableVisible = false">取消</el-button>
-        <el-button type="primary" @click="confirmModification">
-          确定
-        </el-button>
+        <el-button type="primary" @click="confirmModification"> 确定 </el-button>
       </span>
     </template>
   </el-dialog>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

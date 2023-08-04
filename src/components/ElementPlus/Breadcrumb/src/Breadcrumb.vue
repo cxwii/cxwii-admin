@@ -16,7 +16,7 @@ let breadcrumbList = ref<RouteLocationMatched[]>([])
 const useRenderBreadcrumb = () => {
   return (
     <ElBreadcrumb separator="/">
-      <TransitionGroup appear enterActiveClass='animate__animated animate__fadeInRight'>
+      <TransitionGroup appear enterActiveClass="animate__animated animate__fadeInRight">
         {useRenderBreadcrumbItem()}
       </TransitionGroup>
     </ElBreadcrumb>
@@ -33,19 +33,16 @@ const useRenderBreadcrumbItem = () => {
   })
 
   // 两层重复嵌套时过滤重复数据
-  if (renderBreadcrumbItemData.length == 2 && (
-    renderBreadcrumbItemData[0].title == renderBreadcrumbItemData[1].title ||
-    renderBreadcrumbItemData[0].title == undefined
-    )) {
-      renderBreadcrumbItemData = [renderBreadcrumbItemData[1]]
+  if (
+    renderBreadcrumbItemData.length == 2 &&
+    (renderBreadcrumbItemData[0].title == renderBreadcrumbItemData[1].title ||
+      renderBreadcrumbItemData[0].title == undefined)
+  ) {
+    renderBreadcrumbItemData = [renderBreadcrumbItemData[1]]
   }
-  
+
   return renderBreadcrumbItemData.map((item) => {
-    return(
-      <ElBreadcrumbItem key={item!.name}>
-        {t(item.title as string)}
-      </ElBreadcrumbItem>
-    )
+    return <ElBreadcrumbItem key={item!.name}>{t(item.title as string)}</ElBreadcrumbItem>
   })
 }
 
@@ -67,17 +64,12 @@ watch(
 )
 
 const app = () => {
-  return (
-    <>
-      {useRenderBreadcrumb()}
-    </>
-  )
+  return <>{useRenderBreadcrumb()}</>
 }
 </script>
 
 <template>
-  <app>
-  </app>
+  <app />
 </template>
 
 <style scoped lang="scss"></style>

@@ -8,9 +8,9 @@ const clickButton = () => {
   <vxw-button type="primary" @click="clickButton">按钮</vxw-button>
   <vxw-button type="success" round>成功</vxw-button>
   <vxw-button type="danger" disabled>失败</vxw-button>
-  <vxw-button type="primary" circle="anniu"></vxw-button>
-  <vxw-button type="success" circle="gongneng_chenggong"></vxw-button>
-  <vxw-button type="danger" circle="shanchu" disabled></vxw-button>
+  <vxw-button type="primary" circle="anniu" />
+  <vxw-button type="success" circle="gongneng_chenggong" />
+  <vxw-button type="danger" circle="shanchu" disabled />
   <div>按钮组</div>
   <vxw-button-group>
     <vxw-button type="success">成功</vxw-button>
@@ -18,6 +18,4 @@ const clickButton = () => {
   </vxw-button-group>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

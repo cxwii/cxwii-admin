@@ -6,13 +6,13 @@ import router from '@/router'
 import { findIndex } from '@/utils'
 
 export interface tagsViewStateType {
-  visitedViews: RouteLocationNormalizedLoaded[],
+  visitedViews: RouteLocationNormalizedLoaded[]
   cachedViews: Set<string>
 }
 
 export const tagsViewStore = defineStore('tagsView', {
   state: (): tagsViewStateType => {
-    return{
+    return {
       // 使用的视图
       visitedViews: [],
       // 用于缓存的视图(这样在keep-alive中实现动态缓存,节约性能)
@@ -93,7 +93,8 @@ export const tagsViewStore = defineStore('tagsView', {
         cacheMap.add(name)
       }
       // 如果和原缓存一样就直接忽略
-      if (Array.from(this.cachedViews).sort().toString() === Array.from(cacheMap).sort().toString()) return
+      if (Array.from(this.cachedViews).sort().toString() === Array.from(cacheMap).sort().toString())
+        return
       this.cachedViews = cacheMap
     },
     // 删除缓存

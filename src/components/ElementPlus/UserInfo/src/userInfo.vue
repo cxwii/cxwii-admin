@@ -19,37 +19,27 @@ const toDocument = () => {
   window.open('https://github.com/cxwii/cxwii-admin')
 }
 const loginOut = () => {
-  ElMessageBox.confirm(
-    t('userInfo.ElMessageBox1'),
-    t('userInfo.ElMessageBox2'),
-    {
-      confirmButtonText: t('userInfo.confirmButtonText'),
-      cancelButtonText: t('userInfo.cancelButtonText'),
-      type: 'warning',
-    }
-  ).then(async () => {
-    // 这里还要调个退出登录的api才行,现在单纯清空本地存储的用户信息
-    wsCache.clear() // 清除本地所有缓存
-    tagsViewStore.delAllViews() // 清除标签的所有缓存
-    resetRouter() // 重置静态路由表
-    replace('/login') // 去登录页
-  }).catch(() => {})
+  ElMessageBox.confirm(t('userInfo.ElMessageBox1'), t('userInfo.ElMessageBox2'), {
+    confirmButtonText: t('userInfo.confirmButtonText'),
+    cancelButtonText: t('userInfo.cancelButtonText'),
+    type: 'warning'
+  })
+    .then(async () => {
+      // 这里还要调个退出登录的api才行,现在单纯清空本地存储的用户信息
+      wsCache.clear() // 清除本地所有缓存
+      tagsViewStore.delAllViews() // 清除标签的所有缓存
+      resetRouter() // 重置静态路由表
+      replace('/login') // 去登录页
+    })
+    .catch(() => {})
 }
 </script>
 
 <template>
   <ElDropdown trigger="click">
     <div class="flex items-center">
-      <img
-        v-if="userPic"
-        :src="userPic"
-        alt=""
-      />
-      <img
-        v-else
-        src="@/assets/imgs/user.png"
-        alt=""
-      />
+      <img v-if="userPic" :src="userPic" alt="" />
+      <img v-else src="@/assets/imgs/user.png" alt="" />
     </div>
     <template #dropdown>
       <ElDropdownMenu>
@@ -64,6 +54,4 @@ const loginOut = () => {
   </ElDropdown>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

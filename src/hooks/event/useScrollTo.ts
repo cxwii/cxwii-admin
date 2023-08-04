@@ -17,7 +17,7 @@ const easeInOutQuad = (t: number, b: number, c: number, d: number) => {
   return (-c / 2) * (t * (t - 2) - 1) + b
 }
 const move = (el: HTMLElement, position: string, amount: number) => {
-  (el as any)[position] = amount
+  ;(el as any)[position] = amount
 }
 
 export function useScrollTo({

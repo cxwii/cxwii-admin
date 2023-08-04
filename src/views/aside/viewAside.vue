@@ -10,15 +10,14 @@ const route = useRoute()
 const isCollapse = inject('isCollapse')
 
 const toHome = () => {
-  push({ path: "/home" })
+  push({ path: '/home' })
 }
-
 </script>
 
 <template>
   <div class="aside">
     <div class="log">
-      <LogoSvg name="vuex-store" class="logoSvg" @click="toHome"></LogoSvg>
+      <LogoSvg name="vuex-store" class="logoSvg" @click="toHome" />
       <div class="logText">cxwii-Admin</div>
     </div>
 
@@ -30,9 +29,7 @@ const toHome = () => {
       text-color="#d3d6db"
       active-text-color="#ffffff"
       :router="true"
-    >
-    </ElVerticalmenu>
-
+    />
   </div>
 </template>
 

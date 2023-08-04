@@ -19,18 +19,18 @@ const userStore = useUserStore()
 const permissionStore = usePermissionStore()
 
 type loginFromType = {
-  username: string,
+  username: string
   password: string
 }
 class loginFromData {
   username = 'admin'
   password = '123456'
 }
-let loginFrom: loginFromType = reactive(new loginFromData)
+let loginFrom: loginFromType = reactive(new loginFromData())
 
 type registerFromType = {
-  username: string,
-  password: string,
+  username: string
+  password: string
   confirmPassword: string
 }
 class registerFromData {
@@ -38,7 +38,7 @@ class registerFromData {
   password = ''
   confirmPassword = ''
 }
-let registerFrom: registerFromType = reactive(new registerFromData)
+let registerFrom: registerFromType = reactive(new registerFromData())
 
 const toDocument = () => {
   window.open('https://github.com/cxwii/cxwii-admin')
@@ -74,10 +74,10 @@ const login = async () => {
         addRoute(route as RouteRecordRaw)
       })
       permissionStore.setIsAddRouters(true)
-      push({ path: "/home" })
+      push({ path: '/home' })
     }
   } else {
-    push({ path: "/login" })
+    push({ path: '/login' })
   }
 }
 
@@ -91,7 +91,7 @@ const getRole = async () => {
       addRoute(route as RouteRecordRaw)
     })
     permissionStore.setIsAddRouters(true)
-    push({ path: "/home" })
+    push({ path: '/home' })
   }
 }
 
@@ -99,7 +99,6 @@ let isRegister = ref<boolean>(false)
 const register = () => {
   isRegister.value = !isRegister.value
 }
-
 
 // 注册的方法
 const toRegister = async () => {
@@ -132,23 +131,27 @@ const returnLogin = () => {
 // const empty = () => {
 //   Object.assign(from, new fromData())
 // }
-
 </script>
 
 <template>
   <div class="index">
-    <img src="@/assets/imgs/loginBg.jpg" class="loginBg" alt="">
+    <img src="@/assets/imgs/loginBg.jpg" class="loginBg" alt="" />
     <div class="loginLogo cursor-pointer flex flex-row" @click="toDocument">
-      <LogoSvg name="vuex-store" class="h-full w-full"></LogoSvg>
+      <LogoSvg name="vuex-store" class="h-full w-full" />
     </div>
     <div class="i18nIcon cursor-pointer flex flex-row">
-      <ElLocaleDropdown></ElLocaleDropdown>
+      <ElLocaleDropdown />
     </div>
-    <div @click="toDocument" class="loginText cursor-pointer flex items-center text-white text-xl font-bold">
+    <div
+      @click="toDocument"
+      class="loginText cursor-pointer flex items-center text-white text-xl font-bold"
+    >
       cxwii-Admin
     </div>
     <div class="loginPage flex">
-      <div class="introduce max-[1100px]:hidden flex flex-col justify-center items-center text-3xl font-medium text-white">
+      <div
+        class="introduce max-[1100px]:hidden flex flex-col justify-center items-center text-3xl font-medium text-white"
+      >
         <div class="mb-5">{{ t('introduce.introduce1') }}</div>
         <div class="text-2xl font-normal">{{ t('introduce.introduce2') }}</div>
         <div class="text-2xl font-normal">{{ t('introduce.introduce3') }}</div>
@@ -156,24 +159,22 @@ const returnLogin = () => {
       <div class="formContainer">
         <Elform
           v-if="!isRegister"
-          :is-button=true
-          :is-Register=isRegister
-          @onLogin="login"
-          @onRegister="register"
+          :is-button="true"
+          :is-Register="isRegister"
+          @on-login="login"
+          @on-register="register"
           :model="loginFrom"
           label-position="top"
-        >
-        </Elform>
+        />
         <Elform
           v-else
-          :is-button=true
-          :is-Register=isRegister
-          @onToRegister="toRegister"
-          @onReturnLogin="returnLogin"
+          :is-button="true"
+          :is-Register="isRegister"
+          @on-to-register="toRegister"
+          @on-return-login="returnLogin"
           :model="registerFrom"
           label-position="top"
-        >
-        </Elform>
+        />
       </div>
     </div>
   </div>
@@ -196,7 +197,7 @@ const returnLogin = () => {
     width: 70px;
     height: 70px;
   }
-  .i18nIcon{
+  .i18nIcon {
     position: absolute;
     right: 40px;
     top: 40px;

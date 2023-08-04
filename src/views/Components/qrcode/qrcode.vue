@@ -1,11 +1,5 @@
-<script lang="ts" setup>
+<script lang="ts" setup></script>
 
-</script>
+<template>二维码</template>
 
-<template>
-  二维码
-</template>
-
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

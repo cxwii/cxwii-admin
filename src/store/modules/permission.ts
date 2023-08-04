@@ -5,8 +5,8 @@ import { cloneDeep } from 'lodash-es'
 import { flatMultiLevelRoutes, generateRoutesFn1 } from '@/utils/routerHelper'
 
 export interface PermissionState {
-  routers: AppRouteRecordRaw[],
-  addRouters: AppRouteRecordRaw[],
+  routers: AppRouteRecordRaw[]
+  addRouters: AppRouteRecordRaw[]
   isAddRouters: boolean
 }
 
@@ -20,7 +20,7 @@ export const permissionStore = defineStore('permission', {
     getRouters(): AppRouteRecordRaw[] {
       return this.routers
     },
-    getAddRouters(): AppRouteRecordRaw[] {  
+    getAddRouters(): AppRouteRecordRaw[] {
       // 路由展平的方法(先别用否则无法动态生成二层以上的动态菜单,需要优化渲染动态菜单的方法)
       // return flatMultiLevelRoutes(cloneDeep(this.addRouters))
       return cloneDeep(this.addRouters)
@@ -32,16 +32,16 @@ export const permissionStore = defineStore('permission', {
   actions: {
     // 提供addRouters和routers来渲染路由
     generateRoutes(
-      type: 'admin' | "none",
+      type: 'admin' | 'none',
       routers?: string[] | AppRouteRecordRaw[]
     ): Promise<unknown> {
       return new Promise<void>((resolve) => {
         let routersMap: AppRouteRecordRaw[] = []
-        
+
         if (type === 'admin') {
           // 处理渲染生成后端的传递的路由并生成表
           routersMap = generateRoutesFn1(routers as AppCustomRouteRecordRaw[])
-        } else {          
+        } else {
           routersMap = cloneDeep(asyncRouter)
         }
 

@@ -4,17 +4,17 @@ import { useCache } from '@/hooks/web/useCache'
 
 const { wsCache } = useCache()
 
-interface  userStateType {
-  username: string | null,
-  userPic: string | null,
-  token: string | null,
-  dynamicRouter: boolean,
+interface userStateType {
+  username: string | null
+  userPic: string | null
+  token: string | null
+  dynamicRouter: boolean
   pageLoading: boolean
 }
 
 export const userStore = defineStore('user', {
   state: (): userStateType => {
-    return{
+    return {
       // 登录信息字段,现在就单纯当token用
       username: null,
       // 登录的token
@@ -60,7 +60,7 @@ export const userStore = defineStore('user', {
     },
     setPageLoading(pageLoading: boolean) {
       this.pageLoading = pageLoading
-    },
+    }
   }
 })
 

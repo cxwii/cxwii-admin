@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import echart from '@/plugins/echart'
 import type { EChartsOption } from 'echarts'
-import { PropType, computed, ref, onMounted, unref, onBeforeUnmount, watch } from 'vue'
+import { PropType, toRefs, computed, ref, onMounted, unref, onBeforeUnmount, watch } from 'vue'
 import ProjectTypes from '@/utils/propTypes'
 import { isString } from '@/utils/is'
 import { debounce } from 'lodash-es'
@@ -23,7 +23,7 @@ const props = defineProps({
   height: ProjectTypes.oneOfType([Number, String]).def('500px')
 })
 
-const options = props.options
+const { options } = toRefs(props)
 
 // 动态修改数据
 watch(
@@ -84,6 +84,4 @@ defineExpose({
   <div id="main" ref="elRef" :class="[$attrs.class]" :style="styles"></div>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

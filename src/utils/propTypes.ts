@@ -8,7 +8,6 @@ export default class ProjectTypes extends VueTypes {
   //     validator: (max, v) => v.length <= max,
   //   })
   // }
-
   // static get positive() {
   //   return toValidableType('positive', {
   //     type: Number,

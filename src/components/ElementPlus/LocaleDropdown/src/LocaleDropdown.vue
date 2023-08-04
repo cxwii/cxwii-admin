@@ -52,11 +52,12 @@ const RenderTitle = (menuRouters: any) => {
 }
 </script>
 
-
-
 <template>
   <ElDropdown trigger="click" @command="setLang">
-    <ElIcon :style="`font-size:${props.fontSize}`" class="cursor-pointer element-icons el-icon-zhongyingwen"></ElIcon>
+    <ElIcon
+      :style="`font-size:${props.fontSize}`"
+      class="cursor-pointer element-icons el-icon-zhongyingwen"
+    />
     <template #dropdown>
       <ElDropdownMenu>
         <ElDropdownItem v-for="item in langMap" :key="item.lang" :command="item.lang">
