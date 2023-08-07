@@ -1,5 +1,9 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { Qrcode } from '@/components/Qrcode'
+</script>
 
-<template>homepage</template>
+<template>
+  <Qrcode></Qrcode>
+</template>
 
 <style scoped lang="scss"></style>

@@ -16,10 +16,10 @@ export default defineConfig({
       symbolId: 'icon-[dir]-[name]'
     }),
     // eslint
-    EslintPlugin({
-      cache: false,
-      include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx'] // 检查的文件
-    })
+    // EslintPlugin({
+    //   cache: false,
+    //   include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx'] // 检查的文件
+    // })
   ],
   resolve: {
     // 路径别名

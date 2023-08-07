@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { inject } from 'vue'
-import { LogoSvg } from '@/components/UseSvg'
+import { UseSvg } from '@/components/UseSvg'
 import { useRouter, useRoute } from 'vue-router'
 import { ElVerticalmenu } from '@/components/ElementPlus/VerticalMenu'
 
@@ -17,7 +17,7 @@ const toHome = () => {
 <template>
   <div class="aside">
     <div class="log">
-      <LogoSvg name="vuex-store" class="logoSvg" @click="toHome" />
+      <UseSvg name="vuex-store" class="logoSvg" @click="toHome" />
       <div class="logText">cxwii-Admin</div>
     </div>
 

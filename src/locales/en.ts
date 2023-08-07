@@ -2,7 +2,7 @@ export default {
   introduce: {
     introduce1: 'Welcome to use this system',
     introduce2: 'Intuitive CMS solution for out of the box use',
-    introduce3: `But it's not just a solution for CMS`
+    introduce3: 'But not limited to integrated solutions for CMS'
   },
   login: {
     loginText: 'Sign in',

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { inject, ref } from 'vue'
+import { inject } from 'vue'
 import type { Ref } from 'vue'
 import { Eltags } from '@/components/ElementPlus/Tags'
 import { ElUserInfo } from '@/components/ElementPlus/UserInfo'

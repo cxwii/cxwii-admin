@@ -67,6 +67,7 @@ const getCaches = computed((): string[] => {
       height: 100%;
       padding: 20px;
       background-color: #fff;
+      overflow: inherit;
     }
   }
 }

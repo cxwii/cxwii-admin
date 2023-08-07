@@ -7,7 +7,7 @@ import { useCache } from '@/hooks/web/useCache'
 import { Elform } from '@/components/ElementPlus/Form'
 import { usePermissionStore } from '@/store/modules/permission'
 import type { RouteRecordRaw } from 'vue-router'
-import { LogoSvg } from '@/components/UseSvg'
+import { UseSvg } from '@/components/UseSvg'
 import { ElMessage } from 'element-plus'
 import { ElLocaleDropdown } from '@/components/ElementPlus/LocaleDropdown'
 import { useI18n } from '@/hooks/web/useI18n'
@@ -137,7 +137,7 @@ const returnLogin = () => {
   <div class="index">
     <img src="@/assets/imgs/loginBg.jpg" class="loginBg" alt="" />
     <div class="loginLogo cursor-pointer flex flex-row" @click="toDocument">
-      <LogoSvg name="vuex-store" class="h-full w-full" />
+      <UseSvg name="vuex-store" class="h-full w-full" />
     </div>
     <div class="i18nIcon cursor-pointer flex flex-row">
       <ElLocaleDropdown />

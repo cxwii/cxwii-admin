@@ -1,8 +1,8 @@
 @font-face {
   font-family: "element-icons"; /* Project id 3979524 */
-  src: url('iconfont.woff2?t=1690520693707') format('woff2'),
-       url('iconfont.woff?t=1690520693707') format('woff'),
-       url('iconfont.ttf?t=1690520693707') format('truetype');
+  src: url('iconfont.woff2?t=1691408849872') format('woff2'),
+       url('iconfont.woff?t=1691408849872') format('woff'),
+       url('iconfont.ttf?t=1691408849872') format('truetype');
 }
 
 .element-icons {
@@ -11,6 +11,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.el-icon-shuaxin:before {
+  content: "\e692";
 }
 
 .el-icon-zhongyingwen:before {

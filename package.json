@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@types/node": "^18.14.6",
+    "@types/qrcode": "^1.5.1",
     "@vueuse/core": "^9.13.0",
     "@wangeditor/editor": "^5.1.23",
     "@wangeditor/editor-for-vue": "^5.1.12",
@@ -23,6 +24,7 @@
     "lodash-es": "^4.17.21",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.32",
+    "qrcode": "^1.5.3",
     "vue": "^3.2.45",
     "vue-i18n": "^9.2.2",
     "vue-router": "4",

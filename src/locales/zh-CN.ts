@@ -2,7 +2,7 @@ export default {
   introduce: {
     introduce1: '欢迎使用本系统',
     introduce2: '开箱即用符合直觉的cms解决方案',
-    introduce3: '却不仅仅是cms的解决方案'
+    introduce3: '却不限于cms的集成解决方案'
   },
   login: {
     loginText: '登录',
