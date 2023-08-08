@@ -56,7 +56,7 @@ const wrapRef = ref<Nullable<HTMLCanvasElement | HTMLImageElement>>(null)
 
 const loading = ref(true)
 
-  // 初始化qrcode
+// 初始化qrcode
 const initQrcode = async () => {
   await nextTick()
   const options = cloneDeep(props.options || {})
@@ -176,7 +176,7 @@ const createLogoCode = (canvasRef: HTMLCanvasElement) => {
     ctx.drawImage(image, logoXY, logoXY, logoWidth, logoWidth)
   }
 
-  // 使用canvas绘制以获得更多的功能(设置开始使用logoRadius)
+  // 使用canvas绘制以获得更多的功能(设置logoRadius开始使用)
   const drawLogoWithCanvas = (image: HTMLImageElement) => {
     const canvasImage = document.createElement('canvas')
     canvasImage.width = logoXY + logoWidth

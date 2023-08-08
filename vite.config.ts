@@ -4,6 +4,7 @@ import path from 'path'
 import VueJsx from '@vitejs/plugin-vue-jsx'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import EslintPlugin from 'vite-plugin-eslint'
+import VueI18nPlugin from "@intlify/unplugin-vue-i18n/vite"
 
 export default defineConfig({
   plugins: [
@@ -15,11 +16,18 @@ export default defineConfig({
       iconDirs: [path.resolve(process.cwd(), 'src/assets/svgs')],
       symbolId: 'icon-[dir]-[name]'
     }),
+    // i18n控制台警告解决
+    // 文档https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n#intlifyunplugin-vue-i18n
+    VueI18nPlugin({
+      runtimeOnly: true,
+      compositionOnly: true,
+      include: [path.resolve(__dirname, 'src/locales/**')]
+    }),
     // eslint
-    // EslintPlugin({
-    //   cache: false,
-    //   include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx'] // 检查的文件
-    // })
+    EslintPlugin({
+      cache: false,
+      include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx'] // 检查的文件
+    })
   ],
   resolve: {
     // 路径别名

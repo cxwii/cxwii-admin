@@ -3,7 +3,7 @@ import { Qrcode } from '@/components/Qrcode'
 </script>
 
 <template>
-  <Qrcode></Qrcode>
+  <Qrcode />
 </template>
 
 <style scoped lang="scss"></style>
