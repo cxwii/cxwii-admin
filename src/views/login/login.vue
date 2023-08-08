@@ -61,7 +61,12 @@ const login = async () => {
       userStore.setDynamicRouter(false)
     }
 
-    // 用前端路由
+    // 有东西没搞完先写死用前端路由
+    /* 
+    路由想做两个方案
+    一个由后端动态插入(已完成)
+    一个权限字段前端过滤(未完成)
+    */
     userStore.setDynamicRouter(false)
 
     if (userStore.getDynamicRouter) {

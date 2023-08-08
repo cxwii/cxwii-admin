@@ -27,7 +27,11 @@ export default {
     Vicon: 'Icon',
     components: 'Components',
     CrichText: 'RichText',
-    Cqrcode: 'Qrcode'
+    Cqrcode: 'Qrcode',
+    apiManage: 'ApiManage',
+    interfaceManage: 'InterfaceManage',
+    exportManage: 'ExportManage',
+    mockManage: 'MockManage'
   },
   userInfo: {
     ElMessageBox1:

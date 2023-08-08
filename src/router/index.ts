@@ -6,12 +6,11 @@ import { useI18n } from '@/hooks/web/useI18n'
 const { t } = useI18n()
 
 /* 
-  meta:
-  affix初始化的时候就渲染标签
+  meta设置:
+  affix:初始化的时候就渲染标签
   noCache: 不需要缓存
   icon: 使用什么icon
-  isSubMenu: 是否还有子菜单(用于生成动态菜单)
-  menuPath: 动态菜单使用的路径
+  title: 使用什么标题
 */
 
 // 固定路由表
@@ -188,6 +187,41 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.Cqrcode')
         },
         component: () => import('@/views/Components/qrcode/qrcode.vue')
+      },
+      {
+        name: 'apiManage',
+        path: 'apiManage',
+        meta: {
+          title: t('router.apiManage')
+        },
+        redirect: '/apiManage/InterfaceManage',
+        children: [
+          {
+            name: 'interfaceManage',
+            path: 'interfaceManage',
+            meta: {
+              title: t('router.interfaceManage')
+            },
+            component: () =>
+              import('@/views/Components/apiManage/interfaceManage/interfaceManage.vue')
+          },
+          {
+            name: 'exportManage',
+            path: 'exportManage',
+            meta: {
+              title: t('router.exportManage')
+            },
+            component: () => import('@/views/Components/apiManage/exportManage/exportManage.vue')
+          },
+          {
+            name: 'mockManage',
+            path: 'mockManage',
+            meta: {
+              title: t('router.mockManage')
+            },
+            component: () => import('@/views/Components/apiManage/mockManage/mockManage.vue')
+          }
+        ]
       }
     ]
   }
