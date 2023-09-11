@@ -19,6 +19,7 @@ export default {
     chart: 'Chart',
     dynamicChart: 'DynamicChart',
     staticChart: 'StaticChart',
+    mapChart: 'map',
     elComponents: 'ElComponents',
     Etable: 'Table',
     Eform: 'Form',

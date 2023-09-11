@@ -51,7 +51,8 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     path: '/home',
     meta: {
       title: t('router.homePage'),
-      icon: 'el-icon-shouye1'
+      icon: 'el-icon-shouye1',
+      code: '001'
     },
     redirect: '/home/homePage',
     component: index,
@@ -61,7 +62,8 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         path: 'homePage',
         meta: {
           title: t('router.homePage'),
-          affix: true
+          affix: true,
+          code: '001001'
         },
         component: () => import('@/views/HomePage/homePage.vue')
       }
@@ -72,7 +74,8 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     path: '/chart',
     meta: {
       title: t('router.chart'),
-      icon: 'el-icon-tubiao-zhexiantu'
+      icon: 'el-icon-tubiao-zhexiantu',
+      code: '002'
     },
     redirect: '/chart/dynamicChart',
     component: index,
@@ -82,27 +85,28 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         path: 'dynamicChart',
         meta: {
           title: t('router.dynamicChart'),
-          noCache: true
+          noCache: true,
+          code: '002001'
         },
         component: () => import('@/views/Chart/dynamicChart/dynamicChart.vue')
-        // children: [
-        //   {
-        //     name: 'test',
-        //     path: 'test',
-        //     meta: {
-        //       "title": "测试"
-        //     },
-        //     component: () => import('@/views/User/userManage.vue')
-        //   }
-        // ]
       },
       {
         name: 'staticChart',
         path: 'staticChart',
         meta: {
-          title: t('router.staticChart')
+          title: t('router.staticChart'),
+          code: '002002'
         },
         component: () => import('@/views/Chart/staticChart/staticChart.vue')
+      },
+      {
+        name: 'mapChart',
+        path: 'mapChart',
+        meta: {
+          title: t('router.mapChart'),
+          code: '002003'
+        },
+        component: () => import('@/views/Chart/mapChart/mapChart.vue')
       }
     ]
   },
@@ -111,7 +115,8 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     path: '/elComponents',
     meta: {
       title: t('router.elComponents'),
-      icon: 'el-icon-yuanshuju-zujianku'
+      icon: 'el-icon-yuanshuju-zujianku',
+      code: '003'
     },
     redirect: '/elComponents/table',
     component: index,
@@ -120,7 +125,8 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         name: 'table',
         path: 'table',
         meta: {
-          title: t('router.Etable')
+          title: t('router.Etable'),
+          code: '003001'
         },
         component: () => import('@/views/ElComponents/table/table.vue')
       },
@@ -128,7 +134,8 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         name: 'form',
         path: 'form',
         meta: {
-          title: t('router.Eform')
+          title: t('router.Eform'),
+          code: '003002'
         },
         component: () => import('@/views/ElComponents/form/form.vue')
       }
@@ -139,7 +146,8 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     path: '/vxwUi',
     meta: {
       title: t('router.vxwUi'),
-      icon: 'el-icon-yuanshuju-zujianku'
+      icon: 'el-icon-yuanshuju-zujianku',
+      code: '004'
     },
     redirect: '/vxwUi/button',
     component: index,
@@ -148,7 +156,8 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         name: 'button',
         path: 'button',
         meta: {
-          title: t('router.Vbutton')
+          title: t('router.Vbutton'),
+          code: '004001'
         },
         component: () => import('@/views/VxwUi/button/button.vue')
       },
@@ -156,7 +165,8 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         name: 'icon',
         path: 'icon',
         meta: {
-          title: t('router.Vicon')
+          title: t('router.Vicon'),
+          code: '004002'
         },
         component: () => import('@/views/VxwUi/icon/icon.vue')
       }
@@ -167,7 +177,8 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     path: '/components',
     meta: {
       title: t('router.components'),
-      icon: 'el-icon-yuanshuju-zujianku'
+      icon: 'el-icon-yuanshuju-zujianku',
+      code: '005'
     },
     redirect: '/vxwUi/richText',
     component: index,
@@ -176,7 +187,8 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         name: 'richText',
         path: 'richText',
         meta: {
-          title: t('router.CrichText')
+          title: t('router.CrichText'),
+          code: '005001'
         },
         component: () => import('@/views/Components/richText/richText.vue')
       },
@@ -184,7 +196,8 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         name: 'qrcode',
         path: 'qrcode',
         meta: {
-          title: t('router.Cqrcode')
+          title: t('router.Cqrcode'),
+          code: '005002'
         },
         component: () => import('@/views/Components/qrcode/qrcode.vue')
       },
@@ -192,7 +205,8 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         name: 'apiManage',
         path: 'apiManage',
         meta: {
-          title: t('router.apiManage')
+          title: t('router.apiManage'),
+          code: '005003'
         },
         redirect: '/apiManage/InterfaceManage',
         children: [
@@ -200,7 +214,8 @@ export const asyncRouter: AppRouteRecordRaw[] = [
             name: 'interfaceManage',
             path: 'interfaceManage',
             meta: {
-              title: t('router.interfaceManage')
+              title: t('router.interfaceManage'),
+              code: '005003001'
             },
             component: () =>
               import('@/views/Components/apiManage/interfaceManage/interfaceManage.vue')
@@ -209,7 +224,8 @@ export const asyncRouter: AppRouteRecordRaw[] = [
             name: 'exportManage',
             path: 'exportManage',
             meta: {
-              title: t('router.exportManage')
+              title: t('router.exportManage'),
+              code: '005003002'
             },
             component: () => import('@/views/Components/apiManage/exportManage/exportManage.vue')
           },
@@ -217,7 +233,8 @@ export const asyncRouter: AppRouteRecordRaw[] = [
             name: 'mockManage',
             path: 'mockManage',
             meta: {
-              title: t('router.mockManage')
+              title: t('router.mockManage'),
+              code: '005003003'
             },
             component: () => import('@/views/Components/apiManage/mockManage/mockManage.vue')
           }

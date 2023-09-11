@@ -2,13 +2,19 @@
 import { Echart } from '@/components/Echart'
 import { EChartsOption } from 'echarts'
 import { onMounted, ref } from 'vue'
-import { getStaticChartOption } from '@/api/Chart'
 
-let staticChartOptions = ref({})
+import chinaMapData from '@/assets/map/chinaMap.json'
+
+let mapChartOptions = ref({
+  geo: {
+    type:'map',
+    map:'chinaMap'
+  }
+})
+const mapEchart = ref()
 
 const getChartOptionFun = async () => {
-  let { data } = await getStaticChartOption({ chartName: 'line' })
-  staticChartOptions.value = data[0].chartOption
+  mapEchart.value.registerMap('chinaMap', chinaMapData)
 }
 
 onMounted(() => {
@@ -17,7 +23,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Echart :options="staticChartOptions" :height="300" />
+  <Echart ref="mapEchart" :options="mapChartOptions as EChartsOption" :height="300" />
 </template>
 
 <style scoped lang="scss"></style>

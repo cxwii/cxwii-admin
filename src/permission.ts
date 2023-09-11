@@ -30,9 +30,10 @@ router.beforeEach(async (to, from, next) => {
       if (userStore.getDynamicRouter) {
         // 动态使用路由(这个roleRouters是登陆的时候存储,在getRole()里面)
         const roleRouters = wsCache.get('roleRouters') || []
-        await permissionStore.generateRoutes('admin', roleRouters)
+        // await permissionStore.generateRoutes('rdRouter', roleRouters)
+        await permissionStore.generateRoutes('codeRouter', roleRouters)
       } else {
-        await permissionStore.generateRoutes('none')
+        await permissionStore.generateRoutes('noneRouter')
       }
 
       permissionStore.getAddRouters.forEach((route) => {

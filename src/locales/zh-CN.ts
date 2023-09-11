@@ -19,6 +19,7 @@ export default {
     chart: '图表',
     dynamicChart: '动态图表',
     staticChart: '静态图表',
+    mapChart: '地图',
     elComponents: 'el组件',
     Etable: '表格',
     Eform: '表单',

@@ -18,4 +18,9 @@ declare global {
     redirect: string
     children?: AppCustomRouteRecordRaw[]
   }
+
+  declare interface AppRouteTreeNode {
+    code: string
+    children?: TreeNode[]
+  }
 }

@@ -26,7 +26,12 @@ export const updateUserInfoList = (data: updateUserInfoType): Promise<any> => {
   return request.post({ url: '/updateUserInfoList', data })
 }
 
-// 获取路由
-export const getRouterApi = (): Promise<any> => {
-  return request.get({ url: '/getUserRouter' })
+// 获取路由(后端传递表)
+export const getRdRouterApi = (): Promise<any> => {
+  return request.get({ url: '/getUserRdRouter' })
+}
+
+// 获取路由(code过滤表)
+export const getCodeRouterApi = (): Promise<any> => {
+  return request.get({ url: '/getUserCodeRouter' })
 }

@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { store } from '../index'
 import { constantRoutes, asyncRouter } from '@/router'
 import { cloneDeep } from 'lodash-es'
-import { flatMultiLevelRoutes, generateRoutesFn1 } from '@/utils/routerHelper'
+import { flatMultiLevelRoutes, generateRoutesFn1, generateRoutesFn2 } from '@/utils/routerHelper'
 
 export interface PermissionState {
   routers: AppRouteRecordRaw[]
@@ -32,19 +32,20 @@ export const permissionStore = defineStore('permission', {
   actions: {
     // 提供addRouters和routers来渲染路由
     generateRoutes(
-      type: 'admin' | 'none',
-      routers?: string[] | AppRouteRecordRaw[]
+      type: 'rdRouter' | 'codeRouter' | 'noneRouter',
+      routers?: string[] | AppRouteRecordRaw[] | object,
     ): Promise<unknown> {
       return new Promise<void>((resolve) => {
         let routersMap: AppRouteRecordRaw[] = []
 
-        if (type === 'admin') {
+        if (type === 'rdRouter') {
           // 处理渲染生成后端的传递的路由并生成表
           routersMap = generateRoutesFn1(routers as AppCustomRouteRecordRaw[])
+        } else if (type === 'codeRouter') {
+          routersMap = generateRoutesFn2(asyncRouter as AppRouteRecordRaw[], routers as AppRouteTreeNode[])
         } else {
           routersMap = cloneDeep(asyncRouter)
         }
-
         this.addRouters = routersMap
         this.routers = cloneDeep(constantRoutes).concat(routersMap)
 
