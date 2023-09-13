@@ -68,7 +68,7 @@ const login = async () => {
     一个由后端动态插入(已完成)
     一个权限字段前端过滤(已完成,但还想优化一下)
     */
-    userStore.setDynamicRouter(false)
+    // userStore.setDynamicRouter(false)
 
     if (userStore.getDynamicRouter) {
       getRole()

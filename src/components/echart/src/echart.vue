@@ -48,7 +48,7 @@ const styles = computed(() => {
   }
 })
 
-// 初始化echart方法
+// 初始化echart
 const initChart = () => {
   if (unref(elRef) && options) {
     echartRef = echart.init(unref(elRef) as HTMLElement)
@@ -63,7 +63,12 @@ const resizeHandler = debounce(() => {
   }
 }, 100)
 
-// 页面加载初始化方法和resizeHandler
+// 不知道干嘛外部没办法获取到echartRef,只能这样来获取
+const getEchartRef = () => {
+  return echartRef
+}
+
+// 页面加载初始化和resizeHandler
 onMounted(() => {
   initChart()
   window.addEventListener('resize', resizeHandler)
@@ -75,7 +80,9 @@ onBeforeUnmount(() => {
 })
 
 defineExpose({
-  resizeHandler
+  resizeHandler,
+  echart,
+  getEchartRef
 })
 </script>
 
