@@ -140,7 +140,7 @@ export class Socket extends WebSocket {
 
   // 开始心跳检测
   heartCheckStart() {
-    this.heartCheckInterval = setInterval(() => {
+    this.heartCheckInterval = window.setInterval(() => {
       if (this.readyState === this.OPEN) {
         const transformJSON = typeof this.heartCheckData === 'object'
         this.sendMessage(this.heartCheckData, transformJSON)

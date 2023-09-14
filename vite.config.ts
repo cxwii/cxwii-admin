@@ -32,7 +32,8 @@ export default defineConfig({
   resolve: {
     // 路径别名
     alias: {
-      '@': path.resolve(__dirname, 'src')
+      '@': path.resolve(__dirname, 'src'),
+      '@_public': path.resolve(__dirname, 'public')
     }
   },
   server: {
