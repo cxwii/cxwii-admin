@@ -29,10 +29,7 @@ export default {
     components: 'Components',
     CrichText: 'RichText',
     Cqrcode: 'Qrcode',
-    apiManage: 'ApiManage',
-    interfaceManage: 'InterfaceManage',
-    exportManage: 'ExportManage',
-    mockManage: 'MockManage'
+    passwordStrength: 'PasswordStrength'
   },
   userInfo: {
     ElMessageBox1:

@@ -29,10 +29,7 @@ export default {
     components: '组件',
     CrichText: '富文本',
     Cqrcode: '二维码',
-    apiManage: 'api管理',
-    interfaceManage: '接口管理',
-    exportManage: '导出管理',
-    mockManage: 'mock管理'
+    passwordStrength: '密码强度'
   },
   userInfo: {
     ElMessageBox1: '您是否确认退出系统?退出后需重新登录!',

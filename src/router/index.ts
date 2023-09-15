@@ -202,43 +202,13 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         component: () => import('@/views/Components/qrcode/qrcode.vue')
       },
       {
-        name: 'apiManage',
-        path: 'apiManage',
+        name: 'passwordStrength',
+        path: 'passwordStrength',
         meta: {
-          title: t('router.apiManage'),
+          title: t('router.passwordStrength'),
           code: '005003'
         },
-        redirect: '/apiManage/InterfaceManage',
-        children: [
-          {
-            name: 'interfaceManage',
-            path: 'interfaceManage',
-            meta: {
-              title: t('router.interfaceManage'),
-              code: '005003001'
-            },
-            component: () =>
-              import('@/views/Components/apiManage/interfaceManage/interfaceManage.vue')
-          },
-          {
-            name: 'exportManage',
-            path: 'exportManage',
-            meta: {
-              title: t('router.exportManage'),
-              code: '005003002'
-            },
-            component: () => import('@/views/Components/apiManage/exportManage/exportManage.vue')
-          },
-          {
-            name: 'mockManage',
-            path: 'mockManage',
-            meta: {
-              title: t('router.mockManage'),
-              code: '005003003'
-            },
-            component: () => import('@/views/Components/apiManage/mockManage/mockManage.vue')
-          }
-        ]
+        component: () => import('@/views/Components/passwordStrength/passwordStrength.vue')
       }
     ]
   }
