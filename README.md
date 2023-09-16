@@ -7,7 +7,10 @@
 
 ## 使用技术
 ```
-vue3,vite4,TypeScript,ES6,echarts5,ElementPlus,VxwUI,Tailwind,vue18n,VueRouter4,pinia,axios,eslint,sass等等一系列的内容,详细请于查看package
+vue3,vite4,TypeScript,ES6,echarts5,
+ElementPlus,VxwUI,Tailwind,vue18n,VueRouter4,
+pinia,axios,eslint,sass......
+等等一系列的内容,详细请于package中查看
 ```
 
 ## 安装依赖
