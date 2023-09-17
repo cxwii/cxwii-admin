@@ -9,7 +9,7 @@
 ```
 vue3,vite4,TypeScript,ES6,echarts5,
 ElementPlus,VxwUI,Tailwind,vue18n,VueRouter4,
-pinia,axios,eslint,sass......
+pinia,axios,eslint,sass,three......
 等等一系列的内容,详细请于package中查看
 ```
 
