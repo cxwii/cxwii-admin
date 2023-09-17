@@ -29,7 +29,8 @@ export default {
     components: '组件',
     CrichText: '富文本',
     Cqrcode: '二维码',
-    passwordStrength: '密码强度'
+    passwordStrength: '密码强度',
+    Three: 'Three'
   },
   userInfo: {
     ElMessageBox1: '您是否确认退出系统?退出后需重新登录!',

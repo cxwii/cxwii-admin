@@ -29,7 +29,8 @@ export default {
     components: 'Components',
     CrichText: 'RichText',
     Cqrcode: 'Qrcode',
-    passwordStrength: 'PasswordStrength'
+    passwordStrength: 'PasswordStrength',
+    Three: 'Three'
   },
   userInfo: {
     ElMessageBox1:

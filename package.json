@@ -12,7 +12,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@types/node": "^18.14.6",
+    "@types/node": "^20.6.2",
     "@types/qrcode": "^1.5.1",
     "@vueuse/core": "^9.13.0",
     "@wangeditor/editor": "^5.1.23",
@@ -27,6 +27,7 @@
     "nprogress": "^0.2.0",
     "pinia": "^2.0.32",
     "qrcode": "^1.5.3",
+    "three": "^0.156.1",
     "vue": "^3.2.45",
     "vue-i18n": "^9.2.2",
     "vue-router": "4",
@@ -37,6 +38,7 @@
     "@intlify/unplugin-vue-i18n": "^0.12.2",
     "@types/lodash-es": "^4.17.7",
     "@types/nprogress": "^0.2.0",
+    "@types/three": "^0.156.0",
     "@typescript-eslint/eslint-plugin": "^6.2.1",
     "@typescript-eslint/parser": "^6.2.1",
     "@vitejs/plugin-vue": "^4.0.0",

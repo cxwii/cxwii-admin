@@ -7,7 +7,7 @@ declare type AxiosHeaders =
 // T extends HTMLElement = HTMLDivElement 指泛型参数的默认值是HTMLDivElement
 declare type ElRef<T extends HTMLElement = HTMLDivElement> = Nullable<T>
 
-// 声明一个T或null的类型(用于echart实例化和标签移动中)
+// 声明一个T或null的类型
 declare type Nullable<T> = T | null
 
 // 用于组件ref实例的类型InstanceType:获取类的实例类型

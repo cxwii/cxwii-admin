@@ -211,6 +211,28 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         component: () => import('@/views/Components/passwordStrength/passwordStrength.vue')
       }
     ]
+  },
+  {
+    name: 'three',
+    path: '/three',
+    meta: {
+      title: t('router.Three'),
+      icon: 'el-icon-yuanshuju-zujianku',
+      code: '006'
+    },
+    redirect: '/three/index',
+    component: index,
+    children: [
+      {
+        name: 'index',
+        path: 'index',
+        meta: {
+          title: t('router.Three'),
+          code: '006001'
+        },
+        component: () => import('@/views/Three/index.vue')
+      }
+    ]
   }
 ]
 
