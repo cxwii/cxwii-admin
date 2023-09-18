@@ -9,7 +9,12 @@ import {
   Mesh,
   PerspectiveCamera,
   WebGLRenderer,
-  AxesHelper
+  AxesHelper,
+  PointLightHelper,
+  AmbientLight,
+  DirectionalLight,
+  DirectionalLightHelper,
+  Clock
 } from 'three'
 // 轨道控制器,不用装OrbitControls包也行,按这个路径就能找到了(大多数three扩展插件也如此)
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
@@ -27,7 +32,6 @@ let geometry: Nullable<BoxGeometry> = null
 let material: Nullable<MeshBasicMaterial> = null
 // 光源
 let pointLight: Nullable<PointLight> = null
-let pointLightBack: Nullable<PointLight> = null
 // 网格模式
 let mesh: Nullable<Mesh> = null
 // 相机(透视相机)
@@ -41,6 +45,16 @@ let renderer: Nullable<WebGLRenderer> = null
 let axesHelper: Nullable<AxesHelper> = null
 // 轨道控制器
 let controls: Nullable<OrbitControls> = null
+// 辅助光源位置观察
+let pointLightHelper: Nullable<PointLightHelper> = null
+// 环境光
+let light: Nullable<AmbientLight> = null
+// 平行光
+let directionalLight: Nullable<DirectionalLight> = null
+// 平行光的辅助光源位置观察
+let directionalLightHelper: Nullable<DirectionalLightHelper> = null
+// three提供的时间对象
+let clock: Nullable<Clock> = new Clock()
 
 // 场景
 const sceneInit = () => {
@@ -69,13 +83,17 @@ const sceneInit = () => {
   // 创建光源
   pointLight = new PointLight(0xffffff, 5, 0, 0)
   // 设置光源位置
-  pointLight.position.set(250, 120, 180)
+  pointLight.position.set(150, 110, 80)
   scene.add(pointLight)
 
-  // 第二个光源的设置(以可以看到后背)
-  pointLightBack = new PointLight(0xffffff, 3, 0, 0)
-  pointLightBack.position.set(-250, -120, -180)
-  scene.add(pointLightBack)
+  // 可视化光源
+  pointLightHelper = new PointLightHelper(pointLight, 5, 0x67c23a)
+  scene.add(pointLightHelper)
+
+
+  // 环境光(均匀无方向散布于房间中的光)
+  light = new AmbientLight( 0x404040 )
+  scene.add(light)
 
   // 创建网格模式,也就是立体空间
   // 将geometry物体形状和material物体的材质作为参数导入
@@ -84,6 +102,18 @@ const sceneInit = () => {
   mesh.position.set(0, 0, 0)
   // 将这个网格模型添加进三维场景
   scene.add(mesh)
+
+
+  // 平行光(不存在光源点,沿设置的方向发射)
+  directionalLight = new DirectionalLight( 0xffffff, 5)
+  directionalLight.position.set(60, 60, 120)
+  // 与上面设置的位置两点组成一条直线,从上面的位置射向下面的位置
+  // 可以将目标设置为场景中的其他对象（任意拥有 position 属性的对象）
+  directionalLight.target = mesh
+  scene.add(directionalLight)
+  // 平行光的辅助光源位置观察
+  directionalLightHelper = new DirectionalLightHelper(directionalLight, 5, 0xff0000)
+  scene.add(directionalLightHelper)
 
   // 创建三维场景观察用的辅助坐标线
   axesHelper = new AxesHelper(150)
@@ -120,9 +150,22 @@ const rendererInit = () => {
 // 引入控制器
 const orbitControlsInit = () => {
   controls = new OrbitControls(camera!, threeRef.value!)
+  // 如果使用了动画就没必要绑定事件了,因为动画就给你渲染了,这样可以节省性能
   controls.addEventListener('change', () => {
     renderer?.render(scene!, camera!)
   })
+}
+
+// 执行动画
+const render = () => {
+  const time = clock!.getDelta()*1000
+  // 渲染的时间
+  console.log('spt :>> ', time)
+  // 帧率
+  console.log('fps :>> ', 1000 / time)
+  mesh?.rotateY(0.003)
+  renderer?.render(scene!, camera!)
+  requestAnimationFrame(render)
 }
 
 onMounted(async () => {
@@ -132,6 +175,8 @@ onMounted(async () => {
   await rendererInit()
   // 引入的three扩展(轨道控制器)
   await orbitControlsInit()
+  // 平时就别打开动画了
+  // await render()
 })
 </script>
 
