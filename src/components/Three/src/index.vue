@@ -18,6 +18,7 @@ import {
 } from 'three'
 // 轨道控制器,不用装OrbitControls包也行,按这个路径就能找到了(大多数three扩展插件也如此)
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import Stats from 'three/examples/jsm/libs/stats.module.js'
 
 
 // threeRef
@@ -55,6 +56,9 @@ let directionalLight: Nullable<DirectionalLight> = null
 let directionalLightHelper: Nullable<DirectionalLightHelper> = null
 // three提供的时间对象
 let clock: Nullable<Clock> = new Clock()
+// 帧率
+let stats: Nullable<Stats> = new Stats()
+let statsRef = ref<ElRef>()
 
 // 场景
 const sceneInit = () => {
@@ -124,6 +128,10 @@ const sceneInit = () => {
 const cameraInit = () => {
   // 创建相机
   camera = new PerspectiveCamera(50, width / height, 0.1, 2000)
+  // 相机的一些属性发生变化的时候需要调用updateProjectionMatrix去更新内容
+  // (如宽高比发生变化,这里就不需要了写一下而已)
+  // (不然会出现物体变形问题,视锥体不同步变换发生变形导致的)
+  // camera.updateProjectionMatrix()
 
   // 设置相机位置
   camera.position.set(200, 200, 200)
@@ -158,11 +166,19 @@ const orbitControlsInit = () => {
 
 // 执行动画
 const render = () => {
-  const time = clock!.getDelta()*1000
-  // 渲染的时间
-  console.log('spt :>> ', time)
-  // 帧率
-  console.log('fps :>> ', 1000 / time)
+  // 通过clock来计算,不过一般都是用下面那个stats
+  // const time = clock!.getDelta()*1000
+  // // 渲染的时间
+  // console.log('spt :>> ', time)
+  // // 帧率
+  // console.log('fps :>> ', 1000 / time)
+
+  stats!.dom.style.position = 'relative'
+  stats!.dom.style.left = '0px'
+  stats!.dom.style.top = '48px'
+  statsRef.value?.appendChild(stats!.dom)
+  stats!.update()
+
   mesh?.rotateY(0.003)
   renderer?.render(scene!, camera!)
   requestAnimationFrame(render)
@@ -181,6 +197,7 @@ onMounted(async () => {
 </script>
 
 <template>
+  <div ref="statsRef"></div>
   <div ref="threeRef" class="h-full w-full"></div>
 </template>
 
