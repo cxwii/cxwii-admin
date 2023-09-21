@@ -14,12 +14,17 @@ import {
   AmbientLight,
   DirectionalLight,
   DirectionalLightHelper,
-  Clock
+  Clock,
+  SphereGeometry,
+  MeshPhongMaterial
 } from 'three'
 // 轨道控制器,不用装OrbitControls包也行,按这个路径就能找到了(大多数three扩展插件也如此)
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+// 帧率控件
 import Stats from 'three/examples/jsm/libs/stats.module.js'
-
+// 参数控件
+import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js'
+import { nullable } from 'vue-types'
 
 // threeRef
 const threeRef = ref<ElRef>()
@@ -59,6 +64,21 @@ let clock: Nullable<Clock> = new Clock()
 // 帧率
 let stats: Nullable<Stats> = new Stats()
 let statsRef = ref<ElRef>()
+// 球体(还有好多种就不全写了)
+let sphereGeometry: Nullable<SphereGeometry> = new SphereGeometry( 15, 32, 16 )
+// 高光材质
+let meshPhongMaterial: Nullable<MeshPhongMaterial> = new MeshPhongMaterial({
+  color: 0x3393f3,
+  shininess: 100,
+  specular: 0x444444
+})
+// 参数控件
+let gui: Nullable<GUI> = null
+let guiRef = ref<ElRef>()
+
+let obj = {
+  rotateY: false
+}
 
 // 场景
 const sceneInit = () => {
@@ -96,7 +116,7 @@ const sceneInit = () => {
 
 
   // 环境光(均匀无方向散布于房间中的光)
-  light = new AmbientLight( 0x404040 )
+  light = new AmbientLight(0x404040)
   scene.add(light)
 
   // 创建网格模式,也就是立体空间
@@ -107,6 +127,17 @@ const sceneInit = () => {
   // 将这个网格模型添加进三维场景
   scene.add(mesh)
 
+  // // 球体(meshPhongMaterial高光的材质)
+  // mesh = new Mesh(sphereGeometry!, meshPhongMaterial!)
+  // mesh.position.set(110, 0, 0)
+  // scene.add(mesh)
+
+  // 阵列
+  // for (let index = 0; index < 10; index++) {
+  //   mesh = new Mesh(geometry, material)
+  //   mesh.position.set(index * 200, 0, 0)
+  //   scene.add(mesh)
+  // }
 
   // 平行光(不存在光源点,沿设置的方向发射)
   directionalLight = new DirectionalLight( 0xffffff, 5)
@@ -143,7 +174,16 @@ const cameraInit = () => {
 // webGL渲染器
 const rendererInit = () => {
   // 创建webGL渲染器
-  renderer = new WebGLRenderer()
+  renderer = new WebGLRenderer({
+    // 抗锯齿
+    antialias: true
+  })
+  // 给three屏幕宽高比,避免设置抗锯齿后的物体模糊
+  // 这个基本属于必写的
+  renderer.setPixelRatio(window.devicePixelRatio)
+
+  // 设置画布背景颜色
+  renderer.setClearColor(0x444444)
 
   // 设置canvas画布大小
   renderer.setSize(width, height)
@@ -158,6 +198,8 @@ const rendererInit = () => {
 // 引入控制器
 const orbitControlsInit = () => {
   controls = new OrbitControls(camera!, threeRef.value!)
+  // 相机控件会直接改变相机位置为默认的0,0,0,所以要在相机控件这里设置多一次位置
+  // controls.target.set()
   // 如果使用了动画就没必要绑定事件了,因为动画就给你渲染了,这样可以节省性能
   controls.addEventListener('change', () => {
     renderer?.render(scene!, camera!)
@@ -173,15 +215,38 @@ const render = () => {
   // // 帧率
   // console.log('fps :>> ', 1000 / time)
 
-  stats!.dom.style.position = 'relative'
-  stats!.dom.style.left = '0px'
-  stats!.dom.style.top = '48px'
+  stats!.dom.style.position = 'inherit'
   statsRef.value?.appendChild(stats!.dom)
   stats!.update()
 
-  mesh?.rotateY(0.003)
+  if (obj.rotateY) mesh?.rotateY(0.003)
   renderer?.render(scene!, camera!)
   requestAnimationFrame(render)
+}
+
+// 参数控制台
+const guiRender = () => {
+  gui = new GUI()
+  // addFolder创建子菜单,可以套娃
+  const xyz = gui.addFolder('材质')
+  guiRef.value?.appendChild(gui!.domElement)
+  gui!.domElement.style.position = 'inherit'
+  // step拖动的步长
+  gui!.add(light!, 'intensity', 0 , 10).name('环境光强度').step(0.1)
+  xyz.add(mesh!.position, 'x', -100, 100).onChange((value) => {
+    mesh!.position.z = value
+  })
+  xyz.add(mesh!.position!, 'y', [-100, -50, 0, 50, 10])
+  xyz.add(mesh!.position!, 'z', {
+    left: -100,
+    centre: 0,
+    right: 100
+  })
+  gui!.addColor({color:0x00ffff}, 'color').onChange((value) => {
+    material!.color.set(value)
+  })
+  gui!.add(obj, 'rotateY').name('旋转')
+  xyz.close()
 }
 
 onMounted(async () => {
@@ -192,13 +257,17 @@ onMounted(async () => {
   // 引入的three扩展(轨道控制器)
   await orbitControlsInit()
   // 平时就别打开动画了
-  // await render()
+  await render()
+  await guiRender()
 })
 </script>
 
 <template>
-  <div ref="statsRef"></div>
-  <div ref="threeRef" class="h-full w-full"></div>
+  <div>
+    <div ref="statsRef"></div>
+    <div ref="guiRef"></div>
+    <div ref="threeRef" class="h-full w-full"></div>
+  </div>
 </template>
 
 <style scoped lang="scss"></style>
