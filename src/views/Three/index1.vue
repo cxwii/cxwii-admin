@@ -2,11 +2,11 @@
 /* 
   用于学习Three
 */
-import { ThreeDemo } from '@/components/Three'
+import { ThreeDemo1 } from '@/components/Three'
 </script>
 
 <template>
-  <ThreeDemo />
+  <ThreeDemo1 />
 </template>
 
 <style scoped lang="scss">

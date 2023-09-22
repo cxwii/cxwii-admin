@@ -30,7 +30,9 @@ export default {
     CrichText: 'RichText',
     Cqrcode: 'Qrcode',
     passwordStrength: 'PasswordStrength',
-    Three: 'Three'
+    Three: 'Three',
+    Three1: 'Three1',
+    Three2: 'Three2'
   },
   userInfo: {
     ElMessageBox1:
