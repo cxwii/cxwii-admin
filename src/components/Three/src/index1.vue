@@ -16,7 +16,8 @@ import {
   DirectionalLightHelper,
   Clock,
   SphereGeometry,
-  MeshPhongMaterial
+  MeshPhongMaterial,
+  Vector3
 } from 'three'
 // 轨道控制器,不用装OrbitControls包也行,按这个路径就能找到了(大多数three扩展插件也如此)
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
@@ -25,6 +26,8 @@ import Stats from 'three/examples/jsm/libs/stats.module.js'
 // 参数控件
 import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js'
 import { nullable } from 'vue-types'
+
+const rotateData = new Vector3(-1,1,1)
 
 // threeRef
 const threeRef = ref<ElRef>()
@@ -101,7 +104,8 @@ const sceneInit = () => {
   // 漫反射材质,受光照影响(不设置光源的话就看不到物体)
   material = new MeshLambertMaterial({
     // 设置颜色
-    color: 0x3393f3
+    color: 0x3393f3,
+    // wireframe: true
   })
 
   // 创建光源
@@ -219,7 +223,11 @@ const render = () => {
   statsRef.value?.appendChild(stats!.dom)
   stats!.update()
 
-  if (obj.rotateY) mesh?.rotateY(0.003)
+  // if (obj.rotateY) mesh?.rotateY(0.03)
+  if (obj.rotateY) {
+    // 这个vector3并非实际单位,要用normalize转换,不然就会变形了
+    mesh?.rotateOnWorldAxis(rotateData.normalize(), 0.006)
+  }
   renderer?.render(scene!, camera!)
   requestAnimationFrame(render)
 }
