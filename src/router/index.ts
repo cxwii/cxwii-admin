@@ -11,6 +11,7 @@ const { t } = useI18n()
   noCache: 不需要缓存
   icon: 使用什么icon
   title: 使用什么标题
+  noTagsView: 是否需要标签页
 */
 
 // 固定路由表
@@ -41,6 +42,15 @@ export const constantRoutes: AppRouteRecordRaw[] = [
     path: '/login',
     meta: {},
     component: () => import('@/views/Login/login.vue')
+  },
+  {
+    path: '/404',
+    component: () => import('@/views/Error/404.vue'),
+    name: 'NoFind',
+    meta: {
+      title: '404',
+      noTagsView: true
+    }
   }
 ]
 

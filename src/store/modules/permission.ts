@@ -46,9 +46,17 @@ export const permissionStore = defineStore('permission', {
         } else {
           routersMap = cloneDeep(asyncRouter)
         }
-        this.addRouters = routersMap
+        // this.addRouters = routersMap
+        this.addRouters = routersMap.concat([
+          {
+            path: '/:pathMatch(.*)*',
+            redirect: '/404',
+            name: '404Page',
+            meta: {},
+            children: []
+          }
+        ])
         this.routers = cloneDeep(constantRoutes).concat(routersMap)
-
         resolve()
       })
     },
