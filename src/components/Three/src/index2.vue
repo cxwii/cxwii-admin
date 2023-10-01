@@ -17,7 +17,8 @@ import {
   Mesh,
   DoubleSide,
   MeshLambertMaterial,
-  PointLight
+  PointLight,
+  Vector3
 } from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
@@ -117,6 +118,21 @@ nextTick(() => {
   })
 })
 // #endregion
+
+// const v1 = new Vector3(1,2,3)
+// // const v2 = v1.clone()
+// // v2.x = 9
+// const v2 = new Vector3(3,2,1)
+// v2.copy(v1)
+// v2.x = 9
+
+// console.log('v1 :>> ', v1)
+// console.log('v2 :>> ', v2)
+
+// 其实add添加就相当于添加到子对象group
+// group可以统一操作子对象,如平移这种操作
+// group是语意化的api,也有人用object3d来创建组
+console.log('scene.children :>> ', scene.children)
 </script>
 
 <template>

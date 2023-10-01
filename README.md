@@ -13,6 +13,11 @@ pinia,axios,eslint,sass,three......
 等等一系列的内容,详细请于package中查看
 ```
 
+## 使用教程
+```
+请先移步https://github.com/cxwii/cxwii-admin-api下载后端api并部署好后台后,运行dev环境即可使用,如有问题欢迎邮箱联系1471749154@qq.com
+```
+
 ## 安装依赖
 ```
 pnpm install
@@ -32,3 +37,5 @@ pnpm run dev
 ```
 pnpm run build
 ```
+
+## ＿|￣|● 感谢每一位Star的朋友们
