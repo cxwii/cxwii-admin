@@ -132,7 +132,25 @@ nextTick(() => {
 // 其实add添加就相当于添加到子对象group
 // group可以统一操作子对象,如平移这种操作
 // group是语意化的api,也有人用object3d来创建组
+// add对应的还有remove,用来删除对象(模型,场景,光源都可以删除)
 console.log('scene.children :>> ', scene.children)
+
+model.name = '测试模型1'
+
+// traverse遍历每个模型
+model.traverse((obj: any) => {
+  console.log('obj.name :>> ', obj.name)
+  console.log('isMesh :>> ', obj.isMesh);
+})
+
+// 通过名字获取对象getObjectByName
+console.log('model :>> ', model.getObjectByName('测试模型1'));
+
+// 世界坐标会受子坐标加上父坐标,所以要用getWorldPosition来获取世界坐标
+// 子坐标也可以通过AxesHelper来添加辅助观察的子坐标系
+const WorldV3 = new Vector3()
+model.getWorldPosition(WorldV3)
+console.log('世界坐标 :>> ', WorldV3);
 </script>
 
 <template>

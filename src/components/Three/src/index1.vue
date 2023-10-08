@@ -17,7 +17,8 @@ import {
   Clock,
   SphereGeometry,
   MeshPhongMaterial,
-  Vector3
+  Vector3,
+  Material
 } from 'three'
 // 轨道控制器,不用装OrbitControls包也行,按这个路径就能找到了(大多数three扩展插件也如此)
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
@@ -157,6 +158,25 @@ const sceneInit = () => {
   // 创建三维场景观察用的辅助坐标线
   axesHelper = new AxesHelper(150)
   scene.add(axesHelper)
+
+  // #region
+  // 开启动画就明白了
+  // 对象的独自平移所以中心不移动
+  // geometry.translate(50, 50, 50)
+  
+  // 作为组对象的整体移动,所以中心一起移动
+  // mesh.position.x = 50
+  // mesh.position.y = 50
+  // mesh.position.z = 50
+  // #endregion
+
+  // visible属性隐藏一个对象(添加进场景前隐藏,否则就无效了)
+  // material材质也有这个属性
+  // mesh.visible = false
+  // let aaaa = mesh.material as Material
+  // aaaa.visible = false
+  // // ;是这样用的,用于断言一个类型,用于语法识别不会报错
+  // ;(mesh.material as Material).visible = false
 }
 
 // 相机
@@ -223,11 +243,11 @@ const render = () => {
   statsRef.value?.appendChild(stats!.dom)
   stats!.update()
 
-  // if (obj.rotateY) mesh?.rotateY(0.03)
-  if (obj.rotateY) {
-    // 这个vector3并非实际单位,要用normalize转换,不然就会变形了
-    mesh?.rotateOnWorldAxis(rotateData.normalize(), 0.006)
-  }
+  if (obj.rotateY) mesh?.rotateY(0.005)
+  // if (obj.rotateY) {
+  //   // 这个vector3并非实际单位,要用normalize转换,不然就会变形了
+  //   mesh?.rotateOnWorldAxis(rotateData.normalize(), 0.006)
+  // }
   renderer?.render(scene!, camera!)
   requestAnimationFrame(render)
 }
