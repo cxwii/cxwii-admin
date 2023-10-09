@@ -250,6 +250,15 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           code: '006002'
         },
         component: () => import('@/views/Three/index2.vue')
+      },
+      {
+        name: 'index3',
+        path: 'index3',
+        meta: {
+          title: t('router.Three3'),
+          code: '006003'
+        },
+        component: () => import('@/views/Three/index3.vue')
       }
     ]
   }

@@ -32,7 +32,8 @@ export default {
     passwordStrength: 'PasswordStrength',
     Three: 'Three',
     Three1: 'Three1',
-    Three2: 'Three2'
+    Three2: 'Three2',
+    Three3: 'Three3'
   },
   userInfo: {
     ElMessageBox1:
