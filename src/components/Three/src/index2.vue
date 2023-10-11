@@ -18,7 +18,8 @@ import {
   DoubleSide,
   MeshLambertMaterial,
   PointLight,
-  Vector3
+  Vector3,
+  TextureLoader
 } from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
@@ -34,6 +35,15 @@ const vertices = new Float32Array([
     80, 80, 0, // 顶点3坐标
     0, 80, 0, // 顶点4坐标
 ])
+
+const uvs = new Float32Array([
+  0, 0,
+  1, 0,
+  1, 1,
+  0, 1
+])
+
+geometry.attributes.uvs = new BufferAttribute(uvs, 2)
 
 // 创建属性缓冲对象顶点数据
 // 3个为一组，表示一个顶点的xyz坐标
@@ -72,7 +82,7 @@ const indexes = new Uint16Array([
 
 geometry.index = new BufferAttribute(indexes, 1)
 
-// 法线
+// 法线(平面指向,这里是4个顶点的法线,都指向z正轴上)
 const normals = new Float32Array([
   0, 0, 1,
   0, 0, 1,

@@ -3,7 +3,8 @@ import {
   Scene,
   AmbientLight,
   PerspectiveCamera,
-  WebGLRenderer
+  WebGLRenderer,
+  GridHelper
 } from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { ref, nextTick } from 'vue'
@@ -13,6 +14,8 @@ const threeRef = ref()
 const scene = new Scene()
 // 导入的模型
 scene.add(mesh)
+const gridHelper = new GridHelper(300, 50, 0x009999, 0x004444)
+scene.add(gridHelper)
 const light = new AmbientLight(0x404040, 40)
 scene.add(light)
 const camera = new PerspectiveCamera(50, 1, 0.1, 2000)

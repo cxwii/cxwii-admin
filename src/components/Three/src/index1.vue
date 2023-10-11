@@ -28,7 +28,8 @@ import Stats from 'three/examples/jsm/libs/stats.module.js'
 import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js'
 import { nullable } from 'vue-types'
 
-const rotateData = new Vector3(-1,1,1)
+const rotateData1 = new Vector3(1,1,1)
+const rotateData2 = new Vector3(-1,1,1)
 
 // threeRef
 const threeRef = ref<ElRef>()
@@ -243,11 +244,17 @@ const render = () => {
   statsRef.value?.appendChild(stats!.dom)
   stats!.update()
 
-  if (obj.rotateY) mesh?.rotateY(0.005)
+  // if (obj.rotateY) mesh?.rotateY(0.005)
   // if (obj.rotateY) {
   //   // 这个vector3并非实际单位,要用normalize转换,不然就会变形了
-  //   mesh?.rotateOnWorldAxis(rotateData.normalize(), 0.006)
+  //   mesh?.rotateOnWorldAxis(rotateData1.normalize(), 0.006)
   // }
+
+  if (obj.rotateY) {
+    mesh!.rotation.x += 0.005;
+	  mesh!.rotation.y += 0.005;
+  }
+
   renderer?.render(scene!, camera!)
   requestAnimationFrame(render)
 }
