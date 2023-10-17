@@ -39,8 +39,8 @@ const renderer = new WebGLRenderer({
 })
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(500, 500)
-// 在引入外部模型的时候要设置对应的纹理颜色
-renderer.outputColorSpace = SRGBColorSpace
+// 在引入外部模型的时候要设置对应的纹理颜色(现在默认值就是SRGBColorSpace)
+// renderer.outputColorSpace = SRGBColorSpace
 renderer.render(scene, camera)
 nextTick(() => {
   threeRef.value.appendChild(renderer.domElement)
@@ -48,6 +48,7 @@ nextTick(() => {
   controls.target.set(0, 1.5, 0)
   controls.addEventListener('change', () => {
     renderer.render(scene, camera)
+    // console.log('相机位置 :>> ', camera.position)
   })
 })
 </script>
@@ -57,5 +58,4 @@ nextTick(() => {
 </template>
 
 <style scoped lang="scss">
-
 </style>
