@@ -18,7 +18,8 @@ import {
   SphereGeometry,
   MeshPhongMaterial,
   Vector3,
-  Material
+  Material,
+  MeshStandardMaterial
 } from 'three'
 // 轨道控制器,不用装OrbitControls包也行,按这个路径就能找到了(大多数three扩展插件也如此)
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
@@ -40,7 +41,7 @@ let scene: Nullable<Scene> = null
 // 物体
 let geometry: Nullable<BoxGeometry> = null
 // 材质
-let material: Nullable<MeshBasicMaterial> = null
+let material: Nullable<MeshStandardMaterial> = null
 // 光源
 let pointLight: Nullable<PointLight> = null
 // 网格模式
@@ -104,10 +105,19 @@ const sceneInit = () => {
   // })
 
   // 漫反射材质,受光照影响(不设置光源的话就看不到物体)
-  material = new MeshLambertMaterial({
-    // 设置颜色
+  // material = new MeshLambertMaterial({
+  //   // 设置颜色
+  //   color: 0x3393f3,
+  //   // wireframe: true
+  // })
+
+  //pbr(模拟物理效果材质)
+  material = new MeshStandardMaterial({
     color: 0x3393f3,
-    // wireframe: true
+    // 粗糙度
+    roughness: 0.5,
+    // 类金属度
+    metalness: 1
   })
 
   // 创建光源

@@ -22,17 +22,17 @@ loader.load(model, (gltf) => {
   // BetaJoints_material.color.set(0xff0000)
   // gltf.scene.getObjectByName('Beta_Joints')!.visible = false
 
-  gltf.scene.traverse((obj: any) => {
+  // gltf.scene.traverse((obj: any) => {
 
-    console.log('obj :>> ', obj)
+  //   console.log('obj :>> ', obj)
 
-    // if (obj.isMesh) {
-    //   console.log('obj.name :>> ', obj.name)
-    //   const BetaJoints = gltf.scene.getObjectByName(obj.name) as SkinnedMesh
-    //   const BetaJoints_material = BetaJoints.material as MeshStandardMaterial
-    //   BetaJoints_material.color.set(0xff0000)
-    // }
-  })
+  //   if (obj.isMesh) {
+  //     console.log('obj.name :>> ', obj.name)
+  //     const BetaJoints = gltf.scene.getObjectByName(obj.name) as SkinnedMesh
+  //     const BetaJoints_material = BetaJoints.material as MeshStandardMaterial
+  //     BetaJoints_material.color.set(0xff0000)
+  //   }
+  // })
 
   mesh.add(gltf.scene)
 })
