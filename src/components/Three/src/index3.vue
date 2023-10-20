@@ -53,8 +53,15 @@ const camera = new PerspectiveCamera(80, 1, 0.1, 2000)
 camera.position.set(3, 3, 3)
 camera.lookAt(mesh.position)
 const renderer = new WebGLRenderer({
+  // 要下载必须打开这个
+  preserveDrawingBuffer:true,
+  // 背景透明(几种方法)
+  alpha: true,
   antialias: true
 })
+// 背景透明(还有这两种方法)
+// renderer.setClearAlpha(0.0)
+// renderer.setClearColor(0xb9d3ff, 0.4)
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(500, 500)
 // 在引入外部模型的时候要设置对应的纹理颜色(现在默认值就是SRGBColorSpace)
@@ -75,10 +82,22 @@ const render = () => {
   requestAnimationFrame(render)
 }
 // render()
+
+const download =  () => {
+  const link = document.createElement('a')
+  const canvas = renderer.domElement
+  link.href = canvas.toDataURL("image/png")
+  link.download = 'three.png'
+  link.click()
+}
 </script>
 
 <template>
-  <div ref="threeRef" class="h-full w-full"></div>
+  <div class="relative">
+    <button @click="download" class="absolute z-index-10 top-20">下载</button>
+    <div style="width: 50px;height: 50px;background-color: rgb(250, 7, 48);">123</div>
+    <div ref="threeRef" class="h-full w-full absolute top-0"></div>
+  </div>
 </template>
 
 <style scoped lang="scss">
