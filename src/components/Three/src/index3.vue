@@ -53,6 +53,11 @@ const camera = new PerspectiveCamera(80, 1, 0.1, 2000)
 camera.position.set(3, 3, 3)
 camera.lookAt(mesh.position)
 const renderer = new WebGLRenderer({
+  // 解决深度冲突问题(两个位置相同的时候或者相近且相机位置足够远的时候模型出现闪烁)
+  // 本质上是通过设置对数深度缓冲区来优化深度冲突问题
+  // 有一点要注意，当两个面间隙过小，或者重合，你设置webgl渲染器对数深度缓冲区也是无效的
+  // 所以还是给一点间隔才行
+  logarithmicDepthBuffer: true,
   // 要下载必须打开这个
   preserveDrawingBuffer:true,
   // 背景透明(几种方法)

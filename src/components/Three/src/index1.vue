@@ -17,6 +17,7 @@ import {
   Clock,
   SphereGeometry,
   MeshPhongMaterial,
+  Vector2,
   Vector3,
   Material,
   MeshStandardMaterial
@@ -29,11 +30,21 @@ import Stats from 'three/examples/jsm/libs/stats.module.js'
 import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js'
 import { nullable } from 'vue-types'
 
+// 后处理的扩展库
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
+// 渲染器通道
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
+// 实际描边发光的库
+import { OutlinePass  } from 'three/examples/jsm/postprocessing/OutlinePass.js'
+
 const rotateData1 = new Vector3(1,1,1)
 const rotateData2 = new Vector3(-1,1,1)
 
 // threeRef
 const threeRef = ref<ElRef>()
+
+// 后处理
+let effectComposer: EffectComposer
 
 // three的变量不能使用响应式,否则会出现问题
 // 三维场景
@@ -228,6 +239,24 @@ const rendererInit = () => {
 
   // 放到页面容器上
   threeRef.value?.appendChild(renderer!.domElement)
+  
+  // 后处理的操作
+  effectComposer = new EffectComposer(renderer)
+  const renderPass = new RenderPass(scene!, camera!)
+  effectComposer.addPass(renderPass)
+  const v2 = new Vector2(width / height)
+  const outlinePass = new OutlinePass(v2, scene!, camera!)
+  outlinePass.selectedObjects = [mesh!]
+  effectComposer.addPass(outlinePass)
+
+  // 模型描边颜色，默认白色         
+  outlinePass.visibleEdgeColor.set(0xffff00)
+  // 高亮发光描边厚度(散发性)
+  outlinePass.edgeThickness = 4
+  // 高亮描边发光强度
+  outlinePass.edgeStrength = 6
+  // 模型闪烁频率控制，默认0不闪烁(呼吸灯那样)
+  outlinePass.pulsePeriod = 2
 }
 
 // 引入控制器
@@ -265,7 +294,10 @@ const render = () => {
 	  mesh!.rotation.y += 0.005;
   }
 
-  renderer?.render(scene!, camera!)
+  // 如果使用了后处理器那就应该使用后处理器的渲染
+  // renderer?.render(scene!, camera!)
+  effectComposer.render()
+
   requestAnimationFrame(render)
 }
 

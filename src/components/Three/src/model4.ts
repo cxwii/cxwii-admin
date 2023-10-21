@@ -61,12 +61,15 @@ const meshPhongMaterial = new MeshPhysicalMaterial({
 // any大法好(正规写法应该是想model2里面那样标好类型的,因为太麻烦就先any吧)
 loader.load(model, (gltf: any) => {
   mesh.add(gltf.scene)
-  console.log('object :>> ', gltf.scene.getObjectByName('body'))
+  // console.log('object :>> ', gltf.scene.getObjectByName('body'))
   // meshPhongMaterial.color = gltf.scene.getObjectByName('body').material.color
   // gltf.scene.getObjectByName('body').material = meshPhongMaterial
   meshPhongMaterial.color = gltf.scene.getObjectByName('glass').material.color
   gltf.scene.getObjectByName('glass').material = meshPhongMaterial
   
+},(xhr) => {
+  console.log('xhr :>> ', xhr);
+  console.log('加载进度 :>> ', xhr.loaded / xhr.total);
 })
 
 export { mesh }
