@@ -20,7 +20,8 @@ import {
   Vector2,
   Vector3,
   Material,
-  MeshStandardMaterial
+  MeshStandardMaterial,
+  CubeTextureLoader
 } from 'three'
 // 轨道控制器,不用装OrbitControls包也行,按这个路径就能找到了(大多数three扩展插件也如此)
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
@@ -36,6 +37,17 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
 // 实际描边发光的库
 import { OutlinePass  } from 'three/examples/jsm/postprocessing/OutlinePass.js'
+
+// 环境贴图
+import px from '../assets/px.png'
+import nx from '../assets/nx.png'
+import py from '../assets/py.png'
+import ny from '../assets/ny.png'
+import pz from '../assets/pz.png'
+import nz from '../assets/nz.png'
+const cubeTextureLoader =  new CubeTextureLoader()
+.load([px, nx, py, ny, pz, nz])
+
 
 const rotateData1 = new Vector3(1,1,1)
 const rotateData2 = new Vector3(-1,1,1)
@@ -101,6 +113,9 @@ let obj = {
 const sceneInit = () => {
   // 创建三维场景
   scene = new Scene()
+
+  // 背景贴图
+  scene.background = cubeTextureLoader
 
   // 创建物体(这里为几何长方体)
   geometry = new BoxGeometry(100, 100, 100)

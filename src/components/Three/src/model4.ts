@@ -68,8 +68,8 @@ loader.load(model, (gltf: any) => {
   gltf.scene.getObjectByName('glass').material = meshPhongMaterial
   
 },(xhr) => {
-  console.log('xhr :>> ', xhr);
-  console.log('加载进度 :>> ', xhr.loaded / xhr.total);
+  // console.log('xhr :>> ', xhr);
+  // console.log('加载进度 :>> ', xhr.loaded / xhr.total);
 })
 
 export { mesh }

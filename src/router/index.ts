@@ -219,14 +219,23 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           code: '005003'
         },
         component: () => import('@/views/Components/passwordStrength/passwordStrength.vue')
+      },
+      {
+        name: 'three',
+        path: 'three',
+        meta: {
+          title: t('router.Three'),
+          code: '005004'
+        },
+        component: () => import('@/views/Components/three/three.vue')
       }
     ]
   },
   {
-    name: 'three',
-    path: '/three',
+    name: 'threeNote',
+    path: '/threeNote',
     meta: {
-      title: t('router.Three'),
+      title: t('router.ThreeNote'),
       icon: 'el-icon-yuanshuju-zujianku',
       code: '006'
     },
@@ -259,6 +268,15 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           code: '006003'
         },
         component: () => import('@/views/Three/index3.vue')
+      },
+      {
+        name: 'index4',
+        path: 'index4',
+        meta: {
+          title: t('router.Three4'),
+          code: '006004'
+        },
+        component: () => import('@/views/Three/index4.vue')
       }
     ]
   }

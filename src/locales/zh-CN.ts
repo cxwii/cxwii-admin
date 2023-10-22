@@ -30,10 +30,12 @@ export default {
     CrichText: '富文本',
     Cqrcode: '二维码',
     passwordStrength: '密码强度',
-    Three: 'Three',
+    ThreeNote: 'Three笔记',
     Three1: 'Three1',
     Three2: 'Three2',
-    Three3: 'Three3'
+    Three3: 'Three3',
+    Three4: 'Three4',
+    Three: 'Three'
   },
   userInfo: {
     ElMessageBox1: '您是否确认退出系统?退出后需重新登录!',
