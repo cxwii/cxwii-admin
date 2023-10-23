@@ -12,11 +12,11 @@ const scene = new Scene()
 const ambientLight = new AmbientLight()
 scene.add(ambientLight)
 // 辅助线
-const axesHelper = new AxesHelper(10)
+const axesHelper = new AxesHelper(100)
 scene.add(axesHelper)
 // 相机
 const camera = new PerspectiveCamera()
-camera.position.set(10, 10, 10)
+camera.position.set(100, 100, 100)
 camera.lookAt(0, 0, 0)
 // 渲染器
 const renderer = new WebGLRenderer({

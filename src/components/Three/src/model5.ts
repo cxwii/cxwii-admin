@@ -8,7 +8,8 @@ import {
   Vector2,
   EllipseCurve,
   PointsMaterial,
-  Points
+  Points,
+  ArcCurve
 } from 'three'
 
 const geometry = new BufferGeometry()
@@ -86,6 +87,7 @@ const material = new LineBasicMaterial({
 // 椭圆
 // 参数1和2表示椭圆中心坐标  参数3和4表示x和y方向半径
 const arc = new EllipseCurve(0, 0, 10, 5)
+// const arc = new ArcCurve(0, 0, 10, 0, Math.PI/2)
 
 //getPoints是基类Curve的方法，平面曲线会返回一个vector2对象作为元素组成的数组
 
@@ -109,5 +111,5 @@ const material2 = new PointsMaterial({
   size: 1 //点对象像素尺寸
 })
 // 点模型
-const points = new Points(geometry2, material2);
-export { points }
+const model = new Points(geometry2, material2);
+export { model }

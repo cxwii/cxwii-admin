@@ -1,10 +1,13 @@
 <script lang="ts" setup>
 import { ref, nextTick } from 'vue'
 import { scene, camera, renderer } from './useThree'
-import { points } from './model5'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-
-scene.add(points)
+// import { model } from './model5'
+// import { model, points } from './model6'
+// import { model } from './model7'
+import { model } from './model8'
+scene.add(model)
+// scene.add(points)
 
 const threeRef = ref()
 nextTick(() => {
