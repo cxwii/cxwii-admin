@@ -7,8 +7,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { MapControls } from 'three/examples/jsm/controls/MapControls'
 const threeRef = ref()
 
-import { model } from './model12'
-// import { model, path } from './model13'
+// import { model } from './model12'
+import { model, path } from './model13'
 scene.add(model)
 
 // 1

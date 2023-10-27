@@ -16,7 +16,7 @@ const axesHelper = new AxesHelper(100)
 scene.add(axesHelper)
 // 相机
 const camera = new PerspectiveCamera()
-camera.position.set(100, 100, 100)
+camera.position.set(150, 200, 200)
 camera.lookAt(0, 0, 0)
 // 渲染器
 const renderer = new WebGLRenderer({
