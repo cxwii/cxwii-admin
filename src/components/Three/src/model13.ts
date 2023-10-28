@@ -21,7 +21,7 @@ texture.wrapS = THREE.RepeatWrapping;
 texture.repeat.x = 10;
 const material = new THREE.MeshLambertMaterial({
     map:texture,
-    side: THREE.DoubleSide, //双面显示看到管道内壁
+    side: THREE.DoubleSide, //两面可见
 });
 const mesh = new THREE.Mesh(geometry, material);
 

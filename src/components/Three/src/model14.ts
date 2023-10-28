@@ -1,8 +1,20 @@
 import * as THREE from 'three'
 
+// 环境贴图
+import px from '../assets/px.png'
+import nx from '../assets/nx.png'
+import py from '../assets/py.png'
+import ny from '../assets/ny.png'
+import pz from '../assets/pz.png'
+import nz from '../assets/nz.png'
+const cubeTextureLoader =  new THREE.CubeTextureLoader()
+.load([px, nx, py, ny, pz, nz])
+
 const geometry = new THREE.BoxGeometry(20, 20, 20);
 const material = new THREE.MeshLambertMaterial({
-    color: 0x00fff2
+    color: 0x00fff2,
+    envMap: cubeTextureLoader,
+    emissiveIntensity: 1
 });
 
 const mesh = new THREE.Mesh(geometry, material);
@@ -25,4 +37,4 @@ mesh.castShadow = true;
 
 const model = new THREE.Group()
 model.add(mesh, mesh2, mesh3, mesh4)
-export { model }
+export { model, cubeTextureLoader }

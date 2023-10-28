@@ -9,9 +9,11 @@ const axesHelper = new THREE.AxesHelper(100)
 scene.add(axesHelper)
 const threeRef = ref()
 
-import { model } from './model14'
-scene.add(model)
+import { model, cubeTextureLoader } from './model14'
+// 背景环境贴图
+scene.background = cubeTextureLoader
 
+scene.add(model)
 
 
 // // 聚光源
@@ -48,15 +50,24 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
 directionalLight.castShadow = true;
 directionalLight.position.set(100, 100, 100);
 scene.add(directionalLight)
+
+// 模型加载的话可以这样所有Mesh都批量设置.castShadow和.receiveShadow属性
+// gltf.scene.traverse(function (obj: any) {
+//   if (obj.isMesh) {
+//     obj.castShadow = true
+//     obj.receiveShadow = true
+//   }
+// })
+
 // 地板(地板要设置receiveShadow不然接收不了阴影)
 // 平面几何体
-const planGeometry = new THREE.PlaneGeometry(1000,1000)
+const planGeometry = new THREE.PlaneGeometry(1000, 1000)
 // 平面几何材质
-const planMaterial = new THREE.MeshPhongMaterial({color:0x808080})
+const planMaterial = new THREE.MeshPhongMaterial({ color: 0x808080, side: THREE.DoubleSide })
 // 平面
-const plan = new THREE.Mesh(planGeometry,planMaterial)
-plan.position.set(0,-10,0)
-plan.rotation.x = - Math.PI/2
+const plan = new THREE.Mesh(planGeometry, planMaterial)
+plan.position.set(0, -10, 0)
+plan.rotation.x = - Math.PI / 2
 scene.add(plan)
 // 设置接收阴影的投影面
 plan.receiveShadow = true;
@@ -69,28 +80,93 @@ renderer.setSize(500, 500)
 // 设置渲染器，允许光源阴影渲染
 renderer.shadowMap.enabled = true;
 
+// 模型表面产生条纹影响渲染效果，可以改变.shadowMap.type默认值优化
+// 更换阴影贴图的算法
+// 模型表面产生条纹影响渲染效果，可以改变.shadowMap.type默认值优化
+// HREE.BasicShadowMap：性能非常好但质量很差
+// THREE.PCFShadowMap：性能较差但边缘更平滑
+// THREE.PCFSoftShadowMap：性能较差但边缘更柔和
+// THREE.VSMShadowMap：性能较差，约束较多，可能会产生意想不到的结果
+// renderer.shadowMap.type = THREE.VSMShadowMap;
+
 // 查看平行光阴影相机属性
-console.log('阴影相机属性',directionalLight.shadow.camera);
+console.log('阴影相机属性', directionalLight.shadow.camera);
 // 可视化平行光阴影对应的正投影相机对象
 const cameraHelper = new THREE.CameraHelper(directionalLight.shadow.camera);
 scene.add(cameraHelper);
 
 // 设置三维场景计算阴影的范围
 // 超出这个范围就不会再计算阴影了,所以应该和场景相机的范围一致
-directionalLight.shadow.camera.left = -50;
-directionalLight.shadow.camera.right = 50;
-directionalLight.shadow.camera.top = 200;
+directionalLight.shadow.camera.left = -100;
+directionalLight.shadow.camera.right = 100;
+directionalLight.shadow.camera.top = 100;
 directionalLight.shadow.camera.bottom = -100;
 directionalLight.shadow.camera.near = 0.5;
-directionalLight.shadow.camera.far = 600;
+directionalLight.shadow.camera.far = 1000;
 
-// 调节灯光
-const gui = new GUI()
-gui.add(directionalLight.position, 'x', 0 , 200).name('x').step(1)
-gui.add(directionalLight.position, 'y', 0 , 200).name('y').step(1)
-gui.add(directionalLight.position, 'z', 0 , 200).name('z').step(1)
+// mapSize属性默认512x512
+// 一般用于shadow.camera范围增加导致阴影出现模糊锯齿的时候就把这个值适当增大
+console.log('阴影默认像素', directionalLight.shadow.mapSize);
+// directionalLight.shadow.mapSize.set(128,128)
+directionalLight.shadow.mapSize.set(1024 * 1, 1024 * 1)
+
+// 模糊弱化阴影边缘(就是边缘模糊,越大越模糊)
+console.log('.shadow.radius', directionalLight.shadow.radius);
+directionalLight.shadow.radius = 3;
+
+const ambient = new THREE.AmbientLight(0xffffff, 0.4);
+scene.add(ambient);
 
 
+
+
+// 调试器
+// const gui = new GUI()
+// // gui.add(directionalLight.position, 'x', -200 , 200).name('x').step(1)
+// gui.add(directionalLight.position, 'y', -200, 200).name('y').step(1).onChange(
+//   () => {
+//     cameraHelper.update();
+//   }
+// )
+// const obj = {
+//   R: 100,
+//   angle: 0,
+// };
+// gui.add(obj, 'R', 0, 300).onChange(function (value) {
+//   directionalLight.position.x = value * Math.cos(obj.angle);
+//   directionalLight.position.z = value * Math.sin(obj.angle);
+//   cameraHelper.update();
+// });
+// gui.add(obj, 'angle', 0, Math.PI * 2).onChange(function (value) {
+//   directionalLight.position.x = obj.R * Math.cos(value);
+//   directionalLight.position.z = obj.R * Math.sin(value);
+//   cameraHelper.update();
+// });
+// // 阴影子菜单
+// const shadowFolder = gui.addFolder('平行光阴影');
+// const cam = directionalLight.shadow.camera;
+// // 相机left、right等属性变化执行.updateProjectionMatrix();
+// // 相机变化了，执行CameraHelper的更新方法.update();
+// shadowFolder.add(cam,'left',-500,0).onChange(function(v){
+//     cam.updateProjectionMatrix();//相机更新投影矩阵
+//     cameraHelper.update();//相机范围变化了，相机辅助对象更新
+// });
+// shadowFolder.add(cam,'right',0,500).onChange(function(v){
+//     cam.updateProjectionMatrix();
+//     cameraHelper.update();
+// });
+// shadowFolder.add(cam,'top',0,500).onChange(function(v){
+//     cam.updateProjectionMatrix();
+//     cameraHelper.update();
+// });
+// shadowFolder.add(cam,'bottom',-500,0).onChange(function(v){
+//     cam.updateProjectionMatrix();
+//     cameraHelper.update();
+// });
+// shadowFolder.add(cam,'far',0,1000).onChange(function(v){
+//     cam.updateProjectionMatrix();
+//     cameraHelper.update();
+// });
 
 nextTick(() => {
   threeRef.value.appendChild(renderer.domElement)
@@ -100,6 +176,8 @@ nextTick(() => {
   controls.addEventListener('change', () => {
     renderer.render(scene, camera)
   })
+
+  cameraHelper.update();
 })
 
 
@@ -114,6 +192,4 @@ render()
   <div ref="threeRef" class="h-full w-full"></div>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>
