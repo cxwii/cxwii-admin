@@ -52,7 +52,7 @@ const loop = () => {
     requestAnimationFrame(loop);
 }
 
-// loop()
+loop()
 
 const threeRef = ref()
 nextTick(() => {

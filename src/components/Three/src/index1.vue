@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
+import * as THREE from 'three'
 import {
   Scene,
   BoxGeometry,
@@ -36,7 +37,41 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 // 渲染器通道
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
 // 实际描边发光的库
-import { OutlinePass  } from 'three/examples/jsm/postprocessing/OutlinePass.js'
+// 高亮发光描边
+import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js'
+// GlitchPass闪屏效果
+import { GlitchPass } from 'three/examples/jsm/postprocessing/GlitchPass.js'
+// Bloom发光(辉光)
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js'
+
+// // 当引入的外部进行后处理后出现颜色偏差无法再通过renderer.outputEncoding来调整
+// // 要通过引入专门的外部库来调整,如下所示
+// // 其实就是通过GammaCorrectionShader来创建一个新的后处理通道然后添加进effectComposer
+// // 伽马校正后处理Shader
+// import {GammaCorrectionShader} from 'three/examples/jsm/shaders/GammaCorrectionShader.js'
+// // ShaderPass功能：使用后处理Shader创建后处理通道
+import {ShaderPass} from 'three/examples/jsm/postprocessing/ShaderPass.js'
+// // 创建伽马校正通道
+// const gammaPass= new ShaderPass(GammaCorrectionShader);
+// effectComposer.addPass(gammaPass);
+
+// FAXX抗锯齿(其实都是一种后处理的通道)
+// import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js'
+// const FXAAPass = new ShaderPass( FXAAShader );
+// // `.getPixelRatio()`获取`renderer.setPixelRatio()`设置的值
+// const pixelRatio = renderer.getPixelRatio();//获取设备像素比 
+// // width、height是canva画布的宽高度
+// FXAAPass.uniforms.resolution.value.x = 1 /(width*pixelRatio);
+// FXAAPass.uniforms.resolution.value.y = 1 /(height*pixelRatio);
+// effectComposer.addPass( FXAAPass );
+
+// SMAA抗锯齿(其实都是一种后处理的通道)
+// import { SMAAPass } from 'three/examples/jsm/shaders/SMAAPass.js'
+// //获取.setPixelRatio()设置的设备像素比
+// const pixelRatio = renderer.getPixelRatio();
+// // width、height是canva画布的宽高度
+// const smaaPass = new SMAAPass(width * pixelRatio, height * pixelRatio);
+// effectComposer.addPass(smaaPass);
 
 // 环境贴图
 import px from '../assets/px.png'
@@ -199,6 +234,7 @@ const sceneInit = () => {
   // #region
   // 开启动画就明白了
   // 对象的独自平移所以中心不移动
+  // translate这个才是真正的位置上的移动, position不是
   // geometry.translate(50, 50, 50)
   
   // 作为组对象的整体移动,所以中心一起移动
@@ -260,10 +296,11 @@ const rendererInit = () => {
   const renderPass = new RenderPass(scene!, camera!)
   effectComposer.addPass(renderPass)
   const v2 = new Vector2(width / height)
+
+  // 1 高亮发光描边
   const outlinePass = new OutlinePass(v2, scene!, camera!)
   outlinePass.selectedObjects = [mesh!]
   effectComposer.addPass(outlinePass)
-
   // 模型描边颜色，默认白色         
   outlinePass.visibleEdgeColor.set(0xffff00)
   // 高亮发光描边厚度(散发性)
@@ -272,6 +309,35 @@ const rendererInit = () => {
   outlinePass.edgeStrength = 6
   // 模型闪烁频率控制，默认0不闪烁(呼吸灯那样)
   outlinePass.pulsePeriod = 2
+
+  // 2 GlitchPass通道会产生闪屏效果
+  // 可以设置多个后处理效果
+  const glitchPass = new GlitchPass()
+  // 设置glitchPass通道
+  effectComposer.addPass(glitchPass)
+
+  // 3 Bloom发光(辉光)
+  // (就是太阳刺眼那种光晕效果一般添加在场景中,白色地方出现辉光,越白越强)
+  // 所以想单独模型出现辉光的时候就要
+
+  // 在场景render的时候
+  // 先将不辉光的模型材质设置为黑色
+  // 因为辉光一般背景是黑色
+  // 模型设置为黑色后，辉光也没有效果。然后先执行辉光合成器的render进行渲染
+  // 此时场景渲染辉光，而不需要辉光的模型因为设置了黑色，所以也看不出来，到此
+  // 场景中需要辉光的模型就实现了辉光，而不需要辉光的模型目前是看不见的
+  // 所以接下来，我们要将材质设置为黑色的模型还原成原本的材质颜色
+  // 再执行最终合成器的render进行渲染，因为finalComposer合成器中不包含辉光特效
+  // 所以第二次redner后，只渲染了正常不辉光的模型，而第一次渲染辉光的模型也被混合在一起
+  // 所以场景最终就实现了一部分模型辉光，一部分不辉光。
+
+  // resolution：表示泛光所覆盖的场景大小，是Vector2类型的向量
+  // strength：表示泛光的强度，值越大明亮的区域越亮，较暗区域变亮的范围越广
+  // radius：表示泛光散发的半径
+  // threshold：表示产生泛光的光照强度阈值，如果照在物体上的光照强度大于该值就会产生泛光
+  const bloomPass = new UnrealBloomPass(new THREE.Vector2(500, 500), 1, 1, 0.5)
+  bloomPass.renderToScreen = false
+  effectComposer.addPass(bloomPass)
 }
 
 // 引入控制器
