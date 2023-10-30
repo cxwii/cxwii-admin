@@ -74,6 +74,6 @@ mesh4.name = 'mesh4'
 geometry4.translate(50, 50, 50)
 model.add(mesh, mesh2, mesh3, mesh4)
 
+ const meshs = model
 
-
-export { model }
+export { mesh, meshs }

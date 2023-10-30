@@ -5,7 +5,6 @@ import { scene, camera, renderer } from './useThree'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 import { model } from './model16'
-import { forEach } from 'lodash-es'
 scene.add(model)
 
 // 可视化射线
