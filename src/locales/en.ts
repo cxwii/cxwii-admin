@@ -42,6 +42,8 @@ export default {
     Three9: 'Three9',
     Three10: 'Three10',
     Three11: 'Three11',
+    Three12: 'Three12',
+    Three13: 'Three13',
     Three: 'Three'
   },
   userInfo: {

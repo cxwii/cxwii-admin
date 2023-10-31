@@ -10,6 +10,8 @@ import ThreeDemo8 from './src/index8.vue'
 import ThreeDemo9 from './src/index9.vue'
 import ThreeDemo10 from './src/index10.vue'
 import ThreeDemo11 from './src/index11.vue'
+import ThreeDemo12 from './src/index12.vue'
+import ThreeDemo13 from './src/index13.vue'
 
 export { 
   ThreeDemo1,
@@ -22,5 +24,7 @@ export {
   ThreeDemo8, 
   ThreeDemo9, 
   ThreeDemo10, 
-  ThreeDemo11
+  ThreeDemo11,
+  ThreeDemo12,
+  ThreeDemo13
 }

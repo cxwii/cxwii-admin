@@ -15,9 +15,40 @@ let clipAction: any = null
 // 重新开始新动画
 // clipAction.reset()
 
-loader.load(Horse, (gltf) => {
+loader.load(Horse, (gltf: any) => {
   console.log('控制台查看gltf对象结构', gltf)
   console.log('动画数据', gltf.animations)
+
+  // 访问人体网格模型
+  const mesh = gltf.scene.children[0]; 
+  console.log('mesh :>> ', mesh);
+  // 获取所有变形目标的顶点数据
+  const tArr = mesh.geometry.morphAttributes.position
+  console.log('所有变形目标', tArr);
+  console.log('所有权重', mesh.morphTargetInfluences);
+
+
+  const clip = gltf.animations[0];
+  const duration = clip.duration;//默认持续时间
+  // console.log('动画时间', duration);
+  
+
+  // 动画对应于材质，更换材质会导致动画的失效
+  // gltf.scene.traverse((obj: any) => {
+  //   if (obj.isMesh) {
+  //     obj.material = new THREE.MeshLambertMaterial({
+  //       color: 0x004444,
+  //       transparent: true,
+  //       opacity: 0.5,
+  //     })
+  //     const edges = new THREE.EdgesGeometry(obj.geometry)
+  //     const edgesMaterial = new THREE.LineBasicMaterial({
+  //       color: 0x00ffff,
+  //     })
+  //     const line = new THREE.LineSegments(edges, edgesMaterial)
+  //     obj.add(line)
+  //   }
+  // })
 
   //包含帧动画的模型作为参数创建一个播放器
   mixer = new THREE.AnimationMixer(gltf.scene);
@@ -85,7 +116,7 @@ const nextRef = () => {
 </script>
 
 <template>
-  <div ref="threeRef" class="h-full w-full"></div>
+  <div ref="threeRef" class="h-auto w-auto"></div>
   <el-button @click="play">play</el-button>
   <el-button @click="stop">stop</el-button>
   <el-button @click="paused">{{ pausedRef }}</el-button>
