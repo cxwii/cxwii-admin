@@ -120,7 +120,8 @@ const test = () => {
       color: aliceblue;
       cursor: pointer;
       pointer-events: auto;
-      backface-visibility: hidden;"
+      backface-visibility: hidden;
+      pointer-events: auto"
     @click="test">
       标签
   </div>
