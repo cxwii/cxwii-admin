@@ -1,10 +1,11 @@
 <script lang="ts" setup>
+import * as THREE from 'three'
 import { ref, nextTick } from 'vue'
-import { scene, camera, renderer } from '@/components/Three/src/useThree'
-import { mesh } from '@/components/Three/src/testModel'
+import { scene, camera, renderer } from './useThree'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
-scene.add(mesh)
+import { model } from './model21'
+scene.add(model)
 
 const threeRef = ref()
 nextTick(() => {
@@ -17,12 +18,15 @@ nextTick(() => {
   })
 })
 
+const loop = () => {
+  requestAnimationFrame(loop)
+  renderer.render(scene, camera)
+}
+loop()
 </script>
 
 <template>
   <div ref="threeRef" class="h-full w-full"></div>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

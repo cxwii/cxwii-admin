@@ -219,15 +219,6 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           code: '005003'
         },
         component: () => import('@/views/Components/passwordStrength/passwordStrength.vue')
-      },
-      {
-        name: 'three',
-        path: 'three',
-        meta: {
-          title: t('router.Three'),
-          code: '005004'
-        },
-        component: () => import('@/views/Components/three/three.vue')
       }
     ]
   },
@@ -249,7 +240,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.Three1'),
           code: '006001'
         },
-        component: () => import('@/views/Three/index1.vue')
+        component: () => import('@/views/Three/src/index1.vue')
       },
       {
         name: 'index2',
@@ -258,7 +249,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.Three2'),
           code: '006002'
         },
-        component: () => import('@/views/Three/index2.vue')
+        component: () => import('@/views/Three/src/index2.vue')
       },
       {
         name: 'index3',
@@ -267,7 +258,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.Three3'),
           code: '006003'
         },
-        component: () => import('@/views/Three/index3.vue')
+        component: () => import('@/views/Three/src/index3.vue')
       },
       {
         name: 'index4',
@@ -276,7 +267,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.Three4'),
           code: '006004'
         },
-        component: () => import('@/views/Three/index4.vue')
+        component: () => import('@/views/Three/src/index4.vue')
       },
       {
         name: 'index5',
@@ -285,7 +276,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.Three5'),
           code: '006005'
         },
-        component: () => import('@/views/Three/index5.vue')
+        component: () => import('@/views/Three/src/index5.vue')
       },
       {
         name: 'index6',
@@ -294,7 +285,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.Three6'),
           code: '006006'
         },
-        component: () => import('@/views/Three/index6.vue')
+        component: () => import('@/views/Three/src/index6.vue')
       },
       {
         name: 'index7',
@@ -303,7 +294,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.Three7'),
           code: '006007'
         },
-        component: () => import('@/views/Three/index7.vue')
+        component: () => import('@/views/Three/src/index7.vue')
       },
       {
         name: 'index8',
@@ -312,7 +303,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.Three8'),
           code: '006008'
         },
-        component: () => import('@/views/Three/index8.vue')
+        component: () => import('@/views/Three/src/index8.vue')
       },
       {
         name: 'index9',
@@ -321,7 +312,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.Three9'),
           code: '006009'
         },
-        component: () => import('@/views/Three/index9.vue')
+        component: () => import('@/views/Three/src/index9.vue')
       },
       {
         name: 'index10',
@@ -330,7 +321,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.Three10'),
           code: '006010'
         },
-        component: () => import('@/views/Three/index10.vue')
+        component: () => import('@/views/Three/src/index10.vue')
       },
       {
         name: 'index11',
@@ -339,7 +330,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.Three11'),
           code: '006011'
         },
-        component: () => import('@/views/Three/index11.vue')
+        component: () => import('@/views/Three/src/index11.vue')
       },
       {
         name: 'index12',
@@ -348,7 +339,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.Three12'),
           code: '006012'
         },
-        component: () => import('@/views/Three/index12.vue')
+        component: () => import('@/views/Three/src/index12.vue')
       },
       {
         name: 'index13',
@@ -357,7 +348,16 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.Three13'),
           code: '006013'
         },
-        component: () => import('@/views/Three/index13.vue')
+        component: () => import('@/views/Three/src/index13.vue')
+      },
+      {
+        name: 'index14',
+        path: 'index14',
+        meta: {
+          title: t('router.Three14'),
+          code: '006014'
+        },
+        component: () => import('@/views/Three/src/index14.vue')
       }
     ]
   }
