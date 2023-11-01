@@ -12,6 +12,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tweenjs/tween.js": "^21.0.0",
     "@types/node": "^20.6.2",
     "@types/qrcode": "^1.5.1",
     "@vueuse/core": "^9.13.0",

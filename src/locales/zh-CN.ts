@@ -44,7 +44,8 @@ export default {
     Three11: 'Three11',
     Three12: 'Three12',
     Three13: 'Three13',
-    Three14: 'Three14'
+    Three14: 'Three14',
+    Three15: 'Three15'
   },
   userInfo: {
     ElMessageBox1: '您是否确认退出系统?退出后需重新登录!',
