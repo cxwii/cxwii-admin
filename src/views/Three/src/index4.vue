@@ -23,13 +23,10 @@ nextTick(() => {
     renderer.render(scene, camera)
   })
 })
-
 </script>
 
 <template>
   <div ref="threeRef" class="h-full w-full"></div>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

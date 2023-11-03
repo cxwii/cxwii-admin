@@ -67,20 +67,30 @@ export const generateRoutesFn1 = (routes: AppCustomRouteRecordRaw[]): AppRouteRe
 }
 
 // codeRouter渲染方式
-export const generateRoutesFn2 = (routes: AppRouteRecordRaw[], codes: AppRouteTreeNode[]): AppRouteRecordRaw[] => {
+export const generateRoutesFn2 = (
+  routes: AppRouteRecordRaw[],
+  codes: AppRouteTreeNode[]
+): AppRouteRecordRaw[] => {
   const resultCodes: string[] = flattenTreeRoutes(codes)
   const resultRoutes: AppRouteRecordRaw[] = filtereCodeRouter(routes, resultCodes)
   return resultRoutes
 }
 
 // codeRouter渲染方式里用的将路由表根据code过滤的方法
-const filtereCodeRouter = (routes: AppRouteRecordRaw[], codes: string[] = [], result: AppRouteRecordRaw[] = []) => {
+const filtereCodeRouter = (
+  routes: AppRouteRecordRaw[],
+  codes: string[] = [],
+  result: AppRouteRecordRaw[] = []
+) => {
   result = routes
   for (let index = 0; index < result.length; index++) {
     if (!codes.includes(result[index].meta.code)) {
       result.splice(index, 1)
     } else if (routes[index].children) {
-      routes[index].children = filtereCodeRouter(routes[index].children as AppRouteRecordRaw[], codes)
+      routes[index].children = filtereCodeRouter(
+        routes[index].children as AppRouteRecordRaw[],
+        codes
+      )
     }
   }
   return result
@@ -91,7 +101,7 @@ export const flattenTreeRoutes = (tree: AppRouteTreeNode[], result: string[] = [
   for (const item of tree) {
     result.push(item.code)
     if (item.children) {
-      flattenTreeRoutes(item.children, result);
+      flattenTreeRoutes(item.children, result)
     }
   }
   return result

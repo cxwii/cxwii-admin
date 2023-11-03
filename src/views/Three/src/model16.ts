@@ -41,17 +41,17 @@ const model = new THREE.Group()
 
 // 2
 // 创建4个正方体
-const geometry = new THREE.BoxGeometry(20, 20, 20);
+const geometry = new THREE.BoxGeometry(20, 20, 20)
 const material = new THREE.MeshLambertMaterial({
-    color: 0x00fff2
+  color: 0x00fff2
 })
 const mesh = new THREE.Mesh(geometry, material)
 mesh.name = 'mesh1'
 geometry.translate(0, 50, 0)
 
-const geometry0 = new THREE.BoxGeometry(10, 40, 10);
+const geometry0 = new THREE.BoxGeometry(10, 40, 10)
 const material0 = new THREE.MeshLambertMaterial({
-    color: 0x00fff2
+  color: 0x00fff2
 })
 const mesh0 = new THREE.Mesh(geometry0, material0)
 mesh0.name = 'mesh0'
@@ -59,25 +59,25 @@ geometry0.translate(0, 50, 0)
 const model2 = new THREE.Group()
 model2.add(mesh, mesh0)
 
-const geometry2 = new THREE.BoxGeometry(20, 20, 20);
+const geometry2 = new THREE.BoxGeometry(20, 20, 20)
 const material2 = new THREE.MeshLambertMaterial({
-    color: 0x00fff2
+  color: 0x00fff2
 })
 const mesh2 = new THREE.Mesh(geometry2, material2)
 mesh2.name = 'mesh2'
 geometry2.translate(50, 50, 0)
 
-const geometry3 = new THREE.BoxGeometry(20, 20, 20);
+const geometry3 = new THREE.BoxGeometry(20, 20, 20)
 const material3 = new THREE.MeshLambertMaterial({
-    color: 0x00fff2
+  color: 0x00fff2
 })
 const mesh3 = new THREE.Mesh(geometry3, material3)
 mesh3.name = 'mesh3'
 geometry3.translate(0, 50, 50)
 
-const geometry4 = new THREE.BoxGeometry(20, 20, 20);
+const geometry4 = new THREE.BoxGeometry(20, 20, 20)
 const material4 = new THREE.MeshLambertMaterial({
-    color: 0x00fff2
+  color: 0x00fff2
 })
 const mesh4 = new THREE.Mesh(geometry4, material4)
 mesh4.name = 'mesh4'
@@ -106,7 +106,7 @@ const spriteMaterial = new THREE.SpriteMaterial({
 })
 const sprite = new THREE.Sprite(spriteMaterial)
 sprite.scale.set(20, 25, 1)
-sprite.name ='sprite'
+sprite.name = 'sprite'
 
 model.add(sprite)
 

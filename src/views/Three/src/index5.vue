@@ -24,18 +24,17 @@ camera.lookAt(0, 0, 0)
 // camera.up.set(1, 0, 0);
 // console.log('.up默认值',camera.up);
 
-
 // 相机动画
-let angle = 0; //用于圆周运动计算的角度值
-const R = 15; //相机圆周运动的半径
+let angle = 0 //用于圆周运动计算的角度值
+const R = 15 //相机圆周运动的半径
 const render = () => {
-  angle += 0.005;
+  angle += 0.005
   // 相机y坐标不变，在XOZ平面上做圆周运动
-  camera.position.x = R * Math.cos(angle);
-  camera.position.z = R * Math.sin(angle);
-  camera.lookAt(0,0,0);
-  renderer.render(scene, camera);
-  requestAnimationFrame(render);
+  camera.position.x = R * Math.cos(angle)
+  camera.position.z = R * Math.sin(angle)
+  camera.lookAt(0, 0, 0)
+  renderer.render(scene, camera)
+  requestAnimationFrame(render)
 }
 // render();
 
@@ -64,7 +63,6 @@ const render = () => {
 //     requestAnimationFrame(render);
 // }
 // // render();
-
 
 nextTick(() => {
   threeRef.value.appendChild(renderer.domElement)
@@ -109,11 +107,10 @@ nextTick(() => {
     renderer.render(scene, camera)
     // 鼠标右键旋转时候，查看.position变化
     // 鼠标左键拖动的时候，查看.position、.target的位置会变化
-    console.log('camera.position',camera.position);
-    console.log('controls.target',mapControls.target);
-});
+    console.log('camera.position', camera.position)
+    console.log('controls.target', mapControls.target)
+  })
 })
-
 </script>
 
 <template>

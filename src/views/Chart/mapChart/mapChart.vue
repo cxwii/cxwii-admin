@@ -27,7 +27,7 @@ type UserData = {
 const content = reactive({
   allData: [] as UserData[],
   titleFontSize: 0,
-  mapCache: new Map<string, any>(), //缓存以获取的地图数据
+  mapCache: new Map<string, any>() //缓存以获取的地图数据
 })
 
 // 初始化
@@ -43,13 +43,13 @@ const initMapchart = async () => {
       itemStyle: {
         // 每个省份的颜色
         areaColor: '#2e72bf',
-        borderColor: '#333333',
-      },
+        borderColor: '#333333'
+      }
     },
     legend: {
       left: '5%',
       bottom: '5%',
-      orient: 'vertical', //垂直排列
+      orient: 'vertical' //垂直排列
     }
   }
   // 获取echartRef(map的实例)
@@ -75,23 +75,23 @@ const initMapchart = async () => {
 
 // 绘制省份方法
 const registerMap = (key: string, data: any) => {
-  mapChartRef.value.echart.registerMap(key, data);
+  mapChartRef.value.echart.registerMap(key, data)
   const changeOption = {
     geo: {
-      map: key,
-    },
-  };
-  echartRef.setOption(changeOption);
+      map: key
+    }
+  }
+  echartRef.setOption(changeOption)
 }
 
 // 返回大地图方法
 const revertMap = () => {
   const option = {
     geo: {
-      map: 'china',
-    },
-  };
-  echartRef.setOption(option);
+      map: 'china'
+    }
+  }
+  echartRef.setOption(option)
 }
 
 onMounted(() => {
@@ -100,7 +100,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Echart ref="mapChartRef" :options="(mapChartOptions as EChartsOption)" />
+  <Echart ref="mapChartRef" :options="mapChartOptions as EChartsOption" />
   <ElButton @click="revertMap">返回</ElButton>
 </template>
 

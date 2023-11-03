@@ -50,7 +50,7 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 // // 伽马校正后处理Shader
 // import {GammaCorrectionShader} from 'three/examples/jsm/shaders/GammaCorrectionShader.js'
 // // ShaderPass功能：使用后处理Shader创建后处理通道
-import {ShaderPass} from 'three/examples/jsm/postprocessing/ShaderPass.js'
+import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js'
 // // 创建伽马校正通道
 // const gammaPass= new ShaderPass(GammaCorrectionShader);
 // effectComposer.addPass(gammaPass);
@@ -59,7 +59,7 @@ import {ShaderPass} from 'three/examples/jsm/postprocessing/ShaderPass.js'
 // import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js'
 // const FXAAPass = new ShaderPass( FXAAShader );
 // // `.getPixelRatio()`获取`renderer.setPixelRatio()`设置的值
-// const pixelRatio = renderer.getPixelRatio();//获取设备像素比 
+// const pixelRatio = renderer.getPixelRatio();//获取设备像素比
 // // width、height是canva画布的宽高度
 // FXAAPass.uniforms.resolution.value.x = 1 /(width*pixelRatio);
 // FXAAPass.uniforms.resolution.value.y = 1 /(height*pixelRatio);
@@ -80,12 +80,10 @@ import py from '../assets/py.png'
 import ny from '../assets/ny.png'
 import pz from '../assets/pz.png'
 import nz from '../assets/nz.png'
-const cubeTextureLoader =  new CubeTextureLoader()
-.load([px, nx, py, ny, pz, nz])
+const cubeTextureLoader = new CubeTextureLoader().load([px, nx, py, ny, pz, nz])
 
-
-const rotateData1 = new Vector3(1,1,1)
-const rotateData2 = new Vector3(-1,1,1)
+const rotateData1 = new Vector3(1, 1, 1)
+const rotateData2 = new Vector3(-1, 1, 1)
 
 // threeRef
 const threeRef = ref<ElRef>()
@@ -129,7 +127,7 @@ let clock: Nullable<Clock> = new Clock()
 let stats: Nullable<Stats> = new Stats()
 let statsRef = ref<ElRef>()
 // 球体(还有好多种就不全写了)
-let sphereGeometry: Nullable<SphereGeometry> = new SphereGeometry( 15, 32, 16 )
+let sphereGeometry: Nullable<SphereGeometry> = new SphereGeometry(15, 32, 16)
 // 高光材质
 let meshPhongMaterial: Nullable<MeshPhongMaterial> = new MeshPhongMaterial({
   color: 0x3393f3,
@@ -191,7 +189,6 @@ const sceneInit = () => {
   pointLightHelper = new PointLightHelper(pointLight, 5, 0x67c23a)
   scene.add(pointLightHelper)
 
-
   // 环境光(均匀无方向散布于房间中的光)
   light = new AmbientLight(0x404040)
   scene.add(light)
@@ -217,7 +214,7 @@ const sceneInit = () => {
   // }
 
   // 平行光(不存在光源点,沿设置的方向发射)
-  directionalLight = new DirectionalLight( 0xffffff, 5)
+  directionalLight = new DirectionalLight(0xffffff, 5)
   directionalLight.position.set(60, 60, 120)
   // 与上面设置的位置两点组成一条直线,从上面的位置射向下面的位置
   // 可以将目标设置为场景中的其他对象（任意拥有 position 属性的对象）
@@ -236,7 +233,7 @@ const sceneInit = () => {
   // 对象的独自平移所以中心不移动
   // translate这个才是真正的位置上的移动, position不是
   // geometry.translate(50, 50, 50)
-  
+
   // 作为组对象的整体移动,所以中心一起移动
   // mesh.position.x = 50
   // mesh.position.y = 50
@@ -290,7 +287,7 @@ const rendererInit = () => {
 
   // 放到页面容器上
   threeRef.value?.appendChild(renderer!.domElement)
-  
+
   // 后处理的操作
   effectComposer = new EffectComposer(renderer)
   const renderPass = new RenderPass(scene!, camera!)
@@ -301,7 +298,7 @@ const rendererInit = () => {
   const outlinePass = new OutlinePass(v2, scene!, camera!)
   outlinePass.selectedObjects = [mesh!]
   effectComposer.addPass(outlinePass)
-  // 模型描边颜色，默认白色         
+  // 模型描边颜色，默认白色
   outlinePass.visibleEdgeColor.set(0xffff00)
   // 高亮发光描边厚度(散发性)
   outlinePass.edgeThickness = 4
@@ -371,8 +368,8 @@ const render = () => {
   // }
 
   if (obj.rotateY) {
-    mesh!.rotation.x += 0.005;
-	  mesh!.rotation.y += 0.005;
+    mesh!.rotation.x += 0.005
+    mesh!.rotation.y += 0.005
   }
 
   // 如果使用了后处理器那就应该使用后处理器的渲染
@@ -390,7 +387,7 @@ const guiRender = () => {
   guiRef.value?.appendChild(gui!.domElement)
   gui!.domElement.style.position = 'inherit'
   // step拖动的步长
-  gui!.add(light!, 'intensity', 0 , 10).name('环境光强度').step(0.1)
+  gui!.add(light!, 'intensity', 0, 10).name('环境光强度').step(0.1)
   xyz.add(mesh!.position, 'x', -100, 100).onChange((value) => {
     mesh!.position.z = value
   })
@@ -400,7 +397,7 @@ const guiRender = () => {
     centre: 0,
     right: 100
   })
-  gui!.addColor({color:0x00ffff}, 'color').onChange((value) => {
+  gui!.addColor({ color: 0x00ffff }, 'color').onChange((value) => {
     material!.color.set(value)
   })
   gui!.add(obj, 'rotateY').name('旋转')

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, unref, computed, watch } from 'vue'
+import { ref, unref, computed, watch, toRefs } from 'vue'
 import { ElInput } from 'element-plus'
 import ProjectTypes from '@/utils/propTypes'
 import { zxcvbn } from '@zxcvbn-ts/core'
@@ -12,7 +12,8 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 
 // 输入框的值
-const valueRef = ref(props.modelValue)
+const { modelValue } = toRefs(props)
+const valueRef = ref(modelValue.value)
 
 // valueRef和modelValue之间的相互更新,解决多个input的同步更新问题
 watch(
@@ -39,7 +40,7 @@ const getPasswordStrength = computed(() => {
 </script>
 
 <template>
-  <ElInput v-model="valueRef" show-password></ElInput>
+  <ElInput v-model="valueRef" show-password />
   <div class="passwordStrength relative h-1.5 mt-2.5 mb-1.5 mr-auto ml-auto">
     <div class="passwordStrengthBlock" :data-score="getPasswordStrength"></div>
   </div>
@@ -78,7 +79,9 @@ const getPasswordStrength = computed(() => {
     height: inherit;
     background-color: transparent;
     border-radius: inherit;
-    transition: width 0.5s ease-in-out, background 0.25s;
+    transition:
+      width 0.5s ease-in-out,
+      background 0.25s;
 
     &[data-score='0'] {
       width: 20%;

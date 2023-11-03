@@ -18,7 +18,7 @@ const R = 10
 // 分段数量
 const N = 50
 // 两个相邻点间隔弧度
-const sp = 2 * Math.PI / N
+const sp = (2 * Math.PI) / N
 // 半圆弧
 // const sp = 1 * Math.PI / N
 
@@ -37,12 +37,12 @@ const arr = []
 // }
 
 for (let i = 0; i < N; i++) {
-    // 当前点弧度
-    const angle =  sp * i
-    // 以坐标原点为中心，在XOY平面上生成圆弧上的顶点数据
-    const x = R * Math.cos(angle)
-    const y = R * Math.sin(angle)
-    arr.push(x, y, 0)
+  // 当前点弧度
+  const angle = sp * i
+  // 以坐标原点为中心，在XOY平面上生成圆弧上的顶点数据
+  const x = R * Math.cos(angle)
+  const y = R * Math.sin(angle)
+  arr.push(x, y, 0)
 }
 
 // 类型数组创建顶点数据
@@ -50,18 +50,18 @@ const vertices = new Float32Array(arr)
 
 // 创建属性缓冲区对象
 // 3个为一组，表示一个顶点的xyz坐标
-const attribue = new BufferAttribute(vertices, 3); 
+const attribue = new BufferAttribute(vertices, 3)
 // 设置几何体attributes属性的位置属性
-geometry.attributes.position = attribue;
+geometry.attributes.position = attribue
 
 // 线材质
 const material = new LineBasicMaterial({
-    color: 0xff0000 //线条颜色
-});
+  color: 0xff0000 //线条颜色
+})
 // 创建线模型对象   构造函数：Line、LineLoop、LineSegments
 // 使用Line渲染圆弧线会有一个缺口，不完全闭合，使用LineLoop可以封闭最后缺口。
 // 或者多循环一段
-// const line = new Line(geometry, material); 
+// const line = new Line(geometry, material);
 // const line = new LineLoop(geometry, material)//线条模型对象
 
 // const pointsArr = [
@@ -98,12 +98,12 @@ const arc = new EllipseCurve(0, 0, 10, 5)
 // 斜率变化快的位置返回的顶点更密集。
 
 // const pointsArr = arc.getPoints(50); //分段数50，返回51个顶点
-const pointsArr = arc.getSpacedPoints(50);
+const pointsArr = arc.getSpacedPoints(50)
 
-console.log('曲线上获取坐标',pointsArr);
+console.log('曲线上获取坐标', pointsArr)
 
-const geometry2 = new BufferGeometry();
-geometry2.setFromPoints(pointsArr);
+const geometry2 = new BufferGeometry()
+geometry2.setFromPoints(pointsArr)
 
 // 点材质
 const material2 = new PointsMaterial({
@@ -111,5 +111,5 @@ const material2 = new PointsMaterial({
   size: 1 //点对象像素尺寸
 })
 // 点模型
-const model = new Points(geometry2, material2);
+const model = new Points(geometry2, material2)
 export { model }

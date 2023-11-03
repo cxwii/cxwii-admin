@@ -30,18 +30,21 @@ const geometry = new BufferGeometry()
 // 类型化数组(Float32Array)创建顶点数据
 // three规定只能用Float32Array来创建
 const vertices = new Float32Array([
-    0, 0, 0, // 顶点1坐标
-    80, 0, 0, // 顶点2坐标
-    80, 80, 0, // 顶点3坐标
-    0, 80, 0, // 顶点4坐标
+  0,
+  0,
+  0, // 顶点1坐标
+  80,
+  0,
+  0, // 顶点2坐标
+  80,
+  80,
+  0, // 顶点3坐标
+  0,
+  80,
+  0 // 顶点4坐标
 ])
 
-const uvs = new Float32Array([
-  0, 0,
-  1, 0,
-  1, 1,
-  0, 1
-])
+const uvs = new Float32Array([0, 0, 1, 0, 1, 1, 0, 1])
 
 geometry.attributes.uvs = new BufferAttribute(uvs, 2)
 
@@ -75,27 +78,19 @@ geometry.attributes.position = attribue
 
 // #region (2)
 // 类型化数组创建顶点数据(用顶点分组的方式来提高性能的简易性)
-const indexes = new Uint16Array([
-  0, 1, 2,
-  0, 2, 3
-])
+const indexes = new Uint16Array([0, 1, 2, 0, 2, 3])
 
 geometry.index = new BufferAttribute(indexes, 1)
 
 // 法线(平面指向,这里是4个顶点的法线,都指向z正轴上)
-const normals = new Float32Array([
-  0, 0, 1,
-  0, 0, 1,
-  0, 0, 1,
-  0, 0, 1
-])
+const normals = new Float32Array([0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1])
 geometry.attributes.normal = new BufferAttribute(normals, 3)
 
 // MeshLambertMaterial(使用漫反射材质情况下,不设置法线即使有光源也无法看见物体)
 const material = new MeshLambertMaterial({
-    color: 0x0000ff,
-    side: DoubleSide,
-    wireframe: true
+  color: 0x0000ff,
+  side: DoubleSide,
+  wireframe: true
 })
 // 网格模型都是三个点组成一个三角形,然后由众多三角形组成物体
 const model = new Mesh(geometry, material)
@@ -150,23 +145,21 @@ model.name = '测试模型1'
 // traverse遍历每个模型
 model.traverse((obj: any) => {
   console.log('obj.name :>> ', obj.name)
-  console.log('isMesh :>> ', obj.isMesh);
+  console.log('isMesh :>> ', obj.isMesh)
 })
 
 // 通过名字获取对象getObjectByName
-console.log('model :>> ', model.getObjectByName('测试模型1'));
+console.log('model :>> ', model.getObjectByName('测试模型1'))
 
 // 世界坐标会受子坐标加上父坐标,所以要用getWorldPosition来获取世界坐标
 // 子坐标也可以通过AxesHelper来添加辅助观察的子坐标系
 const WorldV3 = new Vector3()
 model.getWorldPosition(WorldV3)
-console.log('世界坐标 :>> ', WorldV3);
+console.log('世界坐标 :>> ', WorldV3)
 </script>
 
 <template>
   <div ref="threeRef" class="h-full w-full"></div>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

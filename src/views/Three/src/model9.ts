@@ -3,7 +3,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import ferrari from '../assets/ferrari.glb'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 const loader = new GLTFLoader()
-const dracoLoader = new DRACOLoader ()
+const dracoLoader = new DRACOLoader()
 dracoLoader.setDecoderPath('/public/draco/')
 loader.setDRACOLoader(dracoLoader)
 // 1
@@ -15,7 +15,7 @@ loader.setDRACOLoader(dracoLoader)
 // });
 
 // // 圆柱
-// // const geometry = new THREE.CylinderGeometry(60, 60, 100, 30);
+// // const geometry = new THREE.CylinderGeometry(60, 60, 100, 30)
 
 // const mesh = new THREE.Mesh(geometry, material);
 
@@ -32,30 +32,28 @@ loader.setDRACOLoader(dracoLoader)
 
 // const model = mesh
 
-
-
 // 2给模型设置描边
 const model = new THREE.Group()
 loader.load(ferrari, function (gltf) {
   // 递归遍历设置每个模型的材质，同时设置每个模型的边线
   gltf.scene.traverse(function (obj: any) {
-      if (obj.isMesh) {
-          // 模型材质重新设置
-          obj.material = new THREE.MeshLambertMaterial({
-              color: 0x004444,
-              transparent: true,
-              opacity: 0.5,
-          });
-          // 模型边线设置
-          const edges = new THREE.EdgesGeometry(obj.geometry);
-          const edgesMaterial = new THREE.LineBasicMaterial({
-              color: 0x00ffff,
-          })
-          const line = new THREE.LineSegments(edges, edgesMaterial);
-          obj.add(line);
-      }
-  });
-  model.add(gltf.scene);
+    if (obj.isMesh) {
+      // 模型材质重新设置
+      obj.material = new THREE.MeshLambertMaterial({
+        color: 0x004444,
+        transparent: true,
+        opacity: 0.5
+      })
+      // 模型边线设置
+      const edges = new THREE.EdgesGeometry(obj.geometry)
+      const edgesMaterial = new THREE.LineBasicMaterial({
+        color: 0x00ffff
+      })
+      const line = new THREE.LineSegments(edges, edgesMaterial)
+      obj.add(line)
+    }
+  })
+  model.add(gltf.scene)
 })
 
 export { model }

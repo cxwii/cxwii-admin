@@ -1,10 +1,4 @@
-import {
-  Scene,
-  AmbientLight,
-  AxesHelper,
-  PerspectiveCamera,
-  WebGLRenderer
-} from 'three'
+import { Scene, AmbientLight, AxesHelper, PerspectiveCamera, WebGLRenderer } from 'three'
 
 // 场景
 const scene = new Scene()

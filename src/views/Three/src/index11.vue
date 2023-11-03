@@ -20,18 +20,16 @@ loader.load(Horse, (gltf: any) => {
   console.log('动画数据', gltf.animations)
 
   // 访问人体网格模型
-  const mesh = gltf.scene.children[0]; 
-  console.log('mesh :>> ', mesh);
+  const mesh = gltf.scene.children[0]
+  console.log('mesh :>> ', mesh)
   // 获取所有变形目标的顶点数据
   const tArr = mesh.geometry.morphAttributes.position
-  console.log('所有变形目标', tArr);
-  console.log('所有权重', mesh.morphTargetInfluences);
+  console.log('所有变形目标', tArr)
+  console.log('所有权重', mesh.morphTargetInfluences)
 
-
-  const clip = gltf.animations[0];
-  const duration = clip.duration;//默认持续时间
+  const clip = gltf.animations[0]
+  const duration = clip.duration //默认持续时间
   // console.log('动画时间', duration);
-  
 
   // 动画对应于材质，更换材质会导致动画的失效
   // gltf.scene.traverse((obj: any) => {
@@ -51,11 +49,11 @@ loader.load(Horse, (gltf: any) => {
   // })
 
   //包含帧动画的模型作为参数创建一个播放器
-  mixer = new THREE.AnimationMixer(gltf.scene);
+  mixer = new THREE.AnimationMixer(gltf.scene)
   //  获取gltf.animations[0]的第一个clip动画对象
-  clipAction = mixer.clipAction(gltf.animations[0]);//创建动画clipAction对象
+  clipAction = mixer.clipAction(gltf.animations[0]) //创建动画clipAction对象
   // clipAction.play();//播放动画
-  
+
   model.add(gltf.scene)
 })
 
@@ -85,23 +83,25 @@ nextTick(() => {
 
 const play = () => {
   //.play()控制动画播放，默认循环播放
-  clipAction.play();
+  clipAction.play()
 }
 
 const stop = () => {
   //动画停止结束，回到开始状态,不是暂停
-  clipAction.stop();
+  clipAction.stop()
 }
 
 const pausedRef = ref('paused')
 const paused = () => {
   // AnimationAction.paused默认值false，设置为true，可以临时暂停动画
-  if (clipAction.paused) {//暂停状态
-    clipAction.paused = false;//切换为播放状态
-    pausedRef.value = 'paused';// 如果改变为播放状态，按钮文字设置为“暂停”
-  } else {//播放状态
-    clipAction.paused = true;//切换为暂停状态
-    pausedRef.value = 'continue';// 如果改变为暂停状态，按钮文字设置为“继续”
+  if (clipAction.paused) {
+    //暂停状态
+    clipAction.paused = false //切换为播放状态
+    pausedRef.value = 'paused' // 如果改变为播放状态，按钮文字设置为“暂停”
+  } else {
+    //播放状态
+    clipAction.paused = true //切换为暂停状态
+    pausedRef.value = 'continue' // 如果改变为暂停状态，按钮文字设置为“继续”
   }
 }
 
@@ -112,7 +112,6 @@ const previous = () => {
 const nextRef = () => {
   clipAction.time += 0.1
 }
-
 </script>
 
 <template>
@@ -124,6 +123,4 @@ const nextRef = () => {
   <el-button @click="nextRef">nextRef</el-button>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

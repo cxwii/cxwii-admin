@@ -10,7 +10,7 @@ const passwordValue = ref('')
 </script>
 
 <template>
-  <PasswordStrength v-model="passwordValue"></PasswordStrength>
+  <PasswordStrength v-model="passwordValue" />
 </template>
 
 <style scoped lang="scss"></style>

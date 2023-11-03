@@ -9,8 +9,6 @@ import * as THREE from 'three'
 //   new THREE.Vector2(50, -60)
 // ];
 
-
-
 // // 通过三个点定义一个二维样条曲线
 // const curve = new THREE.SplineCurve([
 //   new THREE.Vector2(50, 60),
@@ -18,16 +16,12 @@ import * as THREE from 'three'
 //   new THREE.Vector2(50, -60)
 // ]);
 // //曲线上获取点,作为旋转几何体的旋转轮廓
-// const pointsArr = curve.getPoints(50); 
+// const pointsArr = curve.getPoints(50);
 // console.log('旋转轮廓数据',pointsArr);
-
-
 
 // // LatheGeometry：pointsArr轮廓绕y轴旋转生成几何体曲面
 // // pointsArr：旋转几何体的旋转轮廓形状
 // const geometry = new THREE.LatheGeometry(pointsArr);
-
-
 
 // 2
 // 一组二维向量表示一个多边形轮廓坐标
@@ -41,9 +35,6 @@ import * as THREE from 'three'
 // // Shape几何轮廓
 // const shape = new THREE.Shape(pointsArr);
 // const geometry = new THREE.ShapeGeometry(shape);
-
-
-
 
 // 3
 // // Shape表示一个平面多边形轮廓
@@ -73,8 +64,6 @@ import * as THREE from 'three'
 //   }
 // );
 
-
-
 // // 4(将轮廓通过一条轨迹来形成3d几何)
 // // 扫描轮廓：Shape表示一个平面多边形轮廓
 // const shape = new THREE.Shape([
@@ -102,8 +91,6 @@ import * as THREE from 'three'
 //   }
 // );
 
-
-
 // // 5
 // // 绘制一个矩形
 // // moveTo移动点,lineTo也是移动点但这个指定是拉一条直线移动
@@ -113,7 +100,6 @@ import * as THREE from 'three'
 // // shape.lineTo(100, 0);//.currentPoint变为(100, 0)
 // // shape.lineTo(100, 100);//.currentPoint变为(100, 100)
 // // shape.lineTo(10, 100);//.currentPoint变为(10, 100)
-
 
 // // // 下面代码绘制了一个矩形+扇形的轮廓，圆心在(100, 0),半径50。
 // // const shape = new THREE.Shape();
@@ -145,41 +131,37 @@ import * as THREE from 'three'
 // //   curveSegments:20,//shape曲线对应曲线细分数
 // // });
 
-
-
 // 6
-const shape = new THREE.Shape();
+const shape = new THREE.Shape()
 // .lineTo(100, 0)绘制直线线段，线段起点：.currentPoint，线段结束点：(100,0)
-shape.lineTo(100, 0);
-shape.lineTo(100, 100);
-shape.lineTo(0, 100);
+shape.lineTo(100, 0)
+shape.lineTo(100, 100)
+shape.lineTo(0, 100)
 
 // Shape内孔轮廓
-const path1 = new THREE.Path();// 圆孔1
-path1.absarc(20, 20, 10, 0, 2 * Math.PI, false);
-const path2 = new THREE.Path();// 圆孔2
-path2.absarc(80, 20, 20, 0, 2 * Math.PI, false);
-const path3 = new THREE.Path();// 方形孔
-path3.moveTo(50, 50);
-path3.lineTo(80, 50);
-path3.lineTo(80, 80);
-path3.lineTo(50, 80);
+const path1 = new THREE.Path() // 圆孔1
+path1.absarc(20, 20, 10, 0, 2 * Math.PI, false)
+const path2 = new THREE.Path() // 圆孔2
+path2.absarc(80, 20, 20, 0, 2 * Math.PI, false)
+const path3 = new THREE.Path() // 方形孔
+path3.moveTo(50, 50)
+path3.lineTo(80, 50)
+path3.lineTo(80, 80)
+path3.lineTo(50, 80)
 
-shape.holes.push(path1, path2,path3);
+shape.holes.push(path1, path2, path3)
 
 const geometry = new THREE.ExtrudeGeometry(shape, {
-  depth:20,//拉伸长度
-  bevelEnabled:false,//禁止倒角
-  curveSegments:50,
-});
-
-
+  depth: 20, //拉伸长度
+  bevelEnabled: false, //禁止倒角
+  curveSegments: 50
+})
 
 const material = new THREE.MeshLambertMaterial({
-  side: THREE.DoubleSide,//双面显示看到管道内壁
+  side: THREE.DoubleSide //双面显示看到管道内壁
   // wireframe:true// 渲染成线框
-});
+})
 
-const model = new THREE.Mesh( geometry, material );
+const model = new THREE.Mesh(geometry, material)
 
 export { model }

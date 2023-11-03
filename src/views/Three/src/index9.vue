@@ -34,8 +34,8 @@ nextTick(() => {
 
   // 把这个div变成一个three对象
   const tag = new CSS3DSprite(tagRef.value)
-  
-  tag.position.set(0,50,0)
+
+  tag.position.set(0, 50, 0)
 
   // 创建一个CSS2渲染器CSS2DRenderer
   const css2Renderer = new CSS3DRenderer()
@@ -45,9 +45,8 @@ nextTick(() => {
   threeRef.value.appendChild(css2Renderer.domElement)
   // 元素出现遮挡可以css2Renderer.domElement.style.pointerEvents = 'none'
   css2Renderer.domElement.style.pointerEvents = 'none'
-  css2Renderer.domElement.style.position = 'absolute';
-  css2Renderer.domElement.style.top = '0px';
-
+  css2Renderer.domElement.style.position = 'absolute'
+  css2Renderer.domElement.style.top = '0px'
 
   // 强制修改他们的层级
   // renderer.domElement.style.zIndex = '1'
@@ -66,7 +65,7 @@ nextTick(() => {
   scene.add(meshs)
 
   // 射线拾取
-  threeRef.value.addEventListener('click',(event: any) => {
+  threeRef.value.addEventListener('click', (event: any) => {
     const px = event.offsetX
     const py = event.offsetY
     const x = (px / 500) * 2 - 1
@@ -82,7 +81,7 @@ nextTick(() => {
   })
 
   // 缩放标签
-  tag.scale.set(0.5,0.5,1)
+  tag.scale.set(0.5, 0.5, 1)
 
   // css2Renderer的渲染
   css2Renderer.render(scene, camera)
@@ -90,7 +89,6 @@ nextTick(() => {
   // 原渲染
   threeRef.value.appendChild(renderer.domElement)
   renderer.render(scene, camera)
-  
 
   // css2Renderer中使用控制器会导致点击事件失效
   // 解决办法
@@ -121,12 +119,12 @@ const test = () => {
       cursor: pointer;
       pointer-events: auto;
       backface-visibility: hidden;
-      pointer-events: auto"
-    @click="test">
-      标签
+      pointer-events: auto;
+    "
+    @click="test"
+  >
+    标签
   </div>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

@@ -37,32 +37,27 @@ const texture = texLoader.load(earth)
 // 长方形模型
 const geometry = new BufferGeometry()
 const vertices = new Float32Array([
-    0, 0, 0, // 顶点1坐标
-    160, 0, 0, // 顶点2坐标
-    160, 80, 0, // 顶点3坐标
-    0, 80, 0, // 顶点4坐标
+  0,
+  0,
+  0, // 顶点1坐标
+  160,
+  0,
+  0, // 顶点2坐标
+  160,
+  80,
+  0, // 顶点3坐标
+  0,
+  80,
+  0 // 顶点4坐标
 ])
 const attribue = new BufferAttribute(vertices, 3)
 geometry.attributes.position = attribue
-const indexes = new Uint16Array([
-  0, 1, 2,
-  0, 2, 3
-])
+const indexes = new Uint16Array([0, 1, 2, 0, 2, 3])
 geometry.index = new BufferAttribute(indexes, 1)
-const normals = new Float32Array([
-  0, 0, 1,
-  0, 0, 1,
-  0, 0, 1,
-  0, 0, 1
-])
+const normals = new Float32Array([0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1])
 geometry.attributes.normal = new BufferAttribute(normals, 3)
 // 设置uv顶点(0~1)
-const uvs = new Float32Array([
-  0, 0,
-  1, 0,
-  1, 1,
-  0, 1
-])
+const uvs = new Float32Array([0, 0, 1, 0, 1, 1, 0, 1])
 geometry.attributes.uv = new BufferAttribute(uvs, 2)
 
 const material = new MeshLambertMaterial({

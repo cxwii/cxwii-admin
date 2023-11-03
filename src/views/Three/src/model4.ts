@@ -1,7 +1,4 @@
-import {
-  Group,
-  MeshPhysicalMaterial
-} from 'three'
+import { Group, MeshPhysicalMaterial } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 // 一些glb文件进行过压缩需要这样使用它去解码
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
@@ -10,7 +7,7 @@ import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js'
 
 const mesh = new Group()
 const loader = new GLTFLoader()
-const dracoLoader = new DRACOLoader ()
+const dracoLoader = new DRACOLoader()
 
 dracoLoader.setDecoderPath('/public/draco/')
 loader.setDRACOLoader(dracoLoader)
@@ -59,17 +56,20 @@ const meshPhongMaterial = new MeshPhysicalMaterial({
 // ).name('透光率')
 
 // any大法好(正规写法应该是想model2里面那样标好类型的,因为太麻烦就先any吧)
-loader.load(model, (gltf: any) => {
-  mesh.add(gltf.scene)
-  // console.log('object :>> ', gltf.scene.getObjectByName('body'))
-  // meshPhongMaterial.color = gltf.scene.getObjectByName('body').material.color
-  // gltf.scene.getObjectByName('body').material = meshPhongMaterial
-  meshPhongMaterial.color = gltf.scene.getObjectByName('glass').material.color
-  gltf.scene.getObjectByName('glass').material = meshPhongMaterial
-  
-},(xhr) => {
-  // console.log('xhr :>> ', xhr);
-  // console.log('加载进度 :>> ', xhr.loaded / xhr.total);
-})
+loader.load(
+  model,
+  (gltf: any) => {
+    mesh.add(gltf.scene)
+    // console.log('object :>> ', gltf.scene.getObjectByName('body'))
+    // meshPhongMaterial.color = gltf.scene.getObjectByName('body').material.color
+    // gltf.scene.getObjectByName('body').material = meshPhongMaterial
+    meshPhongMaterial.color = gltf.scene.getObjectByName('glass').material.color
+    gltf.scene.getObjectByName('glass').material = meshPhongMaterial
+  },
+  (xhr) => {
+    // console.log('xhr :>> ', xhr);
+    // console.log('加载进度 :>> ', xhr.loaded / xhr.total);
+  }
+)
 
 export { mesh }

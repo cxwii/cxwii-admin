@@ -1,9 +1,4 @@
-import {
-  Group,
-  SkinnedMesh,
-  Vector3,
-  MeshStandardMaterial
-} from 'three'
+import { Group, SkinnedMesh, Vector3, MeshStandardMaterial } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import model from '../assets/Xbot.glb'
 
@@ -12,7 +7,6 @@ const mesh = new Group()
 const loader = new GLTFLoader()
 // ui给的模型可能会有材质共享问题,要注意
 loader.load(model, (gltf) => {
-
   console.log('gltf :>> ', gltf.scene)
   console.log('Beta_Joints :>> ', gltf.scene.getObjectByName('Beta_Joints'))
 

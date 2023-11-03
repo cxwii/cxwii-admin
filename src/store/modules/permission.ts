@@ -33,7 +33,7 @@ export const permissionStore = defineStore('permission', {
     // 提供addRouters和routers来渲染路由
     generateRoutes(
       type: 'rdRouter' | 'codeRouter' | 'noneRouter',
-      routers?: string[] | AppRouteRecordRaw[] | object,
+      routers?: string[] | AppRouteRecordRaw[] | object
     ): Promise<unknown> {
       return new Promise<void>((resolve) => {
         let routersMap: AppRouteRecordRaw[] = []
@@ -42,7 +42,10 @@ export const permissionStore = defineStore('permission', {
           // 处理渲染生成后端的传递的路由并生成表
           routersMap = generateRoutesFn1(routers as AppCustomRouteRecordRaw[])
         } else if (type === 'codeRouter') {
-          routersMap = generateRoutesFn2(asyncRouter as AppRouteRecordRaw[], routers as AppRouteTreeNode[])
+          routersMap = generateRoutesFn2(
+            asyncRouter as AppRouteRecordRaw[],
+            routers as AppRouteTreeNode[]
+          )
         } else {
           routersMap = cloneDeep(asyncRouter)
         }

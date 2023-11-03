@@ -4,7 +4,7 @@ import path from 'path'
 import VueJsx from '@vitejs/plugin-vue-jsx'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import EslintPlugin from 'vite-plugin-eslint'
-import VueI18nPlugin from "@intlify/unplugin-vue-i18n/vite"
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 
 export default defineConfig({
   plugins: [
@@ -24,10 +24,10 @@ export default defineConfig({
       include: [path.resolve(__dirname, 'src/locales/**')]
     }),
     // eslint
-    // EslintPlugin({
-    //   cache: false,
-    //   include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx'] // 检查的文件
-    // })
+    EslintPlugin({
+      cache: false,
+      include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx'] // 检查的文件
+    })
   ],
   resolve: {
     // 路径别名
@@ -46,7 +46,7 @@ export default defineConfig({
       '/api': {
         target: 'http://127.0.0.1:9528',
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, '')
+        rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
   },

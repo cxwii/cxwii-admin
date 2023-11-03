@@ -25,8 +25,7 @@ import py from '../assets/py.png'
 import ny from '../assets/ny.png'
 import pz from '../assets/pz.png'
 import nz from '../assets/nz.png'
-const cubeTextureLoader =  new CubeTextureLoader()
-.load([px, nx, py, ny, pz, nz])
+const cubeTextureLoader = new CubeTextureLoader().load([px, nx, py, ny, pz, nz])
 
 const threeRef = ref()
 const scene = new Scene()
@@ -59,7 +58,7 @@ const renderer = new WebGLRenderer({
   // 所以还是给一点间隔才行
   logarithmicDepthBuffer: true,
   // 要下载必须打开这个
-  preserveDrawingBuffer:true,
+  preserveDrawingBuffer: true,
   // 背景透明(几种方法)
   alpha: true,
   antialias: true
@@ -82,16 +81,16 @@ nextTick(() => {
   })
 })
 
-const render = () => {  
+const render = () => {
   renderer.render(scene, camera)
   requestAnimationFrame(render)
 }
 // render()
 
-const download =  () => {
+const download = () => {
   const link = document.createElement('a')
   const canvas = renderer.domElement
-  link.href = canvas.toDataURL("image/png")
+  link.href = canvas.toDataURL('image/png')
   link.download = 'three.png'
   link.click()
 }
@@ -100,10 +99,9 @@ const download =  () => {
 <template>
   <div class="relative">
     <button @click="download" class="absolute z-index-10 top-20">下载</button>
-    <div style="width: 50px;height: 50px;background-color: rgb(250, 7, 48);">123</div>
+    <div style="width: 50px; height: 50px; background-color: rgb(250, 7, 48)">123</div>
     <div ref="threeRef" class="h-full w-full absolute top-0"></div>
   </div>
 </template>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

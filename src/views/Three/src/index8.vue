@@ -15,8 +15,6 @@ scene.add(model)
 //   0xff0000
 // ))
 
-
-
 for (let index = 0; index < model.children.length; index++) {
   const element: any = model.children[index]
   element.mySelected = false
@@ -28,14 +26,14 @@ for (let index = 0; index < model.children.length; index++) {
 }
 
 // sprite精灵模型也能拾取,但这里sprite没有traverse所以不能这样改变颜色
-console.log('model :>> ', model);
+console.log('model :>> ', model)
 
 const threeRef = ref()
 nextTick(() => {
   threeRef.value.appendChild(renderer.domElement)
 
   // 射线拾取
-  threeRef.value.addEventListener('click',(event: any) => {
+  threeRef.value.addEventListener('click', (event: any) => {
     const px = event.offsetX
     const py = event.offsetY
     //屏幕坐标px、py转标准设备坐标x、y
@@ -44,16 +42,15 @@ nextTick(() => {
     const y = -(py / 500) * 2 + 1
     console.log('标准坐标 :>> ', x, y)
 
-
     // 射线投射器Raycaster
     const raycaster = new THREE.Raycaster()
-    
+
     //.setFromCamera()计算射线投射器`Raycaster`的射线属性.ray
     // 形象点说就是在点击位置创建一条射线，射线穿过的模型代表选中
     raycaster.setFromCamera(new THREE.Vector2(x, y), camera)
 
     const intersects = raycaster.intersectObjects(model.children)
-    console.log("射线器返回的对象", intersects);
+    console.log('射线器返回的对象', intersects)
 
     // intersects.length大于0说明，说明选中了模型
     if (intersects.length > 0) {
@@ -83,7 +80,6 @@ nextTick(() => {
       }
     }
 
-
     renderer.render(scene, camera)
   })
 
@@ -99,6 +95,4 @@ nextTick(() => {
   <div ref="threeRef" class="h-full w-full"></div>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

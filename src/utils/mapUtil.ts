@@ -38,7 +38,7 @@ const name2pinyin: Mapping = {
   新疆: 'xinjiang',
   西藏: 'xizang',
   云南: 'yunnan',
-  浙江: 'zhejiang',
+  浙江: 'zhejiang'
 }
 
 // 动态导入不知道为什么无法使用路径别名,只有用这种笨比方法写了
@@ -130,6 +130,6 @@ export const getProvinceMapInfo = (arg: string) => {
   const path = name2pinyin[arg]
   return {
     key: name2pinyin[arg],
-    path: path,
-  };
+    path: path
+  }
 }

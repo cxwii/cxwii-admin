@@ -17,7 +17,7 @@ loader.load(Xbot, (gltf: any) => {
   model.add(skeletonHelper)
   // 获取骨骼
   const bones = gltf.scene.getObjectByName('Beta_Surface')
-  console.log('SkinnedMesh :>> ', bones);
+  console.log('SkinnedMesh :>> ', bones)
   console.log('骨骼 :>> ', bones.skeleton.bones)
   // 获取左手
   const LeftForeArm = gltf.scene.getObjectByName('mixamorigLeftArm')

@@ -15,7 +15,6 @@ scene.background = cubeTextureLoader
 
 scene.add(model)
 
-
 // // 聚光源
 // // 0xffffff:光源颜色
 // // 1.0：光照强度intensity
@@ -37,7 +36,6 @@ scene.add(model)
 // const spotLightHelper = new THREE.SpotLightHelper(spotLight,0xffffff)
 // scene.add(spotLightHelper);
 
-
 // 2
 // 阴影的计算
 // 先是模型本身, 光源, 承载阴影的模型(就是地板), 渲染器
@@ -45,10 +43,10 @@ scene.add(model)
 // 然后阴影是一个正投影摄像机,所以要给它设置范围,也就是阴影会在那个范围内渲染
 // 这个属性在directionalLight.shadow.camera里就可以拿到
 // 平行光
-const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1)
 // 平行光设置产生阴影的光源对象,开启光源阴影的计算功能
-directionalLight.castShadow = true;
-directionalLight.position.set(100, 100, 100);
+directionalLight.castShadow = true
+directionalLight.position.set(100, 100, 100)
 scene.add(directionalLight)
 
 // 模型加载的话可以这样所有Mesh都批量设置.castShadow和.receiveShadow属性
@@ -67,10 +65,10 @@ const planMaterial = new THREE.MeshPhongMaterial({ color: 0x808080, side: THREE.
 // 平面
 const plan = new THREE.Mesh(planGeometry, planMaterial)
 plan.position.set(0, -10, 0)
-plan.rotation.x = - Math.PI / 2
+plan.rotation.x = -Math.PI / 2
 scene.add(plan)
 // 设置接收阴影的投影面
-plan.receiveShadow = true;
+plan.receiveShadow = true
 // 渲染器
 const renderer = new THREE.WebGLRenderer({
   antialias: true
@@ -78,7 +76,7 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(500, 500)
 // 设置渲染器，允许光源阴影渲染
-renderer.shadowMap.enabled = true;
+renderer.shadowMap.enabled = true
 
 // 模型表面产生条纹影响渲染效果，可以改变.shadowMap.type默认值优化
 // 更换阴影贴图的算法
@@ -90,35 +88,32 @@ renderer.shadowMap.enabled = true;
 // renderer.shadowMap.type = THREE.VSMShadowMap;
 
 // 查看平行光阴影相机属性
-console.log('阴影相机属性', directionalLight.shadow.camera);
+console.log('阴影相机属性', directionalLight.shadow.camera)
 // 可视化平行光阴影对应的正投影相机对象
-const cameraHelper = new THREE.CameraHelper(directionalLight.shadow.camera);
-scene.add(cameraHelper);
+const cameraHelper = new THREE.CameraHelper(directionalLight.shadow.camera)
+scene.add(cameraHelper)
 
 // 设置三维场景计算阴影的范围
 // 超出这个范围就不会再计算阴影了,所以应该和场景相机的范围一致
-directionalLight.shadow.camera.left = -100;
-directionalLight.shadow.camera.right = 100;
-directionalLight.shadow.camera.top = 100;
-directionalLight.shadow.camera.bottom = -100;
-directionalLight.shadow.camera.near = 0.5;
-directionalLight.shadow.camera.far = 1000;
+directionalLight.shadow.camera.left = -100
+directionalLight.shadow.camera.right = 100
+directionalLight.shadow.camera.top = 100
+directionalLight.shadow.camera.bottom = -100
+directionalLight.shadow.camera.near = 0.5
+directionalLight.shadow.camera.far = 1000
 
 // mapSize属性默认512x512
 // 一般用于shadow.camera范围增加导致阴影出现模糊锯齿的时候就把这个值适当增大
-console.log('阴影默认像素', directionalLight.shadow.mapSize);
+console.log('阴影默认像素', directionalLight.shadow.mapSize)
 // directionalLight.shadow.mapSize.set(128,128)
 directionalLight.shadow.mapSize.set(1024 * 1, 1024 * 1)
 
 // 模糊弱化阴影边缘(就是边缘模糊,越大越模糊)
-console.log('.shadow.radius', directionalLight.shadow.radius);
-directionalLight.shadow.radius = 3;
+console.log('.shadow.radius', directionalLight.shadow.radius)
+directionalLight.shadow.radius = 3
 
-const ambient = new THREE.AmbientLight(0xffffff, 0.4);
-scene.add(ambient);
-
-
-
+const ambient = new THREE.AmbientLight(0xffffff, 0.4)
+scene.add(ambient)
 
 // 调试器
 // const gui = new GUI()
@@ -177,9 +172,8 @@ nextTick(() => {
     renderer.render(scene, camera)
   })
 
-  cameraHelper.update();
+  cameraHelper.update()
 })
-
 
 const render = () => {
   renderer.render(scene, camera)

@@ -1,9 +1,4 @@
-import {
-  Mesh,
-  BoxGeometry,
-  MeshStandardMaterial,
-  CubeTextureLoader
-} from 'three'
+import { Mesh, BoxGeometry, MeshStandardMaterial, CubeTextureLoader } from 'three'
 // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 // import model from '../assets/Xbot.glb'
 
@@ -30,7 +25,6 @@ const material = new MeshStandardMaterial({
   metalness: 1.0,
   // 表面粗糙度(0就几乎相当于镜子了,完全镜面反射)
   roughness: 0
-
 })
 
 const mesh = new Mesh(geometry, material)

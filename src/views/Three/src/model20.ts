@@ -1,18 +1,17 @@
 import * as THREE from 'three'
 const model = new THREE.Group()
 
-const Bone1 = new THREE.Bone(); //关节1，用来作为根关节
-const Bone2 = new THREE.Bone(); //关节2
-const Bone3 = new THREE.Bone(); //关节3
-const Bone4 = new THREE.Bone(); //关节4
-const Bone5 = new THREE.Bone(); //关节5
+const Bone1 = new THREE.Bone() //关节1，用来作为根关节
+const Bone2 = new THREE.Bone() //关节2
+const Bone3 = new THREE.Bone() //关节3
+const Bone4 = new THREE.Bone() //关节4
+const Bone5 = new THREE.Bone() //关节5
 
 // 设置关节父子关系   多个骨头关节构成一个树结构
-Bone1.add(Bone2);
-Bone2.add(Bone3);
-Bone3.add(Bone4);
-Bone4.add(Bone5);
-
+Bone1.add(Bone2)
+Bone2.add(Bone3)
+Bone3.add(Bone4)
+Bone4.add(Bone5)
 
 //根关节Bone1默认位置是(0,0,0)
 // Bone2.position.y = 20; //Bone2相对父对象Bone1位置
@@ -33,6 +32,6 @@ Bone4.add(Bone5);
 model.add(Bone1)
 
 // SkeletonHelper会可视化参数模型对象所包含的所有骨骼关节
-const skeletonHelper = new THREE.SkeletonHelper(model);
-model.add(skeletonHelper);
+const skeletonHelper = new THREE.SkeletonHelper(model)
+model.add(skeletonHelper)
 export { model, Bone1, Bone2, Bone3, Bone4, Bone5 }

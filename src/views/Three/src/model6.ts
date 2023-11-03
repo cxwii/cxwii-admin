@@ -46,8 +46,6 @@ import {
 
 // const curve = new QuadraticBezierCurve(p1, p2, p3);
 
-
-
 // // 4
 // // p1、p3轨迹线起始点坐标
 // const p1 = new Vector3(-100, 0, -100);
@@ -62,7 +60,6 @@ import {
 // // 三维样条曲线
 // const curve = new CatmullRomCurve3(arr);
 
-
 // // 5
 // // p1、p3轨迹线起始点坐标
 // const p1 = new Vector3(-100, 0, -100);
@@ -75,45 +72,40 @@ import {
 // // 三维二次贝赛尔曲线
 // const curve = new QuadraticBezierCurve3(p1, p2, p3);
 
-
-
 // 6
-const R = 80;//圆弧半径
-const H = 200;//直线部分高度
+const R = 80 //圆弧半径
+const H = 200 //直线部分高度
 // 直线1
-const line1 = new LineCurve(new Vector2(R, H), new Vector2(R, 0));
+const line1 = new LineCurve(new Vector2(R, H), new Vector2(R, 0))
 // 圆弧
-const arc = new ArcCurve(0, 0, R, 0, Math.PI, true);
+const arc = new ArcCurve(0, 0, R, 0, Math.PI, true)
 // 直线2
-const line2 = new LineCurve(new Vector2(-R, 0), new Vector2(-R, H));
+const line2 = new LineCurve(new Vector2(-R, 0), new Vector2(-R, H))
 
 // CurvePath创建一个组合曲线对象
-const curve = new CurvePath();
+const curve = new CurvePath()
 //line1, arc, line2拼接出来一个U型轮廓曲线，注意顺序
-curve.curves.push(line1, arc, line2);
-
-
+curve.curves.push(line1, arc, line2)
 
 //曲线上获取点
-const pointsArr = curve.getPoints(100) as Vector2[]; 
-const geometry = new BufferGeometry();
+const pointsArr = curve.getPoints(100) as Vector2[]
+const geometry = new BufferGeometry()
 //读取坐标数据赋值给几何体顶点
-geometry.setFromPoints(pointsArr); 
+geometry.setFromPoints(pointsArr)
 // 线材质
 const material = new LineBasicMaterial({
-    color: 0x00fffff
-});
+  color: 0x00fffff
+})
 // 线模型
-const model = new Line(geometry, material);
+const model = new Line(geometry, material)
 
 // 可视化curve.getPoints从曲线上获取的点坐标
 const material2 = new PointsMaterial({
   color: 0xff00ff,
-  size: 10,
-});
+  size: 10
+})
 //点模型对象
-const points = new Points(geometry, material2);
-
+const points = new Points(geometry, material2)
 
 // // 观察辅助点
 // const geometry2 = new BufferGeometry();
@@ -126,8 +118,5 @@ const points = new Points(geometry, material2);
 // const points = new Points(geometry2, material2);
 // // 三个点构成的线条
 // const line2 = new Line(geometry2, new LineBasicMaterial());
-
-
-
 
 export { model, points }

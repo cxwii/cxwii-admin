@@ -75,7 +75,7 @@ const login = async () => {
     } else {
       // 使用一次generateRoutes解决同异步问题导致AddRouters无值问题
       // catch错误了不影响执行,增强兼容性
-      await permissionStore.generateRoutes('noneRouter').catch(() => { })
+      await permissionStore.generateRoutes('noneRouter').catch(() => {})
       // 动态添加可访问路由表(这里添加的是前端静态的表)
       permissionStore.getAddRouters.forEach((route: any) => {
         addRoute(route as RouteRecordRaw)
@@ -98,7 +98,7 @@ const getRole = async () => {
   if (res.status == 200) {
     wsCache.set('roleRouters', res.data)
     // await permissionStore.generateRoutes('rdRouter', res.data).catch(() => { })
-    await permissionStore.generateRoutes('codeRouter', res.data).catch(() => { })
+    await permissionStore.generateRoutes('codeRouter', res.data).catch(() => {})
     permissionStore.getAddRouters.forEach((route: any) => {
       addRoute(route as RouteRecordRaw)
     })
@@ -154,21 +154,39 @@ const returnLogin = () => {
     <div class="i18nIcon cursor-pointer flex flex-row">
       <ElLocaleDropdown />
     </div>
-    <div @click="toDocument" class="loginText cursor-pointer flex items-center text-white text-xl font-bold">
+    <div
+      @click="toDocument"
+      class="loginText cursor-pointer flex items-center text-white text-xl font-bold"
+    >
       cxwii-Admin
     </div>
     <div class="loginPage flex">
       <div
-        class="introduce max-[1100px]:hidden flex flex-col justify-center items-center text-3xl font-medium text-white">
+        class="introduce max-[1100px]:hidden flex flex-col justify-center items-center text-3xl font-medium text-white"
+      >
         <div class="mb-5">{{ t('introduce.introduce1') }}</div>
         <div class="text-2xl font-normal">{{ t('introduce.introduce2') }}</div>
         <div class="text-2xl font-normal">{{ t('introduce.introduce3') }}</div>
       </div>
       <div class="formContainer">
-        <Elform v-if="!isRegister" :is-button="true" :is-Register="isRegister" @on-login="login" @on-register="register"
-          :model="loginFrom" label-position="top" />
-        <Elform v-else :is-button="true" :is-Register="isRegister" @on-to-register="toRegister"
-          @on-return-login="returnLogin" :model="registerFrom" label-position="top" />
+        <Elform
+          v-if="!isRegister"
+          :is-button="true"
+          :is-Register="isRegister"
+          @on-login="login"
+          @on-register="register"
+          :model="loginFrom"
+          label-position="top"
+        />
+        <Elform
+          v-else
+          :is-button="true"
+          :is-Register="isRegister"
+          @on-to-register="toRegister"
+          @on-return-login="returnLogin"
+          :model="registerFrom"
+          label-position="top"
+        />
       </div>
     </div>
   </div>

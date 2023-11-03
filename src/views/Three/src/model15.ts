@@ -25,25 +25,23 @@ const model = new THREE.Group()
 // // sprite.position设置精灵模型在三维空间中的位置坐标
 // sprite.position.set(0,50,0);
 
-
-
 // 2
-const texture = new THREE.TextureLoader().load(raindrop);
+const texture = new THREE.TextureLoader().load(raindrop)
 const spriteMaterial = new THREE.SpriteMaterial({
-    map: texture
-});
+  map: texture
+})
 
 // 循环随机生成雨滴
 for (let i = 0; i < 16000; i++) {
-    // 精灵模型共享材质
-    const sprite = new THREE.Sprite(spriteMaterial);
-    model.add(sprite)
-    sprite.scale.set(1, 1, 1);
-    // 设置精灵模型位置，在长方体空间上上随机分布
-    const x = 1000 * (Math.random() - 0.5);
-    const y = 600 * Math.random();
-    const z = 1000 * (Math.random() - 0.5);
-    sprite.position.set(x, y, z)
+  // 精灵模型共享材质
+  const sprite = new THREE.Sprite(spriteMaterial)
+  model.add(sprite)
+  sprite.scale.set(1, 1, 1)
+  // 设置精灵模型位置，在长方体空间上上随机分布
+  const x = 1000 * (Math.random() - 0.5)
+  const y = 600 * Math.random()
+  const z = 1000 * (Math.random() - 0.5)
+  sprite.position.set(x, y, z)
 }
 
 export { model }

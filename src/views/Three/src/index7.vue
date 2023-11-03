@@ -14,8 +14,6 @@ scene.add(model)
 // camera.position.set(10, 10, 10)
 // camera.lookAt(0, 0, 0)
 
-
-
 // 雨滴下落动画
 // 相机在下雨的场景中，相机会渲染near~far范围的Sprite
 // 距离相机0~near范围不会渲染，小部分Sprite会在相机镜头前经过
@@ -37,19 +35,19 @@ scene.add(model)
 //   requestAnimationFrame(loop);
 // }
 // 根据时间间隔的动画(这种效果更好)
-const clock = new THREE.Clock();
+const clock = new THREE.Clock()
 const loop = () => {
-    // loop()两次执行时间间隔
-    const t = clock.getDelta();
-    model.children.forEach(sprite => {
-        // 雨滴的y坐标每次减t*60
-        sprite.position.y -= t*60;
-        if (sprite.position.y < 0) {
-            sprite.position.y = 600;
-        }
-    });
-    renderer.render(scene, camera)
-    requestAnimationFrame(loop);
+  // loop()两次执行时间间隔
+  const t = clock.getDelta()
+  model.children.forEach((sprite) => {
+    // 雨滴的y坐标每次减t*60
+    sprite.position.y -= t * 60
+    if (sprite.position.y < 0) {
+      sprite.position.y = 600
+    }
+  })
+  renderer.render(scene, camera)
+  requestAnimationFrame(loop)
 }
 
 loop()
@@ -64,13 +62,10 @@ nextTick(() => {
     renderer.render(scene, camera)
   })
 })
-
 </script>
 
 <template>
   <div ref="threeRef" class="h-full w-full"></div>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>
