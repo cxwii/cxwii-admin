@@ -1,6 +1,19 @@
 import request from '@/config/axios'
 import type { useLoginType, useregisterType, deleteUserInfoType, updateUserInfoType } from './types'
 
+// interface Data<T> {
+//   status: number
+//   message: string
+//   data: T
+// }
+
+// 登录
+// 可以这样子去定义请求返回的类型
+// 不过接口要规范才行,我这里接口不规范所以不写了
+// export const loginApi = (data: useLoginType): Promise<Data<number>> => {
+//   return request.post({ url: '/login', data })
+// }
+
 // 登录
 export const loginApi = (data: useLoginType): Promise<any> => {
   return request.post({ url: '/login', data })
