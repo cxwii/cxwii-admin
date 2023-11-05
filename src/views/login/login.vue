@@ -11,6 +11,7 @@ import { UseSvg } from '@/components/UseSvg'
 import { ElMessage } from 'element-plus'
 import { ElLocaleDropdown } from '@/components/ElementPlus/LocaleDropdown'
 import { useI18n } from '@/hooks/web/useI18n'
+import { string } from 'vue-types'
 
 const { t } = useI18n()
 const { push, addRoute } = useRouter()
@@ -63,7 +64,7 @@ const login = async () => {
     }
 
     // 有东西没搞完先写死用前端路由
-    /* 
+    /*
     路由想做两个方案
     一个由后端动态插入(已完成)
     一个权限字段前端过滤(已完成,但还想优化一下)
@@ -139,6 +140,19 @@ const returnLogin = () => {
   isRegister.value = !isRegister.value
 }
 
+// 可以这样去定义ref实例的类型
+const elfRef = ref<InstanceType<typeof Elform>>()
+
+// Required这个将类型中的可选参数变成必选参数
+interface foo {
+  fee?: string
+  fdd: number
+}
+const fff: Required<foo> = {
+  fee: '123',
+  fdd: 123
+}
+
 // 重置登录的初始值
 // const empty = () => {
 //   Object.assign(from, new fromData())
@@ -170,6 +184,7 @@ const returnLogin = () => {
       </div>
       <div class="formContainer">
         <Elform
+          ref="ElformRef"
           v-if="!isRegister"
           :is-button="true"
           :is-Register="isRegister"

@@ -79,6 +79,11 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', resizeHandler)
 })
 
+// defineExpose可以这样给暴露的方法换名字
+// defineExpose({
+//   getfoo: getEchartRef
+// })
+
 defineExpose({
   resizeHandler,
   echart,
