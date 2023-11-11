@@ -5,10 +5,10 @@ import { scene, renderer } from './useThree'
 // import { scene, camera, renderer } from './useThree'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { MapControls } from 'three/examples/jsm/controls/MapControls'
+import { model, path } from './model13'
 const threeRef = ref()
 
 // import { model } from './model12'
-import { model, path } from './model13'
 scene.add(model)
 
 // 1

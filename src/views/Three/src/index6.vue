@@ -4,12 +4,12 @@ import { camera } from './useThree'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import * as THREE from 'three'
 import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js'
+import { model, cubeTextureLoader } from './model14'
 const scene = new THREE.Scene()
 const axesHelper = new THREE.AxesHelper(100)
 scene.add(axesHelper)
 const threeRef = ref()
 
-import { model, cubeTextureLoader } from './model14'
 // 背景环境贴图
 scene.background = cubeTextureLoader
 
