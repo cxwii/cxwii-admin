@@ -50,5 +50,6 @@ export default defineConfig({
       }
     }
   },
+  // three模型的一些文件后缀名
   assetsInclude: ['**/*.glb', '**/*.gltf']
 })
