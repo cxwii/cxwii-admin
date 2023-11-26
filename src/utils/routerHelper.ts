@@ -5,7 +5,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteLocationNormalized, RouteRecordNormalized } from 'vue-router'
 
 /* index默认的根路径 */
-export const index = () => import('@/views/Index/index.vue')
+export const index = () => import('@/views/index/index.vue')
 
 // 导入views页面下的所有.vue文件
 const modules = import.meta.glob('../views/**/*.vue')
