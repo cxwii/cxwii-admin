@@ -1,3 +1,3 @@
-import ElVerticalmenu from './src/VerticalMenu.vue'
+import ElVerticalmenu from './src/verticalMenu.vue'
 
 export { ElVerticalmenu }

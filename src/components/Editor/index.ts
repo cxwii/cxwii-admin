@@ -1,4 +1,4 @@
-import Editor from './src/Editor.vue'
+import Editor from './src/editor.vue'
 import { IDomEditor } from '@wangeditor/editor'
 
 // 导出个异步的IDomEditor类型

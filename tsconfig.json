@@ -6,6 +6,7 @@
     "moduleResolution": "Node",
     "strict": true,
     "jsx": "preserve",
+    "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
@@ -18,7 +19,10 @@
       "@_public/*": ["public/*"]
     },
     "types": [
+      "@intlify/unplugin-vue-i18n/types",
       "vite/client",
+      "element-plus/global",
+      "@types/qrcode",
       "vite-plugin-svg-icons/client"
     ]
   },

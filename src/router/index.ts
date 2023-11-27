@@ -98,7 +98,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           noCache: true,
           code: '002001'
         },
-        component: () => import('@/views/Chart/dynamicChart/dynamicChart.vue')
+        component: () => import('@/views/Chart/DynamicChart/dynamicChart.vue')
       },
       {
         name: 'staticChart',
@@ -107,7 +107,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.staticChart'),
           code: '002002'
         },
-        component: () => import('@/views/Chart/staticChart/staticChart.vue')
+        component: () => import('@/views/Chart/StaticChart/staticChart.vue')
       },
       {
         name: 'mapChart',
@@ -116,7 +116,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.mapChart'),
           code: '002003'
         },
-        component: () => import('@/views/Chart/mapChart/mapChart.vue')
+        component: () => import('@/views/Chart/MapChart/mapChart.vue')
       }
     ]
   },
@@ -138,7 +138,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.Etable'),
           code: '003001'
         },
-        component: () => import('@/views/ElComponents/table/table.vue')
+        component: () => import('@/views/ElComponents/Table/table.vue')
       },
       {
         name: 'form',
@@ -147,7 +147,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.Eform'),
           code: '003002'
         },
-        component: () => import('@/views/ElComponents/form/form.vue')
+        component: () => import('@/views/ElComponents/Form/form.vue')
       }
     ]
   },
@@ -169,7 +169,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.Vbutton'),
           code: '004001'
         },
-        component: () => import('@/views/VxwUi/button/button.vue')
+        component: () => import('@/views/VxwUi/Button/button.vue')
       },
       {
         name: 'icon',
@@ -178,7 +178,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.Vicon'),
           code: '004002'
         },
-        component: () => import('@/views/VxwUi/icon/icon.vue')
+        component: () => import('@/views/VxwUi/Icon/icon.vue')
       }
     ]
   },
@@ -200,7 +200,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.CrichText'),
           code: '005001'
         },
-        component: () => import('@/views/Components/richText/richText.vue')
+        component: () => import('@/views/Components/RichText/richText.vue')
       },
       {
         name: 'qrcode',
@@ -209,7 +209,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.Cqrcode'),
           code: '005002'
         },
-        component: () => import('@/views/Components/qrcode/qrcode.vue')
+        component: () => import('@/views/Components/Qrcode/qrcode.vue')
       },
       {
         name: 'passwordStrength',
@@ -218,7 +218,7 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           title: t('router.passwordStrength'),
           code: '005003'
         },
-        component: () => import('@/views/Components/passwordStrength/passwordStrength.vue')
+        component: () => import('@/views/Components/PasswordStrength/passwordStrength.vue')
       }
     ]
   },

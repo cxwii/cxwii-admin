@@ -1,2 +1,2 @@
-import Eltable from './src/Table.vue'
+import Eltable from './src/table.vue'
 export { Eltable }

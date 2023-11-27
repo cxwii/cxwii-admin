@@ -1,4 +1,4 @@
-import EldropdownMenu from './src/DropdownMenu.vue'
+import EldropdownMenu from './src/dropdownMenu.vue'
 import { ElDropdown } from 'element-plus'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
 
