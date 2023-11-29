@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import VueJsx from '@vitejs/plugin-vue-jsx'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-import EslintPlugin from 'vite-plugin-eslint'
+// import EslintPlugin from 'vite-plugin-eslint'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 
 export default defineConfig({
@@ -24,11 +24,19 @@ export default defineConfig({
       include: [path.resolve(__dirname, 'src/locales/**')]
     }),
     // eslint
-    EslintPlugin({
-      cache: false,
-      include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx'] // 检查的文件
-    })
+    // EslintPlugin({
+    //   cache: false,
+    //   include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx'] // 检查的文件
+    // })
   ],
+  // css: {
+  //   preprocessorOptions: {
+  //     scss: {
+  //       additionalData: '@import "./src/styles/index.scss";',
+  //       javascriptEnabled: true
+  //     }
+  //   }
+  // },
   resolve: {
     // 路径别名
     alias: {

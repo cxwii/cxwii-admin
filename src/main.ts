@@ -21,6 +21,8 @@ import '@/assets/icon/iconfont.css'
 import 'virtual:svg-icons-register'
 // 引入动画
 import '@/plugins/animateCss'
+// 引入主题样式(el的和以后自己定义的一些主题)
+import '@/styles/index.scss'
 
 // 创建实例
 const setupAll = async () => {

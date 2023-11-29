@@ -12,10 +12,10 @@ import { ConfigGlobal } from '@/components/ConfigGlobal'
 html,
 body,
 #app {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
 }
 </style>

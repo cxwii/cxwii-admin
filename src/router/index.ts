@@ -26,13 +26,16 @@ export const constantRoutes: AppRouteRecordRaw[] = [
   // 用于实现重新加载的功能
   {
     path: '/redirect',
+    component: index,
     name: 'redirect',
     children: [
       {
         path: '/redirect/:path(.*)',
         name: 'redirect',
         component: () => import('@/views/Redirect/redirect.vue'),
-        meta: {}
+        meta: {
+          noTagsView: true
+        }
       }
     ],
     meta: {}
