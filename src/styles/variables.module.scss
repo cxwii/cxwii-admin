@@ -1,0 +1,7 @@
+// 可以在这里定义全局scss样式
+// 现在用的tailwindcss的全局(感觉不要混用的好)
+$foo: #001529;
+
+:export {
+  $foo: $foo;
+}

@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 
+  如果上面这三个有idea警告请安装PostCSS Language Support插件
+  (警告只是编辑器不认识这种书写风格而已不是有问题)
+  PostCSS Language Support会导致idea不能用识别颜色显示看到,所以看你需求来
+  但我建议是不装
+*/
+
+@layer base {
+  :root {
+    /* 就写了个背景变黑,有空再写其他的主题 */
+    --bg-color: rgb(18, 18, 18);
+  }
+}

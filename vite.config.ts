@@ -29,11 +29,11 @@ export default defineConfig({
     //   include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx'] // 检查的文件
     // })
   ],
+  // 如果要使用scss全局变量就打开这个配置
   // css: {
   //   preprocessorOptions: {
   //     scss: {
-  //       additionalData: '@import "./src/styles/index.scss";',
-  //       javascriptEnabled: true
+  //       additionalData: '@import "./src/styles/variables.module.scss";'
   //     }
   //   }
   // },

@@ -26,8 +26,8 @@ const getCaches = computed((): string[] => {
       <el-header class="myElHeader">
         <viewHeader />
       </el-header>
-      <el-main class="myElMain" :v-loading="pageLoading">
-        <div class="myElMainBottomFrame shadow-md rounded-lg">
+      <el-main class="myElMain bg-[#f5f7f9] dark:bg-[#282727]" :v-loading="pageLoading">
+        <div class="myElMainBottomFrame shadow-md rounded-lg bg-[#ffffff] dark:bg-[var(--bg-color)]">
           <router-view>
             <template #default="{ Component, route }">
               <keep-alive :include="getCaches">
@@ -59,14 +59,12 @@ const getCaches = computed((): string[] => {
     margin-bottom: 5px;
   }
   .myElMain {
-    background-color: #f5f7f9;
     border-top: 0.8px solid #d9d9d9;
     .myElMainBottomFrame {
       z-index: -1;
       width: 100%;
       height: 100%;
       padding: 20px;
-      background-color: #fff;
       overflow: inherit;
     }
   }

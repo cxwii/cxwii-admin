@@ -5,6 +5,7 @@ import { Eltags } from '@/components/ElementPlus/Tags'
 import { ElUserInfo } from '@/components/ElementPlus/UserInfo'
 import { Elbreadcrumb } from '@/components/ElementPlus/Breadcrumb'
 import { ElLocaleDropdown } from '@/components/ElementPlus/LocaleDropdown'
+import { ElThemeSwitch } from "@/components/ElementPlus/ThemeSwitch";
 
 const isCollapse = inject('isCollapse') as Ref<boolean>
 
@@ -35,6 +36,8 @@ const change = () => {
       <div class="flex-1 m-5 select-none">
         <Elbreadcrumb />
       </div>
+      <!-- 主题 -->
+      <ElThemeSwitch class="mr-3"/>
       <!-- i18n -->
       <ElLocaleDropdown class="mr-3" />
       <!-- 个人用户信息 -->

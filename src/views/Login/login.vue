@@ -10,8 +10,8 @@ import type { RouteRecordRaw } from 'vue-router'
 import { UseSvg } from '@/components/UseSvg'
 import { ElMessage } from 'element-plus'
 import { ElLocaleDropdown } from '@/components/ElementPlus/LocaleDropdown'
+import { ElThemeSwitch } from "@/components/ElementPlus/ThemeSwitch"
 import { useI18n } from '@/hooks/web/useI18n'
-import { string } from 'vue-types'
 
 const { t } = useI18n()
 const { push, addRoute } = useRouter()
@@ -166,6 +166,7 @@ const fff: Required<foo> = {
       <UseSvg name="vuex-store" class="h-full w-full" />
     </div>
     <div class="i18nIcon cursor-pointer flex flex-row">
+      <!-- i18n -->
       <ElLocaleDropdown />
     </div>
     <div

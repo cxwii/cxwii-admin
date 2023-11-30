@@ -21,7 +21,7 @@ import '@/assets/icon/iconfont.css'
 import 'virtual:svg-icons-register'
 // 引入动画
 import '@/plugins/animateCss'
-// 引入主题样式(el的和以后自己定义的一些主题)
+// 引入el主题样式
 import '@/styles/index.scss'
 
 // 创建实例

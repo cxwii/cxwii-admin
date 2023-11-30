@@ -1,5 +1,12 @@
 <script setup lang="ts">
 import { ConfigGlobal } from '@/components/ConfigGlobal'
+import { useUserStore } from '@/store/modules/user'
+const userStore = useUserStore()
+const setDefaultTheme = () => {
+  // 刷新的时候去再赋值一次主题
+  userStore.setIsDark(userStore.getIsDark)
+}
+setDefaultTheme()
 </script>
 
 <template>

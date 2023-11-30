@@ -10,6 +10,7 @@ interface userStateType {
   token: string | null
   dynamicRouter: boolean
   pageLoading: boolean
+  isDark: boolean
 }
 
 export const userStore = defineStore('user', {
@@ -23,8 +24,11 @@ export const userStore = defineStore('user', {
       userPic: null,
       // 是否使用动态路由
       dynamicRouter: wsCache.get('dynamicRouter') || false,
-      // 加载页面
-      pageLoading: false
+      // 加载页面进度条
+      pageLoading: false,
+      // 是否暗黑主题
+      // 这里把他存到localStorage里,因为推出清空会话缓存,不清空本地缓存
+      isDark: JSON.parse(window.localStorage.getItem("isDark") || 'true')
     }
   },
   getters: {
@@ -42,6 +46,9 @@ export const userStore = defineStore('user', {
     },
     getPageLoading(): boolean {
       return this.pageLoading
+    },
+    getIsDark(): boolean {
+      return this.isDark
     }
   },
   actions: {
@@ -60,6 +67,17 @@ export const userStore = defineStore('user', {
     },
     setPageLoading(pageLoading: boolean) {
       this.pageLoading = pageLoading
+    },
+    setIsDark(isDark: boolean) {
+      this.isDark = isDark
+      if (!this.isDark) {
+        document.documentElement.classList.add('dark')
+        document.documentElement.classList.remove('light')
+      } else {
+        document.documentElement.classList.add('light')
+        document.documentElement.classList.remove('dark')
+      }
+      window.localStorage.setItem("isDark", this.isDark.toString())
     }
   }
 })

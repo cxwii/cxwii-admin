@@ -26,7 +26,7 @@ const loginOut = () => {
   })
     .then(async () => {
       // 这里还要调个退出登录的api才行,现在单纯清空本地存储的用户信息
-      wsCache.clear() // 清除本地所有缓存
+      wsCache.clear() // 清除本地所有缓存()
       tagsViewStore.delAllViews() // 清除标签的所有缓存
       resetRouter() // 重置静态路由表
       replace('/login') // 去登录页
