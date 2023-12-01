@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
-import { loginApi, getRdRouterApi, getCodeRouterApi, registerApi } from '@/api/User'
+import { loginApi, getCodeRouterApi, registerApi } from '@/api/User'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store/modules/user'
 import { useCache } from '@/hooks/web/useCache'
@@ -10,7 +10,6 @@ import type { RouteRecordRaw } from 'vue-router'
 import { UseSvg } from '@/components/UseSvg'
 import { ElMessage } from 'element-plus'
 import { ElLocaleDropdown } from '@/components/ElementPlus/LocaleDropdown'
-import { ElThemeSwitch } from "@/components/ElementPlus/ThemeSwitch"
 import { useI18n } from '@/hooks/web/useI18n'
 
 const { t } = useI18n()

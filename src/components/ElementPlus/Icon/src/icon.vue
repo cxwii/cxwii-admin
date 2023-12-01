@@ -4,15 +4,14 @@ import { ElIcon } from 'element-plus'
 import ProjectTypes from '@/utils/propTypes'
 
 const props = defineProps({
-  icon: ProjectTypes.string,
+  icon: ProjectTypes.string
 })
 
 const { icon } = toRefs(props)
 </script>
 
 <template>
-  <ElIcon :class="icon">
-  </ElIcon>
+  <ElIcon :class="icon" />
 </template>
 
 <style lang="less" scoped></style>

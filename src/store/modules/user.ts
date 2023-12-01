@@ -28,7 +28,7 @@ export const userStore = defineStore('user', {
       pageLoading: false,
       // 是否暗黑主题
       // 这里把他存到localStorage里,因为推出清空会话缓存,不清空本地缓存
-      isDark: JSON.parse(window.localStorage.getItem("isDark") || 'true')
+      isDark: JSON.parse(window.localStorage.getItem('isDark') || 'true')
     }
   },
   getters: {
@@ -77,7 +77,7 @@ export const userStore = defineStore('user', {
         document.documentElement.classList.add('light')
         document.documentElement.classList.remove('dark')
       }
-      window.localStorage.setItem("isDark", this.isDark.toString())
+      window.localStorage.setItem('isDark', this.isDark.toString())
     }
   }
 })

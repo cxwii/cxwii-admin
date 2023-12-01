@@ -30,6 +30,7 @@ export default {
     CrichText: 'RichText',
     Cqrcode: 'Qrcode',
     passwordStrength: 'PasswordStrength',
+    videoPlayer: 'Video',
     ThreeNote: 'ThreeNote',
     Three1: 'Three1',
     Three2: 'Three2',

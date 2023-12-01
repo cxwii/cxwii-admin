@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { ElThemeSwitch } from "@/components/ElementPlus/ThemeSwitch"
+import { ElThemeSwitch } from '@/components/ElementPlus/ThemeSwitch'
 
 const isDark = ref(false)
 
 const test = () => {
   isDark.value = !isDark.value
-  console.log('isDark.value :>> ', isDark.value);
+  console.log('isDark.value :>> ', isDark.value)
   if (isDark.value) {
     document.documentElement.classList.add('dark')
     document.documentElement.classList.remove('light')
@@ -18,18 +18,16 @@ const test = () => {
 
 const test2 = () => {
   console.log('test2 :>> ')
-  window.localStorage.setItem("myCat", "Tom")
+  window.localStorage.setItem('myCat', 'Tom')
 }
 </script>
 
 <template>
   <span>测试页面</span>
-  <div
-    class="w-28 h-28 dark:bg-[var(--bg-color)]">
-  </div>
+  <div class="w-28 h-28 dark:bg-[var(--bg-color)]"> </div>
   <el-button @click="test">test</el-button>
   <el-button @click="test2">test2</el-button>
-  <ElThemeSwitch/>
+  <ElThemeSwitch />
 </template>
 
 <style scoped lang="scss">

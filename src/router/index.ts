@@ -222,6 +222,15 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           code: '005003'
         },
         component: () => import('@/views/Components/PasswordStrength/passwordStrength.vue')
+      },
+      {
+        name: 'videoPlayer',
+        path: 'videoPlayer',
+        meta: {
+          title: t('router.videoPlayer'),
+          code: '005004'
+        },
+        component: () => import('@/views/Components/VideoPlayer/videoPlayer.vue')
       }
     ]
   },

@@ -27,7 +27,9 @@ const getCaches = computed((): string[] => {
         <viewHeader />
       </el-header>
       <el-main class="myElMain bg-[#f5f7f9] dark:bg-[#282727]" :v-loading="pageLoading">
-        <div class="myElMainBottomFrame shadow-md rounded-lg bg-[#ffffff] dark:bg-[var(--bg-color)]">
+        <div
+          class="myElMainBottomFrame shadow-md rounded-lg bg-[#ffffff] dark:bg-[var(--bg-color)]"
+        >
           <router-view>
             <template #default="{ Component, route }">
               <keep-alive :include="getCaches">
