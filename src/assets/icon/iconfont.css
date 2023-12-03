@@ -1,8 +1,8 @@
 @font-face {
   font-family: "element-icons"; /* Project id 3979524 */
-  src: url('iconfont.woff2?t=1701335126369') format('woff2'),
-       url('iconfont.woff?t=1701335126369') format('woff'),
-       url('iconfont.ttf?t=1701335126369') format('truetype');
+  src: url('iconfont.woff2?t=1701609577494') format('woff2'),
+       url('iconfont.woff?t=1701609577494') format('woff'),
+       url('iconfont.ttf?t=1701609577494') format('truetype');
 }
 
 .element-icons {
@@ -11,6 +11,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.el-icon-huidaodingbu:before {
+  content: "\e609";
 }
 
 .el-icon-yueliang1:before {

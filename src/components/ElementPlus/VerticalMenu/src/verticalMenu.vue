@@ -15,7 +15,7 @@ const menuRouters = computed(() => permissionStore.getAddRouters)
 
 // 渲染一级Menu的模板
 const useRenderMenuItem = (menuRouters: AppRouteRecordRaw[]) => {
-  const renderMenuItem = menuRouters.map((item) => {
+  const renderMenuItem = menuRouters.map((item: any) => {
     if (item.hasOwnProperty('children') && (item.children ? item.children.length : 0) == 0) {
       return (
         <ElMenuItem index={item.path}>
