@@ -20,7 +20,7 @@ pinia,axios,eslint,sass,three......
 
 ## 安装依赖
 ```
-pnpm install
+pnpm i
 ```
 
 ## eslint和prettier的自动修复
