@@ -1,33 +1,39 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { ElThemeSwitch } from '@/components/ElementPlus/ThemeSwitch'
+import { ref, shallowRef, triggerRef, watchEffect } from 'vue'
 
-const isDark = ref(false)
+const foo = shallowRef({
+  count: 1,
+  greet: 'hello'
+})
 
 const test = () => {
-  isDark.value = !isDark.value
-  console.log('isDark.value :>> ', isDark.value)
-  if (isDark.value) {
-    document.documentElement.classList.add('dark')
-    document.documentElement.classList.remove('light')
-  } else {
-    document.documentElement.classList.add('light')
-    document.documentElement.classList.remove('dark')
-  }
+  console.log('test1 :>> ', foo)
+  foo.value.count++
+  console.log('test2 :>> ', foo)
+}
+const test2 = () => {
+  console.log('test3 :>> ', foo.value.count)
 }
 
-const test2 = () => {
-  console.log('test2 :>> ')
-  window.localStorage.setItem('myCat', 'Tom')
+watchEffect(() => {
+  console.log(foo.value.greet)
+})
+
+const test3 = () => {
+  // 这个不会触发
+  foo.value.greet = 'Hello, universe'
+  // 触发浅层响应式的更新
+  triggerRef(foo)
 }
 </script>
 
 <template>
   <span>测试页面</span>
+  {{ foo }}
   <div class="w-28 h-28 dark:bg-[var(--bg-color)]"> </div>
   <el-button @click="test">test</el-button>
   <el-button @click="test2">test2</el-button>
-  <ElThemeSwitch />
+  <el-button @click="test3">test3</el-button>
 </template>
 
 <style scoped lang="scss">
