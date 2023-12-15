@@ -11,7 +11,7 @@ const scrollbarRef = ref<InstanceType<typeof ElScrollbar>>()
 </script>
 
 <template>
-  <div v-loading="pageLoading" class="myElMainBottomFrame
+  <div :v-loading="pageLoading" class="myElMainBottomFrame
     shadow-md
     rounded-lg
     bg-[#ffffff]
