@@ -403,13 +403,13 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         component: () => import('@/views/MicroFE/vuecliVue2.vue')
       },
       {
-        name: 'viteReact18',
-        path: 'viteReact18',
+        name: 'reactcliReactt18',
+        path: 'reactcliReactt18',
         meta: {
-          title: t('router.viteReact18'),
+          title: t('router.reactcliReactt18'),
           code: '007002'
         },
-        component: () => import('@/views/MicroFE/viteReact18.vue')
+        component: () => import('@/views/MicroFE/reactcliReactt18.vue')
       }
     ]
   }

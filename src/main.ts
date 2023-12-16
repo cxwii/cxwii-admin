@@ -35,7 +35,7 @@ const setupAll = async () => {
   useVxwUi(app)
   useStore(app)
   useRouter(app)
-  
+
   app.mount('#app')
 }
 

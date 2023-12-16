@@ -8,7 +8,16 @@ import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 
 export default defineConfig({
   plugins: [
-    vue(),
+    vue({
+      template: {
+        compilerOptions: {
+          // 消除micro-app警告(把他当做自定义内容)
+          isCustomElement: (tag) => {
+            return tag.startsWith('micro-')
+          }
+        },
+      }
+    }),
     // tsx语法支持
     VueJsx(),
     // svg支持
