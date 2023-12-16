@@ -4,8 +4,10 @@
 
 <template>
   <micro-app
-    name='vite_react18'
-    url='http://localhost:5002/'>
+    name='reactcliReactt18'
+    url='http://localhost:5002/'
+    baseroute='/reactcliReactt18'
+    keep-alive>
   </micro-app>
 </template>
 
