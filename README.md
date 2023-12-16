@@ -38,4 +38,9 @@ pnpm run dev
 pnpm run build
 ```
 
+## 微前端
+```
+children_apps目录下的子应用每个都要单独install并运行才能在主应用这里访问
+```
+
 ## ＿|￣|● 感谢每一位Star的朋友们
