@@ -12,6 +12,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@micro-zoe/micro-app": "1.0.0-rc.2",
     "@tweenjs/tween.js": "^21.0.0",
     "@types/qrcode": "^1.5.1",
     "@vueuse/core": "^9.13.0",

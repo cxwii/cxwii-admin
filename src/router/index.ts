@@ -381,6 +381,37 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         component: () => import('@/views/Three/src/index15.vue')
       }
     ]
+  },
+  {
+    name: 'microFE',
+    path: '/microFE',
+    meta: {
+      title: t('router.microFE'),
+      icon: 'el-icon-yuanshuju-zujianku',
+      code: '007'
+    },
+    redirect: '/microFE/vuecliVue2',
+    component: index,
+    children: [
+      {
+        name: 'vuecliVue2',
+        path: 'vuecliVue2',
+        meta: {
+          title: t('router.vuecliVue2'),
+          code: '007001'
+        },
+        component: () => import('@/views/MicroFE/vuecliVue2.vue')
+      },
+      {
+        name: 'viteReact18',
+        path: 'viteReact18',
+        meta: {
+          title: t('router.viteReact18'),
+          code: '007002'
+        },
+        component: () => import('@/views/MicroFE/viteReact18.vue')
+      }
+    ]
   }
 ]
 

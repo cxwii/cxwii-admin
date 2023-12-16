@@ -46,7 +46,10 @@ export default {
     Three12: 'Three12',
     Three13: 'Three13',
     Three14: 'Three14',
-    Three15: 'Three15'
+    Three15: 'Three15',
+    microFE: 'microFE',
+    vuecliVue2: 'vuecliVue2',
+    viteReact18: 'viteReact18'
   },
   userInfo: {
     ElMessageBox1:

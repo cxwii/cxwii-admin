@@ -23,6 +23,9 @@ import 'virtual:svg-icons-register'
 import '@/plugins/animateCss'
 // 引入el主题样式
 import '@/styles/index.scss'
+// 引入微前端
+import microApp from '@micro-zoe/micro-app'
+microApp.start()
 
 // 创建实例
 const setupAll = async () => {
