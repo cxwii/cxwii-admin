@@ -410,6 +410,15 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           code: '007002'
         },
         component: () => import('@/views/MicroFE/react18.vue')
+      },
+      {
+        name: 'angular17',
+        path: 'angular17',
+        meta: {
+          title: t('router.Angular17'),
+          code: '007003'
+        },
+        component: () => import('@/views/MicroFE/angular17.vue')
       }
     ]
   }
@@ -422,7 +431,6 @@ const router = createRouter({
 })
 
 // 路由的清除
-// 后面加个错误页面到默认路由表才行
 export const resetRouter = (): void => {
   const resetWhiteNameList = ['redirect', 'login', 'root']
   router.getRoutes().forEach((route) => {

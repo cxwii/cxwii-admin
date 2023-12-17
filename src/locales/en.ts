@@ -49,7 +49,8 @@ export default {
     Three15: 'Three15',
     microFE: 'microFE',
     Vue2: 'Vue2',
-    Reactt18: 'React18'
+    Reactt18: 'React18',
+    Angular17: 'Angular17'
   },
   userInfo: {
     ElMessageBox1:

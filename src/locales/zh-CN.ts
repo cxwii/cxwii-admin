@@ -49,7 +49,8 @@ export default {
     Three15: 'Three15',
     microFE: '微前端',
     Vue2: 'Vue2',
-    Reactt18: 'React18'
+    Reactt18: 'React18',
+    Angular17: 'Angular17'
   },
   userInfo: {
     ElMessageBox1: '您是否确认退出系统?退出后需重新登录!',
