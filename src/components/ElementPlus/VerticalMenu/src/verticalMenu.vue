@@ -11,7 +11,10 @@ const attrs = useAttrs()
 const slots = useSlots()
 const permissionStore = usePermissionStore()
 
-const menuRouters = computed(() => permissionStore.getAddRouters)
+const menuRouters = computed(() => {
+  // 清除一下404页面
+  return permissionStore.getAddRouters.filter((item) => item.name != '404Page')
+})
 
 // 渲染一级Menu的模板
 const useRenderMenuItem = (menuRouters: AppRouteRecordRaw[]) => {
