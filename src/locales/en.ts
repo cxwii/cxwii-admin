@@ -48,8 +48,8 @@ export default {
     Three14: 'Three14',
     Three15: 'Three15',
     microFE: 'microFE',
-    vuecliVue2: 'VuecliVue2',
-    reactcliReactt18: 'ReactcliReactt18'
+    Vue2: 'Vue2',
+    Reactt18: 'React18'
   },
   userInfo: {
     ElMessageBox1:

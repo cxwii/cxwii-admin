@@ -5,9 +5,9 @@
 <template>
   <!-- keep-alive用于缓存 -->
   <micro-app
-    name='vuecli_vue2'
+    name='vue2'
     url='http://localhost:5001/'
-    baseroute='/vuecliVue2'
+    baseroute='/vue2'
     keep-alive>
   </micro-app>  
 </template>

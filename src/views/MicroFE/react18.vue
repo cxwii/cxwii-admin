@@ -4,9 +4,9 @@
 
 <template>
   <micro-app
-    name='reactcliReactt18'
+    name='react18'
     url='http://localhost:5002/'
-    baseroute='/reactcliReactt18'
+    baseroute='/react18'
     keep-alive>
   </micro-app>
 </template>

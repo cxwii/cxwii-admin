@@ -394,22 +394,22 @@ export const asyncRouter: AppRouteRecordRaw[] = [
     component: index,
     children: [
       {
-        name: 'vuecliVue2',
-        path: 'vuecliVue2',
+        name: 'vue2',
+        path: 'vue2',
         meta: {
-          title: t('router.vuecliVue2'),
+          title: t('router.Vue2'),
           code: '007001'
         },
-        component: () => import('@/views/MicroFE/vuecliVue2.vue')
+        component: () => import('@/views/MicroFE/vue2.vue')
       },
       {
-        name: 'reactcliReactt18',
-        path: 'reactcliReactt18',
+        name: 'react18',
+        path: 'react18',
         meta: {
-          title: t('router.reactcliReactt18'),
+          title: t('router.Reactt18'),
           code: '007002'
         },
-        component: () => import('@/views/MicroFE/reactcliReactt18.vue')
+        component: () => import('@/views/MicroFE/react18.vue')
       }
     ]
   }
