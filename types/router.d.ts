@@ -39,5 +39,7 @@ interface RouteMeta extends Record<string | number | symbol, unknown> {
   noTagsView?: boolean
   // code是另一种路由方式时需要的数据
   code?: string
+  // 是否需要左侧菜单
+  noLeftMenu?: boolean
 }
 }

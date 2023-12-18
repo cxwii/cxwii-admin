@@ -11,15 +11,15 @@ const attrs = useAttrs()
 const slots = useSlots()
 const permissionStore = usePermissionStore()
 
-const menuRouters = computed(() => {
-  // 清除一下404页面
-  return permissionStore.getAddRouters.filter((item) => item.name != '404Page')
-})
+const menuRouters = computed(() => permissionStore.getAddRouters)
 
 // 渲染一级Menu的模板
 const useRenderMenuItem = (menuRouters: AppRouteRecordRaw[]) => {
   const renderMenuItem = menuRouters.map((item: any) => {
-    if (item.hasOwnProperty('children') && (item.children ? item.children.length : 0) == 0) {
+    if (item.meta.noLeftMenu) {
+      // noLeftMenu剔除不需要的菜单项
+      return
+    } else if (item.hasOwnProperty('children') && (item.children ? item.children.length : 0) == 0) {
       return (
         <ElMenuItem index={item.path}>
           <ElIcon class={`element-icons ${item.meta.icon}`}></ElIcon>
@@ -67,7 +67,9 @@ const useRenderMenuItem = (menuRouters: AppRouteRecordRaw[]) => {
 // 渲染二级以及后续Menu的模板
 const useRenderSubMenu = (menuRouters: AppRouteRecordRaw[], parentPath: string) => {
   const renderSubMenu = menuRouters.map((item) => {
-    if (item.hasOwnProperty('children')) {
+    if (item.meta.noLeftMenu) {
+      return
+    } else if (item.hasOwnProperty('children')) {
       let meta = item.meta
         ? item.meta
         : {

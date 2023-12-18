@@ -12,6 +12,7 @@ const { t } = useI18n()
   icon: 使用什么icon
   title: 使用什么标题
   noTagsView: 是否需要标签页
+  noLeftMenu: 是否需要左侧菜单
 */
 
 // 固定路由表
@@ -34,7 +35,8 @@ export const constantRoutes: AppRouteRecordRaw[] = [
         name: 'redirect',
         component: () => import('@/views/Redirect/redirect.vue'),
         meta: {
-          noTagsView: true
+          noTagsView: true,
+          noLeftMenu: true
         }
       }
     ],
@@ -52,7 +54,8 @@ export const constantRoutes: AppRouteRecordRaw[] = [
     name: 'NoFind',
     meta: {
       title: '404',
-      noTagsView: true
+      noTagsView: true,
+      noLeftMenu: true
     }
   }
 ]

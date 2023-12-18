@@ -55,7 +55,10 @@ export const permissionStore = defineStore('permission', {
             path: '/:pathMatch(.*)*',
             redirect: '/404',
             name: '404Page',
-            meta: {},
+            meta: {
+              noTagsView: true,
+              noLeftMenu: true
+            },
             children: []
           }
         ])
