@@ -9,7 +9,7 @@ import 'zone.js'
   <!-- 不知道为什么不用iframe就不行.会有import导入错误的问题 -->
   <micro-app
     name='angular17'
-    url='http://localhost:5003/'
+    url='http://localhost:8863/'
     baseroute='angular17'
     keep-alive
     iframe>

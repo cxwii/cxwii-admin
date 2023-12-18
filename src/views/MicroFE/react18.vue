@@ -5,7 +5,7 @@
 <template>
   <micro-app
     name='react18'
-    url='http://localhost:5002/'
+    url='http://localhost:8862/'
     baseroute='/react18'
     keep-alive>
   </micro-app>

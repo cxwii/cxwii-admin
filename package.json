@@ -9,7 +9,13 @@
     "dev": "vite --mode dev",
     "lint": "eslint --fix --ext .js,.ts,.vue ./src",
     "build": "vue-tsc && vite build --mode pro",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev:child-vue2": "cd children_apps/vue2 && pnpm run dev",
+    "dev:child-react18": "cd children_apps/react18 && pnpm run dev",
+    "dev:child-angular17": "cd children_apps/angular17 && pnpm run dev",
+    "install:child-vue2": "cd children_apps/vue2 && pnpm i",
+    "install:child-react18": "cd children_apps/react18 && pnpm i",
+    "install:child-angular17": "cd children_apps/angular17 && pnpm i"
   },
   "dependencies": {
     "@micro-zoe/micro-app": "1.0.0-rc.2",

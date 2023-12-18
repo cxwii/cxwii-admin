@@ -70,7 +70,7 @@
           },
           "defaultConfiguration": "development",
           "options": {
-            "port": 5003,
+            "port": 8863,
             "headers": {
               "Access-Control-Allow-Origin": "*"
             }
