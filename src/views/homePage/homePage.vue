@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, shallowRef, triggerRef, watchEffect } from 'vue'
+import { ref, shallowRef, triggerRef, watchEffect, onMounted } from 'vue'
 
 const foo = shallowRef({
   count: 1,
