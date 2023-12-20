@@ -25,10 +25,42 @@ const test3 = () => {
   // 触发浅层响应式的更新
   triggerRef(foo)
 }
+
+const canvas = ref<HTMLCanvasElement>()
+onMounted(() => {
+  const ctx = canvas.value?.getContext("2d")
+
+  // 二次赛贝尔曲线
+  const path2d = new Path2D()
+  path2d.moveTo(160, 200)
+  path2d.quadraticCurveTo(100, 200, 100, 100)
+  path2d.quadraticCurveTo(100, 50, 200, 50)
+  path2d.quadraticCurveTo(300, 50, 300, 100)
+  path2d.quadraticCurveTo(300, 200, 200, 200)
+  path2d.quadraticCurveTo(200, 230, 150, 230)
+  path2d.quadraticCurveTo(180, 210, 160, 200)
+
+  // 三次赛贝尔曲线
+  // Path2D()还可以接受svg的path参数的形式画图
+  const path2d2 = new Path2D()
+  path2d2.moveTo(300, 200)
+  path2d2.bezierCurveTo(350, 150, 400, 200, 300, 250)
+  path2d2.bezierCurveTo(200, 200, 250, 150, 300, 200)
+
+  ctx?.stroke(path2d)
+  ctx?.fill(path2d2)
+})
 </script>
 
 <template>
   <span>测试页面</span>
+  <canvas ref="canvas" width="500" height="500" />
+  <svg>
+    <path d="M 10 10 H 90 V 90 H 10 Z" fill="transparent" stroke="black"/>
+  </svg>
+  <svg>
+    <path d="M 10 10 H 90 V 90 H 10 L 10 10" fill="transparent" stroke="black"/>
+  </svg>
   {{ foo }}
   <div class="w-28 h-28 dark:bg-[var(--bg-color)]"> </div>
   <el-button @click="test">test</el-button>
