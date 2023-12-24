@@ -40,6 +40,8 @@ onMounted(() => {
   path2d.quadraticCurveTo(200, 230, 150, 230)
   path2d.quadraticCurveTo(180, 210, 160, 200)
 
+  ctx!.stroke(path2d)
+
   // 三次赛贝尔曲线
   // Path2D()还可以接受svg的path参数的形式画图
   const path2d2 = new Path2D()
@@ -47,8 +49,20 @@ onMounted(() => {
   path2d2.bezierCurveTo(350, 150, 400, 200, 300, 250)
   path2d2.bezierCurveTo(200, 200, 250, 150, 300, 200)
 
-  ctx?.stroke(path2d)
-  ctx?.fill(path2d2)
+  let style = ctx!.createConicGradient(Math.PI / 4, 300, 200)
+  style.addColorStop(0, "red")
+  style.addColorStop(0.5, "pink")
+  style.addColorStop(1, "red")
+  ctx!.fillStyle = style
+  ctx!.fill(path2d2)
+
+  let img = new Image()
+  img.src = '../../../public/favicon.png'
+  img.onload = () => {
+    let pattern = ctx!.createPattern(img, "no-repeat")
+    ctx!.fillStyle = pattern!
+    ctx!.fillRect(0, 0, 500, 500)
+  }
 })
 </script>
 
