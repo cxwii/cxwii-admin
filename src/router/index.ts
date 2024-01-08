@@ -57,6 +57,16 @@ export const constantRoutes: AppRouteRecordRaw[] = [
       noTagsView: true,
       noLeftMenu: true
     }
+  },
+  {
+    path: '/testPage',
+    component: () => import('@/views/Test/test.vue'),
+    name: 'testPage',
+    meta: {
+      title: '测试页面',
+      noTagsView: true,
+      noLeftMenu: true
+    }
   }
 ]
 

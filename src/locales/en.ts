@@ -58,6 +58,7 @@ export default {
     ElMessageBox2: 'Tips',
     confirmButtonText: 'confirm',
     cancelButtonText: 'cancel',
+    TestPage: 'TestPage',
     Document: 'Project address',
     loginOut: 'Log out of login'
   },
