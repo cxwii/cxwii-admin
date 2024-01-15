@@ -100,8 +100,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <Echart ref="mapChartRef" :options="mapChartOptions as EChartsOption" />
-  <ElButton @click="revertMap">返回</ElButton>
+  <div>
+    <Echart ref="mapChartRef" :options="mapChartOptions as EChartsOption" />
+    <ElButton @click="revertMap">返回</ElButton>
+  </div>
 </template>
 
 <style scoped lang="scss"></style>

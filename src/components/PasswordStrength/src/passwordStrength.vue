@@ -40,9 +40,11 @@ const getPasswordStrength = computed(() => {
 </script>
 
 <template>
-  <ElInput v-model="valueRef" show-password />
-  <div class="passwordStrength relative h-1.5 mt-2.5 mb-1.5 mr-auto ml-auto">
-    <div class="passwordStrengthBlock" :data-score="getPasswordStrength"></div>
+  <div>
+    <ElInput v-model="valueRef" show-password />
+    <div class="passwordStrength relative h-1.5 mt-2.5 mb-1.5 mr-auto ml-auto">
+      <div class="passwordStrengthBlock" :data-score="getPasswordStrength"></div>
+    </div>
   </div>
 </template>
 

@@ -2,7 +2,9 @@
 </script>
 
 <template>
-  首页
+  <div>
+    首页
+  </div>
 </template>
 
 <style scoped lang="scss">
