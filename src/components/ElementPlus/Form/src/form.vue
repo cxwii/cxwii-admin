@@ -57,6 +57,7 @@ const useRenderForm = () => {
   return props.isRegister ? useRenderRegisterForm() : useRenderLoginForm()
 }
 
+// 登录
 const useRenderLoginForm = () => {
   return (
     <>
@@ -81,6 +82,7 @@ const useRenderLoginForm = () => {
   )
 }
 
+// 注册
 const useRenderRegisterForm = () => {
   return (
     <>

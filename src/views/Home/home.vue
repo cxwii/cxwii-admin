@@ -4,7 +4,7 @@ import viewHeader from '@/views/Header/viewHeader.vue'
 import viewAside from '@/views/Aside/viewAside.vue'
 import { useTagsViewStore } from '@/store/modules/tagsView'
 import { useUserStore } from '@/store/modules/user'
-import { MainContent } from "@/components/MainContent"
+import { MainContent } from '@/components/MainContent'
 
 const userStore = useUserStore()
 const pageLoading = computed(() => userStore.getPageLoading)
@@ -28,15 +28,15 @@ const getCaches = computed((): string[] => {
         <viewHeader />
       </el-header>
       <el-main class="myElMain bg-[#f5f7f9] dark:bg-[#282727]" :v-loading="pageLoading">
-        <MainContent>
-          <router-view>
-            <template #default="{ Component, route }">
+        <router-view>
+          <template #default="{ Component, route }">
+            <MainContent>
               <keep-alive :include="getCaches">
                 <component :is="Component" :key="route.fullPath" />
               </keep-alive>
-            </template>
-          </router-view>
-        </MainContent>
+            </MainContent>
+          </template>
+        </router-view>
       </el-main>
     </el-container>
   </el-container>

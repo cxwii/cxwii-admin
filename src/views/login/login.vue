@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import { loginApi, getCodeRouterApi, registerApi } from '@/api/User'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store/modules/user'
@@ -67,7 +67,7 @@ const login = async () => {
     一个由后端动态插入(已完成)
     一个权限字段前端过滤(已完成,但还想优化一下)
     */
-   
+
     // 有东西没搞完先写死用前端路由
     userStore.setDynamicRouter(false)
 
@@ -177,13 +177,13 @@ const fff: Required<foo> = {
     </div>
     <div class="loginPage flex">
       <div
-        class="introduce max-[1100px]:hidden flex flex-col justify-center items-center text-3xl font-medium text-white"
+        class="max-[1100px]:hidden introduce flex flex-col justify-center items-center text-3xl font-medium text-white animate__animated animate__fadeInLeft"
       >
         <div class="mb-5">{{ t('introduce.introduce1') }}</div>
         <div class="text-2xl font-normal">{{ t('introduce.introduce2') }}</div>
         <div class="text-2xl font-normal">{{ t('introduce.introduce3') }}</div>
       </div>
-      <div class="formContainer">
+      <div class="formContainer animate__animated animate__fadeInRight">
         <Elform
           ref="ElformRef"
           v-if="!isRegister"
