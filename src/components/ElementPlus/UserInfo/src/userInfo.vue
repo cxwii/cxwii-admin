@@ -41,7 +41,7 @@ const toTestPage = () => {
 </script>
 
 <template>
-  <ElDropdown trigger="click">
+  <ElDropdown trigger="hover">
     <div class="flex items-center">
       <img v-if="userPic" :src="userPic" alt="" />
       <img v-else src="@/assets/imgs/user.png" alt="" />

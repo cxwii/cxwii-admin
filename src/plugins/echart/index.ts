@@ -5,7 +5,7 @@ import * as echarts from 'echarts/core'
 */
 
 // 图表
-import { BarChart, LineChart, MapChart } from 'echarts/charts'
+import { BarChart, LineChart, MapChart, PieChart } from 'echarts/charts'
 
 // 内置的组件
 import {
@@ -31,7 +31,8 @@ echarts.use([
   ToolboxComponent,
   BarChart,
   LineChart,
-  MapChart
+  MapChart,
+  PieChart
 ])
 
 export default echarts

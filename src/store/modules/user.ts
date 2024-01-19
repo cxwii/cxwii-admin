@@ -17,11 +17,11 @@ export const userStore = defineStore('user', {
   state: (): userStateType => {
     return {
       // 登录信息字段,现在就单纯当token用
-      username: null,
+      username: wsCache.get('username') || null,
       // 登录的token
       token: null,
       // 头像
-      userPic: null,
+      userPic: wsCache.get('userPic') || null,
       // 是否使用动态路由
       dynamicRouter: wsCache.get('dynamicRouter') || false,
       // 加载页面进度条

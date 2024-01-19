@@ -48,3 +48,8 @@ export const getRdRouterApi = (): Promise<any> => {
 export const getCodeRouterApi = (): Promise<any> => {
   return request.get({ url: '/getUserCodeRouter' })
 }
+
+// 获取名人名言
+export const getPhraseApi = (): Promise<any> => {
+  return request.get({ url: '/getPhrase' })
+}

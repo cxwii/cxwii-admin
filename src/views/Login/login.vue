@@ -50,8 +50,11 @@ const login = async () => {
   if (res.status == 200) {
     // 存储用户数据
     userStore.setUsername(res.data.username)
-    userStore.setToken(res.token)
     userStore.setUserPic(res.data.userPic)
+    userStore.setToken(res.token)
+
+    wsCache.set('username', userStore.getUsername)
+    wsCache.set('userPic', userStore.getUserPic)
     wsCache.set('token', userStore.getToken)
 
     // 根据的权限路由,1是息管理有,其他没用户信有没有额外有(表里面默认2)
