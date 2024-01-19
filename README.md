@@ -10,9 +10,9 @@
 🎇 采用 现代WEB 主流技术标准: HTML5 + CSS3 + ES6 + TS
 🆒 使用 Vue3 主流技术栈: Vite + Vue3
 🎨 二次封装 ElementPlus UI组件,优雅,易用,符合符合直觉
-🖼 封装 Echarts 和 THREE 的2D和3D数据可视化库组件
+🖼  封装 Echarts 和 THREE 的2D和3D数据可视化库组件
 💎 封装常见 前端业务库 的实例组件: xgplaye, qrcode, wangeditor等
-⚙ 封装基于 原生JS 的原生组件, 采用 WebComponents 的思想
+⚙  封装基于 原生JS 的原生组件, 采用 WebComponents 的思想
 🧬 使用 CSS原子化 技术框架: TailwindCSS 轻量,便捷
 🐱‍🐉 应用 微前端 技术框架: MicroApp 搭建 Vue2, React18, Angular17 开发环境,可以高效兼容开发
 🌟 实验 个人UI库 VxwUI, 感兴趣可以移步个人主页查看
