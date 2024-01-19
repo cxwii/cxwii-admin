@@ -1,10 +1,7 @@
 import * as echarts from 'echarts/core'
 
-/* 
-使用了什么新图表请按需引入对应的内容
-*/
-
 // 图表
+// 使用了什么新图表请按需引入对应的内容,就下面这里引入,然后在echarts.use这里按需注册
 import { BarChart, LineChart, MapChart, PieChart } from 'echarts/charts'
 
 // 内置的组件

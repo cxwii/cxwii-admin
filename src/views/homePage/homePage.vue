@@ -8,8 +8,11 @@ import { EChartsOption } from 'echarts'
 const userStore = useUserStore()
 const userPic = userStore.getUserPic ? userStore.getUserPic : null
 
+// 名人名言
 const phraseRef = ref('')
 const authorRef = ref('')
+
+// 图表数据
 const EchartOptions = ref({
   data: {
     legend: {
