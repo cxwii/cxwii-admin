@@ -1,15 +1,22 @@
 ## cxwii-Admin
 ```
-一款开箱即用,符合直觉的cms解决方案,却不限于cms的一款集成解决方案
+这是一款服务于前端开发者,以开箱即用,符合直觉作为主旨的集成解决方案中心。
 适用于各类管理系统,找寻各类解决方案,各类插件demo,作用于项目启动框架
 (兼用于实验Vxwui)
 ```
 
 ## 使用技术
 ```
-vue3,vite4,TypeScript,ES6,echarts5,
-ElementPlus,VxwUI,Tailwind,vue18n,VueRouter4,
-pinia,axios,eslint,sass,three,MicroApp......
+🎇 采用 现代WEB 主流技术标准: HTML5 + CSS3 + ES6 + TS
+🆒 使用 Vue3 主流技术栈: Vite + Vue3
+🎨 二次封装 ElementPlus UI组件,优雅,易用,符合符合直觉
+🖼 封装 Echarts 和 THREE 的2D和3D数据可视化库组件
+💎 封装常见 前端业务库 的实例组件: xgplaye, qrcode, wangeditor等
+⚙ 封装基于 原生JS 的原生组件, 采用 WebComponents 的思想
+🧬 使用 CSS原子化 技术框架: TailwindCSS 轻量,便捷
+🐱‍🐉 应用 微前端 技术框架: MicroApp 搭建 Vue2, React18, Angular17 开发环境,可以高效兼容开发
+🌟 实验 个人UI库 VxwUI, 感兴趣可以移步个人主页查看
+
 等等一系列的内容,详细请于package中查看
 ```
 
