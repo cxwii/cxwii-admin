@@ -141,9 +141,9 @@ onMounted(() => {
             感兴趣可以移步个人主页查看</div
           >
           <div class="w-full flex justify-center pt-1 text-sm"
-            ><div class="opacity-50">👉点击</div
+            ><div class="opacity-50">👉 点击</div
             ><b class="opacity-60 cursor-pointer" @click="toDocument"> 详情 </b
-            ><div class="opacity-50">查看所有功能,更多实用功能火速开发中🔥</div></div
+            ><div class="opacity-50">查看所有功能,更多实用功能火速开发中 🔥</div></div
           >
         </div>
       </div>
