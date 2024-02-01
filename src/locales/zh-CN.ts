@@ -57,7 +57,6 @@ export default {
     ElMessageBox2: '温馨提示',
     confirmButtonText: '确认',
     cancelButtonText: '取消',
-    TestPage: '测试页面',
     Document: '项目地址',
     loginOut: '退出登录'
   },
@@ -68,5 +67,9 @@ export default {
     CloseRightSide: '关闭右侧',
     CloseOther: '关闭其他',
     CloseAll: '关闭全部'
+  },
+  config: {
+    configTitle: '配置项',
+    TestPage: '测试页面',
   }
 }

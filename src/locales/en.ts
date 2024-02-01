@@ -58,7 +58,6 @@ export default {
     ElMessageBox2: 'Tips',
     confirmButtonText: 'confirm',
     cancelButtonText: 'cancel',
-    TestPage: 'TestPage',
     Document: 'Project address',
     loginOut: 'Log out of login'
   },
@@ -69,5 +68,9 @@ export default {
     CloseRightSide: 'CloseRightSide',
     CloseOther: 'CloseOther',
     CloseAll: 'CloseAll'
+  },
+  config: {
+    configTitle: 'Configuration Item',
+    TestPage: 'TestPage',
   }
 }

@@ -10,7 +10,7 @@ import { useI18n } from '@/hooks/web/useI18n'
 const { t } = useI18n()
 const { wsCache } = useCache()
 const tagsViewStore = useTagsViewStore()
-const { push, replace } = useRouter()
+const { replace } = useRouter()
 const userStore = useUserStore()
 
 const userPic = userStore.getUserPic ? userStore.getUserPic : null
@@ -34,10 +34,6 @@ const loginOut = () => {
     })
     .catch(() => {})
 }
-
-const toTestPage = () => {
-  push({ path: '/testPage' })
-}
 </script>
 
 <template>
@@ -49,9 +45,6 @@ const toTestPage = () => {
     <template #dropdown>
       <ElDropdownMenu>
         <ElDropdownItem>
-          <div @click="toTestPage">{{ t('userInfo.TestPage') }}</div>
-        </ElDropdownItem>
-        <ElDropdownItem divided>
           <div @click="toDocument">{{ t('userInfo.Document') }}</div>
         </ElDropdownItem>
         <ElDropdownItem divided>

@@ -1,6 +1,16 @@
 <script lang="ts" setup>
 import { ref, shallowRef, triggerRef, watchEffect, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { Eldrawer } from '@/components/ElementPlus/Drawer'
 
+// #region
+const { push } = useRouter()
+const toHome = () => {
+  push({ path: '/home/homePage' })
+}
+// #endregion
+
+// 测试内容👇(随便写的乱七八糟的笔记这类)
 const foo = shallowRef({
   count: 1,
   greet: 'hello'
@@ -28,7 +38,7 @@ const test3 = () => {
 
 const canvas = ref<HTMLCanvasElement>()
 onMounted(() => {
-  const ctx = canvas.value?.getContext("2d")
+  const ctx = canvas.value?.getContext('2d')
 
   // 二次赛贝尔曲线
   const path2d = new Path2D()
@@ -50,16 +60,16 @@ onMounted(() => {
   path2d2.bezierCurveTo(200, 200, 250, 150, 300, 200)
 
   let style = ctx!.createConicGradient(Math.PI / 4, 300, 200)
-  style.addColorStop(0, "red")
-  style.addColorStop(0.5, "pink")
-  style.addColorStop(1, "red")
+  style.addColorStop(0, 'red')
+  style.addColorStop(0.5, 'pink')
+  style.addColorStop(1, 'red')
   ctx!.fillStyle = style
   ctx!.fill(path2d2)
 
   let img = new Image()
   img.src = '../../../public/favicon.png'
   img.onload = () => {
-    let pattern = ctx!.createPattern(img, "no-repeat")
+    let pattern = ctx!.createPattern(img, 'no-repeat')
     ctx!.fillStyle = pattern!
     ctx!.fillRect(0, 0, 500, 500)
   }
@@ -67,19 +77,32 @@ onMounted(() => {
 </script>
 
 <template>
-  <span>测试页面</span>
-  <canvas ref="canvas" width="500" height="500" />
-  <svg>
-    <path d="M 10 10 H 90 V 90 H 10 Z" fill="transparent" stroke="black"/>
-  </svg>
-  <svg>
-    <path d="M 10 10 H 90 V 90 H 10 L 10 10" fill="transparent" stroke="black"/>
-  </svg>
-  {{ foo }}
-  <div class="w-28 h-28 dark:bg-[var(--bg-color)]"> </div>
-  <el-button @click="test">test</el-button>
-  <el-button @click="test2">test2</el-button>
-  <el-button @click="test3">test3</el-button>
+  <ElScrollbar wrap-class="scroll-wrap-test">
+    <!-- #region -->
+    <ElBacktop target=".scroll-wrap-test" :right="80" :bottom="60" />
+    <Eldrawer title="测试页面">
+      <div>
+        <el-divider content-position="center">返回首页</el-divider>
+        <div class="w-full flex justify-center">
+          <el-button @click="toHome">↩</el-button>
+        </div>
+      </div>
+    </Eldrawer>
+    <!-- #endregion -->
+    <!-- 测试内容👇(随便写的乱七八糟的笔记这类) -->
+    <canvas ref="canvas" width="500" height="500" />
+    <svg>
+      <path d="M 10 10 H 90 V 90 H 10 Z" fill="transparent" stroke="black" />
+    </svg>
+    <svg>
+      <path d="M 10 10 H 90 V 90 H 10 L 10 10" fill="transparent" stroke="black" />
+    </svg>
+    {{ foo }}
+    <div class="w-28 h-28 dark:bg-[var(--bg-color)]"> </div>
+    <el-button @click="test">test</el-button>
+    <el-button @click="test2">test2</el-button>
+    <el-button @click="test3">test3</el-button>
+  </ElScrollbar>
 </template>
 
 <style scoped lang="scss">

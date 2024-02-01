@@ -21,7 +21,8 @@ const change = () => {
       <div>
         <el-icon
           v-if="!isCollapse"
-          style="font-size: 30px; cursor: pointer"
+          size="30"
+          style="cursor: pointer"
           class="element-icons el-icon-shouqicaidan"
           @click="change"
         />
