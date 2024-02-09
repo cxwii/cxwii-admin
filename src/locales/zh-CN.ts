@@ -69,7 +69,8 @@ export default {
     CloseAll: '关闭全部'
   },
   config: {
-    configTitle: '配置项',
+    configTitle: '配置项(仅开发环境使用)',
     TestPage: '测试页面',
+    getPage: '打印页面路径'
   }
 }

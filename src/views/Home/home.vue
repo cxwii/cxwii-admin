@@ -13,7 +13,7 @@ const { t } = useI18n()
 const userStore = useUserStore()
 const pageLoading = computed(() => userStore.getPageLoading)
 const isCollapse = ref(false)
-const { push } = useRouter()
+const { push, currentRoute } = useRouter()
 
 provide('isCollapse', isCollapse)
 
@@ -25,6 +25,10 @@ const getCaches = computed((): string[] => {
 
 const toTestPage = () => {
   push({ path: '/testPage' })
+}
+
+const getPage = () => {
+  console.log('当前页面位置 :>> ', (currentRoute.value.matched[currentRoute.value.matched.length - 1].components?.default as any).__file)
 }
 </script>
 
@@ -52,6 +56,12 @@ const toTestPage = () => {
             <el-divider content-position="center">{{ t('config.TestPage') }}</el-divider>
             <div class="w-full flex justify-center">
               <el-button @click="toTestPage">🔬</el-button>
+            </div>
+          </div>
+          <div>
+            <el-divider content-position="center">{{ t('config.getPage') }}</el-divider>
+            <div class="w-full flex justify-center">
+              <el-button @click="getPage">🔍</el-button>
             </div>
           </div>
         </Eldrawer>

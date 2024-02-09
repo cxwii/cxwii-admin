@@ -70,7 +70,8 @@ export default {
     CloseAll: 'CloseAll'
   },
   config: {
-    configTitle: 'Configuration Item',
+    configTitle: 'Configuration Item(Only for development environment use)',
     TestPage: 'TestPage',
+    getPage: 'Print page path'
   }
 }
