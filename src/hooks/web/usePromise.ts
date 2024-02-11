@@ -1,22 +1,11 @@
-# 前端面试题(个人用)
+export class MyPromise {
+  status: string
+  value: string
+  reason: string
+  onResolvedCallbacks: any[]
+  onRejectedCallbacks: any[]
 
-## 1.JS
-
-1.promise
-
-promise三个状态：进⾏中（pending）、已完成(fulfilled)、已拒绝（rejected）
-promise使用: 
-```js
-const promise1 = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve('foo')
-  }, 300)
-})
-```
-手写Promise:
-```js
-class MyPromise {
-  constructor(callback) {
+  constructor(callback: any) {
     this.status = 'pending'
     this.value = ''
     this.reason = ''
@@ -24,18 +13,18 @@ class MyPromise {
     this.onResolvedCallbacks = []
     // 存储失败状态的回调函数
     this.onRejectedCallbacks = []
-    const resolve = (value) => {
+    const resolve = (value: any) => {
       if (this.status == 'pending') {
         this.status = 'resolved'
         this.value = value
-        this.onResolvedCallbacks.forEach((fn) => fn())
+        this.onResolvedCallbacks.forEach((fn: any) => fn())
       }
     }
-    const reject = (reason) => {
+    const reject = (reason: any) => {
       if (this.status == 'pending') {
         this.status = 'rejected'
         this.reason = reason
-        this.onRejectedCallbacks.forEach((fn) => fn())
+        this.onRejectedCallbacks.forEach((fn: any) => fn())
       }
     }
     try {
@@ -45,14 +34,13 @@ class MyPromise {
     }
   }
 
-  then(onResolved, onRejected) {
+  then(onResolved: any, onRejected: any) {
     // 防止传入的不是函数
-    onResolved = typeof onResolved === 'function' ? onResolved : (value) => value
-    onRejected = typeof onRejected === 'function' ? onRejected : (reason) => { throw reason }
+    onResolved = typeof onResolved === 'function' ? onResolved : (value: any) => value
+    onRejected = typeof onRejected === 'function' ? onRejected : (reason: any) => { throw reason }
 
-    const promise2 = new MyPromise((resolve, reject) => {
+    const promise2 = new MyPromise((resolve: any, reject: any) => {
       if (this.status == 'resolved') {
-        console.log('1111111111')
         try {
           const x = onResolved(this.value)
           resolve(x)
@@ -61,7 +49,6 @@ class MyPromise {
         }
       }
       if (this.status == 'rejected') {
-        console.log('2222222')
         try {
           const x = onRejected(this.reason)
           resolve(x)
@@ -70,7 +57,6 @@ class MyPromise {
         }
       }
       if (this.status == 'pending') {
-        console.log('333333333333')
         this.onResolvedCallbacks.push(() => {
           if (this.status == 'resolved') {
             try {
@@ -99,11 +85,12 @@ class MyPromise {
     })
     return promise2
   }
-  catch(onRejected) {
-    // 函数糖的方式使用
+  catch(onRejected: any) {
+    // 函数糖的方式构建catch
     return this.then(null, onRejected)
   }
 }
 
-```
-
+export const usePromise = (value: any) => {
+  return new MyPromise(value)
+}
