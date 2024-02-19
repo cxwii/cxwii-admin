@@ -294,3 +294,24 @@ div{
 - `relative`：生成相对定位的元素，相对于其正常位置进行定位
 - `static` 默认值。没有定位，元素出现在正常的流中
 - `inherit` 规定从父元素继承 `position` 属性的值
+
+##### 5.hack
+
+利用不同浏览器对CSS的支持和解析结果不一样编写针对特定浏览器样式。
+
+##### 6.BFC
+
+BFC(Block Formatting Context)，块级格式化上下文，是一个独立的渲染区域，让处于 BFC 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响
+
+**触发条件 (以下任意一条)**
+
+- `float`的值不为`none`
+- `overflow`的值不为`visible`
+- `display`的值为`table-cell`、`tabble-caption`和`inline-block`之一
+- `position`的值不为`static`或则`releative`中的任何一个
+
+> 在`IE`下, `Layout`,可通过`zoom:1` 触发
+
+##### 7.CSS渲染层
+
+在 DOM 树中每个节点都会对应一个渲染对象（`RenderObject），当它们的渲染对象处于相同的坐标空间（z 轴空间）时，就会形成一个 RenderLayers，也就是渲染层。渲染层将保证页面元素以正确的顺序堆叠，这时候就会出现层合成（`composite`），从而正确处理透明元素和重叠元素的显示。对于有位置重叠的元素的页面，这个过程尤其重要，因为一旦图层的合并顺序出错，将会导致元素显示异常
