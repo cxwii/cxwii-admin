@@ -244,6 +244,15 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           code: '005004'
         },
         component: () => import('@/views/Components/VideoPlayer/videoPlayer.vue')
+      },
+      {
+        name: 'pdfBook',
+        path: 'pdfBook',
+        meta: {
+          title: t('router.pdfBook'),
+          code: '005005'
+        },
+        component: () => import('@/views/Components/PdfBook/index.vue')
       }
     ]
   },

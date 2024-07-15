@@ -33,6 +33,7 @@
     "element-plus": "^2.2.33",
     "lodash-es": "^4.17.21",
     "nprogress": "^0.2.0",
+    "pdfjs-dist": "^4.4.168",
     "pinia": "^2.0.32",
     "qrcode": "^1.5.3",
     "three": "^0.156.1",

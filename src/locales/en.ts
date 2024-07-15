@@ -31,6 +31,7 @@ export default {
     Cqrcode: 'Qrcode',
     passwordStrength: 'PasswordStrength',
     videoPlayer: 'Video',
+    pdfBook: 'pdfBooks',
     ThreeNote: 'ThreeNote',
     Three1: 'Three1',
     Three2: 'Three2',

@@ -31,6 +31,7 @@ export default {
     Cqrcode: '二维码',
     passwordStrength: '密码强度',
     videoPlayer: '播放器',
+    pdfBook: 'Pdf电子书',
     ThreeNote: 'Three笔记',
     Three1: 'Three1',
     Three2: 'Three2',

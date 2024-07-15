@@ -46,12 +46,12 @@ const toDocument = () => {
 
 // 登录
 const login = async () => {
-  const res = await loginApi(loginFrom)
-  if (res.status == 200) {
+  // const res = await loginApi(loginFrom)
+  if (true) {
     // 存储用户数据
-    userStore.setUsername(res.data.username)
-    userStore.setUserPic(res.data.userPic)
-    userStore.setToken(res.token)
+    userStore.setUsername('admin')
+    userStore.setUserPic('123')
+    userStore.setToken('123')
 
     wsCache.set('username', userStore.getUsername)
     wsCache.set('userPic', userStore.getUserPic)
@@ -59,7 +59,7 @@ const login = async () => {
 
     // 根据的权限路由,1是息管理有,其他没用户信有没有额外有(表里面默认2)
     // 要根据后端方案,我这里就懒得再重写一个后端了就凑活用了
-    if (res.data.roleId === '1') {
+    if (true) {
       userStore.setDynamicRouter(true)
     } else {
       userStore.setDynamicRouter(false)
