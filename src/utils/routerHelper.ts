@@ -84,7 +84,7 @@ const filtereCodeRouter = (
 ) => {
   result = routes
   for (let index = 0; index < result.length; index++) {
-    if (!codes.includes(result[index].meta.code)) {
+    if (!codes.includes(result[index].meta.code!)) {
       result.splice(index, 1)
     } else if (routes[index].children) {
       routes[index].children = filtereCodeRouter(

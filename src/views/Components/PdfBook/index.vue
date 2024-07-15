@@ -1,11 +1,9 @@
 <script lang="ts" setup>
-import { nextTick, ref } from 'vue'
+import { ref } from 'vue'
 import * as PDFJS from 'pdfjs-dist'
 import * as pdfjsWorker from 'pdfjs-dist/build/pdf.worker.mjs'
 ;(window as any).pdfjsWorker = pdfjsWorker
 
-// pdf地址
-const pdfPath2 = `https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf`
 // arrayBuffer
 const arrayBuffer = ref()
 // 文件名称
@@ -20,6 +18,8 @@ const filePage = ref(0)
  */
 const convertFile = () => {
   let file = (document.getElementById('input') as any).files
+  console.log('文件格式 :>> ', file)
+
   if (!file.length) return
   let { name, size } = file[0]
 
@@ -38,6 +38,9 @@ const convertFile = () => {
   }
 }
 
+// 渲染计数器
+let renderedPages = 0
+
 /**
  * 创建canvas
  */
@@ -47,11 +50,16 @@ const createCanvas = (val: any) => {
   // 使用getTextContent获取pdf内容
   PDFJS.getDocument(val).promise.then((el: any) => {
     let filePageData = (filePage.value = el.numPages)
+
+    renderedPages = 0 // 重置计数器
+
     for (let i = 1; i <= filePageData; i++) {
       let canvas = document.createElement('canvas')
       canvas.id = `pageNum-${i}`
       let context = canvas.getContext('2d')
+
       document.getElementById('container')!.append(canvas)
+
       // 渲染canvas
       openPage(el, i, context)
     }
@@ -84,7 +92,12 @@ const openPage = (pdfFile: any, pageNumber: any, context: any) => {
       viewport: viewport
     }
     // 渲染PDF
-    page.render(model)
+    page.render(model).promise.then(() => {
+      renderedPages++
+      if (renderedPages === filePage.value) {
+        onExportImg()
+      }
+    })
   })
 }
 
@@ -106,10 +119,10 @@ const onExportImg = () => {
       for (let x = 0; x < canvas.width; x++) {
         const srcIndex = (y * canvas.width + x) * 4
         const destIndex = (y * canvas.width + (canvas.width - x - 1)) * 4
-        mirroredImageData.data[destIndex] = data[srcIndex] // Red
-        mirroredImageData.data[destIndex + 1] = data[srcIndex + 1] // Green
-        mirroredImageData.data[destIndex + 2] = data[srcIndex + 2] // Blue
-        mirroredImageData.data[destIndex + 3] = data[srcIndex + 3] // Alpha
+        mirroredImageData.data[destIndex] = data[srcIndex]
+        mirroredImageData.data[destIndex + 1] = data[srcIndex + 1]
+        mirroredImageData.data[destIndex + 2] = data[srcIndex + 2]
+        mirroredImageData.data[destIndex + 3] = data[srcIndex + 3]
       }
     }
     context.clearRect(0, 0, canvas.width, canvas.height)
