@@ -53,9 +53,11 @@ export default defineConfig({
       '@_public': path.resolve(__dirname, 'public')
     }
   },
-  optimizeDeps: {
-    include: ['jquery']
-  },
+  // define: {
+  //   // 使 jQuery 成为全局变量
+  //   $: 'jquery',
+  //   jQuery: 'jquery'
+  // },
   server: {
     // 自动打开浏览器
     open: false,

@@ -26,6 +26,11 @@ import '@/styles/index.scss'
 // 引入微前端
 import microApp from '@micro-zoe/micro-app'
 microApp.start()
+// jquery引入
+import $ from 'jquery'
+// jQuery设置为全局变量
+window.$ = $
+window.jQuery = $
 
 // 创建实例
 const setupAll = async () => {

@@ -47,6 +47,9 @@ importers:
       element-plus:
         specifier: ^2.2.33
         version: 2.2.33(vue@3.2.47)
+      jquery:
+        specifier: ^3.7.1
+        version: 3.7.1
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -93,6 +96,9 @@ importers:
       '@types/d3':
         specifier: ^7.4.3
         version: 7.4.3
+      '@types/jquery':
+        specifier: ^3.5.30
+        version: 3.5.30
       '@types/lodash-es':
         specifier: ^4.17.7
         version: 4.17.7
@@ -736,6 +742,9 @@ packages:
   '@types/geojson@7946.0.14':
     resolution: {integrity: sha512-WCfD5Ht3ZesJUsONdhvm84dmzWOiOzOAqOncN0++w0lBw1o8OuDNJF2McvvCef/yBqb/HYRahp1BYtODFQ8bRg==}
 
+  '@types/jquery@3.5.30':
+    resolution: {integrity: sha512-nbWKkkyb919DOUxjmRVk8vwtDb0/k8FKncmUKFi+NY+QXqWltooxTrswvz4LspQwxvLdvzBN1TImr6cw3aQx2A==}
+
   '@types/json-schema@7.0.12':
     resolution: {integrity: sha512-Hr5Jfhc9eYOQNPYO5WLDq/n4jqijdHNlDXjuAQkkt+mWdQR+XJToOHrsD4cPaMXpn6KO7y2+wM8AZEs8VpBLVA==}
 
@@ -756,6 +765,9 @@ packages:
 
   '@types/semver@7.5.0':
     resolution: {integrity: sha512-G8hZ6XJiHnuhQKR7ZmysCeJWE08o8T0AXtk5darsCaTVsYZhhgUrq53jizaR2FvsoeCwJhlmwTjkXBY5Pn/ZHw==, tarball: https://registry.npm.taobao.org/@types/semver/-/semver-7.5.0.tgz}
+
+  '@types/sizzle@2.3.8':
+    resolution: {integrity: sha512-0vWLNK2D5MT9dg0iOo8GlKguPAU02QjmZitPEsXRuJXU/OGIOt9vT9Fc26wtYuavLxtO45v9PGleoL9Z0k1LHg==}
 
   '@types/stats.js@0.17.3':
     resolution: {integrity: sha512-pXNfAD3KHOdif9EQXZ9deK82HVNaXP5ZIF5RP2QG6OQFNTaY2YIetfrE9t528vEreGQvEPRDDc8muaoYeK0SxQ==}
@@ -2168,6 +2180,9 @@ packages:
   jiti@1.18.2:
     resolution: {integrity: sha512-QAdOptna2NYiSSpv0O/BwoHBSmz4YhpzJHyi+fnMRTXFjp7B8i/YG5Z8IfusxB1ufjcD2Sre1F3R+nX3fvy7gg==, tarball: https://registry.npm.taobao.org/jiti/-/jiti-1.18.2.tgz}
     hasBin: true
+
+  jquery@3.7.1:
+    resolution: {integrity: sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==}
 
   js-base64@2.6.4:
     resolution: {integrity: sha512-pZe//GGmwJndub7ZghVHz7vjb2LgC1m8B07Au3eYqeqv9emhESByMXxaEgkUkEqJe87oBbSniGYoQNIBklc7IQ==, tarball: https://registry.npm.taobao.org/js-base64/-/js-base64-2.6.4.tgz}
@@ -3927,6 +3942,10 @@ snapshots:
 
   '@types/geojson@7946.0.14': {}
 
+  '@types/jquery@3.5.30':
+    dependencies:
+      '@types/sizzle': 2.3.8
+
   '@types/json-schema@7.0.12': {}
 
   '@types/lodash-es@4.17.7':
@@ -3946,6 +3965,8 @@ snapshots:
       '@types/node': 20.9.0
 
   '@types/semver@7.5.0': {}
+
+  '@types/sizzle@2.3.8': {}
 
   '@types/stats.js@0.17.3': {}
 
@@ -5585,6 +5606,8 @@ snapshots:
   isobject@3.0.1: {}
 
   jiti@1.18.2: {}
+
+  jquery@3.7.1: {}
 
   js-base64@2.6.4: {}
 
