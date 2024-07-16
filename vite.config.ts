@@ -15,7 +15,7 @@ export default defineConfig({
           isCustomElement: (tag) => {
             return tag.startsWith('micro-')
           }
-        },
+        }
       }
     }),
     // tsx语法支持
@@ -31,7 +31,7 @@ export default defineConfig({
       runtimeOnly: true,
       compositionOnly: true,
       include: [path.resolve(__dirname, 'src/locales/**')]
-    }),
+    })
     // eslint
     // EslintPlugin({
     //   cache: false,
@@ -52,6 +52,9 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
       '@_public': path.resolve(__dirname, 'public')
     }
+  },
+  optimizeDeps: {
+    include: ['jquery']
   },
   server: {
     // 自动打开浏览器

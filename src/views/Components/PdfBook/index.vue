@@ -1,205 +1,115 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-import * as PDFJS from 'pdfjs-dist'
-import * as pdfjsWorker from 'pdfjs-dist/build/pdf.worker.mjs'
-;(window as any).pdfjsWorker = pdfjsWorker
+import { onMounted, ref } from 'vue'
+import { usePdfToImg } from '@/hooks/utils/pdfToImg'
+import * as turn from '@/utils/turn.js'
 
-// arrayBuffer
-const arrayBuffer = ref()
-// 文件名称
-const fileName = ref()
-// 文件大小
-const fileSize = ref(0)
-// 文件页数
-const filePage = ref(0)
+import img1 from '@/assets/imgs/user.png'
+import img2 from '@/assets/imgs/vuex-store.png'
 
-/**
- * 读取文件内容
- */
+console.log('turn :>> ', turn)
+
+const name = ref()
+const size = ref()
+const page = ref()
+const arr = ref()
+
 const convertFile = () => {
-  let file = (document.getElementById('input') as any).files
-  console.log('文件格式 :>> ', file)
-
-  if (!file.length) return
-  let { name, size } = file[0]
-
-  fileName.value = name
-  fileSize.value = size / 1024 / 1024
-  // Object.assign(this, { fileName: name, fileSize: size / 1024 / 1024 })
-
-  // 使用FileReader对象，web应用程序可以异步的读取存储在用户计算机上的文件(或者原始数据缓冲)内容，可以使用File对象或者Blob对象来指定所要处理的文件或数据
-  let fileReader = new FileReader()
-  // 异步按字节读取文件内容，结果用ArrayBuffer对象表示
-  fileReader.readAsArrayBuffer(file[0])
-  fileReader.onload = (e) => {
-    let arrayBufferData = (arrayBuffer.value = e.target!.result)
-    // 创建canvas节点
-    createCanvas(arrayBufferData)
-  }
+  let file = (document.getElementById('input') as HTMLInputElement).files
+  const { imgArr, fileName, fileSize, filePage } = usePdfToImg(file!)
+  name.value = fileName.value
+  size.value = Number(fileSize.value).toFixed(2)
+  page.value = filePage.value?.toString()
+  arr.value = imgArr.value
 }
 
-// 渲染计数器
-let renderedPages = 0
-
-/**
- * 创建canvas
- */
-const createCanvas = (val: any) => {
-  // 清空节点下数据
-  ;(document.getElementById('container') as any).innerHTML = ''
-  // 使用getTextContent获取pdf内容
-  PDFJS.getDocument(val).promise.then((el: any) => {
-    let filePageData = (filePage.value = el.numPages)
-
-    renderedPages = 0 // 重置计数器
-
-    for (let i = 1; i <= filePageData; i++) {
-      let canvas = document.createElement('canvas')
-      canvas.id = `pageNum-${i}`
-      let context = canvas.getContext('2d')
-
-      document.getElementById('container')!.append(canvas)
-
-      // 渲染canvas
-      openPage(el, i, context)
-    }
-  })
+const onTurnPre = () => {
+  $('#flipbook').turn('previous')
+}
+const onTurnNext = () => {
+  $('#flipbook').turn('next')
 }
 
-/**
- * 渲染canvas
- */
-const openPage = (pdfFile: any, pageNumber: any, context: any) => {
-  // 获取PDF文档中的各个页面
-  pdfFile.getPage(pageNumber).then((page: any) => {
-    // 设置展示比例
-    let scale = 1
-    let roate = 90
-    // 获取pdf尺寸
-    let viewport = page.getViewport(scale, roate)
-
-    let canvas = context.canvas
-
-    canvas.width = viewport.rawDims.pageWidth
-    canvas.height = viewport.rawDims.pageHeight
-
-    canvas.style.width = '100%'
-    canvas.style.height = '100%'
-    canvas.style.transform = 'rotate(180deg) scaleX(-1)'
-
-    let model = {
-      canvasContext: context,
-      viewport: viewport
-    }
-    // 渲染PDF
-    page.render(model).promise.then(() => {
-      renderedPages++
-      if (renderedPages === filePage.value) {
-        onExportImg()
-      }
-    })
-  })
-}
-
-/**
- * 保存图片
- */
-const onExportImg = () => {
-  let eleList = document.querySelectorAll('canvas')
-  // 遍历所有canvas节点
-  for (let i = 0; i < eleList.length; i++) {
-    let canvas: any = document.getElementById(`pageNum-${i + 1}`)
-
-    const context = canvas.getContext('2d')
-    // 做镜像翻转
-    const imageData = context.getImageData(0, 0, canvas.width, canvas.height)
-    const data = imageData.data
-    const mirroredImageData = context.createImageData(imageData)
-    for (let y = 0; y < canvas.height; y++) {
-      for (let x = 0; x < canvas.width; x++) {
-        const srcIndex = (y * canvas.width + x) * 4
-        const destIndex = (y * canvas.width + (canvas.width - x - 1)) * 4
-        mirroredImageData.data[destIndex] = data[srcIndex]
-        mirroredImageData.data[destIndex + 1] = data[srcIndex + 1]
-        mirroredImageData.data[destIndex + 2] = data[srcIndex + 2]
-        mirroredImageData.data[destIndex + 3] = data[srcIndex + 3]
+onMounted(() => {
+  $('#flipbook').turn({
+    //启用硬件加速,移动端有效
+    acceleration: false,
+    //显示：single=单页，double=双页，默认双页
+    display: 'double',
+    // 翻页撒开鼠标，页面的延迟
+    duration: 800,
+    // 默认显示第几页
+    page: 1,
+    // 折叠处的光泽渐变，主要体现翻页的立体感、真实感
+    gradients: true,
+    // 中心翻取决于有多少页面可见 true or false
+    autoCenter: true,
+    // 设置可翻页的页角(都试过了，乱写 4个角都能出发卷起)， bl,br   tl,tr   bl,tr
+    turnCorners: 'bl,br',
+    //页面高度
+    height: 500,
+    //翻书范围宽度，总宽度
+    width: 500,
+    when: {
+      //监听事件
+      turning: function (e: any, page: any, view: any) {
+        console.log('翻页前触发')
+        console.log(e, page, view)
+        // 翻页前触发
+        console.log(page)
+      },
+      turned: function (e: any, page: any) {
+        console.log('翻页后触发')
+        console.log(e, page)
+        // 翻页后触发
+        console.log(page)
       }
     }
-    context.clearRect(0, 0, canvas.width, canvas.height)
-    context.putImageData(mirroredImageData, 0, 0)
-    // 旋转180度
-    context.save()
-    context.translate(canvas.width / 2, canvas.height / 2)
-    context.rotate(Math.PI)
-    context.translate(-canvas.width / 2, -canvas.height / 2)
-    context.drawImage(canvas, 0, 0)
-    context.restore()
-    canvas.style.transform = 'rotate(0deg) scaleX(1)'
-
-    console.log('canvas :>> ', canvas.toDataURL())
-  }
-}
+  })
+})
 </script>
 
 <template>
-  <div id="page09">
-    <div class="info-box">
-      <div class="input">
-        <input id="input" type="file" accept="application/pdf" @change="convertFile()" />
-      </div>
-      <div class="cell">
-        <div>名称：{{ fileName || '-' }}</div>
-        <div>大小：{{ Number(fileSize).toFixed(2) }}M</div>
-        <div>页数：{{ filePage }}</div>
-        <el-button @click="onExportImg">保存图片</el-button>
-      </div>
-    </div>
+  <div class="flex">
+    <input id="input" type="file" accept="application/pdf" @change="convertFile()" />
+    <div>名称：{{ name }}</div>
+    <div>大小：{{ size ? `${size}M` : `` }}</div>
+    <div>页数：{{ page }}</div>
+  </div>
+  <el-button @click="onTurnPre()">上一页</el-button>
+  <el-button @click="onTurnNext()">下一页</el-button>
+  <div class="readBox">
+    <div id="flipbook">
+      <div class="hard"> 封面 </div>
+      <div class="hard"></div>
 
-    <div id="container"></div>
+      <div class="page">
+        <img :src="img1" />
+      </div>
+      <div class="page">
+        <img :src="img2" />
+      </div>
+      <div class="page">
+        <img :src="img1" />
+      </div>
+      <div class="page">
+        <img :src="img2" />
+      </div>
+
+      <div class="hard"></div>
+      <div class="hard"></div>
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-#page09 {
+.readBox {
   width: 800px;
-  margin: 0 auto;
-
-  .info-box {
-    position: relative;
-
-    .input {
-      margin: 15px 0;
-
-      #input {
-        width: 100%;
-        height: 100%;
-        cursor: pointer;
-      }
-    }
-
-    .cell {
-      margin: 15px 0;
-      display: flex;
-      justify-content: space-around;
-
-      div {
-        margin-right: 20px;
-      }
-    }
+  height: 800px;
+  .page {
+    background-color: red;
   }
-
-  #container {
-    width: 100%;
-    min-height: 850px;
-    margin: 0 auto;
-    border: 1px solid #eee;
-    border-radius: 10px;
-
-    canvas {
-      margin-bottom: 10px;
-      border: 1px solid #ff6700;
-      border-radius: 10px;
-    }
+  .hard {
+    background-color: aqua;
   }
 }
 </style>
