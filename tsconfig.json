@@ -23,7 +23,8 @@
       "vite/client",
       "element-plus/global",
       "@types/qrcode",
-      "vite-plugin-svg-icons/client"
+      "vite-plugin-svg-icons/client",
+      "@types/jquery"
     ]
   },
   "include": ["src/**/*", "types/**/*.d.ts", "mock/**/*.ts"],

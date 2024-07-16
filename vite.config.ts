@@ -61,6 +61,7 @@ export default defineConfig({
     open: false,
     // 端口
     port: 9527,
+    host: true,
     // 代理
     proxy: {
       '/api': {

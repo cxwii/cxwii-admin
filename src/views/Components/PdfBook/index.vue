@@ -23,14 +23,14 @@ const convertFile = () => {
 }
 
 const onTurnPre = () => {
-  $('#flipbook').turn('previous')
+  ;($('#flipbook') as any).turn('previous')
 }
 const onTurnNext = () => {
-  $('#flipbook').turn('next')
+  ;($('#flipbook') as any).turn('next')
 }
 
 onMounted(() => {
-  $('#flipbook').turn({
+  ;($('#flipbook') as any).turn({
     //启用硬件加速,移动端有效
     acceleration: false,
     //显示：single=单页，double=双页，默认双页
