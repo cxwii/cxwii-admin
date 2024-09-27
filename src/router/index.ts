@@ -253,6 +253,15 @@ export const asyncRouter: AppRouteRecordRaw[] = [
           code: '005005'
         },
         component: () => import('@/views/Components/PdfBook/index.vue')
+      },
+      {
+        name: 'pdfE',
+        path: 'pdfE',
+        meta: {
+          title: t('router.pdfE'),
+          code: '005006'
+        },
+        component: () => import('@/views/Components/PdfE/index.vue')
       }
     ]
   },

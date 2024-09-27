@@ -32,6 +32,7 @@ export default {
     passwordStrength: 'PasswordStrength',
     videoPlayer: 'Video',
     pdfBook: 'pdfBooks',
+    pdfE: 'pdfE',
     ThreeNote: 'ThreeNote',
     Three1: 'Three1',
     Three2: 'Three2',
