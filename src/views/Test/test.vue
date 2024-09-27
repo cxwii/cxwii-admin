@@ -19,13 +19,13 @@ const data = {
           name: '子公司1-1',
           meta: '关系1-1',
           radius: 50,
-          arrow: 25,
+          arrow: 25
         },
         {
           name: '子公司1-2',
           meta: '关系1-2',
           radius: 50,
-          arrow: 25,
+          arrow: 25
         }
       ]
     },
@@ -39,19 +39,19 @@ const data = {
           name: '子公司2-1',
           meta: '关系2-1',
           radius: 50,
-          arrow: 25,
+          arrow: 25
         },
         {
           name: '子公司2-2',
           meta: '关系2-2',
           radius: 50,
-          arrow: 25,
+          arrow: 25
         },
         {
           name: '子公司2-3',
           meta: '关系2-3',
           radius: 50,
-          arrow: 25,
+          arrow: 25
         }
       ]
     }
@@ -112,13 +112,14 @@ const D3Init = () => {
     //设置展示到画板中间
     .attr('viewBox', [-width / 2, -height / 2, width, height])
 
-
-    const arrow  = svg.append('defs').append('marker')
+  const arrow = svg
+    .append('defs')
+    .append('marker')
     .data(nodes)
     .attr('id', 'arrow')
     .attr('viewBox', '0 -5 10 10')
     .attr('refX', (d) => {
-      console.log('d箭头 :>> ', d);
+      console.log('d箭头 :>> ', d)
       return d.data.arrow
     })
     .attr('refY', 0)
@@ -126,9 +127,8 @@ const D3Init = () => {
     .attr('markerHeight', 20)
     .attr('orient', 'auto')
     .append('path')
-      .attr('d', 'M0,-5L10,0L0,5')
-      .attr('fill', '#999');
-
+    .attr('d', 'M0,-5L10,0L0,5')
+    .attr('fill', '#999')
 
   const link = svg
     .append('g')
@@ -138,8 +138,6 @@ const D3Init = () => {
     .data(links)
     .join('line')
     .attr('marker-end', 'url(#arrow)')
-
-
 
   const node1 = svg
     .append('g')
@@ -162,7 +160,7 @@ const D3Init = () => {
     })
     //指定圆的半径
     .attr('r', (d) => {
-      console.log('半径数据 :>> ', d);
+      console.log('半径数据 :>> ', d)
       return d.data.radius
     })
     //应用拖拽
@@ -189,7 +187,7 @@ const D3Init = () => {
     .data(links)
     .join('text')
     .text((d) => {
-      console.log('d数据 :>> ', d);
+      console.log('d数据 :>> ', d)
       return d.source.data.meta
     })
     .attr('text-anchor', 'middle')

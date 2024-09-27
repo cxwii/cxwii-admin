@@ -14,21 +14,7 @@ const props = defineProps({
 <template>
   <div
     @click="drawer = !drawer"
-    class="
-      fixed
-      bottom-1/2
-      right-0
-      cursor-pointer
-      rounded-l-lg
-      bg-[#409eff]
-      hover:bg-[#258df8]
-      hover:w-10
-      w-9
-      h-9
-      flex
-      justify-center
-      items-center
-      transition-all"
+    class="fixed bottom-1/2 right-0 cursor-pointer rounded-l-lg bg-[#409eff] hover:bg-[#258df8] hover:w-10 w-9 h-9 flex justify-center items-center transition-all"
   >
     <el-icon size="20" color="#ffffff" class="element-icons el-icon-shezhi" />
   </div>

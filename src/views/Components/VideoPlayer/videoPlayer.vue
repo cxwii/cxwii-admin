@@ -17,12 +17,11 @@ const test = () => {
 <template>
   <div>
     <!-- 要给一个有宽高固定的容器来存放(MainContent的原因,el-scrollbar__view是内容撑开的),并没有任何问题,是设计概念的问题,要在这个基础上做响应式就要操作这个外层的div -->
-    <div style="height: 500px;width: 800px;">
-      <VideoPlayer :options="(options as Options)" />
+    <div style="height: 500px; width: 800px">
+      <VideoPlayer :options="options as Options" />
     </div>
     <el-button @click="test">测试切换视频源</el-button>
   </div>
 </template>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

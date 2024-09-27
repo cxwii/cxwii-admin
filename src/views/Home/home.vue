@@ -29,15 +29,18 @@ const toTestPage = () => {
 }
 
 const getPage = () => {
-  let pageFile = (currentRoute.value.matched[currentRoute.value.matched.length - 1].components?.default as any).__file
+  let pageFile = (
+    currentRoute.value.matched[currentRoute.value.matched.length - 1].components?.default as any
+  ).__file
 
-  navigator.clipboard.writeText(pageFile)
-  .then(() => {
-    ElMessage.success('已将页面路径复制到剪贴板')
-  })
-  .catch((error) => {
-    ElMessage.error(`复制页面路径到剪贴板失败: ${error}`)
-  })
+  navigator.clipboard
+    .writeText(pageFile)
+    .then(() => {
+      ElMessage.success('已将页面路径复制到剪贴板')
+    })
+    .catch((error) => {
+      ElMessage.error(`复制页面路径到剪贴板失败: ${error}`)
+    })
 }
 </script>
 

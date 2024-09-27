@@ -37,7 +37,12 @@ export class MyPromise {
   then(onResolved: any, onRejected: any) {
     // 防止传入的不是函数
     onResolved = typeof onResolved === 'function' ? onResolved : (value: any) => value
-    onRejected = typeof onRejected === 'function' ? onRejected : (reason: any) => { throw reason }
+    onRejected =
+      typeof onRejected === 'function'
+        ? onRejected
+        : (reason: any) => {
+            throw reason
+          }
 
     const promise2 = new MyPromise((resolve: any, reject: any) => {
       if (this.status == 'resolved') {

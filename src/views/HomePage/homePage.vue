@@ -19,7 +19,7 @@ const EchartOptions = ref({
       top: '5%',
       left: 'center',
       textStyle: {
-        color: "rgba(66, 193, 248, 1)"
+        color: 'rgba(66, 193, 248, 1)'
       }
     },
     series: [
@@ -149,7 +149,7 @@ onMounted(() => {
       </div>
       <div class="technology shadow-md bg-[#f5f5f5] dark:bg-[#282727]">
         <div class="elaborationHead text-xl">🛠️<b class="ml-1">技术栈</b></div>
-        <Echart :options="(EchartOptions.data as EChartsOption)" :height="450"/>
+        <Echart :options="EchartOptions" :height="450" />
       </div>
     </div>
   </div>
