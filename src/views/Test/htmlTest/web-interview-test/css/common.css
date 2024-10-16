@@ -1,0 +1,33 @@
+html,body,.out-container{
+    height: 100%;
+    margin: 0;
+    padding: 0;    
+}
+
+.out-container{
+    display: flex;
+    flex-direction: column;
+}
+.title{
+    text-align: center;
+    border: 10px solid yellowgreen;
+    border-bottom: 3px dashed gray;
+}
+.content{
+    border: 2px double green;
+    width: 95%;
+    height: 85%;
+    margin: 0 auto;
+    text-align: center;
+}
+.content::before {
+    content: '请在此区域内展现你的实现效果';
+    position: absolute;
+    color: #999;
+    pointer-events: none;
+    font-size: 56px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }

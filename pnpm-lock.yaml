@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@element-plus/icons-vue':
+        specifier: ^2.3.1
+        version: 2.3.1(vue@3.2.47)
       '@micro-zoe/micro-app':
         specifier: 1.0.0-rc.2
         version: 1.0.0-rc.2
@@ -336,8 +339,8 @@ packages:
     resolution: {integrity: sha512-/Z3l6pXthq0JvMYdUFyX9j0MaCltlIn6mfh9jLyQwg5aPKxkyNa0PTHtU1AlFXLNk55ZuAeJRcpvq+tmLfKmaQ==, tarball: https://registry.npm.taobao.org/@ctrl/tinycolor/-/tinycolor-3.6.0.tgz}
     engines: {node: '>=10'}
 
-  '@element-plus/icons-vue@2.1.0':
-    resolution: {integrity: sha512-PSBn3elNoanENc1vnCfh+3WA9fimRC7n+fWkf3rE5jvv+aBohNHABC/KAR5KWPecxWxDTVT1ERpRbOMRcOV/vA==, tarball: https://registry.npm.taobao.org/@element-plus/icons-vue/-/icons-vue-2.1.0.tgz}
+  '@element-plus/icons-vue@2.3.1':
+    resolution: {integrity: sha512-XxVUZv48RZAd87ucGS48jPf6pKu0yV5UCg9f4FFwtrYxXOwWuVJo6wOvSLKEoMQKjv8GsX/mhP6UsC1lRwbUWg==}
     peerDependencies:
       vue: ^3.2.0
 
@@ -3554,7 +3557,7 @@ snapshots:
 
   '@ctrl/tinycolor@3.6.0': {}
 
-  '@element-plus/icons-vue@2.1.0(vue@3.2.47)':
+  '@element-plus/icons-vue@2.3.1(vue@3.2.47)':
     dependencies:
       vue: 3.2.47
 
@@ -4976,7 +4979,7 @@ snapshots:
   element-plus@2.2.33(vue@3.2.47):
     dependencies:
       '@ctrl/tinycolor': 3.6.0
-      '@element-plus/icons-vue': 2.1.0(vue@3.2.47)
+      '@element-plus/icons-vue': 2.3.1(vue@3.2.47)
       '@floating-ui/dom': 1.2.3
       '@popperjs/core': '@sxzz/popperjs-es@2.11.7'
       '@types/lodash': 4.14.191

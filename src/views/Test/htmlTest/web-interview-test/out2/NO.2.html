@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>题目序号：【2】</title>
+    <link href="../css/common.css" rel="stylesheet" />
+    <style>
+      .canvas-container {
+        position: relative;
+        width: 2048px;
+        height: 1536px;
+      }
+      canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="out-container">
+      <div class="title">
+        <h1>题目序号：【2】</h1>
+      </div>
+      <hr />
+      <div class="content">
+        <!-- 请在此处完成你的实现 -->
+        <div
+          class="canvas-container"
+          style="background-image: url('./Mark.jpg')"
+        >
+          <canvas id="myCanvas" width="2048" height="1536"></canvas>
+        </div>
+      </div>
+    </div>
+    <script>
+      const drawShapes = async () => {
+        // json
+        const response = await fetch("./Mark.json");
+        const data = await response.json();
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "rgba(0, 0, 0, 0)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // 遍历点位绘制
+        data.shapes.forEach((shape) => {
+          if (shape.shape_type === "polygon" && shape.points.length > 0) {
+            ctx.beginPath();
+            shape.points.forEach((point, index) => {
+              const [x, y] = point;
+              if (index === 0) {
+                ctx.moveTo(x, y);
+              } else {
+                ctx.lineTo(x, y);
+              }
+            });
+            ctx.closePath();
+            ctx.strokeStyle = "red";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+          }
+        });
+      };
+
+      drawShapes().catch((err) => console.error("数据加载错误:", err));
+    </script>
+  </body>
+</html>

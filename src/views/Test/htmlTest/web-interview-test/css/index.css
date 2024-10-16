@@ -1,0 +1,56 @@
+html,body{
+    height: 100%;
+    margin: 0;
+    padding: 0;    
+}
+
+.out-container{
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+}
+.title{
+    text-align: center;
+    border: 10px solid yellow;
+    border-bottom: 3px dashed gray;
+}
+.no{
+    padding: 25px;
+    ul li{
+        line-height: 40px;
+        span{
+            font-weight: bold;
+            font-size: 18px;
+        }
+    }
+    .out{
+        font-weight: bold;
+        font-size: 26px;
+    }
+    table{
+        width: 45%;
+        margin: 0 auto;
+    }
+    .table-container{
+        width: 45%;
+        margin: 0 auto;
+        text-align: center;
+        font-weight: bold;
+    }
+    .union {
+        background-color: orange;
+    }
+    .union2 {
+        background-color: orangered;
+    }
+}
+
+.img-container{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    
+    div{
+        font-weight: bold;
+    }
+}

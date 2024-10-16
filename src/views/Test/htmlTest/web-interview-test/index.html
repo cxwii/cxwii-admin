@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>yxsmart</title>
+    <link href="./css/index.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="out-container">
+      <div class="title">
+        <h1>web前端机试题</h1>
+        <h4>时间：2.5小时，满分：120分</h4>
+      </div>
+      <div class="no">
+        <h3>1、（35分）在 canvas画布 中绘制箭头。</h3>
+        <div>要求如下：</div>
+        <ul>
+          <li><b>禁止引入第三方工具库，请用原生的JS（JavaScript）实现。</b></li>
+          <li>按下鼠标左键（mousedown ）开始绘制箭头。</li>
+          <li>松开鼠标左键（mouseup ）结束箭头绘制。</li>
+          <li>
+            箭头绘制的过程中要支持不同的方向变换。箭头边框规格：
+            <span
+              style="border: 2px solid red; font-weight: bold; font-size: 18px"
+              >border: 2px solid red</span
+            >， 填充色：<span
+              style="
+                background-color: rgb(255, 0, 0, 0.2);
+                font-weight: bold;
+                font-size: 18px;
+              "
+            >
+              background-color:rgb(255,0,0,0.2) </span
+            >， <span>图-101</span>所示。
+          </li>
+        </ul>
+        <div class="img-container">
+          <div><img src="./img/101.gif" /></div>
+          <div>图-101</div>
+        </div>
+        <div>提示：</div>
+        <ul>
+          <li>识别出箭头的关键点位，<span>图-102</span> 所示。</li>
+          <li>mousedown 获取A点坐标。</li>
+          <li>mouseup 获取B点坐标。</li>
+          <li>计算关键坐标点G（箭头头部占AB线段长度的百分比）。</li>
+          <li>计算出C点坐标（BG与BC夹角 45°，可通过三角函数计算C）。</li>
+          <li>计算出D点坐标（C点纵坐标偏移量）。</li>
+          <li>计算出F点坐标（BG与BF夹角 -45°，可通过三角函数计算F）。</li>
+          <li>计算出E点坐标（F点纵坐标偏移量）。</li>
+          <li>
+            连通 <span style="color: red">A->D->C->B->F->E->A</span> 得到箭头。
+          </li>
+        </ul>
+        <div class="img-container">
+          <div><img src="./img/102.png" width="450px" /></div>
+          <div>图-102</div>
+        </div>
+        <h3>
+          请在
+          <a href="./out1/NO.1.html" target="_blank" class="out"
+            >./out1/NO.1.html</a
+          >
+          文件中完成作答。
+        </h3>
+      </div>
+
+      <div class="no">
+        <h3>2、（25分）根据给定的坐标绘制物体轮廓。</h3>
+        <div>要求如下：</div>
+        <ul>
+          <li><b>禁止引入第三方工具库，请用原生的JS（JavaScript）实现。</b></li>
+          <li>
+            给定需要标记的图片
+            <a href="./out2/Mark.jpg" target="_blank">./out2/Mark.jpg</a>
+            ，<span>图-201</span> 所示。
+          </li>
+          <li>
+            给定标定数据
+            <a href="./out2/Mark.json" target="_blank">./out2/Mark.json</a>
+            ，坐标点的连通域 <span>图-202</span> 所示。数据格式伪代码如下：
+          </li>
+          <li style="list-style: none">
+            <pre>
+{
+    "version": "1.1",//数据版本号
+    "flags": {},
+    "shapes": [
+        {//第1个不规则图形坐标点位信息
+            "label": "",
+            "points": [
+                [//第1个坐标点
+                    1121,//x坐标
+                    1288//y坐标
+                ],
+                [//第2个坐标点
+                    1114,
+                    1263
+                ],
+                ...,
+                [//第n个坐标点
+                ]
+            ],
+            "group_id": null,
+            "shape_type": "polygon",
+            "flags": {}
+        },
+        {}//第2个不规则图形坐标点位信息
+        ...,
+        {}//第n个不规则图形坐标点位信息
+    ]
+                    </pre
+            >
+          </li>
+          <li>
+            标定数据的坐标点需要与图片对齐。取图片左上角为坐标原点，x轴取向右为正方向，y轴取向下为正方向。<span
+              >图-203</span
+            >
+            所示。
+          </li>
+          <li>
+            将标定数据绘制到给定的图片上。最终效果应如
+            <span>图-204</span> 所示。
+          </li>
+        </ul>
+
+        <div class="img-container">
+          <div><img src="./img/201.jpg" width="500px" /></div>
+          <div>图-201</div>
+        </div>
+        <div class="img-container">
+          <div><img src="./img/202.png" width="500px" /></div>
+          <div>图-202</div>
+        </div>
+        <div class="img-container">
+          <div><img src="./img/203.png" width="500px" /></div>
+          <div>图-203</div>
+        </div>
+        <div class="img-container">
+          <div><img src="./img/204.png" width="500px" /></div>
+          <div>图-204</div>
+        </div>
+        <h3>
+          请在
+          <a href="./out2/NO.2.html" target="_blank" class="out"
+            >./out2/NO.2.html</a
+          >
+          文件中完成作答。
+        </h3>
+      </div>
+
+      <div class="no">
+        <h3>3、（10分）获取远端的数据并展示。</h3>
+        <div>要求如下：</div>
+        <ul>
+          <li><b>禁止引入第三方工具库，请用原生的JS（JavaScript）实现。</b></li>
+          <li>
+            请用原生JS写一个http请求调用远端数据的工具类，需要考虑到不同http状态码的处理。
+          </li>
+          <li>
+            使用该工具类，设计一个帖子列表和详情页，并实现数据的动态加载。
+          </li>
+          <li>
+            帖子列表接口：<a
+              href="https://jsonplaceholder.typicode.com/posts"
+              target="_blank"
+              >https://jsonplaceholder.typicode.com/posts</a
+            >
+          </li>
+          <li>
+            跟帖评论接口：<a
+              href="https://jsonplaceholder.typicode.com/comments?postId=1"
+              target="_blank"
+              >https://jsonplaceholder.typicode.com/comments?postId=${postId}</a
+            >
+          </li>
+          <li>
+            请自行完成页面样式设计、以及交互<span>（禁止引入UI框架）</span>。
+          </li>
+        </ul>
+        <h3>
+          请在
+          <a href="./out3/NO.3.html" target="_blank" class="out"
+            >./out3/NO.3.html</a
+          >
+          文件中完成作答。
+        </h3>
+      </div>
+
+      <div class="no">
+        <h3>4、（10分）告警数据合并。</h3>
+        <div>要求如下：</div>
+        <ul>
+          <li>
+            给定告警数据
+            <a href="./out4/Alarm.json" target="_blank">./out4/Alarm.json</a>。
+          </li>
+          <li>
+            同组织，同养户，且告警时间三分钟内的告警数据进行合并展示。<span
+              >表-401</span
+            >
+            背景高亮的数据应进行合并。
+          </li>
+          <li>
+            请自行设计合并的展示方式与样式<span>（禁止引入UI框架）</span>。
+          </li>
+        </ul>
+        <table border="1" cellspacing="0">
+          <tr>
+            <th>序号</th>
+            <th>组织名称</th>
+            <th>养户名称</th>
+            <th>告警内容</th>
+            <th>告警时间</th>
+          </tr>
+          <tr class="union">
+            <td>1</td>
+            <td>西南公司</td>
+            <td>张三</td>
+            <td>生物入侵</td>
+            <td>2024-04-20 19:04:01</td>
+          </tr>
+          <tr class="union">
+            <td>2</td>
+            <td>西南公司</td>
+            <td>张三</td>
+            <td>生物入侵</td>
+            <td>2024-04-20 19:04:10</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>华北公司</td>
+            <td>张三</td>
+            <td>生物入侵</td>
+            <td>2024-04-20 19:04:12</td>
+          </tr>
+          <tr class="union">
+            <td>4</td>
+            <td>西南公司</td>
+            <td>张三</td>
+            <td>生物入侵</td>
+            <td>2024-04-20 19:04:15</td>
+          </tr>
+          <tr class="union">
+            <td>5</td>
+            <td>西南公司</td>
+            <td>张三</td>
+            <td>生物入侵</td>
+            <td>2024-04-20 19:05:30</td>
+          </tr>
+          <tr class="union2">
+            <td>6</td>
+            <td>西南公司</td>
+            <td>张三</td>
+            <td>生物入侵</td>
+            <td>2024-04-20 19:08:33</td>
+          </tr>
+          <tr class="union2">
+            <td>7</td>
+            <td>西南公司</td>
+            <td>张三</td>
+            <td>生物入侵</td>
+            <td>2024-04-20 19:08:44</td>
+          </tr>
+          <tr class="union2">
+            <td>8</td>
+            <td>西南公司</td>
+            <td>张三</td>
+            <td>生物入侵</td>
+            <td>2024-04-20 19:08:55</td>
+          </tr>
+          <tr class="union">
+            <td>9</td>
+            <td>西南公司</td>
+            <td>李四</td>
+            <td>生物入侵</td>
+            <td>2024-04-20 19:10:55</td>
+          </tr>
+          <tr class="union">
+            <td>10</td>
+            <td>西南公司</td>
+            <td>李四</td>
+            <td>生物入侵</td>
+            <td>2024-04-20 19:10:58</td>
+          </tr>
+          <tr class="union2">
+            <td>11</td>
+            <td>西北公司</td>
+            <td>赵六</td>
+            <td>生物入侵</td>
+            <td>2024-04-20 19:15:01</td>
+          </tr>
+          <tr class="union2">
+            <td>12</td>
+            <td>西北公司</td>
+            <td>赵六</td>
+            <td>生物入侵</td>
+            <td>2024-04-20 19:15:11</td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>西北公司</td>
+            <td>赵六</td>
+            <td>生物入侵</td>
+            <td>2024-04-20 19:20:01</td>
+          </tr>
+        </table>
+        <div class="table-container">表-401</div>
+        <h3>
+          请在
+          <a href="./out4/NO.4.html" target="_blank" class="out"
+            >./out4/NO.4.html</a
+          >
+          文件中完成作答。
+        </h3>
+      </div>
+
+      <div class="no">
+        <h3>
+          5、<span style="color: red">附加题（40分）</span
+          >实现最小堆（小顶堆）的数据结构。
+        </h3>
+        <div>
+          最小堆，是一种经过排序的<a
+            href="https://baike.baidu.com/item/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91"
+            target="_blank"
+            >完全二叉树</a
+          >，其中任一非终端节点的数据值均不大于其左子结点和右子结点的值。
+        </div>
+        <br />
+        <div>要求如下：</div>
+        <ul>
+          <li>给定数据：5000,6000,7000,8000,4000,3000,2000,1000</li>
+          <li>
+            <b>需实现堆中排序：1000,2000,3000,5000,6000,7000,4000,8000</b>
+          </li>
+          <li>插入 5000,6000,7000,8000 <span>图-501</span> 所示。</li>
+          <li>插入 4000,3000,2000,1000 <span>图-502</span> 所示。</li>
+        </ul>
+
+        <div class="img-container">
+          <div><img src="./img/501.gif" width="800px" /></div>
+          <div>图-501</div>
+        </div>
+        <div class="img-container">
+          <div><img src="./img/502.gif" width="800px" /></div>
+          <div>图-502</div>
+        </div>
+
+        <h3>
+          请在
+          <a href="./out5/NO.5.html" target="_blank" class="out"
+            >./out5/NO.5.html</a
+          >
+          文件中完成作答。
+        </h3>
+      </div>
+    </div>
+  </body>
+</html>

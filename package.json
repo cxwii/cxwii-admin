@@ -18,6 +18,7 @@
     "install:child-angular17": "cd children_apps/angular17 && pnpm i"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
     "@micro-zoe/micro-app": "1.0.0-rc.2",
     "@tweenjs/tween.js": "^21.0.0",
     "@types/qrcode": "^1.5.1",

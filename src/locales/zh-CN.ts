@@ -23,6 +23,7 @@ export default {
     elComponents: 'el组件',
     Etable: '表格',
     Eform: '表单',
+    upload: '上传',
     vxwUi: 'VxwUi组件库',
     Vbutton: '按钮',
     Vicon: '图标',
