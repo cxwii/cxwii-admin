@@ -19,7 +19,9 @@ const scrollbarRef = ref<InstanceType<typeof ElScrollbar>>()
         vue3自己加的那个不管用
         封装的组件内没有做处理,自己就在实现组件加div保证 -->
       <Transition type="animation" enter-active-class="animate__animated animate__fadeIn">
-        <slot></slot>
+        <div>
+          <slot></slot>
+        </div>
       </Transition>
       <!-- <slot></slot> -->
       <ElBacktop target=".scroll-wrap" :right="80" :bottom="60" />
