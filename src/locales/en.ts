@@ -23,7 +23,7 @@ export default {
     elComponents: 'ElComponents',
     Etable: 'Table',
     Eform: 'Form',
-    upload: 'Upload',
+    imgUpload: 'ImgUpload',
     vxwUi: 'VxwUi',
     Vbutton: 'Button',
     Vicon: 'Icon',

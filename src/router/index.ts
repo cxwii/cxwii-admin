@@ -166,13 +166,13 @@ export const asyncRouter: AppRouteRecordRaw[] = [
         component: () => import('@/views/ElComponents/Form/form.vue')
       },
       {
-        name: 'upload',
-        path: 'upload',
+        name: 'imgUpload',
+        path: 'imgUpload',
         meta: {
-          title: t('router.upload'),
+          title: t('router.imgUpload'),
           code: '003003'
         },
-        component: () => import('@/views/ElComponents/Upload/upload.vue')
+        component: () => import('@/views/ElComponents/ImgUpload/ImgUpload.vue')
       }
     ]
   },
