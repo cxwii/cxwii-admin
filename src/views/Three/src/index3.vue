@@ -104,4 +104,10 @@ const download = () => {
   </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.foo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>

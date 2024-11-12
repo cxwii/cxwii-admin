@@ -5,22 +5,32 @@ import type { UploadInstance, UploadFile, UploadUserFile } from 'element-plus'
 import type { UploadUserFileBase64, optionsType } from '../../types'
 
 export const useRenderBase64 = (
-  options: optionsType = { isPreview: false, isDownload: false, isDelete: false }
+  options: optionsType = {
+    base64: false,
+    url: import.meta.env.VITE_API_PROXY,
+    list: [],
+    isPreview: false,
+    isDownload: false,
+    isDelete: false
+  },
+  emit: (event: 'listUpdate', ...args: any[]) => void
 ) => {
   const uploadRef = ref<UploadInstance>() // el组件实例
-  const fileList = ref<UploadUserFile[]>([]) // 文件列表
-  const fileListBase64: Nullable<UploadUserFileBase64[]> = [] // base64文件列表
+  const fileList = ref<UploadUserFile[]>(options.list ? options.list : []) // 文件列表
+  const fileListBase64: Nullable<UploadUserFileBase64[]> = options.list ? options.list : [] // base64文件列表
 
-  // 文件变动回调(增加fileListBase64)
+  // 文件变动事件(增加fileListBase64)
   const fileChange = async (uploadFile: UploadFile) => {
     const base64 = await toBase64(uploadFile.raw)
     fileListBase64.push({
       uid: uploadFile.raw!.uid,
       url: `${base64}`
     })
+
+    emit('listUpdate', fileListBase64)
   }
 
-  // 转换成base64
+  // 转换成base64工具函数
   const toBase64 = (file: any): Promise<string | ArrayBuffer | null> => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader()

@@ -3,14 +3,17 @@ import { ELImgUpload } from '@/components/ElementPlus/ImgUpload'
 import type { optionsType } from '@/components/ElementPlus/ImgUpload'
 
 const options: optionsType = {
-  isPreview: true // 是否预览
-  // isDownload: true, // 是否下载
-  // isDelete: true // 是否删除
+  base64: true,
+  isPreview: true
+}
+
+const foo = (list: any) => {
+  console.log('foo :>> ', list)
 }
 </script>
 
 <template>
-  <ELImgUpload :options="options" />
+  <ELImgUpload :options="options" @list-update="foo" />
 </template>
 
 <style scoped lang="scss"></style>
