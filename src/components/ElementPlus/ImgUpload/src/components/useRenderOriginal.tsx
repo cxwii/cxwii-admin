@@ -16,7 +16,7 @@ export const useRenderOriginal = (
   emit: (event: 'listUpdate', ...args: any[]) => void
 ) => {
   const uploadRef = ref<UploadInstance>() // el组件实例
-  const fileList = ref<UploadUserFile[]>(options.list ? options.list : []) // 文件列表
+  const fileList = ref<UploadUserFile[] | UploadUserFileBase64[]>(options.list ? options.list : []) // 文件列表
   const fileListBase64: Nullable<UploadUserFileBase64[]> = options.list ? options.list : [] // base64文件列表
 
   // 文件变动事件(增加fileListBase64)

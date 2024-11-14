@@ -4,7 +4,8 @@ import type { optionsType } from '@/components/ElementPlus/ImgUpload'
 
 const options: optionsType = {
   base64: true,
-  isPreview: true
+  isPreview: true,
+  limit: false
 }
 
 const foo = (list: any) => {

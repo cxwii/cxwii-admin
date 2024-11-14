@@ -9,6 +9,9 @@ export const useRenderBase64 = (
     base64: false,
     url: import.meta.env.VITE_API_PROXY,
     list: [],
+    tip: false,
+    limit: false,
+    size: false,
     isPreview: false,
     isDownload: false,
     isDelete: false
@@ -16,7 +19,7 @@ export const useRenderBase64 = (
   emit: (event: 'listUpdate', ...args: any[]) => void
 ) => {
   const uploadRef = ref<UploadInstance>() // el组件实例
-  const fileList = ref<UploadUserFile[]>(options.list ? options.list : []) // 文件列表
+  const fileList = ref<UploadUserFile[] | UploadUserFileBase64[]>(options.list ? options.list : []) // 文件列表
   const fileListBase64: Nullable<UploadUserFileBase64[]> = options.list ? options.list : [] // base64文件列表
 
   // 文件变动事件(增加fileListBase64)
@@ -79,10 +82,11 @@ export const useRenderBase64 = (
       <>
         <ElUpload
           ref={uploadRef}
-          action="#"
+          action={'#'}
           list-type="picture-card"
           show-file-list={true}
           auto-upload={false}
+          limit={options.limit ? (options.limit as number) : undefined}
           v-model:file-list={fileList.value}
           on-change={fileChange}
           v-slots={{
