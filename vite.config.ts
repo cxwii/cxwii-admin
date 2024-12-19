@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import VueJsx from '@vitejs/plugin-vue-jsx'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-// import EslintPlugin from 'vite-plugin-eslint'
+import EslintPlugin from 'vite-plugin-eslint'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 
 export default defineConfig(({ mode }) => {
@@ -25,6 +25,12 @@ export default defineConfig(({ mode }) => {
       createSvgIconsPlugin({
         iconDirs: [path.resolve(process.cwd(), 'src/assets/svgs')],
         symbolId: 'icon-[dir]-[name]'
+      }),
+      EslintPlugin({
+        cache: false,
+        failOnWarning: false,
+        failOnError: false,
+        include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx'] // 检查的文件
       }),
       VueI18nPlugin({
         runtimeOnly: true,
@@ -49,7 +55,6 @@ export default defineConfig(({ mode }) => {
           rewrite: (path) => path.replace(/^\/api/, '')
         }
       }
-    },
-    assetsInclude: ['**/*.glb', '**/*.gltf']
+    }
   }
 })

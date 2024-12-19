@@ -9,8 +9,6 @@ import '@/plugins/tailwind/index.css'
 import { useRouter } from '@/router/index'
 // ElementUI
 import { useElementPlus } from '@/plugins/elementPlus/index'
-// VxwUI
-import { useVxwUi } from '@/plugins/vxwUi/index'
 // pinia
 import { useStore } from '@/store/index'
 // 路由守卫
@@ -23,21 +21,12 @@ import 'virtual:svg-icons-register'
 import '@/plugins/animateCss'
 // 引入el主题样式
 import '@/styles/index.scss'
-// 引入微前端
-import microApp from '@micro-zoe/micro-app'
-microApp.start()
-// jquery引入
-import $ from 'jquery'
-// jQuery设置为全局变量
-window.$ = $
-window.jQuery = $
 
 // 创建实例
 const setupAll = async () => {
   const app = createApp(App)
   await setupI18n(app)
   useElementPlus(app)
-  useVxwUi(app)
   useStore(app)
   useRouter(app)
 

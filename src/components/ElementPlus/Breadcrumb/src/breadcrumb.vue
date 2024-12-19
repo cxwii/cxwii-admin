@@ -1,6 +1,6 @@
 <script lang="tsx" setup>
 import { ElBreadcrumb, ElBreadcrumbItem } from 'element-plus'
-import { watch, ref, TransitionGroup } from 'vue'
+import { watch, ref, TransitionGroup, Fragment } from 'vue'
 import { useRouter } from 'vue-router'
 import type { RouteLocationNormalizedLoaded, RouteLocationMatched } from 'vue-router'
 import { useI18n } from '@/hooks/web/useI18n'
@@ -64,7 +64,7 @@ watch(
 )
 
 const app = () => {
-  return <>{useRenderBreadcrumb()}</>
+  return <Fragment>{useRenderBreadcrumb()}</Fragment>
 }
 </script>
 

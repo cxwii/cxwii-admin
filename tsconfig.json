@@ -6,6 +6,8 @@
     "moduleResolution": "Node",
     "strict": true,
     "jsx": "preserve",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -22,9 +24,7 @@
       "@intlify/unplugin-vue-i18n/types",
       "vite/client",
       "element-plus/global",
-      "@types/qrcode",
       "vite-plugin-svg-icons/client",
-      "@types/jquery"
     ]
   },
   "include": ["src/**/*", "types/**/*.d.ts", "mock/**/*.ts"],

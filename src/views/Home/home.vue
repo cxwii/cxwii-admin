@@ -5,16 +5,10 @@ import viewAside from '@/views/Aside/viewAside.vue'
 import { useTagsViewStore } from '@/store/modules/tagsView'
 import { useUserStore } from '@/store/modules/user'
 import { MainContent } from '@/components/MainContent'
-import { Eldrawer } from '@/components/ElementPlus/Drawer'
-import { useI18n } from '@/hooks/web/useI18n'
-import { useRouter } from 'vue-router'
-import { ElMessage } from 'element-plus'
 
-const { t } = useI18n()
 const userStore = useUserStore()
 const pageLoading = computed(() => userStore.getPageLoading)
 const isCollapse = ref(false)
-const { push, currentRoute } = useRouter()
 
 provide('isCollapse', isCollapse)
 
@@ -23,25 +17,6 @@ const tagsViewStore = useTagsViewStore()
 const getCaches = computed((): string[] => {
   return tagsViewStore.getCachedViews
 })
-
-const toTestPage = () => {
-  push({ path: '/testPage' })
-}
-
-const getPage = () => {
-  let pageFile = (
-    currentRoute.value.matched[currentRoute.value.matched.length - 1].components?.default as any
-  ).__file
-
-  navigator.clipboard
-    .writeText(pageFile)
-    .then(() => {
-      ElMessage.success('已将页面路径复制到剪贴板')
-    })
-    .catch((error) => {
-      ElMessage.error(`复制页面路径到剪贴板失败: ${error}`)
-    })
-}
 </script>
 
 <template>
@@ -63,20 +38,6 @@ const getPage = () => {
             </MainContent>
           </template>
         </router-view>
-        <Eldrawer :title="t('config.configTitle')">
-          <div>
-            <el-divider content-position="center">{{ t('config.TestPage') }}</el-divider>
-            <div class="w-full flex justify-center">
-              <el-button @click="toTestPage">🔬</el-button>
-            </div>
-          </div>
-          <div>
-            <el-divider content-position="center">{{ t('config.getPage') }}</el-divider>
-            <div class="w-full flex justify-center">
-              <el-button @click="getPage">🔍</el-button>
-            </div>
-          </div>
-        </Eldrawer>
       </el-main>
     </el-container>
   </el-container>

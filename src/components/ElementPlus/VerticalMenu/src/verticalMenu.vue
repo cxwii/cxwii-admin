@@ -1,6 +1,6 @@
 <script lang="tsx" setup>
 import { ElMenu, ElSubMenu, ElMenuItem, ElIcon } from 'element-plus'
-import { useAttrs, useSlots, computed } from 'vue'
+import { useAttrs, useSlots, computed, Fragment } from 'vue'
 import { usePermissionStore } from '@/store/modules/permission'
 import type { RouteMeta } from 'vue-router'
 import { addSlashToStart } from '@/utils/routerHelper'
@@ -111,10 +111,10 @@ const renderMenuTitleORIcon = (meta: RouteMeta) => {
   const { title = '未知标题', icon } = meta
 
   return icon ? (
-    <>
+    <Fragment>
       <ElIcon class={`element-icons ${meta.icon}`}></ElIcon>
       <span>{t(title as string)}</span>
-    </>
+    </Fragment>
   ) : (
     <span>{t(title as string)}</span>
   )

@@ -1,6 +1,6 @@
 <script setup lang="tsx">
 import { ElForm, ElFormItem, ElInput, ElButton } from 'element-plus'
-import { PropType, useSlots, useAttrs } from 'vue'
+import { PropType, useSlots, useAttrs, Fragment } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'
 
 const { t } = useI18n()
@@ -60,7 +60,7 @@ const useRenderForm = () => {
 // 登录
 const useRenderLoginForm = () => {
   return (
-    <>
+    <Fragment>
       <div class="font-bold mb-10 text-center">{t('login.loginText')}</div>
       <ElFormItem label={t('login.username')}>
         <ElInput clearable v-model={props.model.username} />
@@ -78,14 +78,14 @@ const useRenderLoginForm = () => {
           </ElButton>
         </ElFormItem>
       ) : null}
-    </>
+    </Fragment>
   )
 }
 
 // 注册
 const useRenderRegisterForm = () => {
   return (
-    <>
+    <Fragment>
       <div class="font-bold mb-10 text-center">{t('login.register')}</div>
       <ElFormItem label={t('login.username')}>
         <ElInput clearable v-model={props.model.username} />
@@ -106,7 +106,7 @@ const useRenderRegisterForm = () => {
           </ElButton>
         </ElFormItem>
       ) : null}
-    </>
+    </Fragment>
   )
 }
 

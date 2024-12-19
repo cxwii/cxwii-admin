@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, Fragment } from 'vue'
 import { Delete, Download, Plus } from '@element-plus/icons-vue'
 import { ElUpload, ElIcon, ElDialog } from 'element-plus'
 import type { UploadInstance, UploadFile, UploadUserFile } from 'element-plus'
@@ -76,7 +76,7 @@ export const useRenderOriginal = (
   // 渲染Dom
   const renderOriginal = () => {
     return (
-      <>
+      <Fragment>
         <ElUpload
           ref={uploadRef}
           action="#"
@@ -130,7 +130,7 @@ export const useRenderOriginal = (
         <ElDialog v-model={dialogVisible.value}>
           <img class="w-full" src={dialogImageUrl.value} alt="Preview Image" />
         </ElDialog>
-      </>
+      </Fragment>
     )
   }
 
