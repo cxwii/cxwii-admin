@@ -3,6 +3,7 @@
     <canvas ref="canvas" :width="canvasWidth" :height="canvasHeight"></canvas>
     <div style="margin-top: 20px">
       <label>
+        弯曲程度（半径）：{{ radius }}
         <input type="range" min="50" max="300" v-model="radius" @input="drawText" />
       </label>
     </div>
@@ -13,10 +14,10 @@
 export default {
   data() {
     return {
-      text: '测试测试测试测试',
+      text: 'Vue.js is amazing!',
       canvasWidth: 600,
       canvasHeight: 600,
-      radius: 100 // 初始半径
+      radius: 200 // 初始半径
     }
   },
   mounted() {
@@ -30,7 +31,7 @@ export default {
 
       const centerX = canvasWidth / 2
       const centerY = canvasHeight / 2
-      const totalAngle = (text.length * 30) / radius // 根据文字宽度和半径计算总角度
+      const totalAngle = (text.length * 15) / radius // 根据文字宽度和半径计算总角度
       const angleStep = totalAngle / text.length
 
       ctx.clearRect(0, 0, canvasWidth, canvasHeight)
